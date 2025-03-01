@@ -12,18 +12,80 @@
             color: #fff;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        /* Styling for the menu bar container */
+        #menu-bar {
+            /* Sets the background color of the menu bar to a grey color (hex code #666) */
+            background-color: #666;
+            /* Sets the height of the menu bar to 50 pixels */
+            height: 50px;
+            /* Uses CSS Flexbox to layout child elements horizontally */
+             display: flex;
+            /* Distributes child elements (left, center, right) evenly with space between them, pushing left and right to edges and centering the middle */
+            justify-content: space-between; 
+            /* Vertically centers the child elements within the 50px height of the menu bar */
+            align-items: center;
+            /* Adds a 20-pixel margin at the bottom to separate the menu bar from the grid container below */
+            margin-bottom: 20px;
+            /* Sets the width to match the grids (3 grids * 50px width + 5px gap between grids), ensuring no overflow and proper centering */
+            width: 100%
+            /* Centers the menu bar horizontally over the grids, aligning with the content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Styling for the left and right sections of the menu bar (containing buttons) */
+        #menu-bar .left, #menu-bar .right {
+            /* Prevents these elements from growing or shrinking, fixing their size to their content (buttons), and ensures they stay at the edges */
+            flex: 0 0 auto;
+        }
+        /* Styling for the center section of the menu bar (containing the logo) */
+        #menu-bar .center {
+            /* Allows this element to grow to fill available space between .left and .right, ensuring the logo is centered horizontally */
+            flex-grow: 1;
+            /* Centers the logo horizontally within the center div */
+            text-align: center;
+        }
+        /* Styling for the logo image */
+        #menu-bar .center img {
+            /* Sets the height of the logo to match the menu bar height for vertical alignment */
+            height: 50px;
+            /* Ensures the logo doesn't exceed its natural width while maintaining aspect ratio */
+            max-width: 100%;
+            /* Vertically centers the logo within the 50px height */
+            vertical-align: middle;
+        }
+        /* Styling for the buttons ("NEW" and "?") in the menu bar */
+        #menu-bar button {
+            /* Sets the background color of the buttons to a darker grey (hex code #444) */
+            background-color: #444;
+            /* Removes the default border from the buttons */
+            border: none;
+            /* Sets the text color of the buttons to white for contrast */
+            color: #fff;
+            /* Adds consistent padding (10px top/bottom, 20px left/right) to ensure buttons have uniform size and shape */
+            padding: 10px 20px; /* Consistent padding for same width and height */
+            /* Changes the cursor to a pointer when hovering over the buttons, indicating they are clickable */
+            cursor: pointer;
+            /* Sets the font size of button text to 16 pixels for readability */
+            font-size: 18px;
+			font-variant: bold;
+            /* Fixes the width of both buttons to 120 pixels, ensuring they are the same size for consistent layout */
+            width: 120px; /* Fixed width for both buttons to match */
+            /* Fixes the height of the buttons to match the menu bar height visually */
+            height: 50px; /* Fixed height to match menu bar height visually */
+            /* Centers the text vertically within the 50px button height, ensuring proper alignment */
+            line-height: 30px; /* Center text vertically in button (adjusted for padding) */
+            /* Adds a smooth transition effect for background color changes on hover, improving user experience */
+            transition: background-color 0.2s;
+        }
+        #menu-bar button:hover {
+            background-color: #555;
         }
         #game-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-        }
-        h1 {
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 48px;
-            color: #ccc;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .grid-container {
             display: flex;
@@ -135,7 +197,7 @@
             display: none;
             z-index: 1000;
         }
-        #win-popup, #lose-popup {
+        #win-popup, #lose-popup, #instructions-popup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -147,21 +209,38 @@
             text-align: center;
             color: #fff;
             font-size: 18px;
-            max-width: 400px;
+            max-width: 800px; /* Larger for instructions image */
+            max-height: 90vh; /* Allow full image height without scrolling */
             z-index: 1000;
             display: none;
         }
         #win-popup {
             border: 3px solid #4caf50;
+            max-width: 400px;
         }
         #lose-popup {
             border: 3px solid #f44336;
+            max-width: 400px;
+        }
+        #instructions-popup img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
+    <div id="menu-bar">
+        <div class="left">
+            <button id="new-game">NEW</button>
+        </div>
+        <div class="center">
+            <img src="logo.png" alt="Intersections Logo">
+        </div>
+        <div class="right">
+            <button id="help">?</button>
+        </div>
+    </div>
     <div id="game-container">
-        <h1>Intersections</h1>
         <div class="grid-container">
             <div class="grid" id="main-grid"></div>
             <div class="grid" id="h-guesses"></div>
@@ -184,6 +263,10 @@
             <h2>You Crashed at the Intersection</h2>
             <button id="lose-ok" onclick="closePopup()">OK</button>
         </div>
+        <div id="instructions-popup">
+            <img src="instructions.png" alt="Instructions">
+            <button id="instructions-close" onclick="closeInstructions()">X</button>
+        </div>
     </div>
 
     <script>
@@ -202,23 +285,37 @@
         let gameOver = false;
         let startTime = Date.now();
 
-        // Load JSON files and initialize the game
-        Promise.all([
-            fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
-            fetch('./valid_five_letter_words.json').then(response => response.json())
-        ]).then(([related, valid]) => {
-            relatedWords = related;
-            validWords = new Set(valid.map(word => word.toUpperCase()));
-            selectRandomPair();
-            initMainGrid();
-            initHGuesses();
-            initVGuesses();
-            initLetterBank();
-            resetKeyboard(); // Reset keyboard colors at start
-        }).catch(error => {
-            console.error('Error loading JSON files:', error);
-            alert('Failed to load game data. Please check the JSON files and try again.');
+        // Load JSON files and initialize the game on page load
+        window.onload = function() {
+            Promise.all([
+                fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
+                fetch('./valid_five_letter_words.json').then(response => response.json())
+            ]).then(([related, valid]) => {
+                relatedWords = related;
+                validWords = new Set(valid.map(word => word.toUpperCase()));
+                selectRandomPair();
+                initMainGrid();
+                initHGuesses();
+                initVGuesses();
+                initLetterBank();
+                resetKeyboard();
+            }).catch(error => {
+                console.error('Error loading JSON files:', error);
+                alert('Failed to load game data. Please check the JSON files and try again.');
+            });
+        };
+
+        document.getElementById("new-game").addEventListener("click", function() {
+            window.location.reload(); // Reload the page for a new game
         });
+
+        document.getElementById("help").addEventListener("click", function() {
+            document.getElementById("instructions-popup").style.display = "block";
+        });
+
+        function closeInstructions() {
+            document.getElementById("instructions-popup").style.display = "none";
+        }
 
         function selectRandomPair() {
             let pair;
@@ -259,6 +356,7 @@
 
         function initMainGrid() {
             const grid = document.getElementById("main-grid");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -282,6 +380,7 @@
 
         function initHGuesses() {
             const grid = document.getElementById("h-guesses");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -291,6 +390,7 @@
 
         function initVGuesses() {
             const grid = document.getElementById("v-guesses");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -571,23 +671,19 @@
             const winPopup = document.getElementById("win-popup");
             const winGuesses = document.getElementById("win-guesses");
             const winTime = document.getElementById("win-time");
-            const winOk = document.getElementById("win-ok");
             winGuesses.textContent = guesses;
             const endTime = Date.now();
             const timeElapsed = Math.floor((endTime - startTime) / 1000);
             winTime.textContent = `${timeElapsed}s`;
             winPopup.style.display = "block";
-           // winOk.focus(); // Automatically focus the OK button
             gameOver = true;
             updateTrafficLights();
         }
 
         function showLosePopup() {
             const losePopup = document.getElementById("lose-popup");
-            const loseOk = document.getElementById("lose-ok");
             fillRemainingLettersInRed();
             losePopup.style.display = "block";
-           // loseOk.focus(); // Automatically focus the OK button
             gameOver = true;
             updateTrafficLights();
         }
@@ -666,9 +762,9 @@
                     }
                 }
                 // Ensure the intersection (row === intersectV && col === intersectH) is handled correctly
+                // Preserve green if at least one word is correctly guessed, otherwise red
                 if (row === intersectV && col === intersectH) {
                     const intersectionLetter = targetHorizontal[intersectH];
-                    // Preserve green if at least one word is correctly guessed, otherwise red
                     if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
                         cell.textContent = intersectionLetter;
                         cell.classList.add("green");
@@ -686,6 +782,15 @@
             document.getElementById("win-popup").style.display = "none";
             document.getElementById("lose-popup").style.display = "none";
             document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false); // Re-enable buttons
+            gameOver = false; // Reset game state for new game
+            guesses = 0; // Reset guesses
+            horizontalLocked = false; // Reset locks
+            verticalLocked = false; // Reset locks
+            currentGuess = ""; // Reset current guess
+            resetKeyboard(); // Reset keyboard colors
+            initMainGrid(); // Reinitialize main grid
+            initHGuesses(); // Reinitialize horizontal guesses
+            initVGuesses(); // Reinitialize vertical guesses
             document.addEventListener('keydown', handleKeydown); // Re-enable keydown listener
         }
 
@@ -723,9 +828,15 @@
             if (gameOver) {
                 const winPopup = document.getElementById("win-popup");
                 const losePopup = document.getElementById("lose-popup");
+                const instructionsPopup = document.getElementById("instructions-popup");
                 if (winPopup.style.display === "block" || losePopup.style.display === "block") {
                     if (event.key === "Enter") {
                         closePopup();
+                    }
+                    return;
+                } else if (instructionsPopup.style.display === "block") {
+                    if (event.key === "Enter") {
+                        closeInstructions();
                     }
                     return;
                 }
