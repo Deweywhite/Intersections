@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersections</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: radial-gradient(circle, #333, #111);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        /* Styling for the menu bar container */
+        #menu-bar {
+            /* Sets the background color of the menu bar to a grey color (hex code #666) */
+            background-color: #666;
+            /* Sets the height of the menu bar to 50 pixels */
+            height: 50px;
+            /* Uses CSS Flexbox to layout child elements horizontally */
+             display: flex;
+            /* Distributes child elements (left, center, right) evenly with space between them, pushing left and right to edges and centering the middle */
+            justify-content: space-between; 
+            /* Vertically centers the child elements within the 50px height of the menu bar */
+            align-items: center;
+            /* Adds a 20-pixel margin at the bottom to separate the menu bar from the grid container below */
+            margin-bottom: 20px;
+            /* Sets the width to match the grids (3 grids * 50px width + 5px gap between grids), ensuring no overflow and proper centering */
+            width: 100%
+            /* Centers the menu bar horizontally over the grids, aligning with the content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Styling for the left and right sections of the menu bar (containing buttons) */
+        #menu-bar .left, #menu-bar .right {
+            /* Prevents these elements from growing or shrinking, fixing their size to their content (buttons), and ensures they stay at the edges */
+            flex: 0 0 auto;
+        }
+        /* Styling for the center section of the menu bar (containing the logo) */
+        #menu-bar .center {
+            /* Allows this element to grow to fill available space between .left and .right, ensuring the logo is centered horizontally */
+            flex-grow: 1;
+            /* Centers the logo horizontally within the center div */
+            text-align: center;
+        }
+        /* Styling for the logo image */
+        #menu-bar .center img {
+            /* Sets the height of the logo to match the menu bar height for vertical alignment */
+            height: 50px;
+            /* Ensures the logo doesn't exceed its natural width while maintaining aspect ratio */
+            max-width: 100%;
+            /* Vertically centers the logo within the 50px height */
+            vertical-align: middle;
+        }
+        /* Styling for the buttons ("NEW" and "?") in the menu bar */
+        #menu-bar button {
+            /* Sets the background color of the buttons to a darker grey (hex code #444) */
+            background-color: #444;
+            /* Removes the default border from the buttons */
+            border: none;
+            /* Sets the text color of the buttons to white for contrast */
+            color: #fff;
+            /* Adds consistent padding (10px top/bottom, 20px left/right) to ensure buttons have uniform size and shape */
+            padding: 10px 20px; /* Consistent padding for same width and height */
+            /* Changes the cursor to a pointer when hovering over the buttons, indicating they are clickable */
+            cursor: pointer;
+            /* Sets the font size of button text to 16 pixels for readability */
+            font-size: 18px;
+			font-variant: bold;
+            /* Fixes the width of both buttons to 120 pixels, ensuring they are the same size for consistent layout */
+            width: 120px; /* Fixed width for both buttons to match */
+            /* Fixes the height of the buttons to match the menu bar height visually */
+            height: 50px; /* Fixed height to match menu bar height visually */
+            /* Centers the text vertically within the 50px button height, ensuring proper alignment */
+            line-height: 30px; /* Center text vertically in button (adjusted for padding) */
+            /* Adds a smooth transition effect for background color changes on hover, improving user experience */
+            transition: background-color 0.2s;
+        }
+        #menu-bar button:hover {
+            background-color: #555;
+        }
+        #game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .grid-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            grid-gap: 5px;
+            background-color: #444;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            background-color: #2d2d2d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        .cell.placeholder {
+            background-color: #666; /* Lighter gray for target rows/columns */
+        }
+        .horizontal { background-color: #333; }
+        .vertical { background-color: #333; }
+        .intersection { background-color: #333; }
+        .green { background-color: #4caf50; }
+        .yellow { background-color: #ffeb3b; color: black; }
+        .red { background-color: #f44336; }
+        .keyboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        #letter-bank {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .letter-row {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+        .letter-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #444;
+            border-top: 2px solid #888;
+            border-bottom: 2px solid #888;
+            border-left: 2px solid #888;
+            border-right: 2px solid #888; /* Default gray borders */
+            color: #fff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .letter-btn:hover {
+            background-color: #555;
+        }
+        .green-top-bottom { border-top: 2px solid #4caf50; border-bottom: 2px solid #4caf50; }
+        .yellow-top-bottom { border-top: 2px solid #ffeb3b; border-bottom: 2px solid #ffeb3b; }
+        .red-top-bottom { border-top: 2px solid #f44336; border-bottom: 2px solid #f44336; }
+        .green-left-right { border-left: 2px solid #4caf50; border-right: 2px solid #4caf50; }
+        .yellow-left-right { border-left: 2px solid #ffeb3b; border-right: 2px solid #ffeb3b; }
+        .red-left-right { border-left: 2px solid #f44336; border-right: 2px solid #f44336; }
+        .traffic-light {
+            width: 60px;
+            height: 180px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .light {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #444;
+        }
+        .light.red { background-color: #f44336; box-shadow: 0 0 10px #f44336; }
+        .light.yellow { background-color: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
+        .light.green { background-color: #4caf50; box-shadow: 0 0 10px #4caf50; }
+        #message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: none;
+            z-index: 1000;
+        }
+        #win-popup, #lose-popup, #instructions-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            max-width: 800px; /* Larger for instructions image */
+            max-height: 90vh; /* Allow full image height without scrolling */
+            z-index: 1000;
+            display: none;
+        }
+        #win-popup {
+            border: 3px solid #4caf50;
+            max-width: 400px;
+        }
+        #lose-popup {
+            border: 3px solid #f44336;
+            max-width: 400px;
+        }
+        #instructions-popup img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-bar">
+        <div class="left">
+            <button id="new-game">NEW</button>
+        </div>
+        <div class="center">
+            <img src="logo.png" alt="Intersections Logo">
+        </div>
+        <div class="right">
+            <button id="help">?</button>
+        </div>
+    </div>
+    <div id="game-container">
+        <div class="grid-container">
+            <div class="grid" id="main-grid"></div>
+            <div class="grid" id="h-guesses"></div>
+            <div class="grid" id="v-guesses"></div>
+        </div>
+        <div class="keyboard-container">
+            <div class="traffic-light" id="left-traffic-light"></div>
+            <div id="letter-bank"></div>
+            <div class="traffic-light" id="right-traffic-light"></div>
+        </div>
+        <div id="message"></div>
+        <div id="win-popup">
+            <h2>Congratulations!</h2>
+            <p>You Successfully Navigated the Intersection</p>
+            <p>Guesses: <span id="win-guesses">0</span></p>
+            <p>Time: <span id="win-time">0s</span></p>
+            <button id="win-ok" onclick="closePopup()">OK</button>
+        </div>
+        <div id="lose-popup">
+            <h2>You Crashed at the Intersection</h2>
+            <button id="lose-ok" onclick="closePopup()">OK</button>
+        </div>
+        <div id="instructions-popup">
+            <img src="instructions.png" alt="Instructions">
+            <button id="instructions-close" onclick="closeInstructions()">X</button>
+        </div>
+    </div>
+
+    <script>
+        let targetHorizontal;
+        let targetVertical;
+        let intersectH;
+        let intersectV;
+        let relatedWords;
+        let validWords;
+        let guesses = 0;
+        const maxGuesses = 5;
+        let horizontalLocked = false;
+        let verticalLocked = false;
+        let letterStatus = {};
+        let currentGuess = "";
+        let gameOver = false;
+        let startTime = Date.now();
+
+        // Load JSON files and initialize the game on page load
+        window.onload = function() {
+            Promise.all([
+                fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
+                fetch('./valid_five_letter_words.json').then(response => response.json())
+            ]).then(([related, valid]) => {
+                relatedWords = related;
+                validWords = new Set(valid.map(word => word.toUpperCase()));
+                selectRandomPair();
+                initMainGrid();
+                initHGuesses();
+                initVGuesses();
+                initLetterBank();
+                resetKeyboard();
+            }).catch(error => {
+                console.error('Error loading JSON files:', error);
+                alert('Failed to load game data. Please check the JSON files and try again.');
+            });
+        };
+
+        document.getElementById("new-game").addEventListener("click", function() {
+            window.location.reload(); // Reload the page for a new game
+        });
+
+        document.getElementById("help").addEventListener("click", function() {
+            document.getElementById("instructions-popup").style.display = "block";
+        });
+
+        function closeInstructions() {
+            document.getElementById("instructions-popup").style.display = "none";
+        }
+
+        function selectRandomPair() {
+            let pair;
+            let intersectionFound = false;
+            while (!intersectionFound) {
+                pair = relatedWords[Math.floor(Math.random() * relatedWords.length)];
+                const horizontalWord = pair[0].toUpperCase();
+                const verticalWord = pair[1].toUpperCase();
+                
+                if (horizontalWord.length !== 5 || verticalWord.length !== 5) {
+                    console.error("Invalid word length in pair:", horizontalWord, verticalWord);
+                    continue;
+                }
+                
+                for (let i = 0; i < 5; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        if (horizontalWord[i] === verticalWord[j]) {
+                            targetHorizontal = horizontalWord;
+                            targetVertical = verticalWord;
+                            intersectH = i;
+                            intersectV = j;
+                            intersectionFound = true;
+                            break;
+                        }
+                    }
+                    if (intersectionFound) break;
+                }
+                
+                if (!intersectionFound) {
+                    console.error("No common letter found for pair:", horizontalWord, verticalWord);
+                }
+            }
+            
+            if (targetHorizontal[intersectH] !== targetVertical[intersectV]) {
+                console.error("Intersection letter mismatch:", targetHorizontal, targetVertical, intersectH, intersectV);
+            }
+        }
+
+        function initMainGrid() {
+            const grid = document.getElementById("main-grid");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+                if (row === intersectV || col === intersectH) {
+                    cell.classList.add("placeholder"); // Light gray for target row/column
+                }
+                if (row === intersectV) cell.classList.add("horizontal");
+                if (col === intersectH) cell.classList.add("vertical");
+                if (row === intersectV && col === intersectH) {
+                    cell.classList.add("intersection");
+                    cell.textContent = targetHorizontal[intersectH];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                grid.appendChild(cell);
+            }
+            updateTrafficLights();
+        }
+
+        function initHGuesses() {
+            const grid = document.getElementById("h-guesses");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                grid.appendChild(cell);
+            }
+        }
+
+        function initVGuesses() {
+            const grid = document.getElementById("v-guesses");
+            grid.innerHTML = ''; // Clear existing content to prevent size increase
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                grid.appendChild(cell);
+            }
+        }
+
+        function initLetterBank() {
+            const layout = [
+                "QWERTYUIOP",
+                "ASDFGHJKL",
+                "←ZXCVBNM⏎"
+            ];
+            const bank = document.getElementById("letter-bank");
+            layout.forEach(row => {
+                const rowDiv = document.createElement("div");
+                rowDiv.classList.add("letter-row");
+                row.split("").forEach(char => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("letter-btn");
+                    if (char === "←") {
+                        btn.innerHTML = "←";
+                        btn.onclick = handleBackspaceFromLetterBank;
+                    } else if (char === "⏎") {
+                        btn.innerHTML = "⏎";
+                        btn.onclick = submitGuessFromLetterBank;
+                    } else {
+                        btn.textContent = char;
+                        btn.setAttribute("data-letter", char);
+                        btn.onclick = () => addLetter(char);
+                    }
+                    rowDiv.appendChild(btn);
+                    if (char.match(/[A-Z]/)) {
+                        letterStatus[char] = { h: "unknown", v: "unknown" };
+                    }
+                });
+                bank.appendChild(rowDiv);
+            });
+        }
+
+        function resetKeyboard() {
+            document.querySelectorAll(".letter-btn").forEach(btn => {
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+                // Default to no border coloring (gray will be implied by CSS default)
+            });
+            letterStatus = {};
+        }
+
+        function addLetter(letter) {
+            if (gameOver || currentGuess.length >= 5 || (horizontalLocked && verticalLocked)) return;
+            if (!horizontalLocked || !verticalLocked) {
+                currentGuess += letter.toUpperCase();
+                updateGrids();
+            }
+        }
+
+        function submitGuessFromLetterBank() {
+            if (gameOver || currentGuess.length !== 5 || (horizontalLocked && verticalLocked)) return;
+            processGuess(currentGuess);
+        }
+
+        function handleBackspaceFromLetterBank() {
+            if (gameOver || currentGuess.length === 0) return;
+            currentGuess = currentGuess.slice(0, -1);
+            updateGrids();
+        }
+
+        function updateGrids() {
+            if (gameOver) return; // Prevent updates after game over
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = guesses * 5;
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked) {
+                    const hCell = hGrid[rowStart + i];
+                    if (hCell && i < currentGuess.length) {
+                        hCell.textContent = currentGuess[i] || '';
+                        hCell.classList.remove("green", "yellow", "red");
+                    } else if (hCell) {
+                        hCell.textContent = "";
+                    }
+                }
+                if (!verticalLocked) {
+                    const vCell = vGrid[i * 5 + guesses];
+                    if (vCell && i < currentGuess.length) {
+                        vCell.textContent = currentGuess[i] || ''; // Ensure text is always set for vertical grid
+                        vCell.classList.remove("green", "yellow", "red");
+                    } else if (vCell) {
+                        vCell.textContent = "";
+                    }
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function processGuess(guess) {
+            guess = guess.toUpperCase();
+            if (!validWords.has(guess)) {
+                showInvalidWarning();
+                currentGuess = "";
+                updateGrids();
+                return;
+            }
+            guesses++;
+            const feedback = provideFeedback(guess);
+            displayGuess(guess, feedback);
+            updateMainGrid(guess, feedback);
+            updateLetterBank(guess, feedback);
+            checkGameEnd();
+            currentGuess = "";
+            updateGrids();
+        }
+
+        function showInvalidWarning() {
+            const message = document.getElementById("message");
+            message.textContent = "Invalid Word";
+            message.style.display = "block";
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 1000);
+        }
+
+        function provideFeedback(guess) {
+            const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+            const hRemaining = targetHorizontal.split("");
+            const vRemaining = targetVertical.split("");
+
+            // Check green (correct position) first
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
+                    feedback[i].h = "green";
+                    hRemaining[i] = "";
+                }
+                if (!verticalLocked && guess[i] === targetVertical[i]) {
+                    feedback[i].v = "green";
+                    vRemaining[i] = "";
+                }
+            }
+
+            // Check yellow (correct letter, wrong position), handling multiple letters
+            for (let i = 0; i < 5; i++) {
+                if (feedback[i].h === "red" && !horizontalLocked && targetHorizontal.includes(guess[i])) {
+                    feedback[i].h = "yellow";
+                }
+                if (feedback[i].v === "red" && !verticalLocked && targetVertical.includes(guess[i])) {
+                    feedback[i].v = "yellow";
+                }
+            }
+
+            return feedback;
+        }
+
+        function displayGuess(guess, feedback) {
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = (guesses - 1) * 5;
+
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked) {
+                    const hCell = Array.from(hGrid)[rowStart + i]; // Convert to Array
+                    if (hCell) {
+                        hCell.textContent = guess[i] || '';
+                        hCell.classList.remove("green", "yellow", "red");
+                        hCell.classList.add(feedback[i].h);
+                    }
+                }
+                if (!verticalLocked) {
+                    const vCell = Array.from(vGrid)[i * 5 + (guesses - 1)]; // Convert to Array
+                    if (vCell) {
+                        vCell.textContent = guess[i] || ''; // Ensure text is always set for vertical grid
+                        vCell.classList.remove("green", "yellow", "red");
+                        vCell.classList.add(feedback[i].v);
+                    }
+                }
+            }
+
+            if (!horizontalLocked && feedback.every(f => f.h === "green")) horizontalLocked = true;
+            if (!verticalLocked && feedback.every(f => f.v === "green")) verticalLocked = true;
+            updateTrafficLights();
+        }
+
+        function updateMainGrid(guess, feedback) {
+            const grid = document.getElementById("main-grid").children;
+            for (let i = 0; i < 25; i++) {
+                const cell = grid[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                // Reset cell to default state, preserving existing green if present
+                if (cell.classList.contains("green")) {
+                    cell.classList.remove("yellow", "red", "placeholder");
+                    cell.classList.add("green"); // Keep green if already green
+                } else {
+                    cell.classList.remove("green", "yellow", "red", "placeholder");
+                    cell.classList.add("cell");
+                }
+
+                // Apply placeholder for target row/column unless overridden by a guess, locked word, or intersection
+                if ((row === intersectV || col === intersectH) && !(row === intersectV && col === intersectH) && !cell.classList.contains("green") && !cell.textContent) {
+                    cell.classList.add("placeholder");
+                }
+
+                // Apply correct guess or locked word colors, overriding placeholder
+                if (row === intersectV && !horizontalLocked && feedback[col].h === "green") {
+                    cell.textContent = guess[col];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (col === intersectH && !verticalLocked && feedback[row].v === "green") {
+                    cell.textContent = guess[row];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (row === intersectV && horizontalLocked) {
+                    cell.textContent = targetHorizontal[col];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (col === intersectH && verticalLocked) {
+                    cell.textContent = targetVertical[row];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                // Ensure the intersection (row === intersectV && col === intersectH) stays green
+                if (row === intersectV && col === intersectH) {
+                    cell.textContent = targetHorizontal[intersectH];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function updateLetterBank(guess, feedback) {
+            for (let i = 0; i < 5; i++) {
+                const letter = guess[i];
+                const btn = Array.from(document.querySelectorAll(".letter-btn"))
+                    .find(b => b.getAttribute("data-letter") === letter || b.innerHTML === letter);
+                if (!btn) continue;
+
+                const hStatus = feedback[i].h;
+                const vStatus = feedback[i].v;
+
+                letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
+
+                // Update status: green takes precedence over yellow, never downgrade to yellow after green
+                if (hStatus === "green") letterStatus[letter].h = "green";
+                else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
+                else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
+
+                if (vStatus === "green") letterStatus[letter].v = "green";
+                else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
+                else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+
+                // Apply borders: top/bottom for horizontal, left/right for vertical
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+
+                if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
+                else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
+                else btn.classList.add("red-top-bottom");
+
+                if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
+                else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
+                else btn.classList.add("red-left-right");
+            }
+        }
+
+        function checkGameEnd() {
+            console.log("Checking game end, guesses:", guesses, "gameOver:", gameOver, "horizontalLocked:", horizontalLocked, "verticalLocked:", verticalLocked);
+            if (horizontalLocked && verticalLocked && !gameOver) {
+                showWinPopup();
+            } else if (guesses >= maxGuesses && !gameOver) {
+                showLosePopup();
+            }
+        }
+
+        function showWinPopup() {
+            const winPopup = document.getElementById("win-popup");
+            const winGuesses = document.getElementById("win-guesses");
+            const winTime = document.getElementById("win-time");
+            winGuesses.textContent = guesses;
+            const endTime = Date.now();
+            const timeElapsed = Math.floor((endTime - startTime) / 1000);
+            winTime.textContent = `${timeElapsed}s`;
+            winPopup.style.display = "block";
+            gameOver = true;
+            updateTrafficLights();
+        }
+
+        function showLosePopup() {
+            const losePopup = document.getElementById("lose-popup");
+            fillRemainingLettersInRed();
+            losePopup.style.display = "block";
+            gameOver = true;
+            updateTrafficLights();
+        }
+
+        function fillRemainingLettersInRed() {
+            const grid = document.getElementById("main-grid");
+            const hGuessed = new Set(); // Track correctly guessed horizontal letters
+            const vGuessed = new Set(); // Track correctly guessed vertical letters
+
+            // Collect already guessed green letters from guesses
+            const hGuesses = document.getElementById("h-guesses");
+            const vGuesses = document.getElementById("v-guesses");
+            const hChildren = Array.from(hGuesses.children);
+            const vChildren = Array.from(vGuesses.children);
+
+            for (let i = 0; i < guesses; i++) {
+                const hRowStart = i * 5;
+                const vRowStart = i * 5;
+                for (let j = 0; j < 5; j++) {
+                    const hCell = hChildren[hRowStart + j];
+                    const vCell = vChildren[vRowStart + j];
+                    if (hCell && hCell.classList.contains("green")) {
+                        hGuessed.add(hCell.textContent);
+                    }
+                    if (vCell && vCell.classList.contains("green")) {
+                        vGuessed.add(vCell.textContent);
+                    }
+                }
+            }
+
+            const mainGridChildren = Array.from(grid.children);
+            for (let i = 0; i < 25; i++) {
+                const cell = mainGridChildren[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                // Reset cell to default state, preserving existing green if present
+                if (cell.classList.contains("green")) {
+                    cell.classList.remove("yellow", "red", "placeholder");
+                    cell.classList.add("green"); // Keep green if already green
+                } else {
+                    cell.classList.remove("green", "yellow", "red", "placeholder");
+                    cell.classList.add("cell");
+                }
+
+                // Apply placeholder for non-target, non-guessed cells unless overridden
+                if (!(row === intersectV || col === intersectH) && !cell.textContent) {
+                    cell.classList.add("placeholder");
+                }
+
+                // Fill unguessed target letters (including intersection if not green) with red
+                if (row === intersectV && !horizontalLocked) {
+                    const hLetter = targetHorizontal[col] || '';
+                    if (hLetter && !hGuessed.has(hLetter)) {
+                        cell.textContent = hLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    } else if (hLetter && hGuessed.has(hLetter) && !cell.classList.contains("green")) {
+                        // Ensure guessed letters are colored appropriately
+                        cell.textContent = hLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+                if (col === intersectH && !verticalLocked) {
+                    const vLetter = targetVertical[row] || '';
+                    if (vLetter && !vGuessed.has(vLetter)) {
+                        cell.textContent = vLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    } else if (vLetter && vGuessed.has(vLetter) && !cell.classList.contains("green")) {
+                        // Ensure guessed letters are colored appropriately
+                        cell.textContent = vLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+                // Ensure the intersection (row === intersectV && col === intersectH) is handled correctly
+                // Preserve green if at least one word is correctly guessed, otherwise red
+                if (row === intersectV && col === intersectH) {
+                    const intersectionLetter = targetHorizontal[intersectH];
+                    if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
+                        cell.textContent = intersectionLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    } else {
+                        cell.textContent = intersectionLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("win-popup").style.display = "none";
+            document.getElementById("lose-popup").style.display = "none";
+            document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false); // Re-enable buttons
+            gameOver = false; // Reset game state for new game
+            guesses = 0; // Reset guesses
+            horizontalLocked = false; // Reset locks
+            verticalLocked = false; // Reset locks
+            currentGuess = ""; // Reset current guess
+            resetKeyboard(); // Reset keyboard colors
+            initMainGrid(); // Reinitialize main grid
+            initHGuesses(); // Reinitialize horizontal guesses
+            initVGuesses(); // Reinitialize vertical guesses
+            document.addEventListener('keydown', handleKeydown); // Re-enable keydown listener
+        }
+
+        function updateTrafficLights() {
+            const leftLight = document.getElementById("left-traffic-light");
+            const rightLight = document.getElementById("right-traffic-light");
+            const lights = [leftLight, rightLight];
+
+            lights.forEach(light => {
+                light.innerHTML = '';
+                const red = document.createElement("div");
+                const yellow = document.createElement("div");
+                const green = document.createElement("div");
+                red.classList.add("light");
+                yellow.classList.add("light");
+                green.classList.add("light");
+
+                if (gameOver && guesses >= maxGuesses) {
+                    red.classList.add("red");
+                } else if (!horizontalLocked && !verticalLocked) {
+                    red.classList.add("red");
+                } else if (horizontalLocked !== verticalLocked) {
+                    yellow.classList.add("yellow");
+                } else {
+                    green.classList.add("green");
+                }
+
+                light.appendChild(red);
+                light.appendChild(yellow);
+                light.appendChild(green);
+            });
+        }
+
+        function handleKeydown(event) {
+            if (gameOver) {
+                const winPopup = document.getElementById("win-popup");
+                const losePopup = document.getElementById("lose-popup");
+                const instructionsPopup = document.getElementById("instructions-popup");
+                if (winPopup.style.display === "block" || losePopup.style.display === "block") {
+                    if (event.key === "Enter") {
+                        closePopup();
+                    }
+                    return;
+                } else if (instructionsPopup.style.display === "block") {
+                    if (event.key === "Enter") {
+                        closeInstructions();
+                    }
+                    return;
+                }
+            }
+            if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+                if (currentGuess.length < 5) {
+                    if (!horizontalLocked || !verticalLocked) {
+                        currentGuess += event.key.toUpperCase();
+                        updateGrids();
+                    }
+                }
+            } else if (event.key === "Backspace") {
+                if (currentGuess.length > 0) {
+                    currentGuess = currentGuess.slice(0, -1);
+                    updateGrids();
+                }
+            } else if (event.key === "Enter") {
+                if (currentGuess.length === 5) {
+                    processGuess(currentGuess);
+                }
+            }
+        }
+
+        document.addEventListener('keydown', handleKeydown);
+    </script>
+</body>
+</html>
