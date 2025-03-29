@@ -12,7 +12,7 @@
             color: #fff;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
         #menu-bar {
             background-color: #666;
@@ -227,43 +227,6 @@
 
         /* Mobile Layout Adjustments */
         @media (max-width: 768px) {
-            .grid {
-                grid-gap: 0.5px;
-            }
-            .cell {
-                width: 3vw;
-                height: 3vw;
-                font-size: 2vw;
-            }
-            .letter-btn {
-                width: 3vw;
-                height: 3vw;
-                font-size: 1.5vw;
-            }
-            .traffic-light {
-                width: 4vw;
-                height: 12.5vw;
-                padding: 0.5vw;
-            }
-            .light {
-                width: 2vw;
-                height: 2vw;
-            }
-            #menu-bar button {
-                width: 20vw;
-                height: 4vw;
-                line-height: 3vw;
-                transition: background-color 0.2s;
-                box-sizing: border-box;
-            }
-            .keyboard-container {
-                gap: 0.5vw;
-            }
-            .letter-row {
-                gap: 0.5px;
-            }
-
-            /* New mobile layout */
             #game-container {
                 display: flex;
                 flex-direction: column;
@@ -278,22 +241,64 @@
                 margin-bottom: 1vw;
                 width: 100%;
             }
-            #main-grid {
-                order: -1; /* Moves main-grid to top within grid-container */
+            .main-grid-with-lights {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1vw;
+                width: 100%;
             }
-            #h-guesses, #v-guesses {
-                /* Stay below main-grid */
+            .guess-grids {
+                display: flex;
+                justify-content: center;
+                gap: 2vw;
+                width: 100%;
+            }
+            .grid {
+                grid-gap: 0.5px;
+            }
+            .cell {
+                width: 8vw; /* Increased for mobile visibility */
+                height: 8vw;
+                font-size: 4vw;
+            }
+            .letter-btn {
+                width: 8vw; /* Increased for mobile */
+                height: 8vw;
+                font-size: 3vw;
+            }
+            .traffic-light {
+                width: 8vw; /* Increased for mobile */
+                height: 24vw;
+                padding: 0.5vw;
+            }
+            .light {
+                width: 4vw; /* Increased for mobile */
+                height: 4vw;
+            }
+            #menu-bar {
+                height: 8vw;
+            }
+            #menu-bar button {
+                width: 25vw;
+                height: 8vw;
+                font-size: 3vw;
+                line-height: 8vw;
+            }
+            #menu-bar .center img {
+                height: 8vw;
+                min-height: 8vw;
             }
             .keyboard-container {
                 margin-top: 1vw;
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1vw; /* Keep traffic lights on left and right */
+                gap: 0; /* No gap since only keyboard remains */
             }
             #letter-bank-wrapper {
                 width: auto;
+            }
+            .letter-row {
+                gap: 0.5px;
             }
         }
     </style>
@@ -311,17 +316,19 @@
         </div>
     </div>
     <div id="game-container">
-        <div class="grid-container">
+        <div class="main-grid-with-lights">
+            <div class="traffic-light" id="left-traffic-light"></div>
             <div class="grid" id="main-grid"></div>
+            <div class="traffic-light" id="right-traffic-light"></div>
+        </div>
+        <div class="guess-grids">
             <div class="grid" id="h-guesses"></div>
             <div class="grid" id="v-guesses"></div>
         </div>
         <div class="keyboard-container">
-            <div class="traffic-light" id="left-traffic-light"></div>
             <div id="letter-bank-wrapper">
                 <div id="letter-bank"></div>
             </div>
-            <div class="traffic-light" id="right-traffic-light"></div>
         </div>
         <div id="message"></div>
         <div id="win-popup">
