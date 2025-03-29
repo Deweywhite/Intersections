@@ -14,49 +14,44 @@
             padding: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
-        /* Styling for the menu bar container */
         #menu-bar {
             background-color: #666;
-            height: 4vw; /* Matches cell height */
+            height: 4vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1vw; /* Standardized to 1vw */
+            margin-bottom: 1vw;
             width: 100%;
             margin-left: 0;
             margin-right: 0;
         }
-        /* Styling for the left and right sections of the menu bar (containing buttons) */
         #menu-bar .left, #menu-bar .right {
             flex: 0 0 auto;
         }
-        /* Styling for the center section of the menu bar (containing the logo) */
         #menu-bar .center {
             flex-grow: 1;
             text-align: center;
         }
-        /* Styling for the logo image */
         #menu-bar .center img {
-            height: 4vw; /* Matches menu bar height */
+            height: 4vw;
             min-height: 4vw;
             max-width: 100%;
             vertical-align: middle;
         }
-        /* Styling for the buttons ("NEW" and "?") in the menu bar */
         #menu-bar button {
             background-color: #444;
             border: none;
             color: #fff;
-            padding: 0.0vw 0.25vw; /* Increased for readability */
+            padding: 0.25vw 0.25vw;
             cursor: pointer;
             font-size: 1.75vw;
             font-variant: bold;
-            width: 20vw; /* Adjusted for 4vw height */
-            height: 4vw; /* Matches menu bar height */
+            width: 20vw;
+            height: 4vw;
             min-height: 4vw;
-            line-height: 4vw; /* Adjusted to fit text */
+            line-height: 4vw;
             transition: background-color 0.2s;
-            box-sizing: border-box; /* Ensure padding doesn't exceed height */
+            box-sizing: border-box;
         }
         #menu-bar button:hover {
             background-color: #555;
@@ -64,25 +59,25 @@
         #game-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            width: 75%; /* Kept as is per your request */
+            padding: 2vw;
+            max-width: 100%;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
         .grid-container {
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
-            gap: 5vw; /* Increased for larger separation between grids */
+            gap: 3vw;
             margin-bottom: 1vw;
             width: 100%;
-            overflow-x: auto;
+            overflow-x: hidden;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-gap: 0.5px; /* Increased from 0.5px for wider column gaps */
-            background-color: #333; /* Lightened for better contrast */
-            width: 100%;
+            grid-gap: 1.0px;
+            background-color: #333;
             max-width: 100%;
         }
         .cell {
@@ -95,7 +90,7 @@
             font-size: 2vw;
             font-weight: bold;
             color: #fff;
-            border: 0.5px solid #333; /* Increased for consistency */
+            border: 1.0px solid #333;
             box-sizing: border-box;
         }
         .cell.placeholder {
@@ -109,30 +104,33 @@
         .red { background-color: #f44336; }
         .keyboard-container {
             display: flex;
-            justify-content: center; /* Ensure centering */
+            justify-content: center;
             align-items: center;
             gap: 1vw;
             margin-top: 2vw;
             width: 100%;
-            max-width: 1000px; /* Increased from 800px */
-            margin-left: auto;
-            margin-right: auto;
-            flex-wrap: nowrap; /* Prevent wrapping */
-            overflow-x: auto;  /* Allow horizontal scrolling if needed */
+            max-width: 1200px;
+            margin-left: 0;
+            margin-right: 0;
+            flex-wrap: nowrap;
+            overflow-x: hidden;
         }
         #letter-bank-wrapper {
-            width: 70%; /* Adjustable percentage to center letter bank */
+            width: 100%;
             margin: 0 auto;
-
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
         #letter-bank {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            max-width: 100%;
         }
         .letter-row {
             display: flex;
+            justify-content: center;
             gap: 1px;
             margin-bottom: 2.5px;
             width: 100%;
@@ -140,15 +138,15 @@
         .letter-btn {
             width: 4vw;
             height: 4vw;
-            font-size: 1.5vw; /* Kept reduced for better fit */
+            font-size: 1.5vw;
             cursor: pointer;
             background-color: #444;
-            border-top: 0.5px solid #888; /* Reduced for consistency */
+            border-top: 0.5px solid #888;
             border-bottom: 0.5px solid #888;
             border-left: 0.5px solid #888;
             border-right: 0.5px solid #888;
             color: #fff;
-            border-radius: 2.5px;
+            border-radius: 0.5vw;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -168,12 +166,12 @@
             width: 5vw;
             height: 15vw;
             background-color: #333;
-            border-radius: 5px;
+            border-radius: 1vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            padding: 1vw;
+            padding: 1vw; 
         }
         .light {
             width: 2.5vw;
@@ -227,8 +225,8 @@
             height: auto;
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) { /* iPhone and small tablet breakpoint */
+        /* Mobile Layout Adjustments */
+        @media (max-width: 768px) {
             .grid {
                 grid-gap: 0.5px;
             }
@@ -263,6 +261,39 @@
             }
             .letter-row {
                 gap: 0.5px;
+            }
+
+            /* New mobile layout */
+            #game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1vw;
+            }
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1vw;
+                margin-bottom: 1vw;
+                width: 100%;
+            }
+            #main-grid {
+                order: -1; /* Moves main-grid to top within grid-container */
+            }
+            #h-guesses, #v-guesses {
+                /* Stay below main-grid */
+            }
+            .keyboard-container {
+                margin-top: 1vw;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1vw; /* Keep traffic lights on left and right */
+            }
+            #letter-bank-wrapper {
+                width: auto;
             }
         }
     </style>
@@ -326,7 +357,6 @@
         let gameOver = false;
         let startTime = Date.now();
 
-        // Load JSON files and initialize the game on page load
         window.onload = function() {
             Promise.all([
                 fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
@@ -347,7 +377,7 @@
         };
 
         document.getElementById("new-game").addEventListener("click", function() {
-            window.location.reload(); // Reload the page for a new game
+            window.location.reload();
         });
 
         document.getElementById("help").addEventListener("click", function() {
@@ -397,7 +427,7 @@
 
         function initMainGrid() {
             const grid = document.getElementById("main-grid");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -421,7 +451,7 @@
 
         function initHGuesses() {
             const grid = document.getElementById("h-guesses");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -431,7 +461,7 @@
 
         function initVGuesses() {
             const grid = document.getElementById("v-guesses");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -554,27 +584,38 @@
         }
 
         function provideFeedback(guess) {
+            guess = guess.toUpperCase();
             const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+
             const hRemaining = targetHorizontal.split("");
             const vRemaining = targetVertical.split("");
 
             for (let i = 0; i < 5; i++) {
                 if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
                     feedback[i].h = "green";
-                    hRemaining[i] = "";
+                    hRemaining[i] = null;
                 }
                 if (!verticalLocked && guess[i] === targetVertical[i]) {
                     feedback[i].v = "green";
-                    vRemaining[i] = "";
+                    vRemaining[i] = null;
                 }
             }
 
             for (let i = 0; i < 5; i++) {
-                if (feedback[i].h === "red" && !horizontalLocked && targetHorizontal.includes(guess[i])) {
-                    feedback[i].h = "yellow";
+                const letter = guess[i];
+                if (!horizontalLocked && feedback[i].h !== "green") {
+                    const hIndex = hRemaining.indexOf(letter);
+                    if (hIndex !== -1) {
+                        feedback[i].h = "yellow";
+                        hRemaining[hIndex] = null;
+                    }
                 }
-                if (feedback[i].v === "red" && !verticalLocked && targetVertical.includes(guess[i])) {
-                    feedback[i].v = "yellow";
+                if (!verticalLocked && feedback[i].v !== "green") {
+                    const vIndex = vRemaining.indexOf(letter);
+                    if (vIndex !== -1) {
+                        feedback[i].v = "yellow";
+                        vRemaining[vIndex] = null;
+                    }
                 }
             }
 
