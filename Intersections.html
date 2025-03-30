@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Prevents zooming -->
     <title>Intersections</title>
     <style>
         body {
@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+			touch-action: pan-x pan-y; /* Allows scrolling but disables pinch-zoom */
         }
         #menu-bar {
             background-color: #666;
@@ -63,21 +64,28 @@
             box-sizing: border-box;
             overflow-x: hidden;
         }
-        .grid-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            gap: 3vw;
-            margin-bottom: 1vw;
-            width: 100%;
-            overflow-x: hidden;
+		.grid-container {
+			display: flex;
+			justify-content: center; /* Changed from space-around to center */
+			align-items: flex-start;
+			gap: 2vw; /* Reduced gap for tighter, even spacing; adjust as needed */
+			margin-bottom: 1vw;
+			width: 100%;
+			overflow-x: hidden;
+		}
+
+		.guess-grids {
+			display: flex;
+			justify-content: center; /* Changed from space-around to center */
+			gap: 2vw; /* Consistent gap with grid-container */
+			width: auto; /* Changed from 100% to auto to prevent stretching */
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-gap: 1px;
-            background-color: #333;
-            max-width: 100%;
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-gap: 1px;
+			background-color: #333;
+			max-width: 100%;
         }
         .cell {
             width: 4vw;
@@ -226,98 +234,93 @@
 
         /* Mobile Layout Adjustments */
         @media (max-width: 768px) {
-            #game-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 1vw;
-            }
-            .grid-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 3vw;
-                margin-bottom: 3vw;
-                width: 100%;
-            }
-            .grid {
-                grid-gap: 1.0pt; 
-            }
-            #main-grid {
-                order: -1; /* Main grid on top */
-            }
-            #h-guesses, #v-guesses {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                background-color: #333;
-            }
-            /* Mobile-specific layout */
-            @media (max-width: 768px) {
-                .grid-container {
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-                #main-grid {
-                    flex: 0 0 100%; /* Full width for top row */
-                    margin-bottom: 3vw;
-                }
-                #h-guesses, #v-guesses {
-                    flex: 0 0 45%; /* Side by side in second row */
-                    margin: 0;
-                }
-            }
-            .cell {
-                width: 8vw;
-                height: 8vw;
-                font-size: 4vw;
-                border: 0.2vw solid #333; /* Thinner borders */
-            }
-            .letter-btn {
-                width: 9vw;
-                height: 9vw;
-                font-size: 4vw;
-                border-radius: 1vw;
-            }
-            .traffic-light {
-                display: none;
-            }
-            #menu-bar {
-                height: 8vw;
-            }
-            #menu-bar button {
-                width: 25vw;
-                height: 8vw;
-                font-size: 3vw;
-                line-height: 8vw;
-            }
-            #menu-bar .center img {
-                height: 8vw;
-                min-height: 8vw;
-            }
-            .keyboard-container {
-                margin-top: 1vw;
-                width: 100%;
-                gap: 0;
-            }
-            #letter-bank-wrapper {
-                width: 96%;
-                margin: 0 2%;
-            }
-            #letter-bank {
-                width: 100%;
-            }
-            .letter-row {
-                gap: 1vw;
-                width: 100%;
-                justify-content: center;
-            }
-            .letter-row:nth-child(1) {
-                max-width: 94vw;
-            }
-            .letter-row:nth-child(2), .letter-row:nth-child(3) {
-                max-width: 85vw;
-            }
-        }
+		#game-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 1vw;
+			padding-top: 5vw; /* Adds space before main grid from top */
+		}
+		.grid-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 4vw; /* Increases space between main grid and guessing grids */
+			margin-bottom: 2vw;
+			width: 100%;
+		}
+		.guess-grids {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			gap: 2vw;
+			width: 100%;
+		}
+		.grid {
+			grid-gap: 1.0pt;
+			width: 40vw;
+		}
+		#main-grid {
+			order: -1;
+			width: 40vw;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#h-guesses, #v-guesses {
+			width: 40vw;
+		}
+		.cell {
+			width: 7vw;
+			height: 7vw;
+			font-size: 3.5vw;
+			border: 0.2vw solid #333;
+		}
+		.letter-btn {
+			width: 9vw;
+			height: 9vw;
+			font-size: 4vw;
+			border-radius: 1vw;
+		}
+		.traffic-light {
+			display: none;
+		}
+		#menu-bar {
+			height: 8vw;
+		}
+		#menu-bar button {
+			width: 25vw;
+			height: 8vw;
+			font-size: 3vw;
+			line-height: 8vw;
+		}
+		#menu-bar .center img {
+			height: 8vw;
+			min-height: 8vw;
+		}
+		.keyboard-container {
+			margin-top: 4vw; /* Adds space above keyboard */
+			width: 100%;
+			gap: 0;
+		}
+		#letter-bank-wrapper {
+			width: 96%;
+			margin: 0 2%;
+		}
+		#letter-bank {
+			width: 100%;
+		}
+		.letter-row {
+			gap: 1vw;
+			width: 100%;
+			justify-content: center;
+		}
+		.letter-row:nth-child(1) {
+			max-width: 94vw;
+		}
+		.letter-row:nth-child(2), .letter-row:nth-child(3) {
+			max-width: 85vw;
+		}
+	}
     </style>
 </head>
 <body>
@@ -335,8 +338,10 @@
     <div id="game-container">
         <div class="grid-container">
             <div class="grid" id="main-grid"></div>
-            <div class="grid" id="h-guesses"></div>
-            <div class="grid" id="v-guesses"></div>
+            <div class="guess-grids">
+                <div class="grid" id="h-guesses"></div>
+                <div class="grid" id="v-guesses"></div>
+            </div>
         </div>
         <div class="keyboard-container">
             <div class="traffic-light" id="left-traffic-light"></div>
@@ -378,6 +383,7 @@
         let currentGuess = "";
         let gameOver = false;
         let startTime = Date.now();
+        let isStartingNewGame = false; // Prevent duplicate calls
 
         window.onload = function() {
             Promise.all([
@@ -443,10 +449,15 @@
         }
 
         function startNewGame() {
+            if (isStartingNewGame) return; // Prevent re-entry
+            isStartingNewGame = true;
+
             selectRandomPair();
             initMainGrid();
             initHGuesses();
             initVGuesses();
+            const bank = document.getElementById("letter-bank");
+            bank.innerHTML = ''; // Explicitly clear keyboard
             initLetterBank();
             resetKeyboard();
             guesses = 0;
@@ -455,6 +466,8 @@
             currentGuess = "";
             gameOver = false;
             startTime = Date.now();
+
+            isStartingNewGame = false;
         }
 
         function initMainGrid() {
@@ -508,6 +521,7 @@
                 "←ZXCVBNM⏎"
             ];
             const bank = document.getElementById("letter-bank");
+            // Removed bank.innerHTML = '' here since it's in startNewGame()
             layout.forEach(row => {
                 const rowDiv = document.createElement("div");
                 rowDiv.classList.add("letter-row");
@@ -880,7 +894,6 @@
             document.getElementById("lose-popup").style.display = "none";
             document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
             startNewGame();
-            document.addEventListener('keydown', handleKeydown);
         }
 
         function updateTrafficLights() {
