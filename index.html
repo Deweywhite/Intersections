@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> /*doesn't allow zooming*/
     <title>Intersections</title>
     <style>
         body {
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-			touch-action: pan-x pan-y;
+			touch-action: pan-x pan-y; /* Allows scrolling but disables pinch-zoom */
         }
         #menu-bar {
             background-color: #666;
@@ -64,27 +64,28 @@
             box-sizing: border-box;
             overflow-x: hidden;
         }
-        .grid-container {
+		.grid-container {
 			display: flex;
-			justify-content: center;
+			justify-content: center; /* Changed from space-around to center */
 			align-items: flex-start;
-			gap: 2vw;
+			gap: 2vw; /* Reduced gap for tighter, even spacing; adjust as needed */
 			margin-bottom: 1vw;
 			width: 100%;
 			overflow-x: hidden;
 		}
+
 		.guess-grids {
 			display: flex;
-			justify-content: center;
-			gap: 2vw;
-			width: auto;
-		}
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-gap: 1px;
-            background-color: #333;
-            max-width: 100%;
+			justify-content: center; /* Changed from space-around to center */
+			gap: 2vw; /* Consistent gap with grid-container */
+			width: auto; /* Changed from 100% to auto to prevent stretching */
+        }
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-gap: 1px;
+			background-color: #333;
+			max-width: 100%;
         }
         .cell {
             width: 4vw;
@@ -273,13 +274,12 @@
                 font-size: 3.5vw;
                 border: 0.2vw solid #333;
             }
-			.letter-btn {
+            .letter-btn {
                 width: 9vw;
                 height: 9vw;
                 font-size: 4vw;
                 border-radius: 1vw;
             }
-    }
             .traffic-light {
                 display: none;
             }
