@@ -12,51 +12,46 @@
             color: #fff;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
-        /* Styling for the menu bar container */
         #menu-bar {
             background-color: #666;
-            height: 4vw; /* Matches cell height */
+            height: 4vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1vw; /* Standardized to 1vw */
+            margin-bottom: 1vw;
             width: 100%;
             margin-left: 0;
             margin-right: 0;
         }
-        /* Styling for the left and right sections of the menu bar (containing buttons) */
         #menu-bar .left, #menu-bar .right {
             flex: 0 0 auto;
         }
-        /* Styling for the center section of the menu bar (containing the logo) */
         #menu-bar .center {
             flex-grow: 1;
             text-align: center;
         }
-        /* Styling for the logo image */
         #menu-bar .center img {
-            height: 4vw; /* Matches menu bar height */
+            height: 4vw;
             min-height: 4vw;
             max-width: 100%;
             vertical-align: middle;
         }
-        /* Styling for the buttons ("NEW" and "?") in the menu bar */
         #menu-bar button {
             background-color: #444;
             border: none;
             color: #fff;
-            padding: 0.25vw 0.25vw; /* Kept as is per your request */
+            padding: 0.25vw 0.25vw;
             cursor: pointer;
             font-size: 1.75vw;
             font-variant: bold;
-            width: 20vw; /* Adjusted for 4vw height */
-            height: 4vw; /* Matches menu bar height */
+            width: 20vw;
+            height: 4vw;
             min-height: 4vw;
-            line-height: 4vw; /* Adjusted to fit text */
+            line-height: 4vw;
             transition: background-color 0.2s;
-            box-sizing: border-box; /* Ensure padding doesn't exceed height */
+            box-sizing: border-box;
         }
         #menu-bar button:hover {
             background-color: #555;
@@ -64,25 +59,30 @@
         #game-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2vw; /*distance from menu bar */
-            max-width: 100%; /* Kept as is per your request */
+            padding: 2vw;
             box-sizing: border-box;
             overflow-x: hidden;
         }
         .grid-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            gap: 3vw; /* Increased for larger separation between grids */
-            margin-bottom: 1vw;
-            width: 100%;
-            overflow-x: hidden;
-        }
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			gap: 2vw;
+			margin-bottom: 1vw;
+			width: 100%;
+			overflow-x: hidden;
+		}
+		.guess-grids {
+			display: flex;
+			justify-content: center;
+			gap: 2vw;
+			width: auto;
+		}
         .grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-gap: 1.0px; 
-            background-color: #333; /* Lightened for better contrast */
+            grid-gap: 1px;
+            background-color: #333;
             max-width: 100%;
         }
         .cell {
@@ -95,7 +95,7 @@
             font-size: 2vw;
             font-weight: bold;
             color: #fff;
-            border: 1.0px solid #333; /* grid line width */
+            border: 1px solid #333;
             box-sizing: border-box;
         }
         .cell.placeholder {
@@ -111,7 +111,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1vw; /* Reduced from 2vw for tighter fit */
+            gap: 1vw;
             margin-top: 2vw;
             width: 100%;
             max-width: 1200px;
@@ -121,7 +121,7 @@
             overflow-x: hidden;
         }
         #letter-bank-wrapper {
-            width: 100%; /* Increased to ensure the 10-key row fits and centers */
+            width: 100%;
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -135,23 +135,23 @@
         }
         .letter-row {
             display: flex;
-            justify-content: center; /* Center buttons within the row */
+            justify-content: center;
             gap: 1px;
-            margin-bottom: 2.5px; /* Gap between rows in the keyboard */
+            margin-bottom: 2.5px;
             width: 100%;
         }
         .letter-btn {
             width: 4vw;
             height: 4vw;
-            font-size: 1.5vw; /* Kept reduced for better fit */
+            font-size: 1.5vw;
             cursor: pointer;
             background-color: #444;
-            border-top: 0.5px solid #888; /* Reduced for consistency */
+            border-top: 0.5px solid #888;
             border-bottom: 0.5px solid #888;
             border-left: 0.5px solid #888;
             border-right: 0.5px solid #888;
             color: #fff;
-            border-radius: 0.5vw; /* Converted to vw for responsiveness */
+            border-radius: 0.5vw;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,7 +215,6 @@
             max-width: 800px;
             max-height: 90vh;
             z-index: 1000;
-			
             display: none;
         }
         #win-popup {
@@ -231,42 +230,92 @@
             height: auto;
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) { /* iPhone and small tablet breakpoint */
+        /* Mobile Layout Adjustments */
+        @media (max-width: 768px) {
+            #game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1vw;
+            }
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2vw;
+                margin-bottom: 2vw;
+                width: 100%;
+            }
+            .guess-grids {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 2vw;
+                width: 100%;
+            }
             .grid {
-                grid-gap: 0.5px;
+                grid-gap: 1.0pt;
+                width: 40vw;
+            }
+            #main-grid {
+                order: -1;
+                width: 40vw; /* Adjusted to match your change */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #h-guesses, #v-guesses {
+                width: 40vw;
             }
             .cell {
-                width: 3vw;
-                height: 3vw;
-                font-size: 2vw;
+                width: 7vw;
+                height: 7vw;
+                font-size: 3.5vw;
+                border: 0.2vw solid #333;
             }
             .letter-btn {
-                width: 3vw;
-                height: 3vw;
-                font-size: 1.5vw;
+                width: 9vw;
+                height: 9vw;
+                font-size: 4vw;
+                border-radius: 1vw;
             }
             .traffic-light {
-                width: 4vw;
-                height: 12.5vw;
-                padding: 0.5vw;
+                display: none;
             }
-            .light {
-                width: 2vw;
-                height: 2vw;
+            #menu-bar {
+                height: 8vw;
             }
             #menu-bar button {
-                width: 20vw;
-                height: 4vw;
-                line-height: 3vw;
-                transition: background-color 0.2s;
-                box-sizing: border-box;
+                width: 25vw;
+                height: 8vw;
+                font-size: 3vw;
+                line-height: 8vw;
+            }
+            #menu-bar .center img {
+                height: 8vw;
+                min-height: 8vw;
             }
             .keyboard-container {
-                gap: 0.5vw;
+                margin-top: 1vw;
+                width: 100%;
+                gap: 0;
+            }
+            #letter-bank-wrapper {
+                width: 96%;
+                margin: 0 2%;
+            }
+            #letter-bank {
+                width: 100%;
             }
             .letter-row {
-                gap: 0.5px;
+                gap: 1vw;
+                width: 100%;
+                justify-content: center;
+            }
+            .letter-row:nth-child(1) {
+                max-width: 94vw;
+            }
+            .letter-row:nth-child(2), .letter-row:nth-child(3) {
+                max-width: 85vw;
             }
         }
     </style>
@@ -286,8 +335,10 @@
     <div id="game-container">
         <div class="grid-container">
             <div class="grid" id="main-grid"></div>
-            <div class="grid" id="h-guesses"></div>
-            <div class="grid" id="v-guesses"></div>
+            <div class="guess-grids">
+                <div class="grid" id="h-guesses"></div>
+                <div class="grid" id="v-guesses"></div>
+            </div>
         </div>
         <div class="keyboard-container">
             <div class="traffic-light" id="left-traffic-light"></div>
@@ -329,8 +380,8 @@
         let currentGuess = "";
         let gameOver = false;
         let startTime = Date.now();
+        let isStartingNewGame = false; // Prevent duplicate calls
 
-        // Load JSON files and initialize the game on page load
         window.onload = function() {
             Promise.all([
                 fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
@@ -338,12 +389,7 @@
             ]).then(([related, valid]) => {
                 relatedWords = related;
                 validWords = new Set(valid.map(word => word.toUpperCase()));
-                selectRandomPair();
-                initMainGrid();
-                initHGuesses();
-                initVGuesses();
-                initLetterBank();
-                resetKeyboard();
+                startNewGame();
             }).catch(error => {
                 console.error('Error loading JSON files:', error);
                 alert('Failed to load game data. Please check the JSON files and try again.');
@@ -351,7 +397,7 @@
         };
 
         document.getElementById("new-game").addEventListener("click", function() {
-            window.location.reload(); // Reload the page for a new game
+            window.location.reload();
         });
 
         document.getElementById("help").addEventListener("click", function() {
@@ -399,9 +445,31 @@
             }
         }
 
+        function startNewGame() {
+            if (isStartingNewGame) return; // Prevent re-entry
+            isStartingNewGame = true;
+
+            selectRandomPair();
+            initMainGrid();
+            initHGuesses();
+            initVGuesses();
+            const bank = document.getElementById("letter-bank");
+            bank.innerHTML = ''; // Explicitly clear keyboard
+            initLetterBank();
+            resetKeyboard();
+            guesses = 0;
+            horizontalLocked = false;
+            verticalLocked = false;
+            currentGuess = "";
+            gameOver = false;
+            startTime = Date.now();
+
+            isStartingNewGame = false;
+        }
+
         function initMainGrid() {
             const grid = document.getElementById("main-grid");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -425,7 +493,7 @@
 
         function initHGuesses() {
             const grid = document.getElementById("h-guesses");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -435,7 +503,7 @@
 
         function initVGuesses() {
             const grid = document.getElementById("v-guesses");
-            grid.innerHTML = ''; // Clear existing content
+            grid.innerHTML = '';
             for (let i = 0; i < 25; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -445,11 +513,12 @@
 
         function initLetterBank() {
             const layout = [
-                "QWERTYUIOP",         // 10 keys
-                "ASDFGHJKL",          // 9 keys
-                "←ZXCVBNM⏎"           // 9 keys
+                "QWERTYUIOP",
+                "ASDFGHJKL",
+                "←ZXCVBNM⏎"
             ];
             const bank = document.getElementById("letter-bank");
+            // Removed bank.innerHTML = '' here since it's in startNewGame()
             layout.forEach(row => {
                 const rowDiv = document.createElement("div");
                 rowDiv.classList.add("letter-row");
@@ -557,51 +626,45 @@
             }, 1000);
         }
 
-function provideFeedback(guess) {
-    guess = guess.toUpperCase();
-    const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+        function provideFeedback(guess) {
+            guess = guess.toUpperCase();
+            const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
 
-    // Track remaining letters as arrays
-    const hRemaining = targetHorizontal.split("");
-    const vRemaining = targetVertical.split("");
+            const hRemaining = targetHorizontal.split("");
+            const vRemaining = targetVertical.split("");
 
-    // Step 1: Mark exact matches (green) first, left to right
-    for (let i = 0; i < 5; i++) {
-        if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
-            feedback[i].h = "green";
-            hRemaining[i] = null; // Mark as used
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
+                    feedback[i].h = "green";
+                    hRemaining[i] = null;
+                }
+                if (!verticalLocked && guess[i] === targetVertical[i]) {
+                    feedback[i].v = "green";
+                    vRemaining[i] = null;
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                const letter = guess[i];
+                if (!horizontalLocked && feedback[i].h !== "green") {
+                    const hIndex = hRemaining.indexOf(letter);
+                    if (hIndex !== -1) {
+                        feedback[i].h = "yellow";
+                        hRemaining[hIndex] = null;
+                    }
+                }
+                if (!verticalLocked && feedback[i].v !== "green") {
+                    const vIndex = vRemaining.indexOf(letter);
+                    if (vIndex !== -1) {
+                        feedback[i].v = "yellow";
+                        vRemaining[vIndex] = null;
+                    }
+                }
+            }
+
+            return feedback;
         }
-        if (!verticalLocked && guess[i] === targetVertical[i]) {
-            feedback[i].v = "green";
-            vRemaining[i] = null; // Mark as used
-        }
-    }
 
-    // Step 2: Handle remaining letters (yellow/red), left to right
-    for (let i = 0; i < 5; i++) {
-        const letter = guess[i];
-
-        // Horizontal check
-        if (!horizontalLocked && feedback[i].h !== "green") {
-            const hIndex = hRemaining.indexOf(letter);
-            if (hIndex !== -1) {
-                feedback[i].h = "yellow";
-                hRemaining[hIndex] = null; // Mark as used
-            } // Else stays red
-        }
-
-        // Vertical check
-        if (!verticalLocked && feedback[i].v !== "green") {
-            const vIndex = vRemaining.indexOf(letter);
-            if (vIndex !== -1) {
-                feedback[i].v = "yellow";
-                vRemaining[vIndex] = null; // Mark as used
-            } // Else stays red
-        }
-    }
-
-    return feedback;
-}
         function displayGuess(guess, feedback) {
             const hGrid = document.getElementById("h-guesses").children;
             const vGrid = document.getElementById("v-guesses").children;
@@ -827,16 +890,7 @@ function provideFeedback(guess) {
             document.getElementById("win-popup").style.display = "none";
             document.getElementById("lose-popup").style.display = "none";
             document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
-            gameOver = false;
-            guesses = 0;
-            horizontalLocked = false;
-            verticalLocked = false;
-            currentGuess = "";
-            resetKeyboard();
-            initMainGrid();
-            initHGuesses();
-            initVGuesses();
-            document.addEventListener('keydown', handleKeydown);
+            startNewGame();
         }
 
         function updateTrafficLights() {
