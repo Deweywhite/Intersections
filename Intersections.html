@@ -236,25 +236,24 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 1vw;
-                margin-bottom: 1vw;
+                gap: 3vw; /* Increased vertical space between grids */
+                margin-bottom: 3vw; /* More space before keyboard */
                 width: 100%;
             }
             #main-grid {
                 order: -1; /* Move to top */
+            }
+            #h-guesses, #v-guesses {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-gap: 0.5px;
+                background-color: #333;
             }
             .guess-grids {
                 display: flex;
                 justify-content: center;
                 gap: 2vw;
                 width: 100%;
-            }
-            #h-guesses, #v-guesses {
-                /* Ensure grid behavior */
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-gap: 0.5px;
-                background-color: #333;
             }
             .grid {
                 grid-gap: 0.5px;
@@ -265,18 +264,13 @@
                 font-size: 4vw;
             }
             .letter-btn {
-                width: 8vw;
-                height: 8vw;
-                font-size: 3vw;
+                width: 10vw; /* Increased to stretch across screen */
+                height: 10vw;
+                font-size: 4vw; /* Larger font for visibility */
+                border-radius: 1vw;
             }
             .traffic-light {
-                width: 8vw;
-                height: 24vw;
-                padding: 0.5vw;
-            }
-            .light {
-                width: 4vw;
-                height: 4vw;
+                display: none; /* Hide traffic lights on mobile */
             }
             #menu-bar {
                 height: 8vw;
@@ -294,13 +288,18 @@
             .keyboard-container {
                 margin-top: 1vw;
                 width: 100%;
-                gap: 1vw;
+                gap: 0; /* No traffic lights, so no gap needed */
             }
             #letter-bank-wrapper {
-                width: auto;
+                width: 100%; /* Full width for keyboard */
+            }
+            #letter-bank {
+                width: 100%; /* Ensure keyboard spans full width */
             }
             .letter-row {
                 gap: 0.5px;
+                width: 100%; /* Full width for each row */
+                justify-content: space-between; /* Distribute buttons evenly */
             }
         }
     </style>
@@ -371,12 +370,7 @@
             ]).then(([related, valid]) => {
                 relatedWords = related;
                 validWords = new Set(valid.map(word => word.toUpperCase()));
-                selectRandomPair();
-                initMainGrid();
-                initHGuesses();
-                initVGuesses();
-                initLetterBank();
-                resetKeyboard();
+                startNewGame();
             }).catch(error => {
                 console.error('Error loading JSON files:', error);
                 alert('Failed to load game data. Please check the JSON files and try again.');
@@ -430,6 +424,21 @@
             if (targetHorizontal[intersectH] !== targetVertical[intersectV]) {
                 console.error("Intersection letter mismatch:", targetHorizontal, targetVertical, intersectH, intersectV);
             }
+        }
+
+        function startNewGame() {
+            selectRandomPair();
+            initMainGrid();
+            initHGuesses();
+            initVGuesses();
+            initLetterBank();
+            resetKeyboard();
+            guesses = 0;
+            horizontalLocked = false;
+            verticalLocked = false;
+            currentGuess = "";
+            gameOver = false;
+            startTime = Date.now();
         }
 
         function initMainGrid() {
@@ -854,15 +863,7 @@
             document.getElementById("win-popup").style.display = "none";
             document.getElementById("lose-popup").style.display = "none";
             document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
-            gameOver = false;
-            guesses = 0;
-            horizontalLocked = false;
-            verticalLocked = false;
-            currentGuess = "";
-            resetKeyboard();
-            initMainGrid();
-            initHGuesses();
-            initVGuesses();
+            startNewGame(); // Start a new game with a fresh word pair
             document.addEventListener('keydown', handleKeydown);
         }
 
