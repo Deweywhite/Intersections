@@ -60,7 +60,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2vw;
-            max-width: 100%;
             box-sizing: border-box;
             overflow-x: hidden;
         }
@@ -241,12 +240,8 @@
                 margin-bottom: 1vw;
                 width: 100%;
             }
-            .main-grid-with-lights {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1vw;
-                width: 100%;
+            #main-grid {
+                order: -1; /* Move to top */
             }
             .guess-grids {
                 display: flex;
@@ -254,26 +249,33 @@
                 gap: 2vw;
                 width: 100%;
             }
+            #h-guesses, #v-guesses {
+                /* Ensure grid behavior */
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-gap: 0.5px;
+                background-color: #333;
+            }
             .grid {
                 grid-gap: 0.5px;
             }
             .cell {
-                width: 8vw; /* Increased for mobile visibility */
+                width: 8vw;
                 height: 8vw;
                 font-size: 4vw;
             }
             .letter-btn {
-                width: 8vw; /* Increased for mobile */
+                width: 8vw;
                 height: 8vw;
                 font-size: 3vw;
             }
             .traffic-light {
-                width: 8vw; /* Increased for mobile */
+                width: 8vw;
                 height: 24vw;
                 padding: 0.5vw;
             }
             .light {
-                width: 4vw; /* Increased for mobile */
+                width: 4vw;
                 height: 4vw;
             }
             #menu-bar {
@@ -292,7 +294,7 @@
             .keyboard-container {
                 margin-top: 1vw;
                 width: 100%;
-                gap: 0; /* No gap since only keyboard remains */
+                gap: 1vw;
             }
             #letter-bank-wrapper {
                 width: auto;
@@ -316,19 +318,17 @@
         </div>
     </div>
     <div id="game-container">
-        <div class="main-grid-with-lights">
-            <div class="traffic-light" id="left-traffic-light"></div>
+        <div class="grid-container">
             <div class="grid" id="main-grid"></div>
-            <div class="traffic-light" id="right-traffic-light"></div>
-        </div>
-        <div class="guess-grids">
             <div class="grid" id="h-guesses"></div>
             <div class="grid" id="v-guesses"></div>
         </div>
         <div class="keyboard-container">
+            <div class="traffic-light" id="left-traffic-light"></div>
             <div id="letter-bank-wrapper">
                 <div id="letter-bank"></div>
             </div>
+            <div class="traffic-light" id="right-traffic-light"></div>
         </div>
         <div id="message"></div>
         <div id="win-popup">
