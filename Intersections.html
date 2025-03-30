@@ -321,7 +321,122 @@
         .letter-row:nth-child(2), .letter-row:nth-child(3) {
             max-width: 85vw;
         }
+    /* Mobile Layout Adjustments */
+@media (max-width: 768px) {
+    #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1vw;
     }
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2vw;
+        margin-bottom: 2vw;
+        width: 100%;
+    }
+    .grid {
+        grid-gap: 1.0pt;
+        width: 100%;
+    }
+    #main-grid {
+        order: -1; /* Main grid on top */
+        width: 100%; /* Full width */
+        flex: 0 0 100%;
+        margin-bottom: 2vw;
+    }
+    #h-guesses, #v-guesses {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        background-color: #333;
+        width: 45vw; /* Reduced to fit side by side */
+        flex: 0 0 45vw;
+        margin: 0;
+    }
+    /* Mobile-specific layout */
+    @media (max-width: 768px) {
+        .grid-container {
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+        /* Ensure h and v guesses are side by side */
+        #h-guesses {
+            margin-right: 2vw; /* Add small gap between h and v */
+        }
+        #v-guesses {
+            margin-left: 0; /* Reset any left margin */
+        }
+        /* Force h and v into a row after main grid */
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+        }
+        #main-grid {
+            flex: 0 0 100%;
+        }
+        #h-guesses, #v-guesses {
+            flex: 0 0 45vw;
+        }
+        /* Wrap h and v in a virtual row */
+        .grid-container > #h-guesses, .grid-container > #v-guesses {
+            display: inline-block; /* Switch to inline-block to force side-by-side */
+            vertical-align: top; /* Align tops */
+        }
+    }
+    .cell {
+        width: 8vw;
+        height: 8vw;
+        font-size: 4vw;
+        border: 0.2vw solid #333;
+    }
+    .letter-btn {
+        width: 9vw;
+        height: 9vw;
+        font-size: 4vw;
+        border-radius: 1vw;
+    }
+    .traffic-light {
+        display: none;
+    }
+    #menu-bar {
+        height: 8vw;
+    }
+    #menu-bar button {
+        width: 25vw;
+        height: 8vw;
+        font-size: 3vw;
+        line-height: 8vw;
+    }
+    #menu-bar .center img {
+        height: 8vw;
+        min-height: 8vw;
+    }
+    .keyboard-container {
+        margin-top: 1vw;
+        width: 100%;
+        gap: 0;
+    }
+    #letter-bank-wrapper {
+        width: 96%;
+        margin: 0 2%;
+    }
+    #letter-bank {
+        width: 100%;
+    }
+    .letter-row {
+        gap: 1vw;
+        width: 100%;
+        justify-content: center;
+    }
+    .letter-row:nth-child(1) {
+        max-width: 94vw;
+    }
+    .letter-row:nth-child(2), .letter-row:nth-child(3) {
+        max-width: 85vw;
+    }
+}
 </style>
 </head>
 <body>
