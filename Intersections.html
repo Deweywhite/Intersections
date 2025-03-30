@@ -236,12 +236,16 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 3vw; /* Increased vertical space between grids */
-                margin-bottom: 3vw; /* More space before keyboard */
+                gap: 3vw; /* Vertical space between main grid and guess grids */
+                margin-bottom: 3vw;
                 width: 100%;
             }
+            .grid {
+                width: 48vw; /* Consistent width for all grids */
+                max-width: 48vw;
+            }
             #main-grid {
-                order: -1; /* Move to top */
+                order: -1; /* Main grid on top */
             }
             #h-guesses, #v-guesses {
                 display: grid;
@@ -249,14 +253,38 @@
                 grid-gap: 0.5px;
                 background-color: #333;
             }
+            /* Container for guess grids side by side */
             .guess-grids {
                 display: flex;
+                flex-direction: row;
                 justify-content: center;
                 gap: 2vw;
                 width: 100%;
             }
-            .grid {
-                grid-gap: 0.5px;
+            /* Wrap h and v guesses in a container on mobile */
+            @media (max-width: 768px) {
+                .grid-container {
+                    flex-wrap: nowrap;
+                }
+                #h-guesses, #v-guesses {
+                    width: 48vw; /* Match main grid width */
+                    max-width: 48vw;
+                }
+                .grid-container > #main-grid {
+                    margin-bottom: 3vw;
+                }
+                .grid-container > #h-guesses, .grid-container > #v-guesses {
+                    margin: 0; /* Reset any unwanted margins */
+                }
+                .grid-container::after {
+                    content: "";
+                    display: block;
+                    flex: 0 0 100%;
+                    order: -2; /* Ensure main grid stays on top */
+                }
+                #h-guesses, #v-guesses {
+                    flex: 0 0 48vw;
+                }
             }
             .cell {
                 width: 8vw;
@@ -264,9 +292,9 @@
                 font-size: 4vw;
             }
             .letter-btn {
-                width: 10vw; /* Increased to stretch across screen */
-                height: 10vw;
-                font-size: 4vw; /* Larger font for visibility */
+                width: 9vw; /* Uniform size */
+                height: 9vw;
+                font-size: 4vw;
                 border-radius: 1vw;
             }
             .traffic-light {
@@ -288,18 +316,25 @@
             .keyboard-container {
                 margin-top: 1vw;
                 width: 100%;
-                gap: 0; /* No traffic lights, so no gap needed */
+                gap: 0;
             }
             #letter-bank-wrapper {
-                width: 100%; /* Full width for keyboard */
+                width: 96%; /* Buffer from screen edges */
+                margin: 0 2%;
             }
             #letter-bank {
-                width: 100%; /* Ensure keyboard spans full width */
+                width: 100%;
             }
             .letter-row {
-                gap: 0.5px;
-                width: 100%; /* Full width for each row */
-                justify-content: space-between; /* Distribute buttons evenly */
+                gap: 1vw; /* Fixed spacing across all rows */
+                width: 100%;
+                justify-content: center;
+            }
+            .letter-row:nth-child(1) { /* 10 keys */
+                max-width: 94vw; /* 9vw * 10 + 1vw * 9 gaps = 99vw, capped with buffer */
+            }
+            .letter-row:nth-child(2), .letter-row:nth-child(3) { /* 9 keys */
+                max-width: 85vw; /* 9vw * 9 + 1vw * 8 gaps = 89vw, capped with buffer */
             }
         }
     </style>
