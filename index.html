@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4TSJY2V4W5');
-    </script>
-	
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Prevents zooming -->
     <title>Intersections</title>
@@ -22,7 +13,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-			touch-action: pan-x pan-y; /* Allows scrolling but disables pinch-zoom */
+            touch-action: pan-x pan-y;
         }
         #menu-bar {
             background-color: #666;
@@ -73,28 +64,27 @@
             box-sizing: border-box;
             overflow-x: hidden;
         }
-		.grid-container {
-			display: flex;
-			justify-content: center; /* Changed from space-around to center */
-			align-items: flex-start;
-			gap: 2vw; /* Reduced gap for tighter, even spacing; adjust as needed */
-			margin-bottom: 1vw;
-			width: 100%;
-			overflow-x: hidden;
-		}
-
-		.guess-grids {
-			display: flex;
-			justify-content: center; /* Changed from space-around to center */
-			gap: 2vw; /* Consistent gap with grid-container */
-			width: auto; /* Changed from 100% to auto to prevent stretching */
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2vw;
+            margin-bottom: 1vw;
+            width: 100%;
+            overflow-x: hidden;
         }
-		.grid {
-			display: grid;
-			grid-template-columns: repeat(5, 1fr);
-			grid-gap: 1px;
-			background-color: #333;
-			max-width: 100%;
+        .guess-grids {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+            width: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 1px;
+            background-color: #333;
+            max-width: 100%;
         }
         .cell {
             width: 4vw;
@@ -234,112 +224,126 @@
         }
         #lose-popup {
             border: 3px solid #f44336;
-            max-width: 400px;
+            max-width: 400px; 
+            padding: 20px; 
         }
         #instructions-popup img {
             max-width: 100%;
             height: auto;
         }
-
-        /* Mobile Layout Adjustments */
+        .crash-graphic {
+            max-width: 70%;
+            height: auto;
+            margin: 10px auto;
+            display: block;
+        }
         @media (max-width: 768px) {
-		#game-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			padding: 1vw;
-			padding-top: 5vw; /* Adds space before main grid from top */
-		}
-		.grid-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 4vw; /* Increases space between main grid and guessing grids */
-			margin-bottom: 2vw;
-			width: 100%;
-		}
-		.guess-grids {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			gap: 4vw;
-			width: 100%;
-		}
-		.grid {
-			grid-gap: 1.0pt;
-			width: 45vw;
-		}
-		#main-grid {
-			order: -1;
-			width: 45vw;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		#h-guesses, #v-guesses {
-			width: 45vw;
-		}
-		.cell {
-			width: 8.0vw;  /* size of grid cells */
-			height: 8.0vw;   
-			font-size: 4.0vw;
-			border: 0.2vw solid #333;
-		}
-		.letter-btn {
-			width: 9vw;  /*size of keyboad */
-			height: 9vw;
-			font-size: 4vw;
-			border-radius: 1vw;
-		}
-		.traffic-light {
-			display: none;
-		}
-		#menu-bar {
-			height: 8vw;
-		}
-		#menu-bar button {
-			width: 25vw;
-			height: 8vw;
-			font-size: 3vw;
-			line-height: 8vw;
-		}
-		#menu-bar .center img {
-			height: 8vw;
-			min-height: 8vw;
-		}
-		.keyboard-container {
-			margin-top: 20vw; /* Adds space above keyboard */
-			width: 100%;
-			gap: 0;
-		}
-		#letter-bank-wrapper {
-			width: 96%;
-			margin: 0 2%;
-		}
-		#letter-bank {
-			width: 100%;
-		}
-		.letter-row {
-			gap: 1vw;
-			width: 100%;
-			justify-content: center;
-		}
-		.letter-row:nth-child(1) {
-			max-width: 94vw;
-		}
-		.letter-row:nth-child(2), .letter-row:nth-child(3) {
-			max-width: 85vw;
-		}
-		#instructions-popup {
-			width: 90vw; /* Wider, takes up 90% of viewport width */
-			max-width: 90vw; /* Overrides PC's 800px */
-			max-height: 80vh; /* Slightly less than full height to avoid overflow */
-			padding: 15px; /* Slightly less padding to maximize content space */
-			font-size: 20px; /* Larger text for readability */
-		}
-		#instructions-popup img {
-			max-width: 100%; /* Keeps image responsive */
-			height: auto;
-		}
+            #game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1vw;
+                padding-top: 5vw;
+            }
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4vw;
+                margin-bottom: 2vw;
+                width: 100%;
+            }
+            .guess-grids {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 4vw;
+                width: 100%;
+            }
+            .grid {
+                grid-gap: 1.0pt;
+                width: 45vw;
+            }
+            #main-grid {
+                order: -1;
+                width: 45vw;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #h-guesses, #v-guesses {
+                width: 45vw;
+            }
+            .cell {
+                width: 8.0vw;
+                height: 8.0vw;
+                font-size: 4.0vw;
+                border: 0.2vw solid #333;
+            }
+            .letter-btn {
+                width: 9vw;
+                height: 9vw;
+                font-size: 4vw;
+                border-radius: 1vw;
+            }
+            .traffic-light {
+                display: none;
+            }
+            #menu-bar {
+                height: 8vw;
+            }
+            #menu-bar button {
+                width: 25vw;
+                height: 8vw;
+                font-size: 3vw;
+                line-height: 8vw;
+            }
+            #menu-bar .center img {
+                height: 8vw;
+                min-height: 8vw;
+            }
+            .keyboard-container {
+                margin-top: 20vw;
+                width: 100%;
+                gap: 0;
+            }
+            #letter-bank-wrapper {
+                width: 96%;
+                margin: 0 2%;
+            }
+            #letter-bank {
+                width: 100%;
+            }
+            .letter-row {
+                gap: 1vw;
+                width: 100%;
+                justify-content: center;
+            }
+            .letter-row:nth-child(1) {
+                max-width: 94vw;
+            }
+            .letter-row:nth-child(2), .letter-row:nth-child(3) {
+                max-width: 85vw;
+            }
+            #instructions-popup {
+                width: 90vw;
+                max-width: 90vw;
+                max-height: 80vh;
+                padding: 15px;
+                font-size: 20px;
+            }
+            #instructions-popup img {
+                max-width: 100%;
+                height: auto;
+            }
+            .crash-graphic {
+                max-width: 80%;
+                margin: 5px auto;
+            }
+            #lose-popup {
+                max-width: 80vw;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -377,10 +381,11 @@
             <p>Time: <span id="win-time">0s</span></p>
             <button id="win-ok" onclick="closePopup()">OK</button>
         </div>
-        <div id="lose-popup">
-            <h2>You Crashed at the Intersection</h2>
-            <button id="lose-ok" onclick="closePopup()">OK</button>
-        </div>
+<div id="lose-popup">
+    <img src="crash.png" alt="Car Crash Graphic" class="crash-graphic">
+    <h2>You Crashed at the Intersection</h2>
+    <button id="lose-ok" onclick="closePopup()">OK</button>
+</div>
         <div id="instructions-popup">
             <img src="instructions.png" alt="Instructions">
             <button id="instructions-close" onclick="closeInstructions()">X</button>
@@ -989,5 +994,14 @@
 
     document.addEventListener('keydown', handleKeydown);
 </script>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4TSJY2V4W5');
+    </script>
+	
 </body>
 </html>
