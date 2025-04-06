@@ -392,609 +392,608 @@
         </div>
     </div>
 
-<script>
-    let targetHorizontal;
-    let targetVertical;
-    let intersectH;
-    let intersectV;
-    let relatedWords;
-    let validWords;
-    let guesses = 0;
-    const maxGuesses = 5;
-    let horizontalLocked = false;
-    let verticalLocked = false;
-    let letterStatus = {};
-    let currentGuess = "";
-    let gameOver = false;
-    let startTime = Date.now();
-    let isStartingNewGame = false; // Prevent duplicate calls
+   <script>
+        let targetHorizontal;
+        let targetVertical;
+        let intersectH;
+        let intersectV;
+        let relatedWords;
+        let validWords;
+        let guesses = 0;
+        const maxGuesses = 5;
+        let horizontalLocked = false;
+        let verticalLocked = false;
+        let letterStatus = {};
+        let currentGuess = "";
+        let gameOver = false;
+        let startTime = Date.now();
+        let isStartingNewGame = false;
 
-    window.onload = function() {
-        Promise.all([
-            fetch('./related_five_letter_word_pairs.json').then(response => response.json()),
-            fetch('./valid_five_letter_words.json').then(response => response.json())
-        ]).then(([related, valid]) => {
-            relatedWords = related;
-            validWords = new Set(valid.map(word => word.toUpperCase()));
-            startNewGame();
-        }).catch(error => {
-            console.error('Error loading JSON files:', error);
-            alert('Failed to load game data. Please check the JSON files and try again.');
-        });
-    };
-
-    document.getElementById("new-game").addEventListener("click", function() {
-        window.location.reload();
-    });
-
-    document.getElementById("help").addEventListener("click", function() {
-        document.getElementById("instructions-popup").style.display = "block";
-    });
-
-    function closeInstructions() {
-        document.getElementById("instructions-popup").style.display = "none";
-    }
-
-    function selectRandomPair() {
-        let pair;
-        let intersectionFound = false;
-        while (!intersectionFound) {
-            pair = relatedWords[Math.floor(Math.random() * relatedWords.length)];
-            const horizontalWord = pair[0].toUpperCase();
-            const verticalWord = pair[1].toUpperCase();
-            
-            if (horizontalWord.length !== 5 || verticalWord.length !== 5) {
-                console.error("Invalid word length in pair:", horizontalWord, verticalWord);
-                continue;
-            }
-            
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    if (horizontalWord[i] === verticalWord[j]) {
-                        targetHorizontal = horizontalWord;
-                        targetVertical = verticalWord;
-                        intersectH = i;
-                        intersectV = j;
-                        intersectionFound = true;
-                        break;
-                    }
-                }
-                if (intersectionFound) break;
-            }
-            
-            if (!intersectionFound) {
-                console.error("No common letter found for pair:", horizontalWord, verticalWord);
-            }
-        }
-        
-        if (targetHorizontal[intersectH] !== targetVertical[intersectV]) {
-            console.error("Intersection letter mismatch:", targetHorizontal, targetVertical, intersectH, intersectV);
-        }
-    }
-
-    function startNewGame() {
-        if (isStartingNewGame) return; // Prevent re-entry
-        isStartingNewGame = true;
-
-        selectRandomPair();
-        initMainGrid();
-        initHGuesses();
-        initVGuesses();
-        const bank = document.getElementById("letter-bank");
-        bank.innerHTML = ''; // Explicitly clear keyboard
-        initLetterBank();
-        resetKeyboard();
-        guesses = 0;
-        horizontalLocked = false;
-        verticalLocked = false;
-        currentGuess = "";
-        gameOver = false;
-        startTime = Date.now();
-
-        isStartingNewGame = false;
-    }
-
-    function initMainGrid() {
-        const grid = document.getElementById("main-grid");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-            if (row === intersectV || col === intersectH) {
-                cell.classList.add("placeholder");
-            }
-            if (row === intersectV) cell.classList.add("horizontal");
-            if (col === intersectH) cell.classList.add("vertical");
-            if (row === intersectV && col === intersectH) {
-                cell.classList.add("intersection");
-                cell.textContent = targetHorizontal[intersectH];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            grid.appendChild(cell);
-        }
-        updateTrafficLights();
-    }
-
-    function initHGuesses() {
-        const grid = document.getElementById("h-guesses");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            grid.appendChild(cell);
-        }
-    }
-
-    function initVGuesses() {
-        const grid = document.getElementById("v-guesses");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            grid.appendChild(cell);
-        }
-    }
-
-    function initLetterBank() {
-        const layout = [
-            "QWERTYUIOP",
-            "ASDFGHJKL",
-            "←ZXCVBNM⏎"
-        ];
-        const bank = document.getElementById("letter-bank");
-        layout.forEach(row => {
-            const rowDiv = document.createElement("div");
-            rowDiv.classList.add("letter-row");
-            row.split("").forEach(char => {
-                const btn = document.createElement("button");
-                btn.classList.add("letter-btn");
-                if (char === "←") {
-                    btn.innerHTML = "←";
-                    btn.onclick = handleBackspaceFromLetterBank;
-                } else if (char === "⏎") {
-                    btn.innerHTML = "⏎";
-                    btn.onclick = submitGuessFromLetterBank;
-                } else {
-                    btn.textContent = char;
-                    btn.setAttribute("data-letter", char);
-                    btn.onclick = () => addLetter(char);
-                }
-                rowDiv.appendChild(btn);
-                if (char.match(/[A-Z]/)) {
-                    letterStatus[char] = { h: "unknown", v: "unknown" };
-                }
+        window.onload = function() {
+            Promise.all([
+                fetch('https://intersections-tau.vercel.app/api/related-pairs')
+                    .then(response => response.json()),
+                fetch('https://intersections-tau.vercel.app/api/valid-words')
+                    .then(response => response.json())
+            ]).then(([related, valid]) => {
+                relatedWords = related;
+                validWords = new Set(valid.map(word => word.toUpperCase()));
+                startNewGame();
+            }).catch(error => {
+                console.error('Error loading JSON from API:', error);
+                alert('Failed to load game data. Please try again later.');
             });
-            bank.appendChild(rowDiv);
-        });
-    }
+        };
 
-    function resetKeyboard() {
-        document.querySelectorAll(".letter-btn").forEach(btn => {
-            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+        document.getElementById("new-game").addEventListener("click", function() {
+            window.location.reload();
         });
-        letterStatus = {};
-    }
 
-    function addLetter(letter) {
-        if (gameOver || currentGuess.length >= 5 || (horizontalLocked && verticalLocked)) return;
-        if (!horizontalLocked || !verticalLocked) {
-            currentGuess += letter.toUpperCase();
-            updateGrids();
+        document.getElementById("help").addEventListener("click", function() {
+            document.getElementById("instructions-popup").style.display = "block";
+        });
+
+        function closeInstructions() {
+            document.getElementById("instructions-popup").style.display = "none";
         }
-    }
 
-    function submitGuessFromLetterBank() {
-        if (gameOver || currentGuess.length !== 5 || (horizontalLocked && verticalLocked)) return;
-        processGuess(currentGuess);
-    }
-
-    function handleBackspaceFromLetterBank() {
-        if (gameOver || currentGuess.length === 0) return;
-        currentGuess = currentGuess.slice(0, -1);
-        updateGrids();
-    }
-
-    function updateGrids() {
-        if (gameOver) return;
-        const hGrid = document.getElementById("h-guesses").children;
-        const vGrid = document.getElementById("v-guesses").children;
-        const rowStart = guesses * 5;
-        for (let i = 0; i < 5; i++) {
-            if (!horizontalLocked) {
-                const hCell = hGrid[rowStart + i];
-                if (hCell && i < currentGuess.length) {
-                    hCell.textContent = currentGuess[i] || '';
-                    hCell.classList.remove("green", "yellow", "red");
-                } else if (hCell) {
-                    hCell.textContent = "";
+        function selectRandomPair() {
+            let pair;
+            let intersectionFound = false;
+            while (!intersectionFound) {
+                pair = relatedWords[Math.floor(Math.random() * relatedWords.length)];
+                const horizontalWord = pair[0].toUpperCase();
+                const verticalWord = pair[1].toUpperCase();
+                
+                if (horizontalWord.length !== 5 || verticalWord.length !== 5) {
+                    console.error("Invalid word length in pair:", horizontalWord, verticalWord);
+                    continue;
+                }
+                
+                for (let i = 0; i < 5; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        if (horizontalWord[i] === verticalWord[j]) {
+                            targetHorizontal = horizontalWord;
+                            targetVertical = verticalWord;
+                            intersectH = i;
+                            intersectV = j;
+                            intersectionFound = true;
+                            break;
+                        }
+                    }
+                    if (intersectionFound) break;
+                }
+                
+                if (!intersectionFound) {
+                    console.error("No common letter found for pair:", horizontalWord, verticalWord);
                 }
             }
-            if (!verticalLocked) {
-                const vCell = vGrid[i * 5 + guesses];
-                if (vCell && i < currentGuess.length) {
-                    vCell.textContent = currentGuess[i] || '';
-                    vCell.classList.remove("green", "yellow", "red");
-                } else if (vCell) {
-                    vCell.textContent = "";
-                }
+            
+            if (targetHorizontal[intersectH] !== targetVertical[intersectV]) {
+                console.error("Intersection letter mismatch:", targetHorizontal, targetVertical, intersectH, intersectV);
             }
         }
-        updateTrafficLights();
-    }
 
-    function processGuess(guess) {
-        guess = guess.toUpperCase();
-        if (!validWords.has(guess)) {
-            showInvalidWarning();
+        function startNewGame() {
+            if (isStartingNewGame) return;
+            isStartingNewGame = true;
+
+            selectRandomPair();
+            initMainGrid();
+            initHGuesses();
+            initVGuesses();
+            const bank = document.getElementById("letter-bank");
+            bank.innerHTML = '';
+            initLetterBank();
+            resetKeyboard();
+            guesses = 0;
+            horizontalLocked = false;
+            verticalLocked = false;
             currentGuess = "";
-            updateGrids();
-            return;
-        }
-        guesses++;
-        const feedback = provideFeedback(guess);
-        displayGuess(guess, feedback);
-        updateMainGrid(guess, feedback);
-        updateLetterBank(guess, feedback);
-        checkGameEnd();
-        currentGuess = "";
-        updateGrids();
-    }
+            gameOver = false;
+            startTime = Date.now();
 
-    function showInvalidWarning() {
-        const message = document.getElementById("message");
-        message.textContent = "Invalid Word";
-        message.style.display = "block";
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 1000);
-    }
-
-    function provideFeedback(guess) {
-        guess = guess.toUpperCase();
-        const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
-
-        const hRemaining = targetHorizontal.split("");
-        const vRemaining = targetVertical.split("");
-
-        for (let i = 0; i < 5; i++) {
-            if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
-                feedback[i].h = "green";
-                hRemaining[i] = null;
-            }
-            if (!verticalLocked && guess[i] === targetVertical[i]) {
-                feedback[i].v = "green";
-                vRemaining[i] = null;
-            }
+            isStartingNewGame = false;
         }
 
-        for (let i = 0; i < 5; i++) {
-            const letter = guess[i];
-            if (!horizontalLocked && feedback[i].h !== "green") {
-                const hIndex = hRemaining.indexOf(letter);
-                if (hIndex !== -1) {
-                    feedback[i].h = "yellow";
-                    hRemaining[hIndex] = null;
-                }
-            }
-            if (!verticalLocked && feedback[i].v !== "green") {
-                const vIndex = vRemaining.indexOf(letter);
-                if (vIndex !== -1) {
-                    feedback[i].v = "yellow";
-                    vRemaining[vIndex] = null;
-                }
-            }
-        }
-
-        return feedback;
-    }
-
-    function displayGuess(guess, feedback) {
-        const hGrid = document.getElementById("h-guesses").children;
-        const vGrid = document.getElementById("v-guesses").children;
-        const rowStart = (guesses - 1) * 5;
-
-        for (let i = 0; i < 5; i++) {
-            if (!horizontalLocked) {
-                const hCell = Array.from(hGrid)[rowStart + i];
-                if (hCell) {
-                    hCell.textContent = guess[i] || '';
-                    hCell.classList.remove("green", "yellow", "red");
-                    hCell.classList.add(feedback[i].h);
-                }
-            }
-            if (!verticalLocked) {
-                const vCell = Array.from(vGrid)[i * 5 + (guesses - 1)];
-                if (vCell) {
-                    vCell.textContent = guess[i] || '';
-                    vCell.classList.remove("green", "yellow", "red");
-                    vCell.classList.add(feedback[i].v);
-                }
-            }
-        }
-
-        if (!horizontalLocked && feedback.every(f => f.h === "green")) horizontalLocked = true;
-        if (!verticalLocked && feedback.every(f => f.v === "green")) verticalLocked = true;
-        updateTrafficLights();
-    }
-
-    function updateMainGrid(guess, feedback) {
-        const grid = document.getElementById("main-grid").children;
-        for (let i = 0; i < 25; i++) {
-            const cell = grid[i];
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-
-            if (cell.classList.contains("green")) {
-                cell.classList.remove("yellow", "red", "placeholder");
-                cell.classList.add("green");
-            } else {
-                cell.classList.remove("green", "yellow", "red", "placeholder");
+        function initMainGrid() {
+            const grid = document.getElementById("main-grid");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
                 cell.classList.add("cell");
-            }
-
-            if ((row === intersectV || col === intersectH) && !(row === intersectV && col === intersectH) && !cell.classList.contains("green") && !cell.textContent) {
-                cell.classList.add("placeholder");
-            }
-
-            if (row === intersectV && !horizontalLocked && feedback[col].h === "green") {
-                cell.textContent = guess[col];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (col === intersectH && !verticalLocked && feedback[row].v === "green") {
-                cell.textContent = guess[row];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (row === intersectV && horizontalLocked) {
-                cell.textContent = targetHorizontal[col];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (col === intersectH && verticalLocked) {
-                cell.textContent = targetVertical[row];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (row === intersectV && col === intersectH) {
-                cell.textContent = targetHorizontal[intersectH];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-        }
-        updateTrafficLights();
-    }
-
-    function updateLetterBank(guess, feedback) {
-        for (let i = 0; i < 5; i++) {
-            const letter = guess[i];
-            const btn = Array.from(document.querySelectorAll(".letter-btn"))
-                .find(b => b.getAttribute("data-letter") === letter || b.innerHTML === letter);
-            if (!btn) continue;
-
-            const hStatus = feedback[i].h;
-            const vStatus = feedback[i].v;
-
-            letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
-
-            if (hStatus === "green") letterStatus[letter].h = "green";
-            else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
-            else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
-
-            if (vStatus === "green") letterStatus[letter].v = "green";
-            else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
-            else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
-
-            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
-
-            if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
-            else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
-            else btn.classList.add("red-top-bottom");
-
-            if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
-            else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
-            else btn.classList.add("red-left-right");
-        }
-    }
-
-    function checkGameEnd() {
-        console.log("Checking game end, guesses:", guesses, "gameOver:", gameOver, "horizontalLocked:", horizontalLocked, "verticalLocked:", verticalLocked);
-        if (horizontalLocked && verticalLocked && !gameOver) {
-            showWinPopup();
-        } else if (guesses >= maxGuesses && !gameOver) {
-            showLosePopup();
-        }
-    }
-
-    function showWinPopup() {
-        const winPopup = document.getElementById("win-popup");
-        const winGuesses = document.getElementById("win-guesses");
-        const winTime = document.getElementById("win-time");
-        winGuesses.textContent = guesses;
-        const endTime = Date.now();
-        const timeElapsed = Math.floor((endTime - startTime) / 1000);
-        winTime.textContent = `${timeElapsed}s`;
-        winPopup.style.display = "block";
-        gameOver = true;
-        disableInput();
-        updateTrafficLights();
-    }
-
-    function showLosePopup() {
-        const losePopup = document.getElementById("lose-popup");
-        fillRemainingLettersInRed();
-        losePopup.style.display = "block";
-        gameOver = true;
-        disableInput();
-        updateTrafficLights();
-    }
-
-    function disableInput() {
-        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
-        // Do not remove the keydown listener here; keep it for popup closure
-    }
-
-    function fillRemainingLettersInRed() {
-        const grid = document.getElementById("main-grid");
-        const hGuessed = new Set();
-        const vGuessed = new Set();
-
-        const hGuesses = document.getElementById("h-guesses");
-        const vGuesses = document.getElementById("v-guesses");
-        const hChildren = Array.from(hGuesses.children);
-        const vChildren = Array.from(vGuesses.children);
-
-        for (let i = 0; i < guesses; i++) {
-            const hRowStart = i * 5;
-            const vRowStart = i * 5;
-            for (let j = 0; j < 5; j++) {
-                const hCell = hChildren[hRowStart + j];
-                const vCell = vChildren[vRowStart + j];
-                if (hCell && hCell.classList.contains("green")) {
-                    hGuessed.add(hCell.textContent);
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+                if (row === intersectV || col === intersectH) {
+                    cell.classList.add("placeholder");
                 }
-                if (vCell && vCell.classList.contains("green")) {
-                    vGuessed.add(vCell.textContent);
+                if (row === intersectV) cell.classList.add("horizontal");
+                if (col === intersectH) cell.classList.add("vertical");
+                if (row === intersectV && col === intersectH) {
+                    cell.classList.add("intersection");
+                    cell.textContent = targetHorizontal[intersectH];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
                 }
+                grid.appendChild(cell);
             }
+            updateTrafficLights();
         }
 
-        const mainGridChildren = Array.from(grid.children);
-        for (let i = 0; i < 25; i++) {
-            const cell = mainGridChildren[i];
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-
-            if (cell.classList.contains("green")) {
-                cell.classList.remove("yellow", "red", "placeholder");
-                cell.classList.add("green");
-            } else {
-                cell.classList.remove("green", "yellow", "red", "placeholder");
+        function initHGuesses() {
+            const grid = document.getElementById("h-guesses");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
                 cell.classList.add("cell");
-            }
-
-            if (!(row === intersectV || col === intersectH) && !cell.textContent) {
-                cell.classList.add("placeholder");
-            }
-
-            if (row === intersectV && !horizontalLocked) {
-                const hLetter = targetHorizontal[col] || '';
-                if (hLetter && !hGuessed.has(hLetter)) {
-                    cell.textContent = hLetter;
-                    cell.classList.add("red");
-                    cell.classList.remove("placeholder");
-                } else if (hLetter && hGuessed.has(hLetter) && !cell.classList.contains("green")) {
-                    cell.textContent = hLetter;
-                    cell.classList.add("green");
-                    cell.classList.remove("placeholder");
-                }
-            }
-            if (col === intersectH && !verticalLocked) {
-                const vLetter = targetVertical[row] || '';
-                if (vLetter && !vGuessed.has(vLetter)) {
-                    cell.textContent = vLetter;
-                    cell.classList.add("red");
-                    cell.classList.remove("placeholder");
-                } else if (vLetter && vGuessed.has(vLetter) && !cell.classList.contains("green")) {
-                    cell.textContent = vLetter;
-                    cell.classList.add("green");
-                    cell.classList.remove("placeholder");
-                }
-            }
-            if (row === intersectV && col === intersectH) {
-                const intersectionLetter = targetHorizontal[intersectH];
-                if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
-                    cell.textContent = intersectionLetter;
-                    cell.classList.add("green");
-                    cell.classList.remove("placeholder");
-                } else {
-                    cell.textContent = intersectionLetter;
-                    cell.classList.add("red");
-                    cell.classList.remove("placeholder");
-                }
-            }
-        }
-    }
-
-    function closePopup() {
-        document.getElementById("win-popup").style.display = "none";
-        document.getElementById("lose-popup").style.display = "none";
-    }
-
-    function updateTrafficLights() {
-        const leftLight = document.getElementById("left-traffic-light");
-        const rightLight = document.getElementById("right-traffic-light");
-        const lights = [leftLight, rightLight];
-
-        lights.forEach(light => {
-            light.innerHTML = '';
-            const red = document.createElement("div");
-            const yellow = document.createElement("div");
-            const green = document.createElement("div");
-            red.classList.add("light");
-            yellow.classList.add("light");
-            green.classList.add("light");
-
-            if (gameOver && guesses >= maxGuesses) {
-                red.classList.add("red");
-            } else if (!horizontalLocked && !verticalLocked) {
-                red.classList.add("red");
-            } else if (horizontalLocked !== verticalLocked) {
-                yellow.classList.add("yellow");
-            } else {
-                green.classList.add("green");
-            }
-
-            light.appendChild(red);
-            light.appendChild(yellow);
-            light.appendChild(green);
-        });
-    }
-
-    function handleKeydown(event) {
-        const winPopup = document.getElementById("win-popup");
-        const losePopup = document.getElementById("lose-popup");
-        const instructionsPopup = document.getElementById("instructions-popup");
-
-        // Handle popup closure with Enter key even when game is over
-        if (event.key === "Enter") {
-            if (winPopup.style.display === "block" || losePopup.style.display === "block") {
-                closePopup();
-                return;
-            } else if (instructionsPopup.style.display === "block") {
-                closeInstructions();
-                return;
+                grid.appendChild(cell);
             }
         }
 
-        // Only process game input if game is not over
-        if (gameOver) return;
-
-        if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
-            if (currentGuess.length < 5) {
-                if (!horizontalLocked || !verticalLocked) {
-                    currentGuess += event.key.toUpperCase();
-                    updateGrids();
-                }
+        function initVGuesses() {
+            const grid = document.getElementById("v-guesses");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                grid.appendChild(cell);
             }
-        } else if (event.key === "Backspace") {
-            if (currentGuess.length > 0) {
-                currentGuess = currentGuess.slice(0, -1);
+        }
+
+        function initLetterBank() {
+            const layout = [
+                "QWERTYUIOP",
+                "ASDFGHJKL",
+                "←ZXCVBNM⏎"
+            ];
+            const bank = document.getElementById("letter-bank");
+            layout.forEach(row => {
+                const rowDiv = document.createElement("div");
+                rowDiv.classList.add("letter-row");
+                row.split("").forEach(char => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("letter-btn");
+                    if (char === "←") {
+                        btn.innerHTML = "←";
+                        btn.onclick = handleBackspaceFromLetterBank;
+                    } else if (char === "⏎") {
+                        btn.innerHTML = "⏎";
+                        btn.onclick = submitGuessFromLetterBank;
+                    } else {
+                        btn.textContent = char;
+                        btn.setAttribute("data-letter", char);
+                        btn.onclick = () => addLetter(char);
+                    }
+                    rowDiv.appendChild(btn);
+                    if (char.match(/[A-Z]/)) {
+                        letterStatus[char] = { h: "unknown", v: "unknown" };
+                    }
+                });
+                bank.appendChild(rowDiv);
+            });
+        }
+
+        function resetKeyboard() {
+            document.querySelectorAll(".letter-btn").forEach(btn => {
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+            });
+            letterStatus = {};
+        }
+
+        function addLetter(letter) {
+            if (gameOver || currentGuess.length >= 5 || (horizontalLocked && verticalLocked)) return;
+            if (!horizontalLocked || !verticalLocked) {
+                currentGuess += letter.toUpperCase();
                 updateGrids();
             }
-        } else if (event.key === "Enter") {
-            if (currentGuess.length === 5) {
-                processGuess(currentGuess);
+        }
+
+        function submitGuessFromLetterBank() {
+            if (gameOver || currentGuess.length !== 5 || (horizontalLocked && verticalLocked)) return;
+            processGuess(currentGuess);
+        }
+
+        function handleBackspaceFromLetterBank() {
+            if (gameOver || currentGuess.length === 0) return;
+            currentGuess = currentGuess.slice(0, -1);
+            updateGrids();
+        }
+
+        function updateGrids() {
+            if (gameOver) return;
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = guesses * 5;
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked) {
+                    const hCell = hGrid[rowStart + i];
+                    if (hCell && i < currentGuess.length) {
+                        hCell.textContent = currentGuess[i] || '';
+                        hCell.classList.remove("green", "yellow", "red");
+                    } else if (hCell) {
+                        hCell.textContent = "";
+                    }
+                }
+                if (!verticalLocked) {
+                    const vCell = vGrid[i * 5 + guesses];
+                    if (vCell && i < currentGuess.length) {
+                        vCell.textContent = currentGuess[i] || '';
+                        vCell.classList.remove("green", "yellow", "red");
+                    } else if (vCell) {
+                        vCell.textContent = "";
+                    }
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function processGuess(guess) {
+            guess = guess.toUpperCase();
+            if (!validWords.has(guess)) {
+                showInvalidWarning();
+                currentGuess = "";
+                updateGrids();
+                return;
+            }
+            guesses++;
+            const feedback = provideFeedback(guess);
+            displayGuess(guess, feedback);
+            updateMainGrid(guess, feedback);
+            updateLetterBank(guess, feedback);
+            checkGameEnd();
+            currentGuess = "";
+            updateGrids();
+        }
+
+        function showInvalidWarning() {
+            const message = document.getElementById("message");
+            message.textContent = "Invalid Word";
+            message.style.display = "block";
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 1000);
+        }
+
+        function provideFeedback(guess) {
+            guess = guess.toUpperCase();
+            const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+
+            const hRemaining = targetHorizontal.split("");
+            const vRemaining = targetVertical.split("");
+
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
+                    feedback[i].h = "green";
+                    hRemaining[i] = null;
+                }
+                if (!verticalLocked && guess[i] === targetVertical[i]) {
+                    feedback[i].v = "green";
+                    vRemaining[i] = null;
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                const letter = guess[i];
+                if (!horizontalLocked && feedback[i].h !== "green") {
+                    const hIndex = hRemaining.indexOf(letter);
+                    if (hIndex !== -1) {
+                        feedback[i].h = "yellow";
+                        hRemaining[hIndex] = null;
+                    }
+                }
+                if (!verticalLocked && feedback[i].v !== "green") {
+                    const vIndex = vRemaining.indexOf(letter);
+                    if (vIndex !== -1) {
+                        feedback[i].v = "yellow";
+                        vRemaining[vIndex] = null;
+                    }
+                }
+            }
+
+            return feedback;
+        }
+
+        function displayGuess(guess, feedback) {
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = (guesses - 1) * 5;
+
+            for (let i = 0; i < 5; i++) {
+                if (!horizontalLocked) {
+                    const hCell = Array.from(hGrid)[rowStart + i];
+                    if (hCell) {
+                        hCell.textContent = guess[i] || '';
+                        hCell.classList.remove("green", "yellow", "red");
+                        hCell.classList.add(feedback[i].h);
+                    }
+                }
+                if (!verticalLocked) {
+                    const vCell = Array.from(vGrid)[i * 5 + (guesses - 1)];
+                    if (vCell) {
+                        vCell.textContent = guess[i] || '';
+                        vCell.classList.remove("green", "yellow", "red");
+                        vCell.classList.add(feedback[i].v);
+                    }
+                }
+            }
+
+            if (!horizontalLocked && feedback.every(f => f.h === "green")) horizontalLocked = true;
+            if (!verticalLocked && feedback.every(f => f.v === "green")) verticalLocked = true;
+            updateTrafficLights();
+        }
+
+        function updateMainGrid(guess, feedback) {
+            const grid = document.getElementById("main-grid").children;
+            for (let i = 0; i < 25; i++) {
+                const cell = grid[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                if (cell.classList.contains("green")) {
+                    cell.classList.remove("yellow", "red", "placeholder");
+                    cell.classList.add("green");
+                } else {
+                    cell.classList.remove("green", "yellow", "red", "placeholder");
+                    cell.classList.add("cell");
+                }
+
+                if ((row === intersectV || col === intersectH) && !(row === intersectV && col === intersectH) && !cell.classList.contains("green") && !cell.textContent) {
+                    cell.classList.add("placeholder");
+                }
+
+                if (row === intersectV && !horizontalLocked && feedback[col].h === "green") {
+                    cell.textContent = guess[col];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (col === intersectH && !verticalLocked && feedback[row].v === "green") {
+                    cell.textContent = guess[row];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (row === intersectV && horizontalLocked) {
+                    cell.textContent = targetHorizontal[col];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (col === intersectH && verticalLocked) {
+                    cell.textContent = targetVertical[row];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                if (row === intersectV && col === intersectH) {
+                    cell.textContent = targetHorizontal[intersectH];
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function updateLetterBank(guess, feedback) {
+            for (let i = 0; i < 5; i++) {
+                const letter = guess[i];
+                const btn = Array.from(document.querySelectorAll(".letter-btn"))
+                    .find(b => b.getAttribute("data-letter") === letter || b.innerHTML === letter);
+                if (!btn) continue;
+
+                const hStatus = feedback[i].h;
+                const vStatus = feedback[i].v;
+
+                letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
+
+                if (hStatus === "green") letterStatus[letter].h = "green";
+                else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
+                else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
+
+                if (vStatus === "green") letterStatus[letter].v = "green";
+                else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
+                else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+
+                if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
+                else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
+                else btn.classList.add("red-top-bottom");
+
+                if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
+                else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
+                else btn.classList.add("red-left-right");
             }
         }
-    }
 
-    document.addEventListener('keydown', handleKeydown);
-</script>
-<!-- Google tag (gtag.js) -->
+        function checkGameEnd() {
+            console.log("Checking game end, guesses:", guesses, "gameOver:", gameOver, "horizontalLocked:", horizontalLocked, "verticalLocked:", verticalLocked);
+            if (horizontalLocked && verticalLocked && !gameOver) {
+                showWinPopup();
+            } else if (guesses >= maxGuesses && !gameOver) {
+                showLosePopup();
+            }
+        }
+
+        function showWinPopup() {
+            const winPopup = document.getElementById("win-popup");
+            const winGuesses = document.getElementById("win-guesses");
+            const winTime = document.getElementById("win-time");
+            winGuesses.textContent = guesses;
+            const endTime = Date.now();
+            const timeElapsed = Math.floor((endTime - startTime) / 1000);
+            winTime.textContent = `${timeElapsed}s`;
+            winPopup.style.display = "block";
+            gameOver = true;
+            disableInput();
+            updateTrafficLights();
+        }
+
+        function showLosePopup() {
+            const losePopup = document.getElementById("lose-popup");
+            fillRemainingLettersInRed();
+            losePopup.style.display = "block";
+            gameOver = true;
+            disableInput();
+            updateTrafficLights();
+        }
+
+        function disableInput() {
+            document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+        }
+
+        function fillRemainingLettersInRed() {
+            const grid = document.getElementById("main-grid");
+            const hGuessed = new Set();
+            const vGuessed = new Set();
+
+            const hGuesses = document.getElementById("h-guesses");
+            const vGuesses = document.getElementById("v-guesses");
+            const hChildren = Array.from(hGuesses.children);
+            const vChildren = Array.from(vGuesses.children);
+
+            for (let i = 0; i < guesses; i++) {
+                const hRowStart = i * 5;
+                const vRowStart = i * 5;
+                for (let j = 0; j < 5; j++) {
+                    const hCell = hChildren[hRowStart + j];
+                    const vCell = vChildren[vRowStart + j];
+                    if (hCell && hCell.classList.contains("green")) {
+                        hGuessed.add(hCell.textContent);
+                    }
+                    if (vCell && vCell.classList.contains("green")) {
+                        vGuessed.add(vCell.textContent);
+                    }
+                }
+            }
+
+            const mainGridChildren = Array.from(grid.children);
+            for (let i = 0; i < 25; i++) {
+                const cell = mainGridChildren[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                if (cell.classList.contains("green")) {
+                    cell.classList.remove("yellow", "red", "placeholder");
+                    cell.classList.add("green");
+                } else {
+                    cell.classList.remove("green", "yellow", "red", "placeholder");
+                    cell.classList.add("cell");
+                }
+
+                if (!(row === intersectV || col === intersectH) && !cell.textContent) {
+                    cell.classList.add("placeholder");
+                }
+
+                if (row === intersectV && !horizontalLocked) {
+                    const hLetter = targetHorizontal[col] || '';
+                    if (hLetter && !hGuessed.has(hLetter)) {
+                        cell.textContent = hLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    } else if (hLetter && hGuessed.has(hLetter) && !cell.classList.contains("green")) {
+                        cell.textContent = hLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+                if (col === intersectH && !verticalLocked) {
+                    const vLetter = targetVertical[row] || '';
+                    if (vLetter && !vGuessed.has(vLetter)) {
+                        cell.textContent = vLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    } else if (vLetter && vGuessed.has(vLetter) && !cell.classList.contains("green")) {
+                        cell.textContent = vLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+                if (row === intersectV && col === intersectH) {
+                    const intersectionLetter = targetHorizontal[intersectH];
+                    if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
+                        cell.textContent = intersectionLetter;
+                        cell.classList.add("green");
+                        cell.classList.remove("placeholder");
+                    } else {
+                        cell.textContent = intersectionLetter;
+                        cell.classList.add("red");
+                        cell.classList.remove("placeholder");
+                    }
+                }
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("win-popup").style.display = "none";
+            document.getElementById("win-popup").style.display = "none";
+            document.getElementById("lose-popup").style.display = "none";
+        }
+
+        function updateTrafficLights() {
+            const leftLight = document.getElementById("left-traffic-light");
+            const rightLight = document.getElementById("right-traffic-light");
+            const lights = [leftLight, rightLight];
+
+            lights.forEach(light => {
+                light.innerHTML = '';
+                const red = document.createElement("div");
+                const yellow = document.createElement("div");
+                const green = document.createElement("div");
+                red.classList.add("light");
+                yellow.classList.add("light");
+                green.classList.add("light");
+
+                if (gameOver && guesses >= maxGuesses) {
+                    red.classList.add("red");
+                } else if (!horizontalLocked && !verticalLocked) {
+                    red.classList.add("red");
+                } else if (horizontalLocked !== verticalLocked) {
+                    yellow.classList.add("yellow");
+                } else {
+                    green.classList.add("green");
+                }
+
+                light.appendChild(red);
+                light.appendChild(yellow);
+                light.appendChild(green);
+            });
+        }
+
+        function handleKeydown(event) {
+            const winPopup = document.getElementById("win-popup");
+            const losePopup = document.getElementById("lose-popup");
+            const instructionsPopup = document.getElementById("instructions-popup");
+
+            if (event.key === "Enter") {
+                if (winPopup.style.display === "block" || losePopup.style.display === "block") {
+                    closePopup();
+                    return;
+                } else if (instructionsPopup.style.display === "block") {
+                    closeInstructions();
+                    return;
+                }
+            }
+
+            if (gameOver) return;
+
+            if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+                if (currentGuess.length < 5) {
+                    if (!horizontalLocked || !verticalLocked) {
+                        currentGuess += event.key.toUpperCase();
+                        updateGrids();
+                    }
+                }
+            } else if (event.key === "Backspace") {
+                if (currentGuess.length > 0) {
+                    currentGuess = currentGuess.slice(0, -1);
+                    updateGrids();
+                }
+            } else if (event.key === "Enter") {
+                if (currentGuess.length === 5) {
+                    processGuess(currentGuess);
+                }
+            }
+        }
+
+        document.addEventListener('keydown', handleKeydown);
+    </script><!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
