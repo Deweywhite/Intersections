@@ -409,32 +409,31 @@
     function closeInstructions() {
         document.getElementById("instructions-popup").style.display = "none";
     }
-
-    function startNewGame() {
-        fetch('https://intersections-tau.vercel.app/api/game')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to start game');
-                return response.json();
-            })
-            .then(data => {
-                gameState = data;
-                gameState.horizontal = data.horizontal; // Store target words for guess processing
-                gameState.vertical = data.vertical;
-                initMainGrid();
-                initHGuesses();
-                initVGuesses();
-                document.getElementById("letter-bank").innerHTML = '';
-                initLetterBank();
-                resetKeyboard();
-                letterStatus = {};
-                currentGuess = "";
-            })
-            .catch(error => {
-                console.error('Error starting game:', error);
-                alert('Failed to load game: ' + error.message);
-            });
-    }
-
+	
+	function startNewGame() {
+		fetch('https://intersections-tau.vercel.app/api/game')
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+            return response.json();
+        })
+        .then(data => {
+            gameState = data;
+            gameState.horizontal = data.horizontal;
+            gameState.vertical = data.vertical;
+            initMainGrid();
+            initHGuesses();
+            initVGuesses();
+            document.getElementById("letter-bank").innerHTML = '';
+            initLetterBank();
+            resetKeyboard();
+            letterStatus = {};
+            currentGuess = "";
+        })
+        .catch(error => {
+            console.error('Fetch Error:', error);
+            alert('Failed to load game: ' + error.message);
+        });
+} 
     function initMainGrid() {
         const grid = document.getElementById("main-grid");
         grid.innerHTML = '';
