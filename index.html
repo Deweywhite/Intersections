@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4TSJY2V4W5');
+    </script>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Prevents zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Intersections</title>
     <style>
         body {
@@ -384,465 +388,450 @@
             <p>Time: <span id="win-time">0s</span></p>
             <button id="win-ok" onclick="closePopup()">OK</button>
         </div>
-<div id="lose-popup">
-    <img src="crash.png" alt="Car Crash Graphic" class="crash-graphic">
-    <h2>You Crashed at the Intersection</h2>
-    <button id="lose-ok" onclick="closePopup()">OK</button>
-</div>
+        <div id="lose-popup">
+            <img src="crash.png" alt="Car Crash Graphic" class="crash-graphic">
+            <h2>You Crashed at the Intersection</h2>
+            <button id="lose-ok" onclick="closePopup()">OK</button>
+        </div>
         <div id="instructions-popup">
             <img src="instructions.png" alt="Instructions">
             <button id="instructions-close" onclick="closeInstructions()">X</button>
         </div>
     </div>
 
-<script>
-    let gameState = {};
-    let currentGuess = "";
-    let letterStatus = {};
-    let isProcessing = false;
+    <script>
+        let gameState = {};
+        let currentGuess = "";
+        let letterStatus = {};
+        let isProcessing = false;
 
-    window.onload = function() {
-        startNewGame();
-    };
+        window.onload = function() {
+            startNewGame();
+        };
 
-    document.getElementById("new-game").addEventListener("click", startNewGame);
-    document.getElementById("help").addEventListener("click", function() {
-        document.getElementById("instructions-popup").style.display = "block";
-    });
-
-    function closeInstructions() {
-        document.getElementById("instructions-popup").style.display = "none";
-    }
-
-    function startNewGame() {
-        fetch('https://intersections-tau.vercel.app/api/game')
-            .then(response => {
-                if (!response.ok) throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
-                return response.json();
-            })
-            .then(data => {
-                gameState = data;
-                gameState.horizontal = data.horizontal;
-                gameState.vertical = data.vertical;
-                initMainGrid();
-                initHGuesses();
-                initVGuesses();
-                document.getElementById("letter-bank").innerHTML = '';
-                initLetterBank();
-                resetKeyboard();
-                letterStatus = {};
-                currentGuess = "";
-            })
-            .catch(error => {
-                console.error('Fetch Error:', error);
-                alert('Failed to load game: ' + error.message);
-            });
-    }
-
-    function initMainGrid() {
-        const grid = document.getElementById("main-grid");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-            if (row === gameState.intersectV || col === gameState.intersectH) {
-                cell.classList.add("placeholder");
-            }
-            if (row === gameState.intersectV) cell.classList.add("horizontal");
-            if (col === gameState.intersectH) cell.classList.add("vertical");
-            if (row === gameState.intersectV && col === gameState.intersectH) {
-                cell.classList.add("intersection");
-                cell.textContent = gameState.intersectionLetter;
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            grid.appendChild(cell);
-        }
-        updateTrafficLights();
-    }
-
-    function initHGuesses() {
-        const grid = document.getElementById("h-guesses");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            grid.appendChild(cell);
-        }
-    }
-
-    function initVGuesses() {
-        const grid = document.getElementById("v-guesses");
-        grid.innerHTML = '';
-        for (let i = 0; i < 25; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            grid.appendChild(cell);
-        }
-    }
-
-    function initLetterBank() {
-        const layout = ["QWERTYUIOP", "ASDFGHJKL", "←ZXCVBNM⏎"];
-        const bank = document.getElementById("letter-bank");
-        layout.forEach(row => {
-            const rowDiv = document.createElement("div");
-            rowDiv.classList.add("letter-row");
-            row.split("").forEach(char => {
-                const btn = document.createElement("button");
-                btn.classList.add("letter-btn");
-                if (char === "←") {
-                    btn.innerHTML = "←";
-                    btn.onclick = handleBackspaceFromLetterBank;
-                } else if (char === "⏎") {
-                    btn.innerHTML = "⏎";
-                    btn.onclick = submitGuessFromLetterBank;
-                } else {
-                    btn.textContent = char;
-                    btn.setAttribute("data-letter", char);
-                    btn.onclick = () => addLetter(char);
-                }
-                rowDiv.appendChild(btn);
-            });
-            bank.appendChild(rowDiv);
+        document.getElementById("new-game").addEventListener("click", startNewGame);
+        document.getElementById("help").addEventListener("click", function() {
+            document.getElementById("instructions-popup").style.display = "block";
         });
-    }
 
-    function resetKeyboard() {
-        document.querySelectorAll(".letter-btn").forEach(btn => {
-            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
-        });
-    }
+        function closeInstructions() {
+            document.getElementById("instructions-popup").style.display = "none";
+        }
 
-    function addLetter(letter) {
-        if (gameState.gameOver || currentGuess.length >= 5 || (gameState.horizontalLocked && gameState.verticalLocked)) return;
-        currentGuess += letter.toUpperCase();
-        updateGrids();
-    }
+        function startNewGame() {
+            fetch('https://intersections-tau.vercel.app/api/game')
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+                    return response.json();
+                })
+                .then(data => {
+                    gameState = data;
+                    gameState.horizontal = data.horizontal;
+                    gameState.vertical = data.vertical;
+                    initMainGrid();
+                    initHGuesses();
+                    initVGuesses();
+                    document.getElementById("letter-bank").innerHTML = '';
+                    initLetterBank();
+                    resetKeyboard();
+                    letterStatus = {};
+                    currentGuess = "";
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error);
+                    alert('Failed to load game: ' + error.message);
+                });
+        }
 
-    function submitGuessFromLetterBank() {
-        if (isProcessing || gameState.gameOver || currentGuess.length !== 5 || (gameState.horizontalLocked && gameState.verticalLocked)) return;
-        processGuess(currentGuess);
-    }
-
-    function handleBackspaceFromLetterBank() {
-        if (gameState.gameOver || currentGuess.length === 0) return;
-        currentGuess = currentGuess.slice(0, -1);
-        updateGrids();
-    }
-
-    function updateGrids() {
-        if (gameState.gameOver) return;
-        const hGrid = document.getElementById("h-guesses").children;
-        const vGrid = document.getElementById("v-guesses").children;
-        const rowStart = gameState.guesses * 5;
-        for (let i = 0; i < 5; i++) {
-            if (!gameState.horizontalLocked) {
-                const hCell = hGrid[rowStart + i];
-                if (hCell && i < currentGuess.length) {
-                    hCell.textContent = currentGuess[i];
-                    hCell.classList.remove("green", "yellow", "red");
-                } else if (hCell) {
-                    hCell.textContent = "";
+        function initMainGrid() {
+            const grid = document.getElementById("main-grid");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+                if (row === gameState.intersectV || col === gameState.intersectH) {
+                    cell.classList.add("placeholder");
                 }
+                if (row === gameState.intersectV) cell.classList.add("horizontal");
+                if (col === gameState.intersectH) cell.classList.add("vertical");
+                if (row === gameState.intersectV && col === gameState.intersectH) {
+                    cell.classList.add("intersection");
+                    cell.textContent = gameState.intersectionLetter;
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+                grid.appendChild(cell);
             }
-            if (!gameState.verticalLocked) {
-                const vCell = vGrid[i * 5 + gameState.guesses];
-                if (vCell && i < currentGuess.length) {
-                    vCell.textContent = currentGuess[i];
-                    vCell.classList.remove("green", "yellow", "red");
-                } else if (vCell) {
-                    vCell.textContent = "";
-                }
+            updateTrafficLights();
+        }
+
+        function initHGuesses() {
+            const grid = document.getElementById("h-guesses");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                grid.appendChild(cell);
             }
         }
-        updateTrafficLights();
-    }
 
- function showInvalidWarning() {
-        const message = document.getElementById("message");
-        message.textContent = "Invalid Word";
-        message.style.display = "block";
-        setTimeout(() => message.style.display = "none", 1000);
-    }
+        function initVGuesses() {
+            const grid = document.getElementById("v-guesses");
+            grid.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                grid.appendChild(cell);
+            }
+        }
 
-   function processGuess(guess) {
-    if (isProcessing || !gameState.horizontal || !gameState.vertical) {
-        console.error('Missing game state or processing:', gameState);
-        return Promise.resolve();
-    }
-    isProcessing = true;
-    console.log('Processing guess:', guess);
-    const currentGuessRow = gameState.guesses; // Store current row before update
-    return fetch('https://intersections-tau.vercel.app/api/game', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            guess: guess.toUpperCase(),
-            targetHorizontal: gameState.horizontal,
-            targetVertical: gameState.vertical,
-            intersectH: gameState.intersectH,
-            intersectV: gameState.intersectV,
-            guesses: gameState.guesses,
-            horizontalLocked: gameState.horizontalLocked,
-            verticalLocked: gameState.verticalLocked
-        })
-    })
-        .then(response => response.json().then(data => ({ ok: response.ok, data })))
-        .then(({ ok, data }) => {
-            if (!ok || data.error) {
-                if (data.error === 'Invalid word') {
-                    showInvalidWarning();
+        function initLetterBank() {
+            const layout = ["QWERTYUIOP", "ASDFGHJKL", "←ZXCVBNM⏎"];
+            const bank = document.getElementById("letter-bank");
+            layout.forEach(row => {
+                const rowDiv = document.createElement("div");
+                rowDiv.classList.add("letter-row");
+                row.split("").forEach(char => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("letter-btn");
+                    if (char === "←") {
+                        btn.innerHTML = "←";
+                        btn.onclick = handleBackspaceFromLetterBank;
+                    } else if (char === "⏎") {
+                        btn.innerHTML = "⏎";
+                        btn.onclick = submitGuessFromLetterBank;
+                    } else {
+                        btn.textContent = char;
+                        btn.setAttribute("data-letter", char);
+                        btn.onclick = () => addLetter(char);
+                    }
+                    rowDiv.appendChild(btn);
+                });
+                bank.appendChild(rowDiv);
+            });
+        }
+
+        function resetKeyboard() {
+            document.querySelectorAll(".letter-btn").forEach(btn => {
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+            });
+        }
+
+        function addLetter(letter) {
+            if (gameState.gameOver || currentGuess.length >= 5 || (gameState.horizontalLocked && gameState.verticalLocked)) return;
+            currentGuess += letter.toUpperCase();
+            updateGrids();
+        }
+
+        function submitGuessFromLetterBank() {
+            if (isProcessing || gameState.gameOver || currentGuess.length !== 5 || (gameState.horizontalLocked && gameState.verticalLocked)) return;
+            processGuess(currentGuess);
+        }
+
+        function handleBackspaceFromLetterBank() {
+            if (gameState.gameOver || currentGuess.length === 0) return;
+            currentGuess = currentGuess.slice(0, -1);
+            updateGrids();
+        }
+
+        function updateGrids() {
+            if (gameState.gameOver) return;
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = gameState.guesses * 5;
+            for (let i = 0; i < 5; i++) {
+                if (!gameState.horizontalLocked) {
+                    const hCell = hGrid[rowStart + i];
+                    if (hCell && i < currentGuess.length) {
+                        hCell.textContent = currentGuess[i];
+                        hCell.classList.remove("green", "yellow", "red");
+                    } else if (hCell) {
+                        hCell.textContent = "";
+                    }
+                }
+                if (!gameState.verticalLocked) {
+                    const vCell = vGrid[i * 5 + gameState.guesses];
+                    if (vCell && i < currentGuess.length) {
+                        vCell.textContent = currentGuess[i];
+                        vCell.classList.remove("green", "yellow", "red");
+                    } else if (vCell) {
+                        vCell.textContent = "";
+                    }
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function processGuess(guess) {
+            if (isProcessing || !gameState.horizontal || !gameState.vertical) {
+                console.error('Missing game state or processing:', gameState);
+                return Promise.resolve();
+            }
+            isProcessing = true;
+            console.log('Processing guess:', guess);
+            const currentGuessRow = gameState.guesses;
+            return fetch('https://intersections-tau.vercel.app/api/game', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    guess: guess.toUpperCase(),
+                    targetHorizontal: gameState.horizontal,
+                    targetVertical: gameState.vertical,
+                    intersectH: gameState.intersectH,
+                    intersectV: gameState.intersectV,
+                    guesses: gameState.guesses,
+                    horizontalLocked: gameState.horizontalLocked,
+                    verticalLocked: gameState.verticalLocked
+                })
+            })
+                .then(response => response.json().then(data => ({ ok: response.ok, data })))
+                .then(({ ok, data }) => {
+                    if (!ok || data.error) {
+                        if (data.error === 'Invalid word') {
+                            showInvalidWarning();
+                            currentGuess = "";
+                            updateGrids();
+                            return;
+                        }
+                        throw new Error(data.error || 'Unknown server error');
+                    }
+                    displayGuess(guess, data.feedback, currentGuessRow);
+                    gameState = { ...gameState, ...data };
+                    updateMainGrid(guess, data.feedback);
+                    updateLetterBank(guess, data.feedback);
+                    checkGameEnd();
                     currentGuess = "";
                     updateGrids();
+                })
+                .catch(error => {
+                    console.error('Error processing guess:', error);
+                    alert('Error processing guess: ' + error.message);
+                })
+                .finally(() => {
+                    isProcessing = false;
+                });
+        }
+
+        function displayGuess(guess, feedback, row) {
+            const hGrid = document.getElementById("h-guesses").children;
+            const vGrid = document.getElementById("v-guesses").children;
+            const rowStart = row * 5;
+
+            for (let i = 0; i < 5; i++) {
+                const hCell = hGrid[rowStart + i];
+                const vCell = vGrid[i * 5 + row];
+
+                if (hCell && !gameState.horizontalLocked) {
+                    hCell.textContent = guess[i];
+                    hCell.classList.remove("green", "yellow", "red");
+                    hCell.classList.add(feedback[i].h);
+                }
+                if (vCell && !gameState.verticalLocked) {
+                    vCell.textContent = guess[i];
+                    vCell.classList.remove("green", "yellow", "red");
+                    vCell.classList.add(feedback[i].v);
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function updateMainGrid(guess, feedback) {
+            const grid = document.getElementById("main-grid").children;
+            for (let i = 0; i < 25; i++) {
+                const cell = grid[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                cell.classList.remove("green", "yellow", "red", "placeholder");
+                cell.classList.add("cell");
+
+                if (row === gameState.intersectV && col === gameState.intersectH) {
+                    cell.textContent = gameState.intersectionLetter;
+                    cell.classList.add("green");
+                    continue;
+                }
+
+                if (row === gameState.intersectV) {
+                    if (gameState.horizontalLocked) {
+                        cell.textContent = gameState.horizontal[col];
+                        cell.classList.add("green");
+                    } else if (feedback[col].h === "green") {
+                        cell.textContent = guess[col];
+                        cell.classList.add("green");
+                    } else {
+                        cell.classList.add("placeholder");
+                    }
+                }
+
+                if (col === gameState.intersectH) {
+                    if (gameState.verticalLocked) {
+                        cell.textContent = gameState.vertical[row];
+                        cell.classList.add("green");
+                    } else if (feedback[row].v === "green") {
+                        cell.textContent = guess[row];
+                        cell.classList.add("green");
+                    } else {
+                        cell.classList.add("placeholder");
+                    }
+                }
+            }
+            updateTrafficLights();
+        }
+
+        function updateLetterBank(guess, feedback) {
+            for (let i = 0; i < 5; i++) {
+                const letter = guess[i];
+                const btn = Array.from(document.querySelectorAll(".letter-btn"))
+                    .find(b => b.getAttribute("data-letter") === letter);
+                if (!btn) continue;
+
+                const hStatus = feedback[i].h;
+                const vStatus = feedback[i].v;
+
+                letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
+
+                if (hStatus === "green") letterStatus[letter].h = "green";
+                else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
+                else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
+
+                if (vStatus === "green") letterStatus[letter].v = "green";
+                else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
+                else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+
+                btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+
+                if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
+                else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
+                else btn.classList.add("red-top-bottom");
+
+                if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
+                else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
+                else btn.classList.add("red-left-right");
+            }
+        }
+
+        function checkGameEnd() {
+            if (gameState.gameOver) {
+                if (gameState.won) {
+                    showWinPopup();
+                } else {
+                    showLosePopup();
+                }
+            }
+        }
+
+        function showWinPopup() {
+            const winPopup = document.getElementById("win-popup");
+            const winGuesses = document.getElementById("win-guesses");
+            const winTime = document.getElementById("win-time");
+            winGuesses.textContent = gameState.guesses;
+            const timeElapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
+            winTime.textContent = `${timeElapsed}s`;
+            winPopup.style.display = "block";
+            disableInput();
+        }
+
+        function showLosePopup() {
+            const losePopup = document.getElementById("lose-popup");
+            fillRemainingLettersInRed();
+            losePopup.style.display = "block";
+            disableInput();
+        }
+
+        function disableInput() {
+            document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+        }
+
+        function fillRemainingLettersInRed() {
+            const grid = document.getElementById("main-grid").children;
+            for (let i = 0; i < 25; i++) {
+                const cell = grid[i];
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+
+                if (cell.classList.contains("green")) continue;
+
+                if (row === gameState.intersectV && !gameState.horizontalLocked) {
+                    cell.textContent = gameState.horizontal[col];
+                    cell.classList.add("red");
+                    cell.classList.remove("placeholder");
+                }
+                if (col === gameState.intersectH && !gameState.verticalLocked) {
+                    cell.textContent = gameState.vertical[row];
+                    cell.classList.add("red");
+                    cell.classList.remove("placeholder");
+                }
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("win-popup").style.display = "none";
+            document.getElementById("lose-popup").style.display = "none";
+        }
+
+        function showInvalidWarning() {
+            const message = document.getElementById("message");
+            message.textContent = "Invalid Word";
+            message.style.display = "block";
+            setTimeout(() => message.style.display = "none", 1000);
+        }
+
+        function updateTrafficLights() {
+            const lights = [document.getElementById("left-traffic-light"), document.getElementById("right-traffic-light")];
+            lights.forEach(light => {
+                light.innerHTML = '';
+                const red = document.createElement("div");
+                const yellow = document.createElement("div");
+                const green = document.createElement("div");
+                red.classList.add("light");
+                yellow.classList.add("light");
+                green.classList.add("light");
+
+                if (gameState.gameOver && gameState.guesses >= gameState.maxGuesses) {
+                    red.classList.add("red");
+                } else if (!gameState.horizontalLocked && !gameState.verticalLocked) {
+                    red.classList.add("red");
+                } else if (gameState.horizontalLocked !== gameState.verticalLocked) {
+                    yellow.classList.add("yellow");
+                } else {
+                    green.classList.add("green");
+                }
+
+                light.appendChild(red);
+                light.appendChild(yellow);
+                light.appendChild(green);
+            });
+        }
+
+        function handleKeydown(event) {
+            if (isProcessing) return;
+            const winPopup = document.getElementById("win-popup");
+            const losePopup = document.getElementById("lose-popup");
+            const instructionsPopup = document.getElementById("instructions-popup");
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (winPopup.style.display === "block" || losePopup.style.display === "block") {
+                    closePopup();
+                    return;
+                } else if (instructionsPopup.style.display === "block") {
+                    closeInstructions();
                     return;
                 }
-                throw new Error(data.error || 'Unknown server error');
-            }
-            displayGuess(guess, data.feedback, currentGuessRow); // Pass current row
-            gameState = { ...gameState, ...data };
-            updateMainGrid(guess, data.feedback);
-            updateLetterBank(guess, data.feedback);
-            checkGameEnd();
-            currentGuess = "";
-            updateGrids();
-        })
-        .catch(error => {
-            console.error('Error processing guess:', error);
-            alert('Error processing guess: ' + error.message);
-        })
-        .finally(() => {
-            isProcessing = false;
-        });
-}
-
-function displayGuess(guess, feedback, row) {
-    const hGrid = document.getElementById("h-guesses").children;
-    const vGrid = document.getElementById("v-guesses").children;
-    const rowStart = row * 5; // Use passed row number
-
-    for (let i = 0; i < 5; i++) {
-        const hCell = hGrid[rowStart + i];
-        const vCell = vGrid[i * 5 + row];
-
-        if (hCell && !gameState.horizontalLocked) {
-            hCell.textContent = guess[i];
-            hCell.classList.remove("green", "yellow", "red");
-            hCell.classList.add(feedback[i].h);
-        }
-        if (vCell && !gameState.verticalLocked) {
-            vCell.textContent = guess[i];
-            vCell.classList.remove("green", "yellow", "red");
-            vCell.classList.add(feedback[i].v);
-        }
-    }
-    updateTrafficLights();
-}
-   
-    function updateMainGrid(guess, feedback) {
-        const grid = document.getElementById("main-grid").children;
-        for (let i = 0; i < 25; i++) {
-            const cell = grid[i];
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-
-            cell.classList.remove("green", "yellow", "red", "placeholder");
-            cell.classList.add("cell");
-
-            if (row === gameState.intersectV && col === gameState.intersectH) {
-                cell.textContent = gameState.intersectionLetter;
-                cell.classList.add("green");
-                continue;
-            }
-
-            if (row === gameState.intersectV) {
-                if (gameState.horizontalLocked) {
-                    cell.textContent = gameState.horizontal[col];
-                    cell.classList.add("green");
-                } else if (feedback[col].h === "green") {
-                    cell.textContent = guess[col];
-                    cell.classList.add("green");
-                } else {
-                    cell.classList.add("placeholder");
+                if (gameState.gameOver) return;
+                if (currentGuess.length === 5) {
+                    processGuess(currentGuess);
                 }
-            }
-
-            if (col === gameState.intersectH) {
-                if (gameState.verticalLocked) {
-                    cell.textContent = gameState.vertical[row];
-                    cell.classList.add("green");
-                } else if (feedback[row].v === "green") {
-                    cell.textContent = guess[row];
-                    cell.classList.add("green");
-                } else {
-                    cell.classList.add("placeholder");
-                }
+            } else if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+                if (currentGuess.length < 5) addLetter(event.key);
+            } else if (event.key === "Backspace") {
+                handleBackspaceFromLetterBank();
             }
         }
-        updateTrafficLights();
-    }
 
-    function updateLetterBank(guess, feedback) {
-        for (let i = 0; i < 5; i++) {
-            const letter = guess[i];
-            const btn = Array.from(document.querySelectorAll(".letter-btn"))
-                .find(b => b.getAttribute("data-letter") === letter);
-            if (!btn) continue;
-
-            const hStatus = feedback[i].h;
-            const vStatus = feedback[i].v;
-
-            letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
-
-            if (hStatus === "green") letterStatus[letter].h = "green";
-            else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
-            else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
-
-            if (vStatus === "green") letterStatus[letter].v = "green";
-            else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
-            else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
-
-            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
-
-            if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
-            else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
-            else btn.classList.add("red-top-bottom");
-
-            if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
-            else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
-            else btn.classList.add("red-left-right");
-        }
-    }
-
-    function checkGameEnd() {
-        if (gameState.gameOver) {
-            if (gameState.won) {
-                showWinPopup();
-            } else {
-                showLosePopup();
-            }
-        }
-    }
-
-    function showWinPopup() {
-        const winPopup = document.getElementById("win-popup");
-        const winGuesses = document.getElementById("win-guesses");
-        const winTime = document.getElementById("win-time");
-        winGuesses.textContent = gameState.guesses;
-        const timeElapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
-        winTime.textContent = `${timeElapsed}s`;
-        winPopup.style.display = "block";
-        disableInput();
-    }
-
-    function showLosePopup() {
-        const losePopup = document.getElementById("lose-popup");
-        fillRemainingLettersInRed();
-        losePopup.style.display = "block";
-        disableInput();
-    }
-
-    function disableInput() {
-        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
-    }
-
-    function fillRemainingLettersInRed() {
-        const grid = document.getElementById("main-grid").children;
-        for (let i = 0; i < 25; i++) {
-            const cell = grid[i];
-            const row = Math.floor(i / 5);
-            const col = i % 5;
-
-            if (cell.classList.contains("green")) continue;
-
-            if (row === gameState.intersectV && !gameState.horizontalLocked) {
-                cell.textContent = gameState.horizontal[col];
-                cell.classList.add("red");
-                cell.classList.remove("placeholder");
-            }
-            if (col === gameState.intersectH && !gameState.verticalLocked) {
-                cell.textContent = gameState.vertical[row];
-                cell.classList.add("red");
-                cell.classList.remove("placeholder");
-            }
-        }
-    }
-
-    function closePopup() {
-        document.getElementById("win-popup").style.display = "none";
-        document.getElementById("lose-popup").style.display = "none";
-    }
-
-    function showInvalidWarning() {
-        const message = document.getElementById("message");
-        message.textContent = "Invalid Word";
-        message.style.display = "block";
-        setTimeout(() => message.style.display = "none", 1000);
-    }
-
-    function updateTrafficLights() {
-        const lights = [document.getElementById("left-traffic-light"), document.getElementById("right-traffic-light")];
-        lights.forEach(light => {
-            light.innerHTML = '';
-            const red = document.createElement("div");
-            const yellow = document.createElement("div");
-            const green = document.createElement("div");
-            red.classList.add("light");
-            yellow.classList.add("light");
-            green.classList.add("light");
-
-            if (gameState.gameOver && gameState.guesses >= gameState.maxGuesses) {
-                red.classList.add("red");
-            } else if (!gameState.horizontalLocked && !gameState.verticalLocked) {
-                red.classList.add("red");
-            } else if (gameState.horizontalLocked !== gameState.verticalLocked) {
-                yellow.classList.add("yellow");
-            } else {
-                green.classList.add("green");
-            }
-
-            light.appendChild(red);
-            light.appendChild(yellow);
-            light.appendChild(green);
-        });
-    }
-
-    function handleKeydown(event) {
-        if (isProcessing) return;
-        const winPopup = document.getElementById("win-popup");
-        const losePopup = document.getElementById("lose-popup");
-        const instructionsPopup = document.getElementById("instructions-popup");
-
-        if (event.key === "Enter") {
-            event.preventDefault();
-            if (winPopup.style.display === "block" || losePopup.style.display === "block") {
-                closePopup();
-                return;
-            } else if (instructionsPopup.style.display === "block") {
-                closeInstructions();
-                return;
-            }
-            if (gameState.gameOver) return;
-            if (currentGuess.length === 5) {
-                processGuess(currentGuess);
-            }
-        } else if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
-            if (currentGuess.length < 5) addLetter(event.key);
-        } else if (event.key === "Backspace") {
-            handleBackspaceFromLetterBank();
-        }
-    }
-
-    document.addEventListener('keydown', handleKeydown);
-</script>
-			
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4TSJY2V4W5');
+        document.addEventListener('keydown', handleKeydown);
     </script>
-	
 </body>
 </html>
