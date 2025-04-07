@@ -628,54 +628,52 @@
         updateTrafficLights();
     }
 
-    function updateMainGrid(guess, feedback) {
-        const grid = document.getElementById("main-grid").children;
-        for (let i = 0; i < 25; i++) {
-            const cell = grid[i];
-            const row = Math.floor(i / 5);
-            const col = i % 5;
+   function updateMainGrid(guess, feedback) {
+    const grid = document.getElementById("main-grid").children;
+    for (let i = 0; i < 25; i++) {
+        const cell = grid[i];
+        const row = Math.floor(i / 5);
+        const col = i % 5;
 
-            if (cell.classList.contains("green")) {
-                cell.classList.remove("yellow", "red", "placeholder");
-                cell.classList.add("green");
-            } else {
-                cell.classList.remove("green", "yellow", "red", "placeholder");
-                cell.classList.add("cell");
-            }
+        // Clear previous state
+        cell.classList.remove("green", "yellow", "red", "placeholder");
+        cell.classList.add("cell");
 
-            if ((row === gameState.intersectV || col === gameState.intersectH) && !(row === gameState.intersectV && col === gameState.intersectH) && !cell.classList.contains("green") && !cell.textContent) {
-                cell.classList.add("placeholder");
-            }
+        // Intersection always green
+        if (row === gameState.intersectV && col === gameState.intersectH) {
+            cell.textContent = gameState.intersectionLetter;
+            cell.classList.add("green");
+            continue;
+        }
 
-            if (row === gameState.intersectV && !gameState.horizontalLocked && feedback[col].h === "green") {
-                cell.textContent = guess[col];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (col === gameState.intersectH && !gameState.verticalLocked && feedback[row].v === "green") {
-                cell.textContent = guess[row];
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (row === gameState.intersectV && gameState.horizontalLocked) {
+        // Horizontal word
+        if (row === gameState.intersectV) {
+            if (gameState.horizontalLocked) {
                 cell.textContent = gameState.horizontal[col];
                 cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (col === gameState.intersectH && gameState.verticalLocked) {
-                cell.textContent = gameState.vertical[row];
+            } else if (feedback[col].h === "green") {
+                cell.textContent = guess[col];
                 cell.classList.add("green");
-                cell.classList.remove("placeholder");
-            }
-            if (row === gameState.intersectV && col === gameState.intersectH) {
-                cell.textContent = gameState.intersectionLetter;
-                cell.classList.add("green");
-                cell.classList.remove("placeholder");
+            } else {
+                cell.classList.add("placeholder");
             }
         }
-        updateTrafficLights();
-    }
 
+        // Vertical word
+        if (col === gameState.intersectH) {
+            if (gameState.verticalLocked) {
+                cell.textContent = gameState.vertical[row];
+                cell.classList.add("green");
+            } else if (feedback[row].v === "green") {
+                cell.textContent = guess[row];
+                cell.classList.add("green");
+            } else {
+                cell.classList.add("placeholder");
+            }
+        }
+    }
+    updateTrafficLights();
+}
     function updateLetterBank(guess, feedback) {
         for (let i = 0; i < 5; i++) {
             const letter = guess[i];
