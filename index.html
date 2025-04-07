@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
+
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Prevents zooming -->
     <title>Intersections</title>
@@ -560,10 +563,10 @@
     function processGuess(guess) {
         if (isProcessing || !gameState.horizontal || !gameState.vertical) {
             console.error('Missing game state or processing:', gameState);
-            return Promise.resolve(); // Always return a Promise
+            return Promise.resolve();
         }
         isProcessing = true;
-        console.log('Processing guess:', guess); // Debug log
+        console.log('Processing guess:', guess);
         return fetch('https://intersections-tau.vercel.app/api/game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -598,11 +601,241 @@
                 updateGrids();
             })
             .catch(error => {
-                console.error('Error processing
+                console.error('Error processing guess:', error);
+                alert('Error processing guess: ' + error.message);
+            })
+            .finally(() => {
+                isProcessing = false;
+            });
+    }
+
+    function showInvalidWarning() {
+        const message = document.getElementById("message");
+        message.textContent = "Invalid Word";
+        message.style.display = "block";
+        setTimeout(() => message.style.display = "none", 1000);
+    }
+
+    function displayGuess(guess, feedback) {
+        const hGrid = document.getElementById("h-guesses").children;
+        const vGrid = document.getElementById("v-guesses").children;
+        const rowStart = (gameState.guesses - 1) * 5;
+
+        for (let i = 0; i < 5; i++) {
+            const hCell = hGrid[rowStart + i];
+            const vCell = vGrid[i * 5 + (gameState.guesses - 1)];
+
+            if (hCell && !gameState.horizontalLocked) {
+                hCell.textContent = guess[i];
+                hCell.classList.remove("green", "yellow", "red");
+                hCell.classList.add(feedback[i].h);
+            }
+            if (vCell && !gameState.verticalLocked) {
+                vCell.textContent = guess[i];
+                vCell.classList.remove("green", "yellow", "red");
+                vCell.classList.add(feedback[i].v);
+            }
+        }
+        updateTrafficLights();
+    }
+
+    function updateMainGrid(guess, feedback) {
+        const grid = document.getElementById("main-grid").children;
+        for (let i = 0; i < 25; i++) {
+            const cell = grid[i];
+            const row = Math.floor(i / 5);
+            const col = i % 5;
+
+            cell.classList.remove("green", "yellow", "red", "placeholder");
+            cell.classList.add("cell");
+
+            if (row === gameState.intersectV && col === gameState.intersectH) {
+                cell.textContent = gameState.intersectionLetter;
+                cell.classList.add("green");
+                continue;
+            }
+
+            if (row === gameState.intersectV) {
+                if (gameState.horizontalLocked) {
+                    cell.textContent = gameState.horizontal[col];
+                    cell.classList.add("green");
+                } else if (feedback[col].h === "green") {
+                    cell.textContent = guess[col];
+                    cell.classList.add("green");
+                } else {
+                    cell.classList.add("placeholder");
+                }
+            }
+
+            if (col === gameState.intersectH) {
+                if (gameState.verticalLocked) {
+                    cell.textContent = gameState.vertical[row];
+                    cell.classList.add("green");
+                } else if (feedback[row].v === "green") {
+                    cell.textContent = guess[row];
+                    cell.classList.add("green");
+                } else {
+                    cell.classList.add("placeholder");
+                }
+            }
+        }
+        updateTrafficLights();
+    }
+
+    function updateLetterBank(guess, feedback) {
+        for (let i = 0; i < 5; i++) {
+            const letter = guess[i];
+            const btn = Array.from(document.querySelectorAll(".letter-btn"))
+                .find(b => b.getAttribute("data-letter") === letter);
+            if (!btn) continue;
+
+            const hStatus = feedback[i].h;
+            const vStatus = feedback[i].v;
+
+            letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
+
+            if (hStatus === "green") letterStatus[letter].h = "green";
+            else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
+            else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
+
+            if (vStatus === "green") letterStatus[letter].v = "green";
+            else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
+            else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+
+            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+
+            if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
+            else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
+            else btn.classList.add("red-top-bottom");
+
+            if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
+            else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
+            else btn.classList.add("red-left-right");
+        }
+    }
+
+    function checkGameEnd() {
+        if (gameState.gameOver) {
+            if (gameState.won) {
+                showWinPopup();
+            } else {
+                showLosePopup();
+            }
+        }
+    }
+
+    function showWinPopup() {
+        const winPopup = document.getElementById("win-popup");
+        const winGuesses = document.getElementById("win-guesses");
+        const winTime = document.getElementById("win-time");
+        winGuesses.textContent = gameState.guesses;
+        const timeElapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
+        winTime.textContent = `${timeElapsed}s`;
+        winPopup.style.display = "block";
+        disableInput();
+    }
+
+    function showLosePopup() {
+        const losePopup = document.getElementById("lose-popup");
+        fillRemainingLettersInRed();
+        losePopup.style.display = "block";
+        disableInput();
+    }
+
+    function disableInput() {
+        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+    }
+
+    function fillRemainingLettersInRed() {
+        const grid = document.getElementById("main-grid").children;
+        for (let i = 0; i < 25; i++) {
+            const cell = grid[i];
+            const row = Math.floor(i / 5);
+            const col = i % 5;
+
+            if (cell.classList.contains("green")) continue;
+
+            if (row === gameState.intersectV && !gameState.horizontalLocked) {
+                cell.textContent = gameState.horizontal[col];
+                cell.classList.add("red");
+                cell.classList.remove("placeholder");
+            }
+            if (col === gameState.intersectH && !gameState.verticalLocked) {
+                cell.textContent = gameState.vertical[row];
+                cell.classList.add("red");
+                cell.classList.remove("placeholder");
+            }
+        }
+    }
+
+    function closePopup() {
+        document.getElementById("win-popup").style.display = "none";
+        document.getElementById("lose-popup").style.display = "none";
+    }
+
+    function showInvalidWarning() {
+        const message = document.getElementById("message");
+        message.textContent = "Invalid Word";
+        message.style.display = "block";
+        setTimeout(() => message.style.display = "none", 1000);
+    }
+
+    function updateTrafficLights() {
+        const lights = [document.getElementById("left-traffic-light"), document.getElementById("right-traffic-light")];
+        lights.forEach(light => {
+            light.innerHTML = '';
+            const red = document.createElement("div");
+            const yellow = document.createElement("div");
+            const green = document.createElement("div");
+            red.classList.add("light");
+            yellow.classList.add("light");
+            green.classList.add("light");
+
+            if (gameState.gameOver && gameState.guesses >= gameState.maxGuesses) {
+                red.classList.add("red");
+            } else if (!gameState.horizontalLocked && !gameState.verticalLocked) {
+                red.classList.add("red");
+            } else if (gameState.horizontalLocked !== gameState.verticalLocked) {
+                yellow.classList.add("yellow");
+            } else {
+                green.classList.add("green");
+            }
+
+            light.appendChild(red);
+            light.appendChild(yellow);
+            light.appendChild(green);
+        });
+    }
+
+    function handleKeydown(event) {
+        if (isProcessing) return;
+        const winPopup = document.getElementById("win-popup");
+        const losePopup = document.getElementById("lose-popup");
+        const instructionsPopup = document.getElementById("instructions-popup");
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (winPopup.style.display === "block" || losePopup.style.display === "block") {
+                closePopup();
+                return;
+            } else if (instructionsPopup.style.display === "block") {
+                closeInstructions();
+                return;
+            }
+            if (gameState.gameOver) return;
+            if (currentGuess.length === 5) {
+                processGuess(currentGuess);
+            }
+        } else if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+            if (currentGuess.length < 5) addLetter(event.key);
+        } else if (event.key === "Backspace") {
+            handleBackspaceFromLetterBank();
+        }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+</script>
 			
-			</script>
-			
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
