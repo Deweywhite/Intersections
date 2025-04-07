@@ -392,11 +392,11 @@
         </div>
     </div>
 
-  <script>
+<script>
     let gameState = {};
     let currentGuess = "";
     let letterStatus = {};
-    let isProcessing = false; // Debounce flag
+    let isProcessing = false;
 
     window.onload = function() {
         startNewGame();
@@ -520,8 +520,7 @@
 
     function submitGuessFromLetterBank() {
         if (isProcessing || gameState.gameOver || currentGuess.length !== 5 || (gameState.horizontalLocked && gameState.verticalLocked)) return;
-        isProcessing = true;
-        processGuess(currentGuess).finally(() => { isProcessing = false; });
+        processGuess(currentGuess);
     }
 
     function handleBackspaceFromLetterBank() {
@@ -561,10 +560,10 @@
     function processGuess(guess) {
         if (isProcessing || !gameState.horizontal || !gameState.vertical) {
             console.error('Missing game state or processing:', gameState);
-            alert('Game state error—please restart');
-            return;
+            return Promise.resolve();
         }
         isProcessing = true;
+        console.log('Processing guess:', guess); // Debug log
         return fetch('https://intersections-tau.vercel.app/api/game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -579,18 +578,16 @@
                 verticalLocked: gameState.verticalLocked
             })
         })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => { throw err; });
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.error) {
-                    showInvalidWarning();
-                    currentGuess = "";
-                    updateGrids();
-                    return;
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
+                if (!ok || data.error) {
+                    if (data.error === 'Invalid word') {
+                        showInvalidWarning();
+                        currentGuess = "";
+                        updateGrids();
+                        return;
+                    }
+                    throw new Error(data.error || 'Unknown server error');
                 }
                 gameState = { ...gameState, ...data };
                 displayGuess(guess, data.feedback);
@@ -602,15 +599,11 @@
             })
             .catch(error => {
                 console.error('Error processing guess:', error);
-                if (error.error === 'Invalid word') {
-                    showInvalidWarning();
-                    currentGuess = "";
-                    updateGrids();
-                } else {
-                    alert('Error processing guess: ' + (error.message || error.error || 'Unknown error'));
-                }
+                alert('Error processing guess: ' + error.message);
             })
-            .finally(() => { isProcessing = false; });
+            .finally(() => {
+                isProcessing = false;
+            });
     }
 
     function showInvalidWarning() {
@@ -777,6 +770,13 @@
         document.getElementById("lose-popup").style.display = "none";
     }
 
+    function showInvalidWarning() {
+        const message = document.getElementById("message");
+        message.textContent = "Invalid Word";
+        message.style.display = "block";
+        setTimeout(() => message.style.display = "none", 1000);
+    }
+
     function updateTrafficLights() {
         const lights = [document.getElementById("left-traffic-light"), document.getElementById("right-traffic-light")];
         lights.forEach(light => {
@@ -811,6 +811,7 @@
         const instructionsPopup = document.getElementById("instructions-popup");
 
         if (event.key === "Enter") {
+            event.preventDefault();
             if (winPopup.style.display === "block" || losePopup.style.display === "block") {
                 closePopup();
                 return;
@@ -820,8 +821,7 @@
             }
             if (gameState.gameOver) return;
             if (currentGuess.length === 5) {
-                isProcessing = true;
-                processGuess(currentGuess).finally(() => { isProcessing = false; });
+                processGuess(currentGuess);
             }
         } else if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
             if (currentGuess.length < 5) addLetter(event.key);
