@@ -555,46 +555,50 @@
         updateTrafficLights();
     }
 
-    function processGuess(guess) {
-        fetch('https://intersections-tau.vercel.app/api/game', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                guess: guess.toUpperCase(),
-                targetHorizontal: gameState.horizontal,
-                targetVertical: gameState.vertical,
-                intersectH: gameState.intersectH,
-                intersectV: gameState.intersectV,
-                guesses: gameState.guesses,
-                horizontalLocked: gameState.horizontalLocked,
-                verticalLocked: gameState.verticalLocked
-            })
+   function processGuess(guess) {
+    if (!gameState.horizontal || !gameState.vertical) {
+        console.error('Missing game state:', gameState);
+        alert('Game state error—please restart');
+        return;
+    }
+    fetch('https://intersections-tau.vercel.app/api/game', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            guess: guess.toUpperCase(),
+            targetHorizontal: gameState.horizontal,
+            targetVertical: gameState.vertical,
+            intersectH: gameState.intersectH,
+            intersectV: gameState.intersectV,
+            guesses: gameState.guesses,
+            horizontalLocked: gameState.horizontalLocked,
+            verticalLocked: gameState.verticalLocked
         })
-            .then(response => {
-                if (!response.ok) throw new Error('Guess failed');
-                return response.json();
-            })
-            .then(data => {
-                if (data.error) {
-                    showInvalidWarning();
-                    currentGuess = "";
-                    updateGrids();
-                    return;
-                }
-                gameState = { ...gameState, ...data };
-                displayGuess(guess, data.feedback);
-                updateMainGrid(guess, data.feedback);
-                updateLetterBank(guess, data.feedback);
-                checkGameEnd();
+    })
+        .then(response => {
+            if (!response.ok) throw new Error(`Guess failed: ${response.status} ${response.statusText}`);
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                showInvalidWarning();
                 currentGuess = "";
                 updateGrids();
-            })
-            .catch(error => {
-                console.error('Error processing guess:', error);
-                alert('Guess error: ' + error.message);
-            });
-    }
-
+                return;
+            }
+            gameState = { ...gameState, ...data };
+            displayGuess(guess, data.feedback);
+            updateMainGrid(guess, data.feedback);
+            updateLetterBank(guess, data.feedback);
+            checkGameEnd();
+            currentGuess = "";
+            updateGrids();
+        })
+        .catch(error => {
+            console.error('Error processing guess:', error);
+            alert('Error processing guess: ' + error.message);
+        });
+}
     function showInvalidWarning() {
         const message = document.getElementById("message");
         message.textContent = "Invalid Word";
