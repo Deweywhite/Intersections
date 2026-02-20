@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Prevents zooming -->
+    <title>Intersections</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: radial-gradient(circle, #333, #111);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            touch-action: pan-x pan-y;
+            min-width: 600px;
+        }
+        #menu-bar {
+            background-color: #666;
+            height: 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1vw;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            overflow: visible;
+        }
+        #menu-bar .left, #menu-bar .right {
+            flex: 0 0 20vw;
+            width: 20vw;
+            display: flex;
+            align-items: center;
+        }
+        #menu-bar .center {
+            flex-grow: 1;
+            text-align: center;
+        }
+        #menu-bar .center img {
+            height: 4vw;
+            min-height: 4vw;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+        #menu-bar button {
+            background-color: #444;
+            border: none;
+            color: #fff;
+            padding: 0;
+            cursor: pointer;
+            font-size: 1.75vw;
+            font-variant: bold;
+            width: 20vw;
+            height: 4vw;
+            min-height: 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            box-sizing: border-box;
+        }
+        #menu-bar button:hover {
+            background-color: #555;
+        }
+        #game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2vw;
+            margin-bottom: 1vw;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .guess-grids {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+            width: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 1px;
+            background-color: #333;
+            max-width: 100%;
+        }
+        .cell {
+            width: 4vw;
+            height: 4vw;
+            background-color: #2d2d2d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2vw;
+            font-weight: bold;
+            color: #fff;
+            border: 1px solid #333;
+            box-sizing: border-box;
+        }
+        .cell.placeholder {
+            background-color: #666;
+        }
+        .horizontal { background-color: #333; }
+        .vertical { background-color: #333; }
+        .intersection { background-color: #333; }
+        .green { background-color: #4caf50; }
+        .yellow { background-color: #ffeb3b; color: black; }
+        .red { background-color: #f44336; }
+        .keyboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1vw;
+            margin-top: 2vw;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: 0;
+            margin-right: 0;
+            flex-wrap: nowrap;
+            overflow-x: hidden;
+        }
+        #letter-bank-wrapper {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #letter-bank {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+        }
+        .letter-row {
+            display: flex;
+            justify-content: center;
+            gap: 1px;
+            margin-bottom: 2.5px;
+            width: 100%;
+        }
+        .letter-btn {
+            width: 4vw;
+            height: 4vw;
+            font-size: 1.5vw;
+            cursor: pointer;
+            background-color: #444;
+            border-top: 1.5px solid #888;
+            border-bottom: 1.5px solid #888;
+            border-left: 1.5px solid #888;
+            border-right: 1.5px solid #888;
+            color: #fff;
+            border-radius: 0.5vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .letter-btn:hover {
+            background-color: #555;
+        }
+        .green-top-bottom { border-top: 1.5px solid #4caf50; border-bottom: 1.5px solid #4caf50; }
+        .yellow-top-bottom { border-top: 1.5px solid #ffeb3b; border-bottom: 1.5px solid #ffeb3b; }
+        .red-top-bottom { border-top: 1.5px solid #f44336; border-bottom: 1.5px solid #f44336; }
+        .green-left-right { border-left: 1.5px solid #4caf50; border-right: 1.5px solid #4caf50; }
+        .yellow-left-right { border-left: 1.5px solid #ffeb3b; border-right: 1.5px solid #ffeb3b; }
+        .red-left-right { border-left: 1.5px solid #f44336; border-right: 1.5px solid #f44336; }
+        .traffic-light {
+            width: 5vw;
+            height: 15vw;
+            background-color: #333;
+            border-radius: 1vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 1vw; 
+        }
+        .light {
+            width: 2.5vw;
+            height: 2.5vw;
+            border-radius: 50%;
+            background-color: #444;
+        }
+        .light.red { background-color: #f44336; box-shadow: 0 0 5px #f44336; }
+        .light.yellow { background-color: #ffeb3b; box-shadow: 0 0 5px #ffeb3b; }
+        .light.green { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
+        #message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: none;
+            z-index: 1000;
+        }
+        #stats-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            max-width: 400px;
+            width: 90vw;
+            z-index: 1000;
+            display: none;
+            border: 3px solid #666;
+        }
+        #stats-popup h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 0.6em;
+            color: #aaa;
+            text-align: center;
+            max-width: 60px;
+        }
+        .dist-title {
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+        .dist-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            gap: 6px;
+        }
+        .dist-label {
+            width: 14px;
+            font-size: 0.85em;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .dist-bar-wrap {
+            flex-grow: 1;
+            background-color: #222;
+            border-radius: 3px;
+            height: 20px;
+            overflow: hidden;
+        }
+        .dist-bar {
+            height: 100%;
+            background-color: #666;
+            border-radius: 3px;
+            min-width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            box-sizing: border-box;
+            transition: width 0.4s ease;
+        }
+        .dist-bar.current-win {
+            background-color: #4caf50;
+        }
+        #menu-bar .left button, #menu-bar .right button {
+            width: 10vw;
+        }
+        #menu-bar .stats-btn, #menu-bar .icon-btn {
+            font-size: 1.4vw;
+        }
+        #menu-bar #help {
+            font-size: 2.4vw;
+            font-weight: bold;
+        }
+        #menu-bar .stats-icon {
+            filter: grayscale(100%) brightness(1.8);
+            font-size: 2.4vw;
+        }
+        #menu-bar .menu-light {
+            display: block;
+            width: 2.2vw;
+            height: 2.2vw;
+            border-radius: 50%;
+        }
+        #menu-bar .green-light {
+            background-color: #4caf50;
+            box-shadow: 0 0 6px #4caf50, 0 0 12px #4caf50;
+        }
+        #menu-bar .red-light {
+            background-color: #f44336;
+            box-shadow: 0 0 6px #f44336, 0 0 12px #f44336;
+        }
+        #win-popup, #lose-popup, #instructions-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        #win-popup h2, #lose-popup h2 {
+            font-size: 1.1em;
+            margin: 6px 0;
+        }
+        #win-popup {
+            border: 3px solid #4caf50;
+            width: 340px;
+            max-width: 340px;
+        }
+        #lose-popup {
+            border: 3px solid #f44336;
+            width: 260px;
+            max-width: 260px;
+            padding: 12px;
+        }
+        #instructions-popup img {
+            max-width: 100%;
+            height: auto;
+        }
+        .crash-graphic {
+            width: 100%;
+            max-height: 120px;
+            object-fit: cover;
+            margin: 6px auto;
+            display: block;
+        }
+        .outcome-sprite {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 6px auto;
+        }
+        .sprite-light {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+        .sprite-green {
+            background-color: #4caf50;
+            box-shadow: 0 0 18px #4caf50, 0 0 40px #4caf50, 0 0 70px rgba(76,175,80,0.5);
+        }
+        .sprite-red {
+            background-color: #f44336;
+            box-shadow: 0 0 18px #f44336, 0 0 40px #f44336, 0 0 70px rgba(244,67,54,0.5);
+        }
+        @media (max-width: 768px) {
+            body {
+                min-width: 0;
+            }
+            #game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1vw;
+                padding-top: 5vw;
+            }
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4vw;
+                margin-bottom: 2vw;
+                width: 100%;
+            }
+            .guess-grids {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 4vw;
+                width: 100%;
+            }
+            .grid {
+                grid-gap: 1.0pt;
+                width: 45vw;
+            }
+            #main-grid {
+                order: -1;
+                width: 45vw;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #h-guesses, #v-guesses {
+                width: 45vw;
+            }
+            .cell {
+                width: 8.0vw;
+                height: 8.0vw;
+                font-size: 4.0vw;
+                border: 0.2vw solid #333;
+            }
+            .letter-btn {
+                width: 9vw;
+                height: 9vw;
+                font-size: 4vw;
+                border-radius: 1vw;
+            }
+            .traffic-light {
+                display: none;
+            }
+            #menu-bar {
+                height: 8vw;
+            }
+            #menu-bar button {
+                width: 25vw;
+                height: 8vw;
+                font-size: 3vw;
+                line-height: 8vw;
+            }
+            #menu-bar .left, #menu-bar .right {
+                flex: 0 0 25vw;
+                width: 25vw;
+            }
+            #menu-bar .center img {
+                height: 8vw;
+                min-height: 8vw;
+            }
+            .keyboard-container {
+                margin-top: 20vw;
+                width: 100%;
+                gap: 0;
+            }
+            #letter-bank-wrapper {
+                width: 96%;
+                margin: 0 2%;
+            }
+            #letter-bank {
+                width: 100%;
+            }
+            .letter-row {
+                gap: 1vw;
+                width: 100%;
+                justify-content: center;
+            }
+            .letter-row:nth-child(1) {
+                max-width: 94vw;
+            }
+            .letter-row:nth-child(2), .letter-row:nth-child(3) {
+                max-width: 85vw;
+            }
+            #instructions-popup {
+                width: 90vw;
+                max-width: 90vw;
+                max-height: 80vh;
+                padding: 15px;
+                font-size: 20px;
+            }
+            #instructions-popup img {
+                max-width: 100%;
+                height: auto;
+            }
+            .crash-graphic {
+                width: 100%;
+                margin: 5px auto;
+            }
+            #win-popup {
+                width: 80vw;
+                max-width: 80vw;
+                padding: 15px;
+            }
+            #lose-popup {
+                width: 65vw;
+                max-width: 65vw;
+                padding: 10px;
+            }
+            #menu-bar .left button, #menu-bar .right button {
+                width: 12.5vw;
+            }
+            #menu-bar .stats-btn, #menu-bar .icon-btn {
+                font-size: 3.5vw;
+            }
+            #menu-bar #help {
+                font-size: 5vw;
+            }
+            #menu-bar .stats-icon {
+                font-size: 5vw;
+            }
+            #menu-bar .menu-light {
+                width: 5vw;
+                height: 5vw;
+            }
+            #stats-popup {
+                width: 90vw;
+                max-width: 90vw;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+        @media (hover: hover) and (pointer: fine) {
+            #menu-bar button {
+                position: relative;
+                overflow: visible;
+            }
+            #menu-bar button::after {
+                content: attr(title);
+                position: absolute;
+                bottom: -2.2em;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0,0,0,0.82);
+                color: #fff;
+                font-size: 11px;
+                white-space: nowrap;
+                padding: 3px 8px;
+                border-radius: 4px;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s;
+                z-index: 2000;
+            }
+            #menu-bar button:hover::after {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-bar">
+        <div class="left">
+            <button id="new-game" class="icon-btn" title="New Game"><span class="menu-light green-light"></span></button>
+            <button id="give-up" class="icon-btn" title="Give Up"><span class="menu-light red-light"></span></button>
+        </div>
+        <div class="center">
+            <img src="images/logo.png" alt="Intersections Logo">
+        </div>
+        <div class="right">
+            <button id="stats" class="stats-btn" title="Stats"><span class="stats-icon">📊</span></button>
+            <button id="help" title="Help">?</button>
+        </div>
+    </div>
+    <div id="game-container">
+        <div class="grid-container">
+            <div class="grid" id="main-grid"></div>
+            <div class="guess-grids">
+                <div class="grid" id="h-guesses"></div>
+                <div class="grid" id="v-guesses"></div>
+            </div>
+        </div>
+        <div class="keyboard-container">
+            <div class="traffic-light" id="left-traffic-light"></div>
+            <div id="letter-bank-wrapper">
+                <div id="letter-bank"></div>
+            </div>
+            <div class="traffic-light" id="right-traffic-light"></div>
+        </div>
+        <div id="message"></div>
+        <div id="win-popup">
+            <div id="win-sprite" class="outcome-sprite"></div>
+            <h2>You Got the Green Light!</h2>
+            <p>Guesses: <span id="win-guesses">0</span></p>
+            <p>Time: <span id="win-time">0s</span></p>
+            <button id="win-ok">X</button>
+        </div>
+<div id="lose-popup">
+    <div id="lose-sprite" class="outcome-sprite"></div>
+    <h2 id="lose-title">You Ran the Red Light</h2>
+    <button id="lose-ok">X</button>
+</div>
+        <div id="instructions-popup">
+            <img src="images/instructions.png" alt="Instructions">
+            <button id="instructions-close">X</button>
+        </div>
+
+        <div id="stats-popup">
+            <h2>STATISTICS</h2>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-played">0</span>
+                    <span class="stat-label">Played</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-streak">0</span>
+                    <span class="stat-label">Current Streak</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-pct">0%</span>
+                    <span class="stat-label">Win %</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-best">0</span>
+                    <span class="stat-label">Best Streak</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-wins">0</span>
+                    <span class="stat-label">Won</span>
+                </div>
+            </div>
+            <div class="dist-title">GUESS DISTRIBUTION</div>
+            <div id="stat-dist"></div>
+            <button id="stats-clear" style="display:block; margin:12px auto 0;">RESET</button>
+            <div id="stat-best-time" style="margin-top:10px; font-size:1.1em; color:#4caf50; font-weight:bold; display:none;">⏱ Best Time: —</div>
+            <button id="stats-close" style="display:block; margin:10px auto 0;">X</button>
+        </div>
+    </div>
+
+<script>
+(function() {
+    let targetHorizontal;
+    let targetVertical;
+    let intersectH;
+    let intersectV;
+    let guesses = 0;
+    const maxGuesses = 5;
+    let horizontalLocked = false;
+    let verticalLocked = false;
+    let letterStatus = {};
+    let currentGuess = "";
+    let gameOver = false;
+    let startTime = Date.now();
+    let guessHistory = [];
+    let isStartingNewGame = false; // Prevent duplicate calls
+
+    const STORAGE_KEY = "intersections_state";
+    const STATS_KEY = "intersections_stats";
+
+    function loadStats() {
+        const defaults = {
+            gamesPlayed: 0,
+            wins: 0,
+            losses: 0,
+            currentStreak: 0,
+            bestStreak: 0,
+            bestTime: null,
+            guessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+        };
+        try {
+            const raw = localStorage.getItem(STATS_KEY);
+            if (raw) return Object.assign({}, defaults, JSON.parse(raw));
+        } catch(e) {}
+        return defaults;
+    }
+
+    function saveStats(stats) {
+        try {
+            localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        } catch(e) {}
+    }
+
+    function recordWin(numGuesses, timeElapsed) {
+        const stats = loadStats();
+        stats.gamesPlayed++;
+        stats.wins++;
+        stats.currentStreak++;
+        if (stats.currentStreak > stats.bestStreak) stats.bestStreak = stats.currentStreak;
+        stats.guessDistribution[numGuesses] = (stats.guessDistribution[numGuesses] || 0) + 1;
+        if (stats.bestTime === null || timeElapsed < stats.bestTime) stats.bestTime = timeElapsed;
+        saveStats(stats);
+    }
+
+    function recordLoss() {
+        const stats = loadStats();
+        stats.gamesPlayed++;
+        stats.losses++;
+        stats.currentStreak = 0;
+        saveStats(stats);
+    }
+
+    function showStats(winningGuesses) {
+        const stats = loadStats();
+        document.getElementById("stat-played").textContent = stats.gamesPlayed;
+        document.getElementById("stat-wins").textContent = stats.wins;
+        document.getElementById("stat-pct").textContent = stats.gamesPlayed > 0
+            ? Math.round((stats.wins / stats.gamesPlayed) * 100) + "%"
+            : "0%";
+        document.getElementById("stat-streak").textContent = stats.currentStreak;
+        document.getElementById("stat-best").textContent = stats.bestStreak;
+
+        const distContainer = document.getElementById("stat-dist");
+        distContainer.innerHTML = "";
+        const maxVal = Math.max(...Object.values(stats.guessDistribution), 1);
+        for (let i = 1; i <= 5; i++) {
+            const count = stats.guessDistribution[i] || 0;
+            const pct = Math.round((count / maxVal) * 100);
+            const isCurrentWin = (winningGuesses === i);
+            const row = document.createElement("div");
+            row.classList.add("dist-row");
+            row.innerHTML = `
+                <span class="dist-label">${i}</span>
+                <div class="dist-bar-wrap">
+                    <div class="dist-bar${isCurrentWin ? " current-win" : ""}" style="width:${Math.max(pct,10)}%">${count}</div>
+                </div>`;
+            distContainer.appendChild(row);
+        }
+        const bestTimeEl = document.getElementById("stat-best-time");
+        if (bestTimeEl) {
+            if (stats.bestTime !== null) {
+                bestTimeEl.textContent = `⏱ Best Time: ${stats.bestTime}s`;
+                bestTimeEl.style.display = "block";
+            } else {
+                bestTimeEl.style.display = "none";
+            }
+        }
+        document.getElementById("stats-popup").style.display = "block";
+    }
+
+    function closeStats() {
+        document.getElementById("stats-popup").style.display = "none";
+    }
+
+    function saveState() {
+        const state = {
+            targetHorizontal,
+            targetVertical,
+            intersectH,
+            intersectV,
+            startTime,
+            guessHistory: guessHistory
+        };
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) { /* private browsing or storage full — fail silently */ }
+    }
+
+    function clearState() {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    }
+
+    function loadState() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+    }
+
+    function restoreGame(state) {
+        targetHorizontal = state.targetHorizontal;
+        targetVertical = state.targetVertical;
+        intersectH = state.intersectH;
+        intersectV = state.intersectV;
+        startTime = state.startTime;
+
+        initMainGrid();
+        initHGuesses();
+        initVGuesses();
+        initLetterBank();
+        resetKeyboard();
+
+        // Replay each saved guess through the existing processing pipeline
+        state.guessHistory.forEach(word => {
+            guesses++;
+            const feedback = provideFeedback(word);
+            displayGuess(word, feedback);
+            updateMainGrid(word, feedback);
+            updateLetterBank(word, feedback);
+        });
+
+        // Check if game ended
+        checkGameEnd();
+        updateTrafficLights();
+    }
+
+    window.onload = function() {
+        const saved = loadState();
+        if (saved) {
+            targetHorizontal = saved.targetHorizontal;
+            targetVertical = saved.targetVertical;
+            intersectH = saved.intersectH;
+            intersectV = saved.intersectV;
+            restoreGame(saved);
+        } else {
+            fetch('/api/pair')
+                .then(res => res.json())
+                .then(data => {
+                    targetHorizontal = data.targetHorizontal;
+                    targetVertical = data.targetVertical;
+                    intersectH = data.intersectH;
+                    intersectV = data.intersectV;
+                    startNewGame();
+                })
+                .catch(error => {
+                    console.error('Error fetching word pair:', error);
+                    alert('Failed to load game data. Please try again.');
+                });
+        }
+    };
+
+    document.getElementById("new-game").addEventListener("click", function() {
+        clearState();
+        fetch('/api/pair')
+            .then(res => res.json())
+            .then(data => {
+                targetHorizontal = data.targetHorizontal;
+                targetVertical = data.targetVertical;
+                intersectH = data.intersectH;
+                intersectV = data.intersectV;
+                startNewGame();
+            })
+            .catch(error => {
+                console.error('Error fetching word pair:', error);
+                alert('Failed to load game data. Please try again.');
+            });
+    });
+
+    document.getElementById("give-up").addEventListener("click", function() {
+        if (gameOver) return; // already over, ignore
+        recordLoss();
+        clearState();
+        fillRemainingLettersInRed();
+        document.getElementById("lose-title").textContent = "You Got Stuck at the Red Light";
+        setLoseSprite("giveup");
+        document.getElementById("lose-popup").style.display = "block";
+        gameOver = true;
+        disableInput();
+        updateTrafficLights();
+    });
+
+    // All dialog close buttons wired via JS (onclick attrs don't work inside IIFE)
+    document.getElementById("win-ok").addEventListener("click", function() {
+        closePopup();
+    });
+
+    document.getElementById("lose-ok").addEventListener("click", function() {
+        closePopup();
+    });
+
+    document.getElementById("stats").addEventListener("click", function() {
+        showStats(null);
+    });
+
+    document.getElementById("stats-close").addEventListener("click", function() {
+        closeStats();
+    });
+
+    document.getElementById("stats-clear").addEventListener("click", function() {
+        localStorage.removeItem(STATS_KEY);
+        showStats(null);
+    });
+
+    document.getElementById("help").addEventListener("click", function() {
+        document.getElementById("instructions-popup").style.display = "block";
+    });
+
+    document.getElementById("instructions-close").addEventListener("click", function() {
+        closeInstructions();
+    });
+
+    function closeInstructions() {
+        document.getElementById("instructions-popup").style.display = "none";
+    }
+
+
+    function startNewGame() {
+        if (isStartingNewGame) return; // Prevent re-entry
+        isStartingNewGame = true;
+
+        // Clear sprite divs so no stale image flashes on next popup open
+        const winSprite = document.getElementById("win-sprite");
+        const loseSprite = document.getElementById("lose-sprite");
+        if (winSprite) winSprite.innerHTML = "";
+        if (loseSprite) loseSprite.innerHTML = "";
+
+        // Close any open popups
+        document.getElementById("win-popup").style.display = "none";
+        document.getElementById("lose-popup").style.display = "none";
+
+        initMainGrid();
+        initHGuesses();
+        initVGuesses();
+        const bank = document.getElementById("letter-bank");
+        bank.innerHTML = ''; // Explicitly clear keyboard
+        initLetterBank();
+        resetKeyboard();
+        guesses = 0;
+        horizontalLocked = false;
+        verticalLocked = false;
+        currentGuess = "";
+        gameOver = false;
+        startTime = Date.now();
+        guessHistory = [];
+
+        saveState(); // Persist word pair immediately so refresh keeps same game
+        isStartingNewGame = false;
+    }
+
+    function initMainGrid() {
+        const grid = document.getElementById("main-grid");
+        grid.innerHTML = '';
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            const row = Math.floor(i / 5);
+            const col = i % 5;
+            if (row === intersectV || col === intersectH) {
+                cell.classList.add("placeholder");
+            }
+            if (row === intersectV) cell.classList.add("horizontal");
+            if (col === intersectH) cell.classList.add("vertical");
+            if (row === intersectV && col === intersectH) {
+                cell.classList.add("intersection");
+                cell.textContent = targetHorizontal[intersectH];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+            grid.appendChild(cell);
+        }
+        updateTrafficLights();
+    }
+
+    function initHGuesses() {
+        const grid = document.getElementById("h-guesses");
+        grid.innerHTML = '';
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            grid.appendChild(cell);
+        }
+    }
+
+    function initVGuesses() {
+        const grid = document.getElementById("v-guesses");
+        grid.innerHTML = '';
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            grid.appendChild(cell);
+        }
+    }
+
+    function initLetterBank() {
+        const layout = [
+            "QWERTYUIOP",
+            "ASDFGHJKL",
+            "←ZXCVBNM⏎"
+        ];
+        const bank = document.getElementById("letter-bank");
+        layout.forEach(row => {
+            const rowDiv = document.createElement("div");
+            rowDiv.classList.add("letter-row");
+            row.split("").forEach(char => {
+                const btn = document.createElement("button");
+                btn.classList.add("letter-btn");
+                if (char === "←") {
+                    btn.innerHTML = "←";
+                    btn.onclick = handleBackspaceFromLetterBank;
+                } else if (char === "⏎") {
+                    btn.innerHTML = "⏎";
+                    btn.onclick = submitGuessFromLetterBank;
+                } else {
+                    btn.textContent = char;
+                    btn.setAttribute("data-letter", char);
+                    btn.onclick = () => addLetter(char);
+                }
+                rowDiv.appendChild(btn);
+                if (char.match(/[A-Z]/)) {
+                    letterStatus[char] = { h: "unknown", v: "unknown" };
+                }
+            });
+            bank.appendChild(rowDiv);
+        });
+    }
+
+    function resetKeyboard() {
+        document.querySelectorAll(".letter-btn").forEach(btn => {
+            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+        });
+        letterStatus = {};
+    }
+
+    function addLetter(letter) {
+        if (gameOver || currentGuess.length >= 5 || (horizontalLocked && verticalLocked)) return;
+        if (!horizontalLocked || !verticalLocked) {
+            currentGuess += letter.toUpperCase();
+            updateGrids();
+        }
+    }
+
+    function submitGuessFromLetterBank() {
+        if (gameOver || currentGuess.length !== 5 || (horizontalLocked && verticalLocked)) return;
+        processGuess(currentGuess);
+    }
+
+    function handleBackspaceFromLetterBank() {
+        if (gameOver || currentGuess.length === 0) return;
+        currentGuess = currentGuess.slice(0, -1);
+        updateGrids();
+    }
+
+    function updateGrids() {
+        if (gameOver) return;
+        const hGrid = document.getElementById("h-guesses").children;
+        const vGrid = document.getElementById("v-guesses").children;
+        const rowStart = guesses * 5;
+        for (let i = 0; i < 5; i++) {
+            if (!horizontalLocked) {
+                const hCell = hGrid[rowStart + i];
+                if (hCell && i < currentGuess.length) {
+                    hCell.textContent = currentGuess[i] || '';
+                    hCell.classList.remove("green", "yellow", "red");
+                } else if (hCell) {
+                    hCell.textContent = "";
+                }
+            }
+            if (!verticalLocked) {
+                const vCell = vGrid[i * 5 + guesses];
+                if (vCell && i < currentGuess.length) {
+                    vCell.textContent = currentGuess[i] || '';
+                    vCell.classList.remove("green", "yellow", "red");
+                } else if (vCell) {
+                    vCell.textContent = "";
+                }
+            }
+        }
+        updateTrafficLights();
+    }
+
+    function processGuess(guess) {
+        guess = guess.toUpperCase();
+        // Disable input while validating to prevent double-submission
+        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+        fetch(`/api/validate?word=${encodeURIComponent(guess)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.valid) {
+                    showInvalidWarning();
+                    currentGuess = "";
+                    updateGrids();
+                    document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+                    return;
+                }
+                guessHistory.push(guess);
+                guesses++;
+                const feedback = provideFeedback(guess);
+                displayGuess(guess, feedback);
+                updateMainGrid(guess, feedback);
+                updateLetterBank(guess, feedback);
+                checkGameEnd();
+                currentGuess = "";
+                updateGrids();
+                saveState();
+                if (!gameOver) {
+                    document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+                }
+            })
+            .catch(() => {
+                showInvalidWarning();
+                currentGuess = "";
+                updateGrids();
+                document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+            });
+    }
+
+    function showInvalidWarning() {
+        const message = document.getElementById("message");
+        message.textContent = "Invalid Word";
+        message.style.display = "block";
+        setTimeout(() => {
+            message.style.display = "none";
+        }, 1000);
+    }
+
+    function provideFeedback(guess) {
+        guess = guess.toUpperCase();
+        const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+
+        const hRemaining = targetHorizontal.split("");
+        const vRemaining = targetVertical.split("");
+
+        for (let i = 0; i < 5; i++) {
+            if (!horizontalLocked && guess[i] === targetHorizontal[i]) {
+                feedback[i].h = "green";
+                hRemaining[i] = null;
+            }
+            if (!verticalLocked && guess[i] === targetVertical[i]) {
+                feedback[i].v = "green";
+                vRemaining[i] = null;
+            }
+        }
+
+        for (let i = 0; i < 5; i++) {
+            const letter = guess[i];
+            if (!horizontalLocked && feedback[i].h !== "green") {
+                const hIndex = hRemaining.indexOf(letter);
+                if (hIndex !== -1) {
+                    feedback[i].h = "yellow";
+                    hRemaining[hIndex] = null;
+                }
+            }
+            if (!verticalLocked && feedback[i].v !== "green") {
+                const vIndex = vRemaining.indexOf(letter);
+                if (vIndex !== -1) {
+                    feedback[i].v = "yellow";
+                    vRemaining[vIndex] = null;
+                }
+            }
+        }
+
+        return feedback;
+    }
+
+    function displayGuess(guess, feedback) {
+        const hGrid = document.getElementById("h-guesses").children;
+        const vGrid = document.getElementById("v-guesses").children;
+        const rowStart = (guesses - 1) * 5;
+
+        for (let i = 0; i < 5; i++) {
+            if (!horizontalLocked) {
+                const hCell = Array.from(hGrid)[rowStart + i];
+                if (hCell) {
+                    hCell.textContent = guess[i] || '';
+                    hCell.classList.remove("green", "yellow", "red");
+                    hCell.classList.add(feedback[i].h);
+                }
+            }
+            if (!verticalLocked) {
+                const vCell = Array.from(vGrid)[i * 5 + (guesses - 1)];
+                if (vCell) {
+                    vCell.textContent = guess[i] || '';
+                    vCell.classList.remove("green", "yellow", "red");
+                    vCell.classList.add(feedback[i].v);
+                }
+            }
+        }
+
+        if (!horizontalLocked && feedback.every(f => f.h === "green")) horizontalLocked = true;
+        if (!verticalLocked && feedback.every(f => f.v === "green")) verticalLocked = true;
+        updateTrafficLights();
+    }
+
+    function updateMainGrid(guess, feedback) {
+        const grid = document.getElementById("main-grid").children;
+        for (let i = 0; i < 25; i++) {
+            const cell = grid[i];
+            const row = Math.floor(i / 5);
+            const col = i % 5;
+
+            if (cell.classList.contains("green")) {
+                cell.classList.remove("yellow", "red", "placeholder");
+                cell.classList.add("green");
+            } else {
+                cell.classList.remove("green", "yellow", "red", "placeholder");
+                cell.classList.add("cell");
+            }
+
+            if ((row === intersectV || col === intersectH) && !(row === intersectV && col === intersectH) && !cell.classList.contains("green") && !cell.textContent) {
+                cell.classList.add("placeholder");
+            }
+
+            if (row === intersectV && !horizontalLocked && feedback[col].h === "green") {
+                cell.textContent = guess[col];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+            if (col === intersectH && !verticalLocked && feedback[row].v === "green") {
+                cell.textContent = guess[row];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+            if (row === intersectV && horizontalLocked) {
+                cell.textContent = targetHorizontal[col];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+            if (col === intersectH && verticalLocked) {
+                cell.textContent = targetVertical[row];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+            if (row === intersectV && col === intersectH) {
+                cell.textContent = targetHorizontal[intersectH];
+                cell.classList.add("green");
+                cell.classList.remove("placeholder");
+            }
+        }
+        updateTrafficLights();
+    }
+
+    function updateLetterBank(guess, feedback) {
+        for (let i = 0; i < 5; i++) {
+            const letter = guess[i];
+            const btn = Array.from(document.querySelectorAll(".letter-btn"))
+                .find(b => b.getAttribute("data-letter") === letter || b.innerHTML === letter);
+            if (!btn) continue;
+
+            const hStatus = feedback[i].h;
+            const vStatus = feedback[i].v;
+
+            letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
+
+            if (hStatus === "green") letterStatus[letter].h = "green";
+            else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
+            else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
+
+            if (vStatus === "green") letterStatus[letter].v = "green";
+            else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
+            else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+
+            btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
+
+            if (letterStatus[letter].h === "green") btn.classList.add("green-top-bottom");
+            else if (letterStatus[letter].h === "yellow") btn.classList.add("yellow-top-bottom");
+            else btn.classList.add("red-top-bottom");
+
+            if (letterStatus[letter].v === "green") btn.classList.add("green-left-right");
+            else if (letterStatus[letter].v === "yellow") btn.classList.add("yellow-left-right");
+            else btn.classList.add("red-left-right");
+        }
+    }
+
+    function checkGameEnd() {
+        console.log("Checking game end, guesses:", guesses, "gameOver:", gameOver, "horizontalLocked:", horizontalLocked, "verticalLocked:", verticalLocked);
+        if (horizontalLocked && verticalLocked && !gameOver) {
+            showWinPopup();
+        } else if (guesses >= maxGuesses && !gameOver) {
+            showLosePopup();
+        }
+    }
+
+    function showWinPopup() {
+        const winPopup = document.getElementById("win-popup");
+        const winGuesses = document.getElementById("win-guesses");
+        const winTime = document.getElementById("win-time");
+        winGuesses.textContent = guesses;
+        const endTime = Date.now();
+        const timeElapsed = Math.floor((endTime - startTime) / 1000);
+        winTime.textContent = `${timeElapsed}s`;
+        setWinSprite();
+        winPopup.style.display = "block";
+        gameOver = true;
+        recordWin(guesses, timeElapsed);
+        disableInput();
+        updateTrafficLights();
+    }
+
+    function showLosePopup() {
+        fillRemainingLettersInRed();
+        document.getElementById("lose-title").textContent = "You Ran the Red Light";
+        setLoseSprite("crash");
+        document.getElementById("lose-popup").style.display = "block";
+        gameOver = true;
+        recordLoss();
+        disableInput();
+        updateTrafficLights();
+    }
+
+    function setWinSprite() {
+        const el = document.getElementById("win-sprite");
+        if (!el) return;
+        el.innerHTML = "";
+        const img = document.createElement("img");
+        img.src = "images/green-light.png";
+        img.alt = "Green Light";
+        img.className = "crash-graphic";
+        el.appendChild(img);
+    }
+
+    function setLoseSprite(type) {
+        const el = document.getElementById("lose-sprite");
+        if (!el) return;
+        el.innerHTML = "";
+        const img = document.createElement("img");
+        if (type === "crash") {
+            img.src = "images/crash.png";
+            img.alt = "Car Crash";
+        } else {
+            img.src = "images/red-light.png";
+            img.alt = "Red Light";
+        }
+        img.className = "crash-graphic";
+        el.appendChild(img);
+    }
+
+    function disableInput() {
+        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+        // Do not remove the keydown listener here; keep it for popup closure
+    }
+
+    function fillRemainingLettersInRed() {
+        const grid = document.getElementById("main-grid");
+        const hGuessed = new Set();
+        const vGuessed = new Set();
+
+        const hGuesses = document.getElementById("h-guesses");
+        const vGuesses = document.getElementById("v-guesses");
+        const hChildren = Array.from(hGuesses.children);
+        const vChildren = Array.from(vGuesses.children);
+
+        for (let i = 0; i < guesses; i++) {
+            const hRowStart = i * 5;
+            const vRowStart = i * 5;
+            for (let j = 0; j < 5; j++) {
+                const hCell = hChildren[hRowStart + j];
+                const vCell = vChildren[vRowStart + j];
+                if (hCell && hCell.classList.contains("green")) {
+                    hGuessed.add(hCell.textContent);
+                }
+                if (vCell && vCell.classList.contains("green")) {
+                    vGuessed.add(vCell.textContent);
+                }
+            }
+        }
+
+        const mainGridChildren = Array.from(grid.children);
+        for (let i = 0; i < 25; i++) {
+            const cell = mainGridChildren[i];
+            const row = Math.floor(i / 5);
+            const col = i % 5;
+
+            if (cell.classList.contains("green")) {
+                cell.classList.remove("yellow", "red", "placeholder");
+                cell.classList.add("green");
+            } else {
+                cell.classList.remove("green", "yellow", "red", "placeholder");
+                cell.classList.add("cell");
+            }
+
+            if (!(row === intersectV || col === intersectH) && !cell.textContent) {
+                cell.classList.add("placeholder");
+            }
+
+            if (row === intersectV && !horizontalLocked) {
+                const hLetter = targetHorizontal[col] || '';
+                if (hLetter && !hGuessed.has(hLetter)) {
+                    cell.textContent = hLetter;
+                    cell.classList.add("red");
+                    cell.classList.remove("placeholder");
+                } else if (hLetter && hGuessed.has(hLetter) && !cell.classList.contains("green")) {
+                    cell.textContent = hLetter;
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+            }
+            if (col === intersectH && !verticalLocked) {
+                const vLetter = targetVertical[row] || '';
+                if (vLetter && !vGuessed.has(vLetter)) {
+                    cell.textContent = vLetter;
+                    cell.classList.add("red");
+                    cell.classList.remove("placeholder");
+                } else if (vLetter && vGuessed.has(vLetter) && !cell.classList.contains("green")) {
+                    cell.textContent = vLetter;
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                }
+            }
+            if (row === intersectV && col === intersectH) {
+                const intersectionLetter = targetHorizontal[intersectH];
+                if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
+                    cell.textContent = intersectionLetter;
+                    cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                } else {
+                    cell.textContent = intersectionLetter;
+                    cell.classList.add("red");
+                    cell.classList.remove("placeholder");
+                }
+            }
+        }
+    }
+
+    function closePopup() {
+        document.getElementById("win-popup").style.display = "none";
+        document.getElementById("lose-popup").style.display = "none";
+    }
+
+    function updateTrafficLights() {
+        const leftLight = document.getElementById("left-traffic-light");
+        const rightLight = document.getElementById("right-traffic-light");
+        const lights = [leftLight, rightLight];
+
+        lights.forEach(light => {
+            light.innerHTML = '';
+            const red = document.createElement("div");
+            const yellow = document.createElement("div");
+            const green = document.createElement("div");
+            red.classList.add("light");
+            yellow.classList.add("light");
+            green.classList.add("light");
+
+            if (gameOver && guesses >= maxGuesses) {
+                red.classList.add("red");
+            } else if (!horizontalLocked && !verticalLocked) {
+                red.classList.add("red");
+            } else if (horizontalLocked !== verticalLocked) {
+                yellow.classList.add("yellow");
+            } else {
+                green.classList.add("green");
+            }
+
+            light.appendChild(red);
+            light.appendChild(yellow);
+            light.appendChild(green);
+        });
+    }
+
+    function handleKeydown(event) {
+        const winPopup = document.getElementById("win-popup");
+        const losePopup = document.getElementById("lose-popup");
+        const instructionsPopup = document.getElementById("instructions-popup");
+
+        // Handle popup closure with Enter key even when game is over
+        const statsPopup = document.getElementById("stats-popup");
+
+        if (statsPopup.style.display === "block") {
+            closeStats();
+            return;
+        }
+
+        if (event.key === "Enter") {
+            if (winPopup.style.display === "block" || losePopup.style.display === "block") {
+                closePopup();
+                return;
+            } else if (instructionsPopup.style.display === "block") {
+                closeInstructions();
+                return;
+            }
+        }
+
+        // Only process game input if game is not over
+        if (gameOver) return;
+
+        if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+            if (currentGuess.length < 5) {
+                if (!horizontalLocked || !verticalLocked) {
+                    currentGuess += event.key.toUpperCase();
+                    updateGrids();
+                }
+            }
+        } else if (event.key === "Backspace") {
+            if (currentGuess.length > 0) {
+                currentGuess = currentGuess.slice(0, -1);
+                updateGrids();
+            }
+        } else if (event.key === "Enter") {
+            if (currentGuess.length === 5) {
+                processGuess(currentGuess);
+            }
+        }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+})();
+</script>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TSJY2V4W5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4TSJY2V4W5');
+    </script>
+	
+</body>
+</html>

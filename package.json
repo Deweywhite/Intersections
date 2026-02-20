@@ -1,0 +1,8 @@
+{
+  "name": "intersections",
+  "version": "1.6.0",
+  "description": "Intersections word puzzle game",
+  "engines": {
+    "node": "24.x"
+  }
+}

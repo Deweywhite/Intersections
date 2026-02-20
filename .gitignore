@@ -1,0 +1,22 @@
+# Claude AI settings
+.claude/
+
+# Old backups
+old/
+
+# Local documentation
+release-notes.txt
+
+# Visual Studio files
+.vs/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node modules (if ever added)
+node_modules/
+
+# Environment files
+.env
+.env.local

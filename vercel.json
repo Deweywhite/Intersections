@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/Private/:path*", "destination": "/api/blocked" }
+  ],
+  "headers": [
+    {
+      "source": "/Private/(.*)",
+      "headers": [
+        { "key": "x-robots-tag", "value": "noindex" }
+      ]
+    }
+  ]
+}
