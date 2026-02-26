@@ -1070,6 +1070,48 @@
         if (loseShare) loseShare.style.display = show ? "block" : "none";
     }
 
+    // Pure feedback function that ignores locked state — used only for share text
+    function pureFeedback(guess, targetH, targetV) {
+        guess = guess.toUpperCase();
+        const feedback = Array(5).fill().map(() => ({ h: "red", v: "red" }));
+
+        const hRemaining = targetH.split("");
+        const vRemaining = targetV.split("");
+
+        // Pass 1: exact matches
+        for (let i = 0; i < 5; i++) {
+            if (guess[i] === targetH[i]) {
+                feedback[i].h = "green";
+                hRemaining[i] = null;
+            }
+            if (guess[i] === targetV[i]) {
+                feedback[i].v = "green";
+                vRemaining[i] = null;
+            }
+        }
+
+        // Pass 2: in-word matches
+        for (let i = 0; i < 5; i++) {
+            const letter = guess[i];
+            if (feedback[i].h !== "green") {
+                const hIndex = hRemaining.indexOf(letter);
+                if (hIndex !== -1) {
+                    feedback[i].h = "yellow";
+                    hRemaining[hIndex] = null;
+                }
+            }
+            if (feedback[i].v !== "green") {
+                const vIndex = vRemaining.indexOf(letter);
+                if (vIndex !== -1) {
+                    feedback[i].v = "yellow";
+                    vRemaining[vIndex] = null;
+                }
+            }
+        }
+
+        return feedback;
+    }
+
     function generateShareText() {
         const dateStr = formatDateForDisplay(currentPuzzleDate);
         const won = horizontalLocked && verticalLocked;
@@ -1078,23 +1120,23 @@
             ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\n`
             : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\n`;
 
-        // Build feedback arrays, tracking locked state for all-green override
+        // Build feedback arrays using pure function (no locked-state interference)
         const allFeedback = [];
-        let hLocked = false, vLocked = false;
+        let hSolved = false, vSolved = false;
         for (const guess of guessHistory) {
-            const fb = provideFeedback(guess);
+            const fb = pureFeedback(guess, targetHorizontal, targetVertical);
             const entry = { h: [], v: [] };
-            if (hLocked) {
+            if (hSolved) {
                 entry.h = ["green","green","green","green","green"];
             } else {
                 entry.h = fb.map(f => f.h);
-                if (entry.h.every(s => s === "green")) hLocked = true;
+                if (entry.h.every(s => s === "green")) hSolved = true;
             }
-            if (vLocked) {
+            if (vSolved) {
                 entry.v = ["green","green","green","green","green"];
             } else {
                 entry.v = fb.map(f => f.v);
-                if (entry.v.every(s => s === "green")) vLocked = true;
+                if (entry.v.every(s => s === "green")) vSolved = true;
             }
             allFeedback.push(entry);
         }
@@ -1102,7 +1144,7 @@
         const e = (s) => s === "green" ? "🟩" : s === "yellow" ? "🟨" : "🟥";
         const gray = "⬜";
 
-        // Build 5 lines: H-grid row + gap + V-grid row
+        // Build 5 lines: H-grid row + separator + V-grid row
         let lines = "";
         for (let row = 0; row < 5; row++) {
             // H-grid: row = guess number, columns = letter positions
@@ -1111,7 +1153,7 @@
             } else {
                 lines += gray.repeat(5);
             }
-            lines += "   ";
+            lines += " ";
             // V-grid: row = letter position, columns = guess number
             for (let col = 0; col < 5; col++) {
                 if (col < allFeedback.length) {
