@@ -16,6 +16,40 @@
             touch-action: pan-x pan-y;
             min-width: 600px;
         }
+        #mode-label {
+            text-align: center;
+            color: #666;
+            font-size: 0.9vw;
+            padding: 0.3vw 0 0 0;
+            letter-spacing: 0.05em;
+        }
+        .share-btn {
+            background-color: #2a7a2a;
+            color: #fff;
+            border: none;
+            padding: 6px 18px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 8px auto;
+            display: block;
+        }
+        .share-btn:hover {
+            background-color: #3a9a3a;
+        }
+        #share-toast {
+            position: fixed;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 3000;
+            display: none;
+        }
         #menu-bar {
             background-color: #666;
             height: 4vw;
@@ -388,6 +422,10 @@
             body {
                 min-width: 0;
             }
+            #mode-label {
+                font-size: 2.5vw;
+                padding: 1vw 0 0 0;
+            }
             #game-container {
                 display: flex;
                 flex-direction: column;
@@ -568,6 +606,7 @@
             <button id="help" title="Help">?</button>
         </div>
     </div>
+    <div id="mode-label"></div>
     <div id="game-container">
         <div class="grid-container">
             <div class="grid" id="main-grid"></div>
@@ -589,11 +628,13 @@
             <h2>You Got the Green Light!</h2>
             <p>Guesses: <span id="win-guesses">0</span></p>
             <p>Time: <span id="win-time">0s</span></p>
+            <button id="win-share" class="share-btn" style="display:none;">Share 🔗</button>
             <button id="win-ok">X</button>
         </div>
 <div id="lose-popup">
     <div id="lose-sprite" class="outcome-sprite"></div>
     <h2 id="lose-title">You Ran the Red Light</h2>
+    <button id="lose-share" class="share-btn" style="display:none;">Share 🔗</button>
     <button id="lose-ok">X</button>
 </div>
         <div id="instructions-popup">
@@ -632,6 +673,7 @@
             <button id="stats-close" style="display:block; margin:10px auto 0;">X</button>
         </div>
     </div>
+    <div id="share-toast">Copied!</div>
 
 <script>
 (function() {
@@ -649,9 +691,12 @@
     let startTime = Date.now();
     let guessHistory = [];
     let isStartingNewGame = false; // Prevent duplicate calls
+    let currentPuzzleDate = null;  // "YYYY-MM-DD" for daily, null for random
+    let gameMode = "daily";        // "daily" or "random"
 
     const STORAGE_KEY = "intersections_state";
     const STATS_KEY = "intersections_stats";
+    const HISTORY_KEY = "intersections_history";
 
     function loadStats() {
         const defaults = {
@@ -677,6 +722,7 @@
     }
 
     function recordWin(numGuesses, timeElapsed) {
+        if (gameMode !== "daily") return; // Only track daily games
         const stats = loadStats();
         stats.gamesPlayed++;
         stats.wins++;
@@ -688,11 +734,51 @@
     }
 
     function recordLoss() {
+        if (gameMode !== "daily") return; // Only track daily games
         const stats = loadStats();
         stats.gamesPlayed++;
         stats.losses++;
         stats.currentStreak = 0;
         saveStats(stats);
+    }
+
+    // --- History Storage (daily game results by date) ---
+    function loadHistory() {
+        try {
+            const raw = localStorage.getItem(HISTORY_KEY);
+            return raw ? JSON.parse(raw) : {};
+        } catch (e) { return {}; }
+    }
+
+    function saveToHistory(date, result) {
+        if (!date) return; // Don't save random games
+        const history = loadHistory();
+        history[date] = result;
+        try {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        } catch (e) {}
+    }
+
+    function getDateResult(date) {
+        if (!date) return null;
+        const history = loadHistory();
+        return history[date] || null;
+    }
+
+    function formatDateForDisplay(dateStr) {
+        if (!dateStr) return "";
+        const d = new Date(dateStr + "T12:00:00"); // noon to avoid timezone shift
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function updateModeLabel() {
+        const label = document.getElementById("mode-label");
+        if (!label) return;
+        if (gameMode === "daily" && currentPuzzleDate) {
+            label.textContent = "Daily Puzzle: " + formatDateForDisplay(currentPuzzleDate);
+        } else {
+            label.textContent = "Random Practice";
+        }
     }
 
     function showStats(winningGuesses) {
@@ -744,7 +830,9 @@
             intersectH,
             intersectV,
             startTime,
-            guessHistory: guessHistory
+            guessHistory: guessHistory,
+            date: currentPuzzleDate,
+            mode: gameMode
         };
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -789,40 +877,115 @@
         updateTrafficLights();
     }
 
+    // Restore a completed daily game (already in history) — shows board, disables input
+    function restoreCompletedGame(result) {
+        guessHistory = result.guessHistory || [];
+        guesses = 0;
+        horizontalLocked = false;
+        verticalLocked = false;
+        currentGuess = "";
+        gameOver = false;
+        startTime = result.startTime || Date.now();
+
+        initMainGrid();
+        initHGuesses();
+        initVGuesses();
+        initLetterBank();
+        resetKeyboard();
+
+        // Replay each saved guess
+        guessHistory.forEach(word => {
+            guesses++;
+            const feedback = provideFeedback(word);
+            displayGuess(word, feedback);
+            updateMainGrid(word, feedback);
+            updateLetterBank(word, feedback);
+        });
+
+        // Mark game as over and disable input
+        gameOver = true;
+        disableInput();
+        updateTrafficLights();
+
+        // Show share button visibility for daily completed game
+        toggleShareButtons(true);
+    }
+
     window.onload = function() {
-        const saved = loadState();
-        if (saved) {
-            targetHorizontal = saved.targetHorizontal;
-            targetVertical = saved.targetVertical;
-            intersectH = saved.intersectH;
-            intersectV = saved.intersectV;
-            restoreGame(saved);
-        } else {
-            fetch('/api/pair')
-                .then(res => res.json())
-                .then(data => {
+        // Always fetch today's daily puzzle first
+        fetch('/api/pair')
+            .then(res => res.json())
+            .then(data => {
+                currentPuzzleDate = data.date;
+                gameMode = data.mode || "daily";
+                updateModeLabel();
+
+                // Check if today's daily was already completed
+                const todayResult = getDateResult(currentPuzzleDate);
+                if (todayResult && gameMode === "daily") {
+                    // Already played today — restore completed board
+                    targetHorizontal = data.targetHorizontal;
+                    targetVertical = data.targetVertical;
+                    intersectH = data.intersectH;
+                    intersectV = data.intersectV;
+                    restoreCompletedGame(todayResult);
+                    return;
+                }
+
+                // Check for in-progress saved state
+                const saved = loadState();
+                if (saved && saved.date === currentPuzzleDate && saved.guessHistory && saved.guessHistory.length > 0) {
+                    // Resume today's in-progress game
+                    targetHorizontal = saved.targetHorizontal;
+                    targetVertical = saved.targetVertical;
+                    intersectH = saved.intersectH;
+                    intersectV = saved.intersectV;
+                    gameMode = saved.mode || "daily";
+                    updateModeLabel();
+                    restoreGame(saved);
+                } else {
+                    // Fresh daily game
+                    if (saved) clearState(); // clear stale state from different date
                     targetHorizontal = data.targetHorizontal;
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
                     startNewGame();
-                })
-                .catch(error => {
-                    console.error('Error fetching word pair:', error);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching word pair:', error);
+                // Fallback: try to restore any saved state
+                const saved = loadState();
+                if (saved) {
+                    targetHorizontal = saved.targetHorizontal;
+                    targetVertical = saved.targetVertical;
+                    intersectH = saved.intersectH;
+                    intersectV = saved.intersectV;
+                    currentPuzzleDate = saved.date || null;
+                    gameMode = saved.mode || "daily";
+                    updateModeLabel();
+                    restoreGame(saved);
+                } else {
                     alert('Failed to load game data. Please try again.');
-                });
-        }
+                }
+            });
     };
 
     document.getElementById("new-game").addEventListener("click", function() {
         clearState();
-        fetch('/api/pair')
+        // New Game always starts a random practice game
+        fetch('/api/pair?mode=random')
             .then(res => res.json())
             .then(data => {
                 targetHorizontal = data.targetHorizontal;
                 targetVertical = data.targetVertical;
                 intersectH = data.intersectH;
                 intersectV = data.intersectV;
+                currentPuzzleDate = null;
+                gameMode = "random";
+                updateModeLabel();
+                toggleShareButtons(false);
                 startNewGame();
             })
             .catch(error => {
@@ -834,6 +997,18 @@
     document.getElementById("give-up").addEventListener("click", function() {
         if (gameOver) return; // already over, ignore
         recordLoss();
+        // Save to history for daily games
+        if (gameMode === "daily" && currentPuzzleDate) {
+            const endTime = Date.now();
+            const timeElapsed = Math.floor((endTime - startTime) / 1000);
+            saveToHistory(currentPuzzleDate, {
+                solved: false,
+                guesses: guesses,
+                time: timeElapsed,
+                guessHistory: guessHistory.slice(),
+                startTime: startTime
+            });
+        }
         clearState();
         fillRemainingLettersInRed();
         document.getElementById("lose-title").textContent = "You Got Stuck at the Red Light";
@@ -842,6 +1017,7 @@
         gameOver = true;
         disableInput();
         updateTrafficLights();
+        toggleShareButtons(gameMode === "daily");
     });
 
     // All dialog close buttons wired via JS (onclick attrs don't work inside IIFE)
@@ -851,6 +1027,14 @@
 
     document.getElementById("lose-ok").addEventListener("click", function() {
         closePopup();
+    });
+
+    document.getElementById("win-share").addEventListener("click", function() {
+        shareResult();
+    });
+
+    document.getElementById("lose-share").addEventListener("click", function() {
+        shareResult();
     });
 
     document.getElementById("stats").addEventListener("click", function() {
@@ -878,6 +1062,97 @@
         document.getElementById("instructions-popup").style.display = "none";
     }
 
+    // --- Share Functions ---
+    function toggleShareButtons(show) {
+        const winShare = document.getElementById("win-share");
+        const loseShare = document.getElementById("lose-share");
+        if (winShare) winShare.style.display = show ? "block" : "none";
+        if (loseShare) loseShare.style.display = show ? "block" : "none";
+    }
+
+    function generateShareText() {
+        const dateStr = formatDateForDisplay(currentPuzzleDate);
+        const won = horizontalLocked && verticalLocked;
+
+        let header = won
+            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\n`
+            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\n`;
+
+        // Build feedback arrays, tracking locked state for all-green override
+        const allFeedback = [];
+        let hLocked = false, vLocked = false;
+        for (const guess of guessHistory) {
+            const fb = provideFeedback(guess);
+            const entry = { h: [], v: [] };
+            if (hLocked) {
+                entry.h = ["green","green","green","green","green"];
+            } else {
+                entry.h = fb.map(f => f.h);
+                if (entry.h.every(s => s === "green")) hLocked = true;
+            }
+            if (vLocked) {
+                entry.v = ["green","green","green","green","green"];
+            } else {
+                entry.v = fb.map(f => f.v);
+                if (entry.v.every(s => s === "green")) vLocked = true;
+            }
+            allFeedback.push(entry);
+        }
+
+        const e = (s) => s === "green" ? "🟩" : s === "yellow" ? "🟨" : "🟥";
+        const gray = "⬜";
+
+        // Build 5 lines: H-grid row + gap + V-grid row
+        let lines = "";
+        for (let row = 0; row < 5; row++) {
+            // H-grid: row = guess number, columns = letter positions
+            if (row < allFeedback.length) {
+                lines += allFeedback[row].h.map(e).join("");
+            } else {
+                lines += gray.repeat(5);
+            }
+            lines += "   ";
+            // V-grid: row = letter position, columns = guess number
+            for (let col = 0; col < 5; col++) {
+                if (col < allFeedback.length) {
+                    lines += e(allFeedback[col].v[row]);
+                } else {
+                    lines += gray;
+                }
+            }
+            lines += "\n";
+        }
+
+        return header + "\n" + lines + "\nintersectionsgame.com";
+    }
+
+    function shareResult() {
+        const text = generateShareText();
+        if (navigator.share) {
+            navigator.share({ text }).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById("share-toast");
+                if (toast) {
+                    toast.style.display = "block";
+                    setTimeout(() => { toast.style.display = "none"; }, 1500);
+                }
+            }).catch(() => {
+                // Fallback: select/copy via textarea
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+                const toast = document.getElementById("share-toast");
+                if (toast) {
+                    toast.style.display = "block";
+                    setTimeout(() => { toast.style.display = "none"; }, 1500);
+                }
+            });
+        }
+    }
 
     function startNewGame() {
         if (isStartingNewGame) return; // Prevent re-entry
@@ -1257,8 +1532,20 @@
         winPopup.style.display = "block";
         gameOver = true;
         recordWin(guesses, timeElapsed);
+        // Save to history for daily games
+        if (gameMode === "daily" && currentPuzzleDate) {
+            saveToHistory(currentPuzzleDate, {
+                solved: true,
+                guesses: guesses,
+                time: timeElapsed,
+                guessHistory: guessHistory.slice(),
+                startTime: startTime
+            });
+            clearState(); // No in-progress state needed
+        }
         disableInput();
         updateTrafficLights();
+        toggleShareButtons(gameMode === "daily");
     }
 
     function showLosePopup() {
@@ -1268,8 +1555,22 @@
         document.getElementById("lose-popup").style.display = "block";
         gameOver = true;
         recordLoss();
+        // Save to history for daily games
+        if (gameMode === "daily" && currentPuzzleDate) {
+            const endTime = Date.now();
+            const timeElapsed = Math.floor((endTime - startTime) / 1000);
+            saveToHistory(currentPuzzleDate, {
+                solved: false,
+                guesses: guesses,
+                time: timeElapsed,
+                guessHistory: guessHistory.slice(),
+                startTime: startTime
+            });
+            clearState();
+        }
         disableInput();
         updateTrafficLights();
+        toggleShareButtons(gameMode === "daily");
     }
 
     function setWinSprite() {
@@ -1306,8 +1607,9 @@
 
     function fillRemainingLettersInRed() {
         const grid = document.getElementById("main-grid");
-        const hGuessed = new Set();
-        const vGuessed = new Set();
+        // Track green positions, not just green letters
+        const hGreenPositions = new Set(); // stores column indices that were guessed green for horizontal word
+        const vGreenPositions = new Set(); // stores row indices (guess positions) that were guessed green for vertical word
 
         const hGuesses = document.getElementById("h-guesses");
         const vGuesses = document.getElementById("v-guesses");
@@ -1316,15 +1618,15 @@
 
         for (let i = 0; i < guesses; i++) {
             const hRowStart = i * 5;
-            const vRowStart = i * 5;
             for (let j = 0; j < 5; j++) {
                 const hCell = hChildren[hRowStart + j];
-                const vCell = vChildren[vRowStart + j];
                 if (hCell && hCell.classList.contains("green")) {
-                    hGuessed.add(hCell.textContent);
+                    hGreenPositions.add(j); // column j was solved
                 }
+                // v-guesses grid: rows = letter positions, columns = guess number
+                const vCell = vChildren[j * 5 + i];
                 if (vCell && vCell.classList.contains("green")) {
-                    vGuessed.add(vCell.textContent);
+                    vGreenPositions.add(j); // position j was solved
                 }
             }
         }
@@ -1349,31 +1651,31 @@
 
             if (row === intersectV && !horizontalLocked) {
                 const hLetter = targetHorizontal[col] || '';
-                if (hLetter && !hGuessed.has(hLetter)) {
-                    cell.textContent = hLetter;
-                    cell.classList.add("red");
-                    cell.classList.remove("placeholder");
-                } else if (hLetter && hGuessed.has(hLetter) && !cell.classList.contains("green")) {
+                if (hLetter && hGreenPositions.has(col) && !cell.classList.contains("green")) {
                     cell.textContent = hLetter;
                     cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                } else if (hLetter && !cell.classList.contains("green")) {
+                    cell.textContent = hLetter;
+                    cell.classList.add("red");
                     cell.classList.remove("placeholder");
                 }
             }
             if (col === intersectH && !verticalLocked) {
                 const vLetter = targetVertical[row] || '';
-                if (vLetter && !vGuessed.has(vLetter)) {
-                    cell.textContent = vLetter;
-                    cell.classList.add("red");
-                    cell.classList.remove("placeholder");
-                } else if (vLetter && vGuessed.has(vLetter) && !cell.classList.contains("green")) {
+                if (vLetter && vGreenPositions.has(row) && !cell.classList.contains("green")) {
                     cell.textContent = vLetter;
                     cell.classList.add("green");
+                    cell.classList.remove("placeholder");
+                } else if (vLetter && !cell.classList.contains("green")) {
+                    cell.textContent = vLetter;
+                    cell.classList.add("red");
                     cell.classList.remove("placeholder");
                 }
             }
             if (row === intersectV && col === intersectH) {
                 const intersectionLetter = targetHorizontal[intersectH];
-                if (hGuessed.has(intersectionLetter) || vGuessed.has(intersectionLetter)) {
+                if (hGreenPositions.has(intersectH) || vGreenPositions.has(intersectV)) {
                     cell.textContent = intersectionLetter;
                     cell.classList.add("green");
                     cell.classList.remove("placeholder");
@@ -1467,6 +1769,46 @@
     }
 
     document.addEventListener('keydown', handleKeydown);
+
+    // --- TEST MODE: F2 to set custom words ---
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F2') {
+            e.preventDefault();
+            const input = prompt('Enter two 5-letter words separated by a space:\n(e.g. "HOUSE HOVEL")');
+            if (!input) return;
+            const parts = input.trim().toUpperCase().split(/\s+/);
+            if (parts.length !== 2 || parts[0].length !== 5 || parts[1].length !== 5) {
+                alert('Invalid input. Enter exactly two 5-letter words separated by a space.');
+                return;
+            }
+            const h = parts[0];
+            const v = parts[1];
+            // Find first shared letter for intersection
+            let foundH = -1, foundV = -1;
+            for (let i = 0; i < 5 && foundH === -1; i++) {
+                for (let j = 0; j < 5 && foundH === -1; j++) {
+                    if (h[i] === v[j]) {
+                        foundH = i;
+                        foundV = j;
+                    }
+                }
+            }
+            if (foundH === -1) {
+                alert('These words share no common letter. Pick a different pair.');
+                return;
+            }
+            clearState();
+            targetHorizontal = h;
+            targetVertical = v;
+            intersectH = foundH;
+            intersectV = foundV;
+            currentPuzzleDate = null;
+            gameMode = "random";
+            updateModeLabel();
+            toggleShareButtons(false);
+            startNewGame();
+        }
+    });
 })();
 </script>
 <!-- Google tag (gtag.js) -->
