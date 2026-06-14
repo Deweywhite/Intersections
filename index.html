@@ -109,7 +109,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 2vw;
+            gap: min(2vw, 28px);
             margin-bottom: 1vw;
             width: 100%;
             overflow-x: hidden;
@@ -117,7 +117,7 @@
         .guess-grids {
             display: flex;
             justify-content: center;
-            gap: 2vw;
+            gap: min(2vw, 28px);
             width: auto;
         }
         .grid {
@@ -128,13 +128,13 @@
             max-width: 100%;
         }
         .cell {
-            width: 4vw;
-            height: 4vw;
+            width: min(4vw, 55px);
+            height: min(4vw, 55px);
             background-color: #2d2d2d;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2vw;
+            font-size: min(2vw, 27px);
             font-weight: bold;
             color: #fff;
             border: 1px solid #333;
@@ -183,9 +183,9 @@
             width: 100%;
         }
         .letter-btn {
-            width: 4vw;
-            height: 4vw;
-            font-size: 1.5vw;
+            width: min(4vw, 55px);
+            height: min(4vw, 55px);
+            font-size: min(1.5vw, 21px);
             cursor: pointer;
             background-color: #444;
             border-top: 1.5px solid #888;
