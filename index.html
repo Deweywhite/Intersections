@@ -771,6 +771,17 @@
         return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
 
+    function formatTime(totalSeconds) {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const parts = [];
+        if (hours > 0) parts.push(hours + (hours === 1 ? " hour" : " hours"));
+        if (minutes > 0) parts.push(minutes + (minutes === 1 ? " minute" : " minutes"));
+        parts.push(seconds + (seconds === 1 ? " second" : " seconds"));
+        return parts.join(" ");
+    }
+
     function updateModeLabel() {
         const label = document.getElementById("mode-label");
         if (!label) return;
@@ -794,7 +805,7 @@
         const distContainer = document.getElementById("stat-dist");
         distContainer.innerHTML = "";
         const maxVal = Math.max(...Object.values(stats.guessDistribution), 1);
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 2; i <= 5; i++) {
             const count = stats.guessDistribution[i] || 0;
             const pct = Math.round((count / maxVal) * 100);
             const isCurrentWin = (winningGuesses === i);
@@ -810,7 +821,7 @@
         const bestTimeEl = document.getElementById("stat-best-time");
         if (bestTimeEl) {
             if (stats.bestTime !== null) {
-                bestTimeEl.textContent = `⏱ Best Time: ${stats.bestTime}s`;
+                bestTimeEl.textContent = `⏱ Best Time: ${formatTime(stats.bestTime)}`;
                 bestTimeEl.style.display = "block";
             } else {
                 bestTimeEl.style.display = "none";
@@ -1360,40 +1371,45 @@
         updateTrafficLights();
     }
 
+    function acceptGuess(guess) {
+        guessHistory.push(guess);
+        guesses++;
+        const feedback = provideFeedback(guess);
+        displayGuess(guess, feedback);
+        updateMainGrid(guess, feedback);
+        updateLetterBank(guess, feedback);
+        checkGameEnd();
+        currentGuess = "";
+        updateGrids();
+        saveState();
+        if (!gameOver) {
+            document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+        }
+    }
+
+    function rejectGuess() {
+        showInvalidWarning();
+        currentGuess = "";
+        updateGrids();
+        document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+    }
+
     function processGuess(guess) {
         guess = guess.toUpperCase();
-        // Disable input while validating to prevent double-submission
         document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
+
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            acceptGuess(guess);
+            return;
+        }
+
         fetch(`/api/validate?word=${encodeURIComponent(guess)}`)
             .then(res => res.json())
             .then(data => {
-                if (!data.valid) {
-                    showInvalidWarning();
-                    currentGuess = "";
-                    updateGrids();
-                    document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
-                    return;
-                }
-                guessHistory.push(guess);
-                guesses++;
-                const feedback = provideFeedback(guess);
-                displayGuess(guess, feedback);
-                updateMainGrid(guess, feedback);
-                updateLetterBank(guess, feedback);
-                checkGameEnd();
-                currentGuess = "";
-                updateGrids();
-                saveState();
-                if (!gameOver) {
-                    document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
-                }
+                if (!data.valid) { rejectGuess(); return; }
+                acceptGuess(guess);
             })
-            .catch(() => {
-                showInvalidWarning();
-                currentGuess = "";
-                updateGrids();
-                document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
-            });
+            .catch(() => rejectGuess());
     }
 
     function showInvalidWarning() {
@@ -1569,7 +1585,7 @@
         winGuesses.textContent = guesses;
         const endTime = Date.now();
         const timeElapsed = Math.floor((endTime - startTime) / 1000);
-        winTime.textContent = `${timeElapsed}s`;
+        winTime.textContent = formatTime(timeElapsed);
         setWinSprite();
         winPopup.style.display = "block";
         gameOver = true;

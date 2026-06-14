@@ -65,7 +65,27 @@ module.exports = function handler(req, res) {
     const entry = pairs.find(p => p.date === date);
 
     if (!entry) {
-        return res.status(404).json({ error: 'No puzzle for this date', date });
+        // No dated puzzle — fall back to a random pair
+        let attempts = 0;
+        while (attempts < 1000) {
+            attempts++;
+            const fallback = pairs[Math.floor(Math.random() * pairs.length)];
+            const fh = fallback.words[0].toUpperCase();
+            const fv = fallback.words[1].toUpperCase();
+            if (fh.length !== 5 || fv.length !== 5) continue;
+            const fi = findIntersection(fh, fv);
+            if (fi) {
+                return res.status(200).json({
+                    targetHorizontal: fh,
+                    targetVertical: fv,
+                    intersectH: fi.intersectH,
+                    intersectV: fi.intersectV,
+                    date: null,
+                    mode: 'random'
+                });
+            }
+        }
+        return res.status(500).json({ error: 'Could not find a valid pair' });
     }
 
     const h = entry.words[0].toUpperCase();
