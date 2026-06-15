@@ -945,8 +945,10 @@
 
                 // Check for in-progress saved state
                 const saved = loadState();
-                if (saved && saved.date === currentPuzzleDate && saved.guessHistory && saved.guessHistory.length > 0) {
-                    // Resume today's in-progress game
+                const savedMatchesContext = saved && saved.guessHistory && saved.guessHistory.length > 0
+                    && (saved.mode === "random" || saved.date === currentPuzzleDate);
+                if (savedMatchesContext) {
+                    // Resume today's in-progress game (daily or random)
                     targetHorizontal = saved.targetHorizontal;
                     targetVertical = saved.targetVertical;
                     intersectH = saved.intersectH;
