@@ -394,10 +394,24 @@
         }
         .crash-graphic {
             width: 100%;
-            max-height: 120px;
-            object-fit: cover;
+            max-height: 220px;
+            object-fit: contain;
             margin: 6px auto;
             display: block;
+        }
+        #win-ok, #lose-ok, #stats-close, #instructions-close {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 8px auto 0;
+            display: block;
+        }
+        #win-ok:hover, #lose-ok:hover, #stats-close:hover, #instructions-close:hover {
+            background-color: #777;
         }
         .outcome-sprite {
             display: flex;
@@ -1130,8 +1144,8 @@
         const won = horizontalLocked && verticalLocked;
 
         let header = won
-            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\n`
-            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\n`;
+            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\nCan you survive the intersection? intersectionsgame.com\n`
+            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\nCan you survive the intersection? intersectionsgame.com\n`;
 
         // Build feedback arrays using pure function (no locked-state interference)
         const allFeedback = [];
