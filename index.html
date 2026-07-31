@@ -355,7 +355,7 @@
             background-color: #f44336;
             box-shadow: 0 0 6px #f44336, 0 0 12px #f44336;
         }
-        #win-popup, #lose-popup, #instructions-popup {
+        #win-popup, #lose-popup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -387,10 +387,6 @@
             width: 260px;
             max-width: 260px;
             padding: 12px;
-        }
-        #instructions-popup img {
-            max-width: 100%;
-            height: auto;
         }
         .crash-graphic {
             width: 100%;
@@ -622,16 +618,10 @@
             .letter-row:nth-child(2), .letter-row:nth-child(3) {
                 max-width: 85vw;
             }
-            #instructions-popup {
-                width: 90vw;
-                max-width: 90vw;
-                max-height: 80vh;
-                padding: 15px;
-                font-size: 20px;
-            }
-            #instructions-popup img {
-                max-width: 100%;
-                height: auto;
+            #tut-bubble {
+                max-width: 88vw;
+                font-size: 13px;
+                padding: 12px 14px;
             }
             .crash-graphic {
                 width: 100%;
@@ -1245,12 +1235,23 @@
             state: "guessed"
         },
         {
+            // Traffic lights are hidden on mobile — fall back to the board
             target: "#right-traffic-light",
+            fallback: ".grid-container",
             title: "DON'T CRASH",
             body: "You get 5 guesses to solve both words. Red means neither is solved, yellow means one, green means you made it through. Good luck!",
             state: "guessed"
         }
     ];
+
+    // Resolve a step's target, falling back when the element is hidden
+    function tutTargetEl(step) {
+        let el = document.querySelector(step.target);
+        if (!el || el.offsetWidth === 0 || el.offsetHeight === 0) {
+            el = step.fallback ? document.querySelector(step.fallback) : null;
+        }
+        return el;
+    }
 
     function tutSnapshotState() {
         return {
@@ -1326,8 +1327,7 @@
     function tutShowStep(i) {
         tutStep = i;
         const step = tutSteps[i];
-        const targetEl = document.querySelector(step.target);
-        if (!targetEl) return tutEnd();
+        if (!tutTargetEl(step)) return tutEnd();
 
         tutRenderState(step.state);
 
@@ -1338,7 +1338,10 @@
         document.getElementById("tut-next").textContent = (i === tutSteps.length - 1) ? "Play!" : "Next";
 
         // Let layout settle before measuring
-        requestAnimationFrame(() => tutPositionBubble(document.querySelector(step.target)));
+        requestAnimationFrame(() => {
+            const el = tutTargetEl(step);
+            if (el) tutPositionBubble(el);
+        });
     }
 
     function tutStart() {
@@ -1381,7 +1384,9 @@
         if (tutStep > 0) tutShowStep(tutStep - 1);
     });
     window.addEventListener("resize", function() {
-        if (tutActive) tutPositionBubble(document.querySelector(tutSteps[tutStep].target));
+        if (!tutActive) return;
+        const el = tutTargetEl(tutSteps[tutStep]);
+        if (el) tutPositionBubble(el);
     });
 
     function maybeShowInstructions() {
