@@ -431,6 +431,66 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Guided tutorial overlay ===== */
+        #tut-spotlight {
+            position: absolute;
+            border-radius: 8px;
+            box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
+            border: 2px solid #4caf50;
+            z-index: 4000;
+            pointer-events: none;
+            transition: top 0.35s ease, left 0.35s ease, width 0.35s ease, height 0.35s ease;
+            display: none;
+        }
+        #tut-bubble {
+            position: absolute;
+            background: #2f2f2f;
+            color: #fff;
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 14px 16px;
+            max-width: 320px;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 4001;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.6);
+            transition: top 0.35s ease, left 0.35s ease;
+            display: none;
+        }
+        #tut-bubble h3 {
+            margin: 0 0 6px 0;
+            font-size: 15px;
+            color: #4caf50;
+            letter-spacing: 0.5px;
+        }
+        #tut-bubble p { margin: 0 0 10px 0; }
+        #tut-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        #tut-step-count { font-size: 12px; color: #999; }
+        #tut-bubble button {
+            border: none;
+            border-radius: 16px;
+            padding: 5px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #fff;
+        }
+        #tut-next { background: #4caf50; }
+        #tut-next:hover { background: #5cbf60; }
+        #tut-back { background: #555; }
+        #tut-back:hover { background: #6d6d6d; }
+        #tut-skip {
+            background: none;
+            color: #999;
+            text-decoration: underline;
+            padding: 5px 4px;
+            font-size: 12px;
+        }
+        #tut-skip:hover { color: #ccc; }
         .ex-key {
             width: 44px;
             height: 44px;
@@ -683,114 +743,17 @@
     <button id="lose-share" class="share-btn" style="display:none;">Share 🔗</button>
     <button id="lose-ok">X</button>
 </div>
-        <div id="instructions-popup">
-            <!-- PAGE 1: THE BOARD -->
-            <div id="instr-page-1">
-                <h2 style="margin:0 0 4px 0; font-size:1.1em; letter-spacing:1px;">HOW TO PLAY <span style="color:#aaa; font-size:0.75em; font-weight:normal;">1 / 2</span></h2>
-                <p style="margin:0 0 10px 0; font-size:0.8em; color:#ccc;">Guess two related 5-letter words that share a letter at their intersection. You have 5 guesses — each guess applies to <strong>both</strong> words at once.</p>
-
-                <!-- Three grids side by side -->
-                <!-- CHILI (horizontal, row 3) / SAUCE (vertical, col 0) — C at intersectH=0, intersectV=3 -->
-                <!-- After guessing CRANE: CHILI→ C🟩R🟥A🟥N🟥E🟥  SAUCE→ C🟨R🟥A🟩N🟥E🟩 -->
-                <!-- Main grid reveals: C(intersection, start), A(row1,col0 green for SAUCE), E(row4,col0 green for SAUCE) -->
-                <div style="display:flex; justify-content:center; align-items:flex-start; gap:6px; margin-bottom:10px;">
-
-                    <!-- H-GUESSES (rows=guesses, cols=word letters) -->
-                    <div style="text-align:center;">
-                        <p style="font-size:0.65em; color:#aaa; margin:0 0 3px 0;">→ CHILI</p>
-                        <div style="display:grid; grid-template-columns:repeat(5,28px); grid-template-rows:repeat(5,28px); gap:2px;">
-                            <!-- Guess 1: CRANE vs CHILI: C🟩 R🟥 A🟥 N🟥 E🟥 -->
-                            <div class="ex-cell green">C</div><div class="ex-cell red">R</div><div class="ex-cell red">A</div><div class="ex-cell red">N</div><div class="ex-cell red">E</div>
-                            <!-- Rows 2-5: empty -->
-                            <div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                        </div>
-                    </div>
-
-                    <!-- MAIN GRID -->
-                    <div style="text-align:center;">
-                        <p style="font-size:0.65em; color:#aaa; margin:0 0 3px 0;">INTERSECTION</p>
-                        <div style="display:grid; grid-template-columns:repeat(5,28px); grid-template-rows:repeat(5,28px); gap:2px;">
-                            <!-- Row 0: S vertical, rest empty -->
-                            <div class="ex-cell vertical">S</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <!-- Row 1: A revealed green (SAUCE pos 1 correct) -->
-                            <div class="ex-cell green">A</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <!-- Row 2: U vertical -->
-                            <div class="ex-cell vertical">U</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <!-- Row 3: CHILI horizontal, C is intersection (green from start) -->
-                            <div class="ex-cell green">C</div><div class="ex-cell horizontal">H</div><div class="ex-cell horizontal">I</div><div class="ex-cell horizontal">L</div><div class="ex-cell horizontal">I</div>
-                            <!-- Row 4: E revealed green (SAUCE pos 4 correct) -->
-                            <div class="ex-cell green">E</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                        </div>
-                    </div>
-
-                    <!-- V-GUESSES (cols=guesses, rows=word letters, reads top→bottom) -->
-                    <div style="text-align:center;">
-                        <p style="font-size:0.65em; color:#aaa; margin:0 0 3px 0;">↓ SAUCE</p>
-                        <div style="display:grid; grid-template-columns:repeat(5,28px); grid-template-rows:repeat(5,28px); gap:2px;">
-                            <!-- Col 0 = guess 1: CRANE vs SAUCE: C🟨 R🟥 A🟩 N🟥 E🟩 (reading top→bottom) -->
-                            <div class="ex-cell yellow">C</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell red">R</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell green">A</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell red">N</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                            <div class="ex-cell green">E</div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div><div class="ex-cell"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Legend -->
-                <div style="font-size:0.7em; color:#ccc; line-height:1.8; margin-bottom:10px;">
-                    <span style="display:inline-block;width:12px;height:12px;background:#4caf50;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Right letter, right position &nbsp;
-                    <span style="display:inline-block;width:12px;height:12px;background:#ffeb3b;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Right letter, wrong position &nbsp;
-                    <span style="display:inline-block;width:12px;height:12px;background:#f44336;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Not in the word
-                </div>
-
-                <button id="instr-next" style="background:#4caf50;color:#fff;border:none;border-radius:20px;padding:6px 20px;font-size:14px;cursor:pointer;margin:0 auto;display:block;">Next →</button>
-            </div>
-
-            <!-- PAGE 2: THE KEYBOARD -->
-            <div id="instr-page-2" style="display:none;">
-                <h2 style="margin:0 0 4px 0; font-size:1.1em; letter-spacing:1px;">THE KEYBOARD <span style="color:#aaa; font-size:0.75em; font-weight:normal;">2 / 2</span></h2>
-                <p style="margin:0 0 10px 0; font-size:0.8em; color:#ccc;">The keyboard tracks what you know about each letter — separately for each word. Each key has <strong>four borders</strong>: top &amp; bottom for the horizontal word, left &amp; right for the vertical word.</p>
-
-                <!-- Example keys -->
-                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
-                    <!-- C: green H (top/bottom green), yellow V (left/right yellow) -->
-                    <div style="text-align:center;">
-                        <div class="ex-key" style="border-top:3px solid #4caf50; border-bottom:3px solid #4caf50; border-left:3px solid #ffeb3b; border-right:3px solid #ffeb3b;">C</div>
-                        <p style="font-size:0.6em; color:#aaa; margin:3px 0 0 0;">✅ CHILI pos 0<br>🟡 in SAUCE, wrong pos</p>
-                    </div>
-                    <!-- A: red H (top/bottom red), green V (left/right green) -->
-                    <div style="text-align:center;">
-                        <div class="ex-key" style="border-top:3px solid #f44336; border-bottom:3px solid #f44336; border-left:3px solid #4caf50; border-right:3px solid #4caf50;">A</div>
-                        <p style="font-size:0.6em; color:#aaa; margin:3px 0 0 0;">❌ not in CHILI<br>✅ SAUCE pos 1</p>
-                    </div>
-                    <!-- R: red both -->
-                    <div style="text-align:center;">
-                        <div class="ex-key" style="border:3px solid #f44336;">R</div>
-                        <p style="font-size:0.6em; color:#aaa; margin:3px 0 0 0;">❌ not in CHILI<br>❌ not in SAUCE</p>
-                    </div>
-                    <!-- E: red H, green V -->
-                    <div style="text-align:center;">
-                        <div class="ex-key" style="border-top:3px solid #f44336; border-bottom:3px solid #f44336; border-left:3px solid #4caf50; border-right:3px solid #4caf50;">E</div>
-                        <p style="font-size:0.6em; color:#aaa; margin:3px 0 0 0;">❌ not in CHILI<br>✅ SAUCE pos 4</p>
-                    </div>
-                    <!-- Unplayed key -->
-                    <div style="text-align:center;">
-                        <div class="ex-key" style="border:3px solid #888;">S</div>
-                        <p style="font-size:0.6em; color:#aaa; margin:3px 0 0 0;">Not guessed yet</p>
-                    </div>
-                </div>
-
-                <p style="font-size:0.75em; color:#ccc; margin:0 0 4px 0;">🚦 Solve both words in 5 guesses to get the green light!</p>
-                <p style="font-size:0.75em; color:#ccc; margin:0 0 12px 0;">🏁 The two words are always thematically related — use that to your advantage.</p>
-
-                <div style="display:flex; justify-content:center; gap:8px;">
-                    <button id="instr-back" style="background:#555;color:#fff;border:none;border-radius:20px;padding:6px 20px;font-size:14px;cursor:pointer;">← Back</button>
-                    <button id="instructions-close">Let's Go!</button>
-                </div>
+        <div id="tut-spotlight"></div>
+        <div id="tut-bubble">
+            <h3 id="tut-title"></h3>
+            <p id="tut-body"></p>
+            <div id="tut-controls">
+                <button id="tut-skip">Skip</button>
+                <span id="tut-step-count"></span>
+                <span>
+                    <button id="tut-back">Back</button>
+                    <button id="tut-next">Next</button>
+                </span>
             </div>
         </div>
 
@@ -1218,37 +1181,213 @@
         showStats(null);
     });
 
-    document.getElementById("help").addEventListener("click", function() {
-        document.getElementById("instructions-popup").style.display = "block";
-    });
+    // ===== Guided Tutorial =====
+    // Walks the player through a simulated CHILI / SAUCE puzzle on the real
+    // board, spotlighting each region with an explanation bubble.
 
-    document.getElementById("instructions-close").addEventListener("click", function() {
-        closeInstructions();
-    });
+    const TUT_H = "CHILI";      // horizontal word
+    const TUT_V = "SAUCE";      // vertical word
+    const TUT_IH = 0;           // C is CHILI[0]
+    const TUT_IV = 3;           // C is SAUCE[3]
+    const TUT_GUESS = "CRANE";
 
-    document.getElementById("instr-next").addEventListener("click", function() {
-        document.getElementById("instr-page-1").style.display = "none";
-        document.getElementById("instr-page-2").style.display = "block";
-    });
+    let tutActive = false;
+    let tutStep = 0;
+    let tutSnapshot = null;
 
-    document.getElementById("instr-back").addEventListener("click", function() {
-        document.getElementById("instr-page-2").style.display = "none";
-        document.getElementById("instr-page-1").style.display = "block";
-    });
+    const tutSteps = [
+        {
+            target: ".grid-container",
+            title: "TWO WORDS, ONE CROSSING",
+            body: "Every puzzle has two related 5-letter words. One reads across, one reads down, and they share a letter where they cross.",
+            state: "empty"
+        },
+        {
+            target: "#main-grid",
+            title: "THE INTERSECTION",
+            body: "The shared letter is revealed to start you off. Here it's <strong>C</strong> — the across word and the down word both use it.",
+            state: "empty"
+        },
+        {
+            target: "#letter-bank",
+            title: "MAKE A GUESS",
+            body: "Type any valid 5-letter word and hit enter. Let's try <strong>CRANE</strong>.",
+            state: "empty"
+        },
+        {
+            target: ".guess-grids",
+            title: "ONE GUESS, BOTH WORDS",
+            body: "Your guess is scored against <strong>both</strong> words at the same time — that's the twist. Left grid is the across word, right grid is the down word.",
+            state: "guessed"
+        },
+        {
+            target: "#h-guesses",
+            title: "THE ACROSS WORD",
+            body: "Against <strong>CHILI</strong>: the C is green (right letter, right spot). R, A, N and E aren't in the word at all.",
+            state: "guessed"
+        },
+        {
+            target: "#v-guesses",
+            title: "THE DOWN WORD",
+            body: "Against <strong>SAUCE</strong> the same guess scores differently: C is yellow (in the word, wrong spot), A is yellow, E is green. Guesses read top to bottom.",
+            state: "guessed"
+        },
+        {
+            target: "#main-grid",
+            title: "PROGRESS FILLS IN",
+            body: "Any letter you place correctly is revealed on the main grid. The E at the bottom of the down word is locked in.",
+            state: "guessed"
+        },
+        {
+            target: "#letter-bank",
+            title: "THE KEYBOARD TRACKS BOTH",
+            body: "Each key has four borders. <strong>Top &amp; bottom</strong> show that letter's status in the across word; <strong>left &amp; right</strong> show the down word. Look at C — green top/bottom, yellow left/right.",
+            state: "guessed"
+        },
+        {
+            target: "#right-traffic-light",
+            title: "DON'T CRASH",
+            body: "You get 5 guesses to solve both words. Red means neither is solved, yellow means one, green means you made it through. Good luck!",
+            state: "guessed"
+        }
+    ];
 
-    function closeInstructions() {
-        document.getElementById("instructions-popup").style.display = "none";
-        try { localStorage.setItem("intersections_seen_instructions", "1"); } catch(e) {}
+    function tutSnapshotState() {
+        return {
+            targetHorizontal, targetVertical, intersectH, intersectV,
+            startTime, guessHistory: guessHistory.slice(),
+            date: currentPuzzleDate, mode: gameMode,
+            guesses, horizontalLocked, verticalLocked, gameOver
+        };
     }
 
-    function showInstructions() {
-        document.getElementById("instructions-popup").style.display = "block";
+    function tutRenderState(kind) {
+        // Reset board to the tutorial puzzle
+        targetHorizontal = TUT_H;
+        targetVertical   = TUT_V;
+        intersectH       = TUT_IH;
+        intersectV       = TUT_IV;
+        guesses = 0;
+        horizontalLocked = false;
+        verticalLocked   = false;
+        currentGuess = "";
+
+        initMainGrid();
+        initHGuesses();
+        initVGuesses();
+        const bank = document.getElementById("letter-bank");
+        bank.innerHTML = "";
+        initLetterBank();
+        resetKeyboard();
+
+        if (kind === "guessed") {
+            guesses = 1;
+            const fb = provideFeedback(TUT_GUESS);
+            displayGuess(TUT_GUESS, fb);
+            updateMainGrid(TUT_GUESS, fb);
+            updateLetterBank(TUT_GUESS, fb);
+        }
+        // Tutorial board is display-only
+        document.querySelectorAll(".letter-btn").forEach(b => b.disabled = true);
     }
+
+    function tutPositionBubble(targetEl) {
+        const spot   = document.getElementById("tut-spotlight");
+        const bubble = document.getElementById("tut-bubble");
+        const r = targetEl.getBoundingClientRect();
+        const pad = 8;
+        const top  = r.top  + window.scrollY - pad;
+        const left = r.left + window.scrollX - pad;
+
+        spot.style.display = "block";
+        spot.style.top    = top + "px";
+        spot.style.left   = left + "px";
+        spot.style.width  = (r.width  + pad * 2) + "px";
+        spot.style.height = (r.height + pad * 2) + "px";
+
+        bubble.style.display = "block";
+        const bw = bubble.offsetWidth;
+        const bh = bubble.offsetHeight;
+
+        // Prefer below the target; flip above if it would run off screen
+        let bTop = top + r.height + pad * 2 + 12;
+        if (bTop + bh > window.scrollY + window.innerHeight - 10) {
+            bTop = top - bh - 12;
+        }
+        if (bTop < window.scrollY + 10) bTop = window.scrollY + 10;
+
+        let bLeft = left + (r.width + pad * 2) / 2 - bw / 2;
+        bLeft = Math.max(10, Math.min(bLeft, window.innerWidth - bw - 10));
+
+        bubble.style.top  = bTop + "px";
+        bubble.style.left = bLeft + "px";
+    }
+
+    function tutShowStep(i) {
+        tutStep = i;
+        const step = tutSteps[i];
+        const targetEl = document.querySelector(step.target);
+        if (!targetEl) return tutEnd();
+
+        tutRenderState(step.state);
+
+        document.getElementById("tut-title").innerHTML = step.title;
+        document.getElementById("tut-body").innerHTML  = step.body;
+        document.getElementById("tut-step-count").textContent = (i + 1) + " / " + tutSteps.length;
+        document.getElementById("tut-back").style.visibility = i === 0 ? "hidden" : "visible";
+        document.getElementById("tut-next").textContent = (i === tutSteps.length - 1) ? "Play!" : "Next";
+
+        // Let layout settle before measuring
+        requestAnimationFrame(() => tutPositionBubble(document.querySelector(step.target)));
+    }
+
+    function tutStart() {
+        if (tutActive) return;
+        tutActive = true;
+        tutSnapshot = tutSnapshotState();
+        tutShowStep(0);
+    }
+
+    function tutEnd() {
+        tutActive = false;
+        document.getElementById("tut-spotlight").style.display = "none";
+        document.getElementById("tut-bubble").style.display    = "none";
+        try { localStorage.setItem("intersections_seen_instructions", "1"); } catch (e) {}
+
+        // Restore the real game exactly as it was
+        if (tutSnapshot) {
+            currentPuzzleDate = tutSnapshot.date;
+            gameMode          = tutSnapshot.mode;
+            guesses = 0;
+            horizontalLocked = false;
+            verticalLocked   = false;
+            gameOver = false;
+            restoreGame(tutSnapshot);
+            updateModeLabel();
+            if (!gameOver) {
+                document.querySelectorAll(".letter-btn").forEach(b => b.disabled = false);
+            }
+            tutSnapshot = null;
+        }
+    }
+
+    document.getElementById("help").addEventListener("click", tutStart);
+    document.getElementById("tut-skip").addEventListener("click", tutEnd);
+    document.getElementById("tut-next").addEventListener("click", function() {
+        if (tutStep >= tutSteps.length - 1) tutEnd();
+        else tutShowStep(tutStep + 1);
+    });
+    document.getElementById("tut-back").addEventListener("click", function() {
+        if (tutStep > 0) tutShowStep(tutStep - 1);
+    });
+    window.addEventListener("resize", function() {
+        if (tutActive) tutPositionBubble(document.querySelector(tutSteps[tutStep].target));
+    });
 
     function maybeShowInstructions() {
         try {
-            if (!localStorage.getItem("intersections_seen_instructions")) showInstructions();
-        } catch(e) {}
+            if (!localStorage.getItem("intersections_seen_instructions")) tutStart();
+        } catch (e) {}
     }
 
     // --- Share Functions ---
@@ -1962,7 +2101,19 @@
     function handleKeydown(event) {
         const winPopup = document.getElementById("win-popup");
         const losePopup = document.getElementById("lose-popup");
-        const instructionsPopup = document.getElementById("instructions-popup");
+
+        // Tutorial takes over the keyboard: arrows/enter advance, escape exits
+        if (tutActive) {
+            if (event.key === "Enter" || event.key === "ArrowRight") {
+                if (tutStep >= tutSteps.length - 1) tutEnd();
+                else tutShowStep(tutStep + 1);
+            } else if (event.key === "ArrowLeft") {
+                if (tutStep > 0) tutShowStep(tutStep - 1);
+            } else if (event.key === "Escape") {
+                tutEnd();
+            }
+            return;
+        }
 
         // Handle popup closure with Enter key even when game is over
         const statsPopup = document.getElementById("stats-popup");
@@ -1975,9 +2126,6 @@
         if (event.key === "Enter") {
             if (winPopup.style.display === "block" || losePopup.style.display === "block") {
                 closePopup();
-                return;
-            } else if (instructionsPopup.style.display === "block") {
-                closeInstructions();
                 return;
             }
         }
