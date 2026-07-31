@@ -413,6 +413,24 @@
         #win-ok:hover, #lose-ok:hover, #stats-close:hover, #instructions-close:hover {
             background-color: #777;
         }
+        .ex-cell {
+            width: 32px;
+            height: 32px;
+            background-color: #2d2d2d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            border: 1px solid #444;
+            box-sizing: border-box;
+        }
+        .ex-cell.green { background-color: #4caf50; }
+        .ex-cell.yellow { background-color: #ffeb3b; color: black; }
+        .ex-cell.red { background-color: #f44336; }
+        .ex-cell.horizontal { background-color: #333; }
+        .ex-cell.vertical { background-color: #333; }
         .outcome-sprite {
             display: flex;
             justify-content: center;
@@ -652,8 +670,64 @@
     <button id="lose-ok">X</button>
 </div>
         <div id="instructions-popup">
-            <img src="images/instructions.png" alt="Instructions">
-            <button id="instructions-close">X</button>
+            <h2 style="margin:0 0 8px 0; font-size:1.2em; letter-spacing:1px;">HOW TO PLAY</h2>
+            <p style="margin:0 0 10px 0; font-size:0.85em; color:#ccc;">Guess two related 5-letter words that share a letter at their intersection.</p>
+
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:14px;">
+                <!-- Mini main grid showing BRAVE(H) / BELOW(V) intersecting at B(0,0) -->
+                <div>
+                    <p style="font-size:0.7em; color:#aaa; margin:0 0 4px 0; text-align:center;">THE GRID</p>
+                    <div style="display:grid; grid-template-columns:repeat(5,32px); grid-template-rows:repeat(5,32px); gap:2px;">
+                        <!-- Row 0: horizontal word BRAVE -->
+                        <div class="ex-cell green">B</div>
+                        <div class="ex-cell horizontal">R</div>
+                        <div class="ex-cell horizontal">A</div>
+                        <div class="ex-cell horizontal">V</div>
+                        <div class="ex-cell horizontal">E</div>
+                        <!-- Rows 1-4: vertical word BELOW (B already shown) -->
+                        <div class="ex-cell vertical">L</div>
+                        <div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div>
+                        <div class="ex-cell vertical">O</div>
+                        <div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div>
+                        <div class="ex-cell vertical">W</div>
+                        <div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div>
+                        <div class="ex-cell vertical">S</div>
+                        <div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div><div class="ex-cell">·</div>
+                    </div>
+                    <p style="font-size:0.65em; color:#aaa; margin:4px 0 0 0; text-align:center;">The shared letter is revealed</p>
+                </div>
+
+                <!-- Example guess rows -->
+                <div>
+                    <p style="font-size:0.7em; color:#aaa; margin:0 0 4px 0; text-align:center;">YOUR GUESSES</p>
+                    <p style="font-size:0.65em; color:#aaa; margin:0 0 3px 0;">Horizontal word (BRAVE):</p>
+                    <div style="display:flex; gap:2px; margin-bottom:6px;">
+                        <div class="ex-cell green">B</div>
+                        <div class="ex-cell yellow">L</div>
+                        <div class="ex-cell red">A</div>
+                        <div class="ex-cell red">D</div>
+                        <div class="ex-cell red">E</div>
+                    </div>
+                    <p style="font-size:0.65em; color:#aaa; margin:0 0 3px 0;">Vertical word (BLOWS):</p>
+                    <div style="display:flex; gap:2px; margin-bottom:10px;">
+                        <div class="ex-cell green">B</div>
+                        <div class="ex-cell green">L</div>
+                        <div class="ex-cell red">A</div>
+                        <div class="ex-cell red">D</div>
+                        <div class="ex-cell yellow">E</div>
+                    </div>
+                    <div style="font-size:0.7em; color:#ccc; line-height:1.6;">
+                        <span style="display:inline-block;width:12px;height:12px;background:#4caf50;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Right letter, right spot<br>
+                        <span style="display:inline-block;width:12px;height:12px;background:#ffeb3b;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Right letter, wrong spot<br>
+                        <span style="display:inline-block;width:12px;height:12px;background:#f44336;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Letter not in the word
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size:0.75em; color:#ccc; margin:0 0 4px 0;">🚦 One guess applies to <strong>both</strong> words at the same time.</p>
+            <p style="font-size:0.75em; color:#ccc; margin:0 0 12px 0;">🏁 Solve both words in 5 guesses to get the green light!</p>
+
+            <button id="instructions-close">Let's Go!</button>
         </div>
 
         <div id="stats-popup">
@@ -996,6 +1070,9 @@
                 } else {
                     alert('Failed to load game data. Please try again.');
                 }
+            })
+            .finally(() => {
+                maybeShowInstructions();
             });
     };
 
@@ -1087,6 +1164,17 @@
 
     function closeInstructions() {
         document.getElementById("instructions-popup").style.display = "none";
+        try { localStorage.setItem("intersections_seen_instructions", "1"); } catch(e) {}
+    }
+
+    function showInstructions() {
+        document.getElementById("instructions-popup").style.display = "block";
+    }
+
+    function maybeShowInstructions() {
+        try {
+            if (!localStorage.getItem("intersections_seen_instructions")) showInstructions();
+        } catch(e) {}
     }
 
     // --- Share Functions ---
