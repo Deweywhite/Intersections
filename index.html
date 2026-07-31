@@ -101,7 +101,8 @@
         #game-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2vw;
+            /* capped so very wide viewports don't eat the inner width */
+            padding: min(2vw, 24px);
             box-sizing: border-box;
             overflow-x: hidden;
         }
@@ -128,13 +129,15 @@
             max-width: 100%;
         }
         .cell {
-            width: min(4vw, 55px);
-            height: min(4vw, 55px);
+            /* 70px is the largest that still fits 3 grids inside the
+               1200px container — see release notes v1.9.4 */
+            width: min(4vw, 70px);
+            height: min(4vw, 70px);
             background-color: #2d2d2d;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: min(2vw, 27px);
+            font-size: min(2vw, 34px);
             font-weight: bold;
             color: #fff;
             border: 1px solid #333;
@@ -183,9 +186,9 @@
             width: 100%;
         }
         .letter-btn {
-            width: min(4vw, 55px);
-            height: min(4vw, 55px);
-            font-size: min(1.5vw, 21px);
+            width: min(4vw, 70px);
+            height: min(4vw, 70px);
+            font-size: min(1.5vw, 26px);
             cursor: pointer;
             background-color: #444;
             border-top: 1.5px solid #888;
@@ -210,19 +213,19 @@
         .yellow-left-right { border-left: 1.5px solid #ffeb3b; border-right: 1.5px solid #ffeb3b; }
         .red-left-right { border-left: 1.5px solid #f44336; border-right: 1.5px solid #f44336; }
         .traffic-light {
-            width: 5vw;
-            height: 15vw;
+            width: min(5vw, 88px);
+            height: min(15vw, 264px);
             background-color: #333;
-            border-radius: 1vw;
+            border-radius: min(1vw, 14px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            padding: 1vw; 
+            padding: min(1vw, 14px);
         }
         .light {
-            width: 2.5vw;
-            height: 2.5vw;
+            width: min(2.5vw, 44px);
+            height: min(2.5vw, 44px);
             border-radius: 50%;
             background-color: #444;
         }
@@ -395,7 +398,7 @@
             margin: 6px auto;
             display: block;
         }
-        #win-ok, #lose-ok, #stats-close, #instructions-close {
+        #win-ok, #lose-ok, #stats-close, #stats-clear {
             background-color: #555;
             color: #fff;
             border: none;
@@ -406,7 +409,20 @@
             margin: 8px auto 0;
             display: block;
         }
-        #win-ok:hover, #lose-ok:hover, #stats-close:hover, #instructions-close:hover {
+        /* RESET is destructive — quieter than the close buttons */
+        #stats-clear {
+            background-color: transparent;
+            border: 1.5px solid #666;
+            color: #bbb;
+            font-size: 12px;
+            letter-spacing: 1px;
+            padding: 5px 18px;
+        }
+        #stats-clear:hover {
+            border-color: #f44336;
+            color: #f44336;
+        }
+        #win-ok:hover, #lose-ok:hover, #stats-close:hover {
             background-color: #777;
         }
         .ex-cell {
@@ -427,6 +443,52 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Tutorial offer (first visit) ===== */
+        #tut-offer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            border: 3px solid #4caf50;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            padding: 22px 26px;
+            width: 340px;
+            max-width: 88vw;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 4002;
+            display: none;
+        }
+        #tut-offer h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            color: #4caf50;
+        }
+        #tut-offer p { margin: 0 0 10px 0; }
+        #tut-offer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        #tut-offer-buttons button {
+            border: none;
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #fff;
+        }
+        #tut-offer-yes { background: #4caf50; }
+        #tut-offer-yes:hover { background: #5cbf60; }
+        #tut-offer-no { background: #555; }
+        #tut-offer-no:hover { background: #777; }
+
         /* ===== Guided tutorial overlay ===== */
         #tut-spotlight {
             position: absolute;
@@ -733,6 +795,16 @@
     <button id="lose-share" class="share-btn" style="display:none;">Share 🔗</button>
     <button id="lose-ok">X</button>
 </div>
+        <div id="tut-offer">
+            <h2>WELCOME TO INTERSECTIONS</h2>
+            <p>Two 5-letter words with related meanings cross at a shared letter. You get 5 guesses to solve both.</p>
+            <p style="color:#aaa;">New here? Take the 30-second tour.</p>
+            <div id="tut-offer-buttons">
+                <button id="tut-offer-yes">Show me how</button>
+                <button id="tut-offer-no">Just play</button>
+            </div>
+        </div>
+
         <div id="tut-spotlight"></div>
         <div id="tut-bubble">
             <h3 id="tut-title"></h3>
@@ -1225,7 +1297,7 @@
         {
             target: "#main-grid",
             title: "PROGRESS FILLS IN",
-            body: "Any letter you place correctly is revealed on the main grid. The E at the bottom of the vertical word is locked in.",
+            body: "Any letter you place correctly is revealed on the main grid. The correct guess of E as the last letter of the vertical word is now displayed in green.",
             state: "guessed"
         },
         {
@@ -1355,7 +1427,7 @@
         tutActive = false;
         document.getElementById("tut-spotlight").style.display = "none";
         document.getElementById("tut-bubble").style.display    = "none";
-        try { localStorage.setItem("intersections_seen_instructions", "1"); } catch (e) {}
+        markTutorialSeen();
 
         // Restore the real game exactly as it was
         if (tutSnapshot) {
@@ -1389,10 +1461,30 @@
         if (el) tutPositionBubble(el);
     });
 
+    // --- First-visit tutorial offer ---
+    function markTutorialSeen() {
+        try { localStorage.setItem("intersections_seen_instructions", "1"); } catch (e) {}
+    }
+
+    function hideTutorialOffer() {
+        document.getElementById("tut-offer").style.display = "none";
+    }
+
+    document.getElementById("tut-offer-yes").addEventListener("click", function() {
+        hideTutorialOffer();
+        tutStart();
+    });
+
+    document.getElementById("tut-offer-no").addEventListener("click", function() {
+        hideTutorialOffer();
+        markTutorialSeen();
+    });
+
     function maybeShowInstructions() {
         try {
-            if (!localStorage.getItem("intersections_seen_instructions")) tutStart();
-        } catch (e) {}
+            if (localStorage.getItem("intersections_seen_instructions")) return;
+        } catch (e) { return; }
+        document.getElementById("tut-offer").style.display = "block";
     }
 
     // --- Share Functions ---
@@ -1613,6 +1705,7 @@
             "←ZXCVBNM⏎"
         ];
         const bank = document.getElementById("letter-bank");
+        bank.innerHTML = ""; // guard against appending a duplicate keyboard
         layout.forEach(row => {
             const rowDiv = document.createElement("div");
             rowDiv.classList.add("letter-row");
@@ -2106,6 +2199,18 @@
     function handleKeydown(event) {
         const winPopup = document.getElementById("win-popup");
         const losePopup = document.getElementById("lose-popup");
+
+        // First-visit offer is modal: Enter takes the tour, Escape declines
+        if (document.getElementById("tut-offer").style.display === "block") {
+            if (event.key === "Enter") {
+                hideTutorialOffer();
+                tutStart();
+            } else if (event.key === "Escape") {
+                hideTutorialOffer();
+                markTutorialSeen();
+            }
+            return;
+        }
 
         // Tutorial takes over the keyboard: arrows/enter advance, escape exits
         if (tutActive) {
