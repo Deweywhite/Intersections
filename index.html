@@ -1188,14 +1188,14 @@
     const tutSteps = [
         {
             target: ".grid-container",
-            title: "TWO WORDS, ONE CROSSING",
-            body: "Every puzzle has two related 5-letter words. One reads across, one reads down, and they share a letter where they cross.",
+            title: "TWO WORDS, ONE INTERSECTION",
+            body: "Every puzzle has two 5-letter words with related meanings. One word is displayed horizontally and the other vertically. The two words share an intersecting letter.",
             state: "empty"
         },
         {
             target: "#main-grid",
             title: "THE INTERSECTION",
-            body: "The shared letter is revealed to start you off. Here it's <strong>C</strong> — the across word and the down word both use it.",
+            body: "The shared letter is revealed when you begin. In this example, it's the letter <strong>C</strong>.",
             state: "empty"
         },
         {
@@ -1207,39 +1207,39 @@
         {
             target: ".guess-grids",
             title: "ONE GUESS, BOTH WORDS",
-            body: "Your guess is scored against <strong>both</strong> words at the same time — that's the twist. Left grid is the across word, right grid is the down word.",
+            body: "Your guess is scored against <strong>both</strong> words at the same time — that's the twist. Left grid is the horizontal word, right grid is the vertical word.",
             state: "guessed"
         },
         {
             target: "#h-guesses",
-            title: "THE ACROSS WORD",
-            body: "Against <strong>CHILI</strong>: the C is green (right letter, right spot). R, A, N and E aren't in the word at all.",
+            title: "THE HORIZONTAL WORD",
+            body: "The C is green (correct letter, correct spot). R, A, N and E aren't in the word at all.",
             state: "guessed"
         },
         {
             target: "#v-guesses",
-            title: "THE DOWN WORD",
-            body: "Against <strong>SAUCE</strong> the same guess scores differently: C is yellow (in the word, wrong spot), A is yellow, E is green. Guesses read top to bottom.",
+            title: "THE VERTICAL WORD",
+            body: "The same guess scores differently against the vertical word. C is yellow (in the word, but wrong spot), A is also yellow, and E is green (correct letter, correct spot).",
             state: "guessed"
         },
         {
             target: "#main-grid",
             title: "PROGRESS FILLS IN",
-            body: "Any letter you place correctly is revealed on the main grid. The E at the bottom of the down word is locked in.",
+            body: "Any letter you place correctly is revealed on the main grid. The E at the bottom of the vertical word is locked in.",
             state: "guessed"
         },
         {
             target: "#letter-bank",
             title: "THE KEYBOARD TRACKS BOTH",
-            body: "Each key has four borders. <strong>Top &amp; bottom</strong> show that letter's status in the across word; <strong>left &amp; right</strong> show the down word. Look at C — green top/bottom, yellow left/right.",
+            body: "<strong>Top &amp; bottom</strong> borders show that letter's status in the horizontal word. <strong>Left &amp; right</strong> borders show the letter's status in the vertical word. Look at C — green top/bottom (horizontal), yellow left/right (vertical).",
             state: "guessed"
         },
         {
             // Traffic lights are hidden on mobile — fall back to the board
             target: "#right-traffic-light",
             fallback: ".grid-container",
-            title: "DON'T CRASH",
-            body: "You get 5 guesses to solve both words. Red means neither is solved, yellow means one, green means you made it through. Good luck!",
+            title: "DON'T CRASH AT THE INTERSECTION",
+            body: "You get 5 guesses to solve both words. Red means neither is solved, yellow means one, green means you survived the intersection. Good luck!",
             state: "guessed"
         }
     ];
