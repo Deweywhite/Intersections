@@ -443,6 +443,119 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Account / sign-in ===== */
+        #account-section {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #444;
+        }
+        .account-hint {
+            font-size: 12px;
+            color: #aaa;
+            margin: 0 0 8px 0;
+        }
+        .account-status {
+            font-size: 12px;
+            color: #4caf50;
+            margin: 6px 0 0 0;
+            min-height: 1.2em;
+        }
+        .account-status.error { color: #f44336; }
+        #account-signin, #account-signout, #signin-close {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 20px;
+            font-size: 13px;
+            cursor: pointer;
+            margin: 4px auto 0;
+            display: block;
+        }
+        #account-signin { background-color: #4caf50; }
+        #account-signin:hover { background-color: #5cbf60; }
+        #account-signout:hover, #signin-close:hover { background-color: #777; }
+        #account-email { color: #fff; }
+
+        #signin-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            border: 3px solid #4caf50;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            padding: 22px 26px;
+            width: 320px;
+            max-width: 88vw;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            z-index: 1100;
+            display: none;
+        }
+        #signin-popup h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+        #signin-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            padding: 9px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        #signin-google:hover { background: #eee; }
+        .signin-divider {
+            display: flex;
+            align-items: center;
+            margin: 14px 0;
+            color: #777;
+            font-size: 12px;
+        }
+        .signin-divider::before, .signin-divider::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid #555;
+        }
+        .signin-divider span { padding: 0 10px; }
+        #signin-email {
+            width: 100%;
+            box-sizing: border-box;
+            background: #2a2a2a;
+            color: #fff;
+            border: 1.5px solid #555;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        #signin-email:focus { outline: none; border-color: #4caf50; }
+        #signin-email-btn {
+            width: 100%;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #signin-email-btn:hover { background: #5cbf60; }
+        #signin-email-btn:disabled { background: #3a6b3c; cursor: default; }
+        #signin-close { margin-top: 14px; }
+
         /* ===== Tutorial offer (first visit) ===== */
         #tut-offer {
             position: fixed;
@@ -847,10 +960,53 @@
             <div id="stat-dist"></div>
             <button id="stats-clear" style="display:block; margin:12px auto 0;">RESET</button>
             <div id="stat-best-time" style="margin-top:10px; font-size:1.1em; color:#4caf50; font-weight:bold; display:none;">⏱ Best Time: —</div>
+
+            <!-- Account / cloud sync. Hidden entirely until Supabase is configured. -->
+            <div id="account-section" style="display:none;">
+                <div id="account-signed-out">
+                    <p class="account-hint">Sign in to keep your streak across devices.</p>
+                    <button id="account-signin">Sign in</button>
+                </div>
+                <div id="account-signed-in" style="display:none;">
+                    <p class="account-hint">Signed in as <span id="account-email"></span></p>
+                    <p id="account-sync-status" class="account-status"></p>
+                    <button id="account-signout">Sign out</button>
+                </div>
+            </div>
+
             <button id="stats-close" style="display:block; margin:10px auto 0;">X</button>
         </div>
     </div>
+
+    <div id="signin-popup">
+        <h2>SIGN IN</h2>
+        <p class="account-hint">Your stats and streak will follow you to any device.</p>
+        <button id="signin-google">
+            <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.3l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.5 2.9-2.2 5.4-4.7 7.1l7.6 5.9c4.4-4.1 6.9-10.1 6.9-17z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.5 0 20.1 0 24s1 7.5 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.3 0 11.6-2.1 15.5-5.6l-7.6-5.9c-2.1 1.4-4.8 2.3-7.9 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+            Continue with Google
+        </button>
+        <div class="signin-divider"><span>or</span></div>
+        <form id="signin-email-form">
+            <input id="signin-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            <button id="signin-email-btn" type="submit">Email me a sign-in link</button>
+        </form>
+        <p id="signin-message" class="account-status"></p>
+        <button id="signin-close">X</button>
+    </div>
+
     <div id="share-toast">Copied!</div>
+
+<!-- Supabase client (auth + database). Loaded before the game script so
+     window.supabase is available; if the CDN is unreachable the game still
+     runs, just without cloud sync. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // Fill these in from Supabase → Project Settings → API.
+    // The anon key is designed to be public; Row Level Security is the wall.
+    // Leave both empty to run without accounts (sign-in UI stays hidden).
+    window.INTERSECTIONS_SUPABASE_URL = "";
+    window.INTERSECTIONS_SUPABASE_ANON_KEY = "";
+</script>
 
 <script>
 (function() {
@@ -898,25 +1054,68 @@
         } catch(e) {}
     }
 
-    function recordWin(numGuesses, timeElapsed) {
-        if (gameMode !== "daily") return; // Only track daily games
-        const stats = loadStats();
-        stats.gamesPlayed++;
-        stats.wins++;
-        stats.currentStreak++;
-        if (stats.currentStreak > stats.bestStreak) stats.bestStreak = stats.currentStreak;
-        stats.guessDistribution[numGuesses] = (stats.guessDistribution[numGuesses] || 0) + 1;
-        if (stats.bestTime === null || timeElapsed < stats.bestTime) stats.bestTime = timeElapsed;
-        saveStats(stats);
+    // --- Date helpers (all puzzle dates are "YYYY-MM-DD" in Eastern time) ---
+    function easternToday() {
+        return new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
     }
 
-    function recordLoss() {
-        if (gameMode !== "daily") return; // Only track daily games
-        const stats = loadStats();
-        stats.gamesPlayed++;
-        stats.losses++;
-        stats.currentStreak = 0;
+    // Shift a YYYY-MM-DD string by n days. Parsed at UTC noon so DST can't
+    // push it across a day boundary.
+    function shiftDate(dateStr, n) {
+        const d = new Date(dateStr + "T12:00:00Z");
+        d.setUTCDate(d.getUTCDate() + n);
+        return d.toISOString().slice(0, 10);
+    }
+
+    // --- Stats are DERIVED from history, never incremented directly. ---
+    // History is the single source of truth. This makes cloud merging
+    // trivial (union history, recompute) and fixes the old streak bug where
+    // a win after a missed week still extended the streak.
+    function computeStatsFromHistory(history) {
+        const stats = {
+            gamesPlayed: 0, wins: 0, losses: 0,
+            currentStreak: 0, bestStreak: 0, bestTime: null,
+            guessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+        };
+        const dates = Object.keys(history).sort();
+        for (const date of dates) {
+            const r = history[date];
+            stats.gamesPlayed++;
+            if (r.solved) {
+                stats.wins++;
+                stats.guessDistribution[r.guesses] = (stats.guessDistribution[r.guesses] || 0) + 1;
+                if (typeof r.time === "number" && (stats.bestTime === null || r.time < stats.bestTime)) {
+                    stats.bestTime = r.time;
+                }
+            } else {
+                stats.losses++;
+            }
+        }
+
+        // Best streak: longest run of consecutive calendar days, all solved.
+        let run = 0, prev = null;
+        for (const date of dates) {
+            if (history[date].solved && prev !== null && shiftDate(prev, 1) === date) run++;
+            else run = history[date].solved ? 1 : 0;
+            if (run > stats.bestStreak) stats.bestStreak = run;
+            prev = date;
+        }
+
+        // Current streak: walk back from today. If today isn't played yet the
+        // streak is still alive from yesterday; a miss or a loss ends it.
+        const today = easternToday();
+        let cursor = history[today] ? today : shiftDate(today, -1);
+        while (history[cursor] && history[cursor].solved) {
+            stats.currentStreak++;
+            cursor = shiftDate(cursor, -1);
+        }
+        return stats;
+    }
+
+    function recomputeAndSaveStats() {
+        const stats = computeStatsFromHistory(loadHistory());
         saveStats(stats);
+        return stats;
     }
 
     // --- History Storage (daily game results by date) ---
@@ -927,13 +1126,21 @@
         } catch (e) { return {}; }
     }
 
+    function writeHistory(history) {
+        try {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        } catch (e) {}
+    }
+
+    // The one place a completed daily game is recorded. Updates history,
+    // rederives stats, and pushes to the cloud if signed in.
     function saveToHistory(date, result) {
         if (!date) return; // Don't save random games
         const history = loadHistory();
         history[date] = result;
-        try {
-            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-        } catch (e) {}
+        writeHistory(history);
+        recomputeAndSaveStats();
+        cloudPushDay(date, result);
     }
 
     function getDateResult(date) {
@@ -1189,8 +1396,7 @@
 
     document.getElementById("give-up").addEventListener("click", function() {
         if (gameOver) return; // already over, ignore
-        recordLoss();
-        // Save to history for daily games
+        // Save to history for daily games (stats are derived from history)
         if (gameMode === "daily" && currentPuzzleDate) {
             const endTime = Date.now();
             const timeElapsed = Math.floor((endTime - startTime) / 1000);
@@ -1238,10 +1444,261 @@
         closeStats();
     });
 
-    document.getElementById("stats-clear").addEventListener("click", function() {
+    document.getElementById("stats-clear").addEventListener("click", async function() {
+        // Stats derive from history, so both must go. When signed in this is
+        // irreversible across every device — confirm before touching the cloud.
+        if (cloudUser) {
+            if (!confirm("Reset your stats everywhere? This removes your history from your account and cannot be undone.")) return;
+            await cloudWipe();
+        }
         localStorage.removeItem(STATS_KEY);
+        localStorage.removeItem(HISTORY_KEY);
         showStats(null);
     });
+
+    // ===== Cloud sync (Supabase) =====
+    // History is the source of truth on both sides. Merge = union by date,
+    // server wins on conflict ("first device to finish a day owns it"), then
+    // stats are rederived. Nothing here is required for the game to run: if
+    // Supabase isn't configured or the CDN failed, cloudClient stays null and
+    // every function below is a no-op.
+
+    let cloudClient = null;   // supabase client, or null when not configured
+    let cloudUser   = null;   // { id, email } while signed in
+
+    function cloudInit() {
+        const url = window.INTERSECTIONS_SUPABASE_URL;
+        const key = window.INTERSECTIONS_SUPABASE_ANON_KEY;
+        if (!url || !key || !window.supabase) return;
+
+        cloudClient = window.supabase.createClient(url, key);
+        document.getElementById("account-section").style.display = "block";
+
+        // Fires INITIAL_SESSION on load (with any persisted session), then
+        // SIGNED_IN / SIGNED_OUT / TOKEN_REFRESHED as they happen.
+        cloudClient.auth.onAuthStateChange((event, session) => {
+            cloudUser = session ? { id: session.user.id, email: session.user.email } : null;
+            renderAccountUI();
+            if (cloudUser && (event === "INITIAL_SESSION" || event === "SIGNED_IN")) {
+                cloudSync();
+            }
+        });
+    }
+
+    // --- row <-> local history shape ---
+    function historyToRow(userId, date, r) {
+        return {
+            user_id:      userId,
+            puzzle_date:  date,
+            solved:       !!r.solved,
+            guesses:      r.guesses || 0,
+            time_seconds: r.time || 0,
+            guess_words:  r.guessHistory || []
+        };
+    }
+
+    function rowToHistory(row) {
+        return {
+            solved:       row.solved,
+            guesses:      row.guesses,
+            time:         row.time_seconds,
+            guessHistory: row.guess_words || [],
+            startTime:    null
+        };
+    }
+
+    // Full two-way merge. Called on sign-in and on every page load while
+    // signed in, so a result recorded on another device shows up here.
+    async function cloudSync() {
+        if (!cloudClient || !cloudUser) return;
+        setSyncStatus("Syncing…");
+        try {
+            const { data: rows, error } = await cloudClient
+                .from("player_history").select("*").eq("user_id", cloudUser.id);
+            if (error) throw error;
+
+            const local  = loadHistory();
+            const merged = Object.assign({}, local);
+            const onServer = new Set();
+            for (const row of rows || []) {
+                merged[row.puzzle_date] = rowToHistory(row);   // server wins
+                onServer.add(row.puzzle_date);
+            }
+
+            const toUpload = Object.keys(local)
+                .filter(d => !onServer.has(d))
+                .map(d => historyToRow(cloudUser.id, d, local[d]));
+            if (toUpload.length) {
+                const { error: upErr } = await cloudClient
+                    .from("player_history")
+                    .upsert(toUpload, { onConflict: "user_id,puzzle_date", ignoreDuplicates: true });
+                if (upErr) throw upErr;
+            }
+
+            writeHistory(merged);
+            recomputeAndSaveStats();
+            await cloudPushStats();
+            setSyncStatus("Synced");
+
+            if (document.getElementById("stats-popup").style.display === "block") showStats(null);
+            cloudMaybeLockToday();
+        } catch (e) {
+            console.warn("Cloud sync failed:", e);
+            setSyncStatus("Sync failed — will retry next visit", true);
+        }
+    }
+
+    // Push one finished day. ignoreDuplicates means the first device to
+    // finish a date owns it; if we lost that race, adopt the server's copy.
+    async function cloudPushDay(date, result) {
+        if (!cloudClient || !cloudUser) return;
+        try {
+            const { data, error } = await cloudClient
+                .from("player_history")
+                .upsert(historyToRow(cloudUser.id, date, result),
+                        { onConflict: "user_id,puzzle_date", ignoreDuplicates: true })
+                .select();
+            if (error) throw error;
+
+            if (!data || data.length === 0) {
+                const { data: existing } = await cloudClient
+                    .from("player_history").select("*")
+                    .eq("user_id", cloudUser.id).eq("puzzle_date", date).maybeSingle();
+                if (existing) {
+                    const h = loadHistory();
+                    h[date] = rowToHistory(existing);
+                    writeHistory(h);
+                    recomputeAndSaveStats();
+                }
+            }
+            await cloudPushStats();
+            setSyncStatus("Synced");
+        } catch (e) {
+            console.warn("Cloud push failed:", e);
+            setSyncStatus("Sync failed — will retry next visit", true);
+        }
+    }
+
+    async function cloudPushStats() {
+        if (!cloudClient || !cloudUser) return;
+        const s = loadStats();
+        const { error } = await cloudClient.from("player_stats").upsert({
+            user_id:            cloudUser.id,
+            games_played:       s.gamesPlayed,
+            wins:               s.wins,
+            losses:             s.losses,
+            current_streak:     s.currentStreak,
+            best_streak:        s.bestStreak,
+            best_time_seconds:  s.bestTime,
+            guess_distribution: s.guessDistribution,
+            updated_at:         new Date().toISOString()
+        }, { onConflict: "user_id" });
+        if (error) throw error;
+    }
+
+    async function cloudWipe() {
+        if (!cloudClient || !cloudUser) return;
+        try {
+            await cloudClient.from("player_history").delete().eq("user_id", cloudUser.id);
+            await cloudClient.from("player_stats").delete().eq("user_id", cloudUser.id);
+        } catch (e) {
+            console.warn("Cloud wipe failed:", e);
+        }
+    }
+
+    // After a sync, if today's daily was finished on another device and this
+    // one is sitting on an untouched fresh board, show the finished board.
+    function cloudMaybeLockToday() {
+        if (gameMode !== "daily" || !currentPuzzleDate || gameOver || guesses > 0) return;
+        const r = getDateResult(currentPuzzleDate);
+        if (r) {
+            clearState();
+            restoreCompletedGame(r);
+        }
+    }
+
+    // --- auth actions ---
+    function cloudRedirectTarget() {
+        return window.location.origin + window.location.pathname;
+    }
+
+    async function cloudSignInGoogle() {
+        if (!cloudClient) return;
+        const { error } = await cloudClient.auth.signInWithOAuth({
+            provider: "google",
+            options: { redirectTo: cloudRedirectTarget() }
+        });
+        if (error) setSigninMessage(error.message, true);
+    }
+
+    async function cloudSignInEmail(email) {
+        if (!cloudClient) return;
+        const btn = document.getElementById("signin-email-btn");
+        btn.disabled = true;
+        setSigninMessage("Sending…");
+        const { error } = await cloudClient.auth.signInWithOtp({
+            email,
+            options: { emailRedirectTo: cloudRedirectTarget() }
+        });
+        btn.disabled = false;
+        if (error) setSigninMessage(error.message, true);
+        else setSigninMessage("Check your email for a sign-in link.");
+    }
+
+    async function cloudSignOut() {
+        if (!cloudClient) return;
+        await cloudClient.auth.signOut();
+        // Local stats are left alone: they're still this device's record.
+    }
+
+    // --- account UI ---
+    function renderAccountUI() {
+        const out = document.getElementById("account-signed-out");
+        const inn = document.getElementById("account-signed-in");
+        if (cloudUser) {
+            out.style.display = "none";
+            inn.style.display = "block";
+            document.getElementById("account-email").textContent = cloudUser.email || "your account";
+        } else {
+            out.style.display = "block";
+            inn.style.display = "none";
+        }
+    }
+
+    function setSyncStatus(msg, isError) {
+        const el = document.getElementById("account-sync-status");
+        el.textContent = msg;
+        el.classList.toggle("error", !!isError);
+    }
+
+    function setSigninMessage(msg, isError) {
+        const el = document.getElementById("signin-message");
+        el.textContent = msg;
+        el.classList.toggle("error", !!isError);
+    }
+
+    function openSignin() {
+        closeStats();
+        setSigninMessage("");
+        document.getElementById("signin-popup").style.display = "block";
+        document.getElementById("signin-email").focus();
+    }
+
+    function closeSignin() {
+        document.getElementById("signin-popup").style.display = "none";
+    }
+
+    document.getElementById("account-signin").addEventListener("click", openSignin);
+    document.getElementById("account-signout").addEventListener("click", cloudSignOut);
+    document.getElementById("signin-close").addEventListener("click", closeSignin);
+    document.getElementById("signin-google").addEventListener("click", cloudSignInGoogle);
+    document.getElementById("signin-email-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const email = document.getElementById("signin-email").value.trim();
+        if (email) cloudSignInEmail(email);
+    });
+
+    cloudInit();
 
     // ===== Guided Tutorial =====
     // Walks the player through a simulated CHILI / SAUCE puzzle on the real
@@ -2004,8 +2461,7 @@
         setWinSprite();
         winPopup.style.display = "block";
         gameOver = true;
-        recordWin(guesses, timeElapsed);
-        // Save to history for daily games
+        // Save to history for daily games (stats are derived from history)
         if (gameMode === "daily" && currentPuzzleDate) {
             saveToHistory(currentPuzzleDate, {
                 solved: true,
@@ -2027,8 +2483,7 @@
         setLoseSprite("crash");
         document.getElementById("lose-popup").style.display = "block";
         gameOver = true;
-        recordLoss();
-        // Save to history for daily games
+        // Save to history for daily games (stats are derived from history)
         if (gameMode === "daily" && currentPuzzleDate) {
             const endTime = Date.now();
             const timeElapsed = Math.floor((endTime - startTime) / 1000);
@@ -2199,6 +2654,13 @@
     function handleKeydown(event) {
         const winPopup = document.getElementById("win-popup");
         const losePopup = document.getElementById("lose-popup");
+
+        // Sign-in popup owns the keyboard: the player is typing an email.
+        // Let the input and the form's native Enter-to-submit handle it.
+        if (document.getElementById("signin-popup").style.display === "block") {
+            if (event.key === "Escape") closeSignin();
+            return;
+        }
 
         // First-visit offer is modal: Enter takes the tour, Escape declines
         if (document.getElementById("tut-offer").style.display === "block") {
