@@ -99,6 +99,27 @@ So magic links come from `@intersectionsgame.com` and don't hit spam:
    - Host `smtp.resend.com`, port `465`, user `resend`, password = the API key
    - Sender email `noreply@intersectionsgame.com`, sender name `Intersections`
 
+## Later: replace the Supabase domain on Google's consent screen
+
+Google's sign-in screen currently says "Sign in to myifzzsddeuficvslsgg.supabase.co"
+because Google displays the redirect domain whenever it isn't one you own.
+No branding setting changes this. The fix is a custom auth domain, and it's
+config only — no code changes.
+
+Cost: Supabase Pro ($25/mo) + Custom Domains add-on ($10/mo). Deferred until
+the game justifies it.
+
+When ready:
+1. Supabase → **Project Settings** → **Custom Domains** → add `auth.intersectionsgame.com`,
+   then add the CNAME it gives you at your DNS registrar and verify.
+2. Google Cloud → **Credentials** → your OAuth client → change the redirect
+   URI to `https://auth.intersectionsgame.com/auth/v1/callback`.
+3. Google Cloud → **OAuth consent screen** → add `intersectionsgame.com` under
+   Authorized domains, fill in homepage + privacy policy, and **Publish**.
+4. In `index.html`, change `INTERSECTIONS_SUPABASE_URL` to `https://auth.intersectionsgame.com`.
+
+After that Google shows "Sign in to Intersections" with your logo.
+
 ## 8. Privacy policy (required by Google, good practice anyway)
 
 Google won't let you publish the OAuth consent screen without a live privacy
