@@ -9,6 +9,7 @@
 // the serverless function — that path never goes through HTTP.
 
 export const config = {
+    runtime: 'nodejs',   // Vercel deprecated the default 'edge' runtime for middleware
     matcher: ['/_private/:path*', '/Private/:path*', '/supabase/:path*']
 };
 
