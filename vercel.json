@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/Private/:path*", "destination": "/api/blocked" }
+    { "source": "/Private/:path*", "destination": "/api/blocked" },
+    { "source": "/privacy", "destination": "/privacy.html" }
   ],
   "headers": [
     {
