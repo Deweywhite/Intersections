@@ -2663,6 +2663,12 @@
             return;
         }
 
+        // From here on the game owns Enter and Space. Without this, a
+        // <button> left focused by a mouse click (🔄 after starting a random
+        // game, for instance) also receives the key as a click — so every
+        // Enter that submitted a guess ALSO started a new game.
+        if (event.key === "Enter" || event.key === " ") event.preventDefault();
+
         // First-visit offer is modal: Enter takes the tour, Escape declines
         if (document.getElementById("tut-offer").style.display === "block") {
             if (event.key === "Enter") {
@@ -2726,6 +2732,14 @@
     }
 
     document.addEventListener('keydown', handleKeydown);
+
+    // Belt and braces for the same bug: a mouse-clicked button shouldn't
+    // keep keyboard focus. Only for clicks (pointer), so tabbing with a
+    // keyboard still works normally.
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('#menu-bar button, .letter-btn');
+        if (btn && e.detail > 0) btn.blur();
+    });
 
     // --- TEST MODE: F2 to set custom words ---
     document.addEventListener('keydown', function(e) {
