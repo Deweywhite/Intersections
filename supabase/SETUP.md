@@ -25,10 +25,12 @@ Total time: about 30 minutes. Cost: $0 (Supabase free tier, Google OAuth is free
 
 ## 3. Get your keys (1 min)
 
-1. Sidebar → **Project Settings** (gear) → **API**.
-2. Copy **Project URL** (looks like `https://abcdefgh.supabase.co`).
-3. Copy the **anon / public** key (long string starting `eyJ...`).
-   *Not* the `service_role` key — that one must never go in the browser.
+1. Sidebar → **Project Settings** (gear, bottom left) → **General**.
+   Your **Project ID** is shown there. Your Project URL is
+   `https://<Project ID>.supabase.co` — e.g. `https://myifzzsddeuficvslsgg.supabase.co`.
+2. Same settings sidebar → **API Keys**. Copy the one labelled **anon** (some
+   dashboards call it **publishable**). *Not* `service_role` / `secret` —
+   that one must never go in the browser.
 4. In `index.html`, find these two lines near the bottom and paste them in:
 
    ```js
