@@ -452,7 +452,7 @@
             border: 2px solid #4caf50;
             border-radius: 10px;
             padding: 6px;
-            min-width: 210px;
+            min-width: 150px;
             z-index: 1500;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
             text-align: left;
@@ -597,7 +597,7 @@
             display: flex;
             gap: 5px;
             justify-content: center;
-            margin: 4px 0 6px;
+            margin: 4px 0 16px;
         }
         #stat-week button {
             width: 30px;
@@ -1092,9 +1092,9 @@
         </div>
     </div>
     <div id="play-menu" role="menu" style="display:none;">
-        <button role="menuitem" id="play-random">Random<span>Practice — doesn't count</span></button>
-        <button role="menuitem" id="play-archive">Archive<span>Any day since Jun 1, 2026</span></button>
-        <button role="menuitem" id="play-back" style="display:none;">Back<span id="play-back-sub">To the game you left</span></button>
+        <button role="menuitem" id="play-random">Random</button>
+        <button role="menuitem" id="play-archive">Archive</button>
+        <button role="menuitem" id="play-back" style="display:none;">Back</button>
     </div>
     <div id="mode-label"></div>
     <div id="result-label"></div>
@@ -1429,12 +1429,15 @@
         updateResultLabel();
     }
 
-    // Under the mode label on a finished daily/archive board: what happened
-    // and how long it took — the two things the board itself can't show.
+    // Shown ONLY when a past day is opened read-only from the Archive: that
+    // board has no popup to report the result and time. Live finishes get
+    // the win/crash popup and nothing up here.
+    let showResultLabel = false;
+
     function updateResultLabel() {
         const el = document.getElementById("result-label");
         if (!el) return;
-        const r = (gameMode !== "random" && currentPuzzleDate) ? getDateResult(currentPuzzleDate) : null;
+        const r = (showResultLabel && gameMode === "archive" && currentPuzzleDate) ? getDateResult(currentPuzzleDate) : null;
         if (!r || !gameOver) { el.textContent = ""; return; }
         const parts = [];
         parts.push(r.solved ? `Survived in ${r.guesses}` : `Crashed`);
@@ -1672,6 +1675,7 @@
                     const finished = gameMode === "archive" ? getDateResult(currentPuzzleDate) : null;
                     if (finished) {
                         currentClue = saved.clue || "";
+                        showResultLabel = true;
                         restoreCompletedGame(finished);
                     } else {
                         restoreGame(saved);
@@ -1719,12 +1723,6 @@
         const back = document.getElementById("play-back");
         const target = loadBackTarget();
         back.style.display = target ? "block" : "none";
-        if (target) {
-            document.getElementById("play-back-sub").textContent =
-                target.mode === "random" ? "To your random game"
-              : target.mode === "archive" ? "To " + formatDateForDisplay(target.date)
-              : "To today's puzzle";
-        }
         menu.style.display = "block";
     }
 
@@ -1799,6 +1797,7 @@
                 updateModeLabel();
                 const done = getDateResult(date);
                 if (done) {
+                    showResultLabel = true;
                     restoreCompletedGame(done);
                 } else {
                     toggleShareButtons(false);
@@ -1824,6 +1823,7 @@
                 gameMode = "daily";
                 updateModeLabel();
                 const done = getDateResult(currentPuzzleDate);
+                showResultLabel = false;
                 if (done) restoreCompletedGame(done);
                 else { toggleShareButtons(false); startNewGame(); }
                 closeArchive();
@@ -1848,6 +1848,7 @@
         currentClue      = t.clue || "";
         updateModeLabel();
         const done = (t.mode !== "random" && t.date) ? getDateResult(t.date) : null;
+        showResultLabel = (t.mode === "archive" && !!done);
         if (done) {
             restoreCompletedGame(done);
         } else if (t.gameOver) {
@@ -1864,14 +1865,28 @@
 
     document.getElementById("new-game").addEventListener("click", function(e) {
         e.stopPropagation();
+        closeStats();
+        closeArchive();
         const menu = document.getElementById("play-menu");
         if (menu.style.display === "block") playMenuClose(); else playMenuOpen();
     });
     document.getElementById("play-random").addEventListener("click", function() { playMenuClose(); startRandomGame(); });
     document.getElementById("play-archive").addEventListener("click", function() { playMenuClose(); openArchive(); });
     document.getElementById("play-back").addEventListener("click", function() { playMenuClose(); goBack(); });
+    // Click-away closes the play menu, the calendar, and the stats popup.
+    // The button that opened each one is excluded so the opening click
+    // doesn't immediately close it.
     document.addEventListener("click", function(e) {
-        if (!e.target.closest("#play-menu")) playMenuClose();
+        const t = e.target;
+        if (!t.closest("#play-menu")) playMenuClose();
+        if (document.getElementById("archive-popup").style.display === "block"
+            && !t.closest("#archive-popup") && !t.closest("#play-archive") && !t.closest("#stat-week")) {
+            closeArchive();
+        }
+        if (document.getElementById("stats-popup").style.display === "block"
+            && !t.closest("#stats-popup") && !t.closest("#stats")) {
+            closeStats();
+        }
     });
 
     // ===== Archive calendar =====
@@ -2688,6 +2703,8 @@
 
         document.getElementById("road-sign").dataset.peeked = "";
         renderRoadSign();
+        showResultLabel = false;
+        updateResultLabel();
 
         saveState(); // Persist word pair immediately so refresh keeps same game
         isStartingNewGame = false;
