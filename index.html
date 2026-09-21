@@ -1405,15 +1405,15 @@
         return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
 
+    // Stopwatch style: 0:45, 8:30, 1:02:15
     function formatTime(totalSeconds) {
-        const hours = Math.floor(totalSeconds / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-        const parts = [];
-        if (hours > 0) parts.push(hours + (hours === 1 ? " hour" : " hours"));
-        if (minutes > 0) parts.push(minutes + (minutes === 1 ? " minute" : " minutes"));
-        parts.push(seconds + (seconds === 1 ? " second" : " seconds"));
-        return parts.join(" ");
+        const s = Math.max(0, Math.floor(totalSeconds));
+        const hours = Math.floor(s / 3600);
+        const minutes = Math.floor((s % 3600) / 60);
+        const seconds = s % 60;
+        const mm = hours > 0 ? String(minutes).padStart(2, "0") : String(minutes);
+        const ss = String(seconds).padStart(2, "0");
+        return hours > 0 ? `${hours}:${mm}:${ss}` : `${mm}:${ss}`;
     }
 
     function updateModeLabel() {
