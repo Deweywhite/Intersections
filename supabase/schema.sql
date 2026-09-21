@@ -13,13 +13,16 @@ create table if not exists public.player_history (
     time_seconds   integer     not null check (time_seconds >= 0),
     guess_words    jsonb       not null default '[]'::jsonb,
     used_directions boolean    not null default false,   -- revealed the road sign (v2.1)
+    is_archive     boolean     not null default false,   -- played from the Archive, not as the daily (v2.2)
     updated_at     timestamptz not null default now(),
     primary key (user_id, puzzle_date)
 );
 
--- Upgrade for tables created before v2.1 (safe to run on a fresh table too)
+-- Upgrades for tables created before v2.1 / v2.2 (safe to run on a fresh table too)
 alter table public.player_history
     add column if not exists used_directions boolean not null default false;
+alter table public.player_history
+    add column if not exists is_archive boolean not null default false;
 
 -- Denormalised aggregate so leaderboards later are a plain SELECT,
 -- not a compute-over-history. Always rewritten from history on sync.

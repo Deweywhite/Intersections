@@ -443,6 +443,179 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Play menu (green light) ===== */
+        #play-menu {
+            position: absolute;
+            top: calc(4vw + 6px);
+            left: 8px;
+            background-color: #2f2f2f;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 6px;
+            min-width: 210px;
+            z-index: 1500;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            text-align: left;
+        }
+        #play-menu button {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            border-radius: 6px;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+            padding: 9px 12px;
+            cursor: pointer;
+        }
+        #play-menu button span {
+            display: block;
+            font-size: 11px;
+            font-weight: normal;
+            color: #999;
+            margin-top: 2px;
+        }
+        #play-menu button:hover { background-color: #3a3a3a; }
+
+        #result-label {
+            text-align: center;
+            font-size: min(1.1vw, 13px);
+            color: #9fd9a2;
+            min-height: 1.2em;
+            margin-top: -0.3vw;
+        }
+        #result-label:empty { display: none; }
+
+        /* ===== Archive calendar ===== */
+        #archive-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            border: 3px solid #4caf50;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            padding: 16px 18px;
+            width: 320px;
+            max-width: 90vw;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            z-index: 1200;
+            display: none;
+            text-align: center;
+        }
+        #archive-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #archive-head button {
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        #archive-head button:disabled { opacity: 0.3; cursor: default; }
+        #archive-dow, #archive-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        #archive-dow span { font-size: 10px; color: #888; }
+        #archive-dow { margin-bottom: 5px; }
+        .arc-day {
+            aspect-ratio: 1;
+            border-radius: 7px;
+            background-color: #2a2a2a;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .arc-day:hover { background-color: #3a3a3a; }
+        .arc-day.survived { background-color: #4caf50; color: #0f2a10; }
+        .arc-day.survived:hover { background-color: #5cbf60; }
+        .arc-day.crashed  { background-color: #f44336; color: #3a0c09; }
+        .arc-day.crashed:hover { background-color: #f6564a; }
+        .arc-day.locked   { background-color: #222; color: #555; cursor: default; }
+        .arc-day.locked:hover { background-color: #222; }
+        .arc-day.today    { outline: 2px solid #ffeb3b; outline-offset: -2px; }
+        .arc-day.blank    { background: none; cursor: default; }
+        #archive-legend {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 12px;
+        }
+        #archive-legend i {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            vertical-align: -1px;
+            margin-right: 4px;
+        }
+        .lg-survived { background: #4caf50; }
+        .lg-crashed  { background: #f44336; }
+        .lg-open     { background: #2a2a2a; border: 1px solid #555; }
+        #archive-close {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 14px auto 0;
+            display: block;
+        }
+        #archive-close:hover { background-color: #777; }
+
+        /* ===== Last 7 days strip in Stats ===== */
+        #stat-week {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin: 4px 0 6px;
+        }
+        #stat-week button {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            border: none;
+            background-color: #2a2a2a;
+            color: #888;
+            font-size: 11px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            padding: 0;
+        }
+        #stat-week button.survived { background-color: #4caf50; color: #0f2a10; }
+        #stat-week button.crashed  { background-color: #f44336; color: #3a0c09; }
+        #stat-week button.today    { outline: 2px solid #ffeb3b; outline-offset: -2px; }
+
         /* ===== Road sign (clue) ===== */
         #road-sign {
             display: inline-flex;
@@ -836,6 +1009,8 @@
                 padding: 2vw 4vw;
                 margin-bottom: 2.5vw;
             }
+            #play-menu { top: calc(8vw + 6px); }
+            #result-label { font-size: 2.6vw; margin-top: 0; }
             .road-sign-icon { width: 4.5vw; height: 4.5vw; }
             .crash-graphic {
                 width: 100%;
@@ -905,7 +1080,7 @@
 <body>
     <div id="menu-bar">
         <div class="left">
-            <button id="new-game" class="icon-btn" title="New Game"><span class="menu-light green-light"></span></button>
+            <button id="new-game" class="icon-btn" title="Play" aria-haspopup="menu"><span class="menu-light green-light"></span></button>
             <button id="give-up" class="icon-btn" title="Give Up"><span class="menu-light red-light"></span></button>
         </div>
         <div class="center">
@@ -916,7 +1091,29 @@
             <button id="help" title="Help">?</button>
         </div>
     </div>
+    <div id="play-menu" role="menu" style="display:none;">
+        <button role="menuitem" id="play-random">Random<span>Practice — doesn't count</span></button>
+        <button role="menuitem" id="play-archive">Archive<span>Any day since Jun 1, 2026</span></button>
+        <button role="menuitem" id="play-back" style="display:none;">Back<span id="play-back-sub">To the game you left</span></button>
+    </div>
     <div id="mode-label"></div>
+    <div id="result-label"></div>
+
+    <div id="archive-popup">
+        <div id="archive-head">
+            <button id="archive-prev" aria-label="Previous month">‹</button>
+            <span id="archive-month"></span>
+            <button id="archive-next" aria-label="Next month">›</button>
+        </div>
+        <div id="archive-dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+        <div id="archive-grid"></div>
+        <div id="archive-legend">
+            <span><i class="lg-survived"></i>Survived</span>
+            <span><i class="lg-crashed"></i>Crashed</span>
+            <span><i class="lg-open"></i>Open</span>
+        </div>
+        <button id="archive-close">X</button>
+    </div>
     <div id="game-container">
         <div class="grid-container">
             <div class="grid" id="main-grid"></div>
@@ -980,25 +1177,27 @@
             <div class="stats-row">
                 <div class="stat-box">
                     <span class="stat-value" id="stat-played">0</span>
-                    <span class="stat-label">Played</span>
+                    <span class="stat-label">Intersections</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-wins">0</span>
+                    <span class="stat-label">Survived</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-pct">0%</span>
+                    <span class="stat-label">Survival Rate</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-value" id="stat-streak">0</span>
                     <span class="stat-label">Current Streak</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-value" id="stat-pct">0%</span>
-                    <span class="stat-label">Win %</span>
-                </div>
-                <div class="stat-box">
                     <span class="stat-value" id="stat-best">0</span>
                     <span class="stat-label">Best Streak</span>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-value" id="stat-wins">0</span>
-                    <span class="stat-label">Won</span>
-                </div>
             </div>
+            <div class="dist-title">LAST 7 DAYS</div>
+            <div id="stat-week"></div>
             <div class="dist-title">GUESS DISTRIBUTION</div>
             <div id="stat-dist"></div>
             <button id="stats-clear" style="display:block; margin:12px auto 0;">RESET</button>
@@ -1138,11 +1337,16 @@
             }
         }
 
-        // Best streak: longest run of consecutive calendar days, all solved.
+        // Streaks only count days played AS the daily. An archive play of a
+        // past date fills the calendar but can't repair a broken streak —
+        // otherwise streaks would mean nothing.
+        const streakSolved = d => !!(history[d] && history[d].solved && !history[d].archive);
+
+        // Best streak: longest run of consecutive calendar days, all solved live.
         let run = 0, prev = null;
         for (const date of dates) {
-            if (history[date].solved && prev !== null && shiftDate(prev, 1) === date) run++;
-            else run = history[date].solved ? 1 : 0;
+            if (streakSolved(date) && prev !== null && shiftDate(prev, 1) === date) run++;
+            else run = streakSolved(date) ? 1 : 0;
             if (run > stats.bestStreak) stats.bestStreak = run;
             prev = date;
         }
@@ -1151,7 +1355,7 @@
         // streak is still alive from yesterday; a miss or a loss ends it.
         const today = easternToday();
         let cursor = history[today] ? today : shiftDate(today, -1);
-        while (history[cursor] && history[cursor].solved) {
+        while (streakSolved(cursor)) {
             stats.currentStreak++;
             cursor = shiftDate(cursor, -1);
         }
@@ -1217,9 +1421,26 @@
         if (!label) return;
         if (gameMode === "daily" && currentPuzzleDate) {
             label.textContent = "Daily Puzzle: " + formatDateForDisplay(currentPuzzleDate);
+        } else if (gameMode === "archive" && currentPuzzleDate) {
+            label.textContent = "Archive: " + formatDateForDisplay(currentPuzzleDate);
         } else {
             label.textContent = "Random Practice";
         }
+        updateResultLabel();
+    }
+
+    // Under the mode label on a finished daily/archive board: what happened
+    // and how long it took — the two things the board itself can't show.
+    function updateResultLabel() {
+        const el = document.getElementById("result-label");
+        if (!el) return;
+        const r = (gameMode !== "random" && currentPuzzleDate) ? getDateResult(currentPuzzleDate) : null;
+        if (!r || !gameOver) { el.textContent = ""; return; }
+        const parts = [];
+        parts.push(r.solved ? `Survived in ${r.guesses}` : `Crashed`);
+        if (typeof r.time === "number") parts.push(formatTime(r.time));
+        if (r.usedDirections) parts.push("asked for directions");
+        el.textContent = parts.join(" · ");
     }
 
     function showStats(winningGuesses) {
@@ -1257,6 +1478,7 @@
                 bestTimeEl.style.display = "none";
             }
         }
+        renderStatWeek();
         document.getElementById("stats-popup").style.display = "block";
     }
 
@@ -1346,8 +1568,18 @@
         initLetterBank();
         resetKeyboard();
 
+        // Own the replayed history: without this, the next guess after a
+        // reload was saved as the ONLY guess, and a second reload lost the
+        // earlier ones. Also reset counters the caller may not have.
+        guessHistory = (state.guessHistory || []).slice();
+        guesses = 0;
+        horizontalLocked = false;
+        verticalLocked = false;
+        currentGuess = "";
+        gameOver = false;
+
         // Replay each saved guess through the existing processing pipeline
-        state.guessHistory.forEach(word => {
+        guessHistory.forEach(word => {
             guesses++;
             const feedback = provideFeedback(word);
             displayGuess(word, feedback);
@@ -1395,8 +1627,9 @@
         document.getElementById("road-sign").dataset.peeked = "";
         renderRoadSign();
 
-        // Show share button visibility for daily completed game
+        // Share is allowed for daily and archive boards
         toggleShareButtons(true);
+        updateResultLabel();
     }
 
     window.onload = function() {
@@ -1424,7 +1657,7 @@
                 // Check for in-progress saved state
                 const saved = loadState();
                 const savedMatchesContext = saved && saved.guessHistory && saved.guessHistory.length > 0
-                    && (saved.mode === "random" || saved.date === currentPuzzleDate);
+                    && (saved.mode === "random" || saved.mode === "archive" || saved.date === currentPuzzleDate);
                 if (savedMatchesContext) {
                     // Resume today's in-progress game (daily or random)
                     targetHorizontal = saved.targetHorizontal;
@@ -1432,8 +1665,17 @@
                     intersectH = saved.intersectH;
                     intersectV = saved.intersectV;
                     gameMode = saved.mode || "daily";
+                    if (gameMode === "archive") currentPuzzleDate = saved.date || null;
                     updateModeLabel();
-                    restoreGame(saved);
+                    // A finished archive day lives in history — show it read-only
+                    // rather than replaying it (which would re-open the popup)
+                    const finished = gameMode === "archive" ? getDateResult(currentPuzzleDate) : null;
+                    if (finished) {
+                        currentClue = saved.clue || "";
+                        restoreCompletedGame(finished);
+                    } else {
+                        restoreGame(saved);
+                    }
                 } else {
                     // Fresh daily game
                     if (saved) clearState(); // clear stale state from different date
@@ -1456,6 +1698,7 @@
                     intersectV = saved.intersectV;
                     currentPuzzleDate = saved.date || null;
                     gameMode = saved.mode || "daily";
+                    if (gameMode === "archive") currentPuzzleDate = saved.date || null;
                     updateModeLabel();
                     restoreGame(saved);
                 } else {
@@ -1467,33 +1710,256 @@
             });
     };
 
-    document.getElementById("new-game").addEventListener("click", function() {
+    // ===== Play menu (green light): Random / Archive / Back =====
+    const ARCHIVE_START = "2026-06-01";   // first scheduled puzzle
+    const BACK_KEY = "intersections_back";
+
+    function playMenuOpen() {
+        const menu = document.getElementById("play-menu");
+        const back = document.getElementById("play-back");
+        const target = loadBackTarget();
+        back.style.display = target ? "block" : "none";
+        if (target) {
+            document.getElementById("play-back-sub").textContent =
+                target.mode === "random" ? "To your random game"
+              : target.mode === "archive" ? "To " + formatDateForDisplay(target.date)
+              : "To today's puzzle";
+        }
+        menu.style.display = "block";
+    }
+
+    function playMenuClose() {
+        document.getElementById("play-menu").style.display = "none";
+    }
+
+    // Snapshot the game being left so Back can return to it. One level deep.
+    function stashBackTarget() {
+        const target = {
+            mode: gameMode, date: currentPuzzleDate,
+            targetHorizontal, targetVertical, intersectH, intersectV,
+            startTime, guessHistory: guessHistory.slice(),
+            clue: currentClue, usedDirections, gameOver
+        };
+        try { localStorage.setItem(BACK_KEY, JSON.stringify(target)); } catch (e) {}
+    }
+
+    function loadBackTarget() {
+        try { const raw = localStorage.getItem(BACK_KEY); return raw ? JSON.parse(raw) : null; }
+        catch (e) { return null; }
+    }
+
+    function clearBackTarget() {
+        try { localStorage.removeItem(BACK_KEY); } catch (e) {}
+    }
+
+    function applyPair(data) {
+        targetHorizontal = data.targetHorizontal;
+        targetVertical   = data.targetVertical;
+        intersectH       = data.intersectH;
+        intersectV       = data.intersectV;
+        setClue(data.clues && data.clues[0]);
+    }
+
+    function startRandomGame() {
+        stashBackTarget();
         clearState();
-        // New Game always starts a random practice game
         fetch('/api/pair?mode=random')
             .then(res => res.json())
             .then(data => {
-                targetHorizontal = data.targetHorizontal;
-                targetVertical = data.targetVertical;
-                intersectH = data.intersectH;
-                intersectV = data.intersectV;
+                applyPair(data);
                 currentPuzzleDate = null;
                 gameMode = "random";
                 updateModeLabel();
                 toggleShareButtons(false);
-                setClue(data.clues && data.clues[0]);
                 startNewGame();
             })
             .catch(error => {
                 console.error('Error fetching word pair:', error);
                 alert('Failed to load game data. Please try again.');
             });
+    }
+
+    // Load a specific date. Already played → read-only finished board.
+    // Unplayed → play it as an archive game (counts, but not for streaks).
+    // Today → just the daily.
+    function loadDate(date) {
+        const today = easternToday();
+        if (date === today) { goToToday(); return; }
+        if (date > today || date < ARCHIVE_START) return;
+
+        if (gameMode !== "archive" || currentPuzzleDate !== date) stashBackTarget();
+        clearState();
+        fetch('/api/pair?date=' + encodeURIComponent(date))
+            .then(res => res.json())
+            .then(data => {
+                if (data.date !== date) throw new Error("No puzzle for " + date);
+                applyPair(data);
+                currentPuzzleDate = date;
+                gameMode = "archive";
+                updateModeLabel();
+                const done = getDateResult(date);
+                if (done) {
+                    restoreCompletedGame(done);
+                } else {
+                    toggleShareButtons(false);
+                    startNewGame();
+                }
+                closeArchive();
+                closeStats();
+            })
+            .catch(error => {
+                console.error('Error loading archive date:', error);
+                alert("Couldn't load that day's puzzle.");
+            });
+    }
+
+    function goToToday() {
+        clearState();
+        clearBackTarget();
+        fetch('/api/pair')
+            .then(res => res.json())
+            .then(data => {
+                applyPair(data);
+                currentPuzzleDate = data.date;
+                gameMode = "daily";
+                updateModeLabel();
+                const done = getDateResult(currentPuzzleDate);
+                if (done) restoreCompletedGame(done);
+                else { toggleShareButtons(false); startNewGame(); }
+                closeArchive();
+            })
+            .catch(error => {
+                console.error('Error fetching word pair:', error);
+                alert('Failed to load game data. Please try again.');
+            });
+    }
+
+    function goBack() {
+        const t = loadBackTarget();
+        clearBackTarget();
+        if (!t) { goToToday(); return; }
+        clearState();
+        gameMode = t.mode;
+        currentPuzzleDate = t.date;
+        targetHorizontal = t.targetHorizontal;
+        targetVertical   = t.targetVertical;
+        intersectH       = t.intersectH;
+        intersectV       = t.intersectV;
+        currentClue      = t.clue || "";
+        updateModeLabel();
+        const done = (t.mode !== "random" && t.date) ? getDateResult(t.date) : null;
+        if (done) {
+            restoreCompletedGame(done);
+        } else if (t.gameOver) {
+            // a finished random game — rebuild it read-only
+            restoreGame(t);
+        } else {
+            restoreGame(t);
+            usedDirections = !!t.usedDirections;
+            renderRoadSign();
+            saveState();
+        }
+        toggleShareButtons(t.mode !== "random" && !!done);
+    }
+
+    document.getElementById("new-game").addEventListener("click", function(e) {
+        e.stopPropagation();
+        const menu = document.getElementById("play-menu");
+        if (menu.style.display === "block") playMenuClose(); else playMenuOpen();
     });
+    document.getElementById("play-random").addEventListener("click", function() { playMenuClose(); startRandomGame(); });
+    document.getElementById("play-archive").addEventListener("click", function() { playMenuClose(); openArchive(); });
+    document.getElementById("play-back").addEventListener("click", function() { playMenuClose(); goBack(); });
+    document.addEventListener("click", function(e) {
+        if (!e.target.closest("#play-menu")) playMenuClose();
+    });
+
+    // ===== Archive calendar =====
+    let archiveMonth = null;   // "YYYY-MM"
+
+    function openArchive() {
+        const today = easternToday();
+        archiveMonth = (currentPuzzleDate && gameMode !== "random" ? currentPuzzleDate : today).slice(0, 7);
+        renderArchive();
+        document.getElementById("archive-popup").style.display = "block";
+    }
+
+    function closeArchive() {
+        document.getElementById("archive-popup").style.display = "none";
+    }
+
+    function renderArchive() {
+        const today   = easternToday();
+        const history = loadHistory();
+        const [y, m]  = archiveMonth.split("-").map(Number);
+        const first   = new Date(Date.UTC(y, m - 1, 1));
+        const daysIn  = new Date(Date.UTC(y, m, 0)).getUTCDate();
+        const startDow = first.getUTCDay();
+
+        document.getElementById("archive-month").textContent =
+            first.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }).toUpperCase();
+        document.getElementById("archive-prev").disabled = archiveMonth <= ARCHIVE_START.slice(0, 7);
+        document.getElementById("archive-next").disabled = archiveMonth >= today.slice(0, 7);
+
+        const grid = document.getElementById("archive-grid");
+        grid.innerHTML = "";
+        for (let i = 0; i < startDow; i++) {
+            const b = document.createElement("div"); b.className = "arc-day blank"; grid.appendChild(b);
+        }
+        for (let d = 1; d <= daysIn; d++) {
+            const date = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+            const cell = document.createElement("button");
+            cell.type = "button";
+            cell.className = "arc-day";
+            cell.textContent = d;
+            const r = history[date];
+            if (date > today || date < ARCHIVE_START) cell.classList.add("locked");
+            else if (r) cell.classList.add(r.solved ? "survived" : "crashed");
+            if (date === today) cell.classList.add("today");
+            if (!cell.classList.contains("locked")) {
+                cell.title = r ? (r.solved ? "Survived in " + r.guesses : "Crashed") : "Play this day";
+                cell.addEventListener("click", () => loadDate(date));
+            }
+            grid.appendChild(cell);
+        }
+    }
+
+    function shiftMonth(n) {
+        const [y, m] = archiveMonth.split("-").map(Number);
+        const d = new Date(Date.UTC(y, m - 1 + n, 1));
+        archiveMonth = d.toISOString().slice(0, 7);
+        renderArchive();
+    }
+
+    document.getElementById("archive-prev").addEventListener("click", () => shiftMonth(-1));
+    document.getElementById("archive-next").addEventListener("click", () => shiftMonth(1));
+    document.getElementById("archive-close").addEventListener("click", closeArchive);
+
+    // Last-7-days strip inside Stats; each square opens that day
+    function renderStatWeek() {
+        const el = document.getElementById("stat-week");
+        if (!el) return;
+        const today = easternToday();
+        const history = loadHistory();
+        el.innerHTML = "";
+        for (let i = 6; i >= 0; i--) {
+            const date = shiftDate(today, -i);
+            const b = document.createElement("button");
+            b.type = "button";
+            b.textContent = String(Number(date.slice(8)));
+            const r = history[date];
+            if (r) b.classList.add(r.solved ? "survived" : "crashed");
+            if (date === today) b.classList.add("today");
+            b.title = formatDateForDisplay(date) + (r ? (r.solved ? " — survived in " + r.guesses : " — crashed") : "");
+            b.addEventListener("click", () => loadDate(date));
+            el.appendChild(b);
+        }
+    }
 
     document.getElementById("give-up").addEventListener("click", function() {
         if (gameOver) return; // already over, ignore
         // Save to history for daily games (stats are derived from history)
-        if (gameMode === "daily" && currentPuzzleDate) {
+        if (gameMode !== "random" && currentPuzzleDate) {
             const endTime = Date.now();
             const timeElapsed = Math.floor((endTime - startTime) / 1000);
             saveToHistory(currentPuzzleDate, {
@@ -1502,7 +1968,8 @@
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
                 startTime: startTime,
-                usedDirections: usedDirections
+                usedDirections: usedDirections,
+                archive: gameMode === "archive"
             });
         }
         clearState();
@@ -1513,7 +1980,8 @@
         gameOver = true;
         disableInput();
         updateTrafficLights();
-        toggleShareButtons(gameMode === "daily");
+        toggleShareButtons(gameMode !== "random");
+        updateResultLabel();
     });
 
     // All dialog close buttons wired via JS (onclick attrs don't work inside IIFE)
@@ -1591,7 +2059,8 @@
             guesses:      r.guesses || 0,
             time_seconds: r.time || 0,
             guess_words:  r.guessHistory || [],
-            used_directions: !!r.usedDirections
+            used_directions: !!r.usedDirections,
+            is_archive:   !!r.archive
         };
     }
 
@@ -1602,7 +2071,8 @@
             time:         row.time_seconds,
             guessHistory: row.guess_words || [],
             startTime:    null,
-            usedDirections: !!row.used_directions
+            usedDirections: !!row.used_directions,
+            archive:      !!row.is_archive
         };
     }
 
@@ -2574,20 +3044,22 @@
         winPopup.style.display = "block";
         gameOver = true;
         // Save to history for daily games (stats are derived from history)
-        if (gameMode === "daily" && currentPuzzleDate) {
+        if (gameMode !== "random" && currentPuzzleDate) {
             saveToHistory(currentPuzzleDate, {
                 solved: true,
                 guesses: guesses,
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
                 startTime: startTime,
-                usedDirections: usedDirections
+                usedDirections: usedDirections,
+                archive: gameMode === "archive"
             });
             clearState(); // No in-progress state needed
         }
         disableInput();
         updateTrafficLights();
-        toggleShareButtons(gameMode === "daily");
+        toggleShareButtons(gameMode !== "random");
+        updateResultLabel();
     }
 
     function showLosePopup() {
@@ -2597,7 +3069,7 @@
         document.getElementById("lose-popup").style.display = "block";
         gameOver = true;
         // Save to history for daily games (stats are derived from history)
-        if (gameMode === "daily" && currentPuzzleDate) {
+        if (gameMode !== "random" && currentPuzzleDate) {
             const endTime = Date.now();
             const timeElapsed = Math.floor((endTime - startTime) / 1000);
             saveToHistory(currentPuzzleDate, {
@@ -2606,13 +3078,15 @@
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
                 startTime: startTime,
-                usedDirections: usedDirections
+                usedDirections: usedDirections,
+                archive: gameMode === "archive"
             });
             clearState();
         }
         disableInput();
         updateTrafficLights();
-        toggleShareButtons(gameMode === "daily");
+        toggleShareButtons(gameMode !== "random");
+        updateResultLabel();
     }
 
     function setWinSprite() {
@@ -2804,6 +3278,18 @@
             } else if (event.key === "Escape") {
                 tutEnd();
             }
+            return;
+        }
+
+        // Archive calendar: arrows change month, Escape closes
+        if (document.getElementById("archive-popup").style.display === "block") {
+            if (event.key === "Escape") closeArchive();
+            else if (event.key === "ArrowLeft"  && !document.getElementById("archive-prev").disabled) shiftMonth(-1);
+            else if (event.key === "ArrowRight" && !document.getElementById("archive-next").disabled) shiftMonth(1);
+            return;
+        }
+        if (document.getElementById("play-menu").style.display === "block") {
+            if (event.key === "Escape") playMenuClose();
             return;
         }
 
