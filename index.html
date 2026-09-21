@@ -443,6 +443,39 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Road sign (clue) ===== */
+        #road-sign {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto 10px;
+            padding: 7px 16px;
+            max-width: 92%;
+            background-color: #2a2a2a;
+            color: #ccc;
+            border: 2px solid #777;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: min(1.3vw, 16px);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+        #road-sign:hover { background-color: #333; border-color: #999; }
+        #road-sign.revealed {
+            background-color: #2e6b2e;
+            border-color: #cfe8cf;
+            color: #e6f3e6;
+            cursor: default;
+        }
+        #road-sign.revealed:hover { background-color: #2e6b2e; border-color: #cfe8cf; }
+        #road-sign.hidden { display: none; }
+        .road-sign-icon { width: 18px; height: 18px; flex: none; }
+
         /* ===== Account / sign-in ===== */
         #account-section {
             margin-top: 14px;
@@ -798,6 +831,12 @@
                 font-size: 13px;
                 padding: 12px 14px;
             }
+            #road-sign {
+                font-size: 3.3vw;
+                padding: 2vw 4vw;
+                margin-bottom: 2.5vw;
+            }
+            .road-sign-icon { width: 4.5vw; height: 4.5vw; }
             .crash-graphic {
                 width: 100%;
                 margin: 5px auto;
@@ -889,6 +928,10 @@
         <div class="keyboard-container">
             <div class="traffic-light" id="left-traffic-light"></div>
             <div id="letter-bank-wrapper">
+                <button id="road-sign" type="button" aria-live="polite">
+                    <svg class="road-sign-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22V6M4 6h13l3 3-3 3H4zM9 15h6"/></svg>
+                    <span id="road-sign-text">ASK DIRECTIONS?</span>
+                </button>
                 <div id="letter-bank"></div>
             </div>
             <div class="traffic-light" id="right-traffic-light"></div>
@@ -1027,6 +1070,8 @@
     let isStartingNewGame = false; // Prevent duplicate calls
     let currentPuzzleDate = null;  // "YYYY-MM-DD" for daily, null for random
     let gameMode = "daily";        // "daily" or "random"
+    let currentClue = "";          // the road sign text for this puzzle
+    let usedDirections = false;    // did the player reveal the sign before finishing?
 
     const STORAGE_KEY = "intersections_state";
     const STATS_KEY = "intersections_stats";
@@ -1219,6 +1264,42 @@
         document.getElementById("stats-popup").style.display = "none";
     }
 
+    // ===== Road sign (the clue) =====
+    // "ASK DIRECTIONS?" until tapped, then the category clue. Revealing it
+    // before the game ends sets usedDirections, which the share text reports.
+    // After the game ends it can be read freely without changing that.
+    function setClue(text) {
+        currentClue = (text || "").toString().trim();
+        usedDirections = false;
+        renderRoadSign();
+    }
+
+    function renderRoadSign() {
+        const sign = document.getElementById("road-sign");
+        const label = document.getElementById("road-sign-text");
+        if (!sign) return;
+        if (!currentClue) { sign.classList.add("hidden"); return; }
+        sign.classList.remove("hidden");
+        const show = usedDirections || sign.dataset.peeked === "1";
+        sign.classList.toggle("revealed", show);
+        label.textContent = show ? currentClue : "ASK DIRECTIONS?";
+        sign.setAttribute("aria-label", show ? "Road sign: " + currentClue : "Ask directions: reveal a clue");
+    }
+
+    function revealRoadSign() {
+        const sign = document.getElementById("road-sign");
+        if (!currentClue || sign.classList.contains("revealed")) return;
+        if (gameOver) {
+            sign.dataset.peeked = "1";       // reading it afterwards is free
+        } else {
+            usedDirections = true;
+            saveState();
+        }
+        renderRoadSign();
+    }
+
+    document.getElementById("road-sign").addEventListener("click", revealRoadSign);
+
     function saveState() {
         const state = {
             targetHorizontal,
@@ -1228,7 +1309,9 @@
             startTime,
             guessHistory: guessHistory,
             date: currentPuzzleDate,
-            mode: gameMode
+            mode: gameMode,
+            clue: currentClue,
+            usedDirections: usedDirections
         };
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -1252,6 +1335,10 @@
         intersectH = state.intersectH;
         intersectV = state.intersectV;
         startTime = state.startTime;
+        currentClue = state.clue || "";
+        usedDirections = !!state.usedDirections;
+        document.getElementById("road-sign").dataset.peeked = "";
+        renderRoadSign();
 
         initMainGrid();
         initHGuesses();
@@ -1303,6 +1390,11 @@
         disableInput();
         updateTrafficLights();
 
+        // Sign reflects what happened during that game
+        usedDirections = !!result.usedDirections;
+        document.getElementById("road-sign").dataset.peeked = "";
+        renderRoadSign();
+
         // Show share button visibility for daily completed game
         toggleShareButtons(true);
     }
@@ -1324,6 +1416,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
+                    setClue(data.clues && data.clues[0]);
                     restoreCompletedGame(todayResult);
                     return;
                 }
@@ -1348,6 +1441,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
+                    setClue(data.clues && data.clues[0]);
                     startNewGame();
                 }
             })
@@ -1387,6 +1481,7 @@
                 gameMode = "random";
                 updateModeLabel();
                 toggleShareButtons(false);
+                setClue(data.clues && data.clues[0]);
                 startNewGame();
             })
             .catch(error => {
@@ -1406,7 +1501,8 @@
                 guesses: guesses,
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
-                startTime: startTime
+                startTime: startTime,
+                usedDirections: usedDirections
             });
         }
         clearState();
@@ -1494,7 +1590,8 @@
             solved:       !!r.solved,
             guesses:      r.guesses || 0,
             time_seconds: r.time || 0,
-            guess_words:  r.guessHistory || []
+            guess_words:  r.guessHistory || [],
+            used_directions: !!r.usedDirections
         };
     }
 
@@ -1504,7 +1601,8 @@
             guesses:      row.guesses,
             time:         row.time_seconds,
             guessHistory: row.guess_words || [],
-            startTime:    null
+            startTime:    null,
+            usedDirections: !!row.used_directions
         };
     }
 
@@ -1788,7 +1886,8 @@
             targetHorizontal, targetVertical, intersectH, intersectV,
             startTime, guessHistory: guessHistory.slice(),
             date: currentPuzzleDate, mode: gameMode,
-            guesses, horizontalLocked, verticalLocked, gameOver
+            guesses, horizontalLocked, verticalLocked, gameOver,
+            clue: currentClue, usedDirections
         };
     }
 
@@ -1818,8 +1917,9 @@
             updateMainGrid(TUT_GUESS, fb);
             updateLetterBank(TUT_GUESS, fb);
         }
-        // Tutorial board is display-only
+        // Tutorial board is display-only; the road sign would only distract
         document.querySelectorAll(".letter-btn").forEach(b => b.disabled = true);
+        document.getElementById("road-sign").classList.add("hidden");
     }
 
     function tutPositionBubble(targetEl) {
@@ -1999,9 +2099,17 @@
         const dateStr = formatDateForDisplay(currentPuzzleDate);
         const won = horizontalLocked && verticalLocked;
 
-        let header = won
-            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\n`
-            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\n`;
+        let result;
+        if (won) {
+            result = usedDirections
+                ? `🟢 Got the Green Light in ${guesses}/5 — but I did ask for directions ...`
+                : `🟢 Got the Green Light in ${guesses}/5 — without asking for directions!`;
+        } else {
+            result = usedDirections
+                ? `🔴 Ran the Red Light — even with directions ...`
+                : `🔴 Ran the Red Light — but at least I didn't ask for directions!`;
+        }
+        const header = `🚦 Intersections - ${dateStr}\n${result}\n`;
 
         // Build feedback arrays using pure function (no locked-state interference)
         const allFeedback = [];
@@ -2107,6 +2215,9 @@
         gameOver = false;
         startTime = Date.now();
         guessHistory = [];
+
+        document.getElementById("road-sign").dataset.peeked = "";
+        renderRoadSign();
 
         saveState(); // Persist word pair immediately so refresh keeps same game
         isStartingNewGame = false;
@@ -2469,7 +2580,8 @@
                 guesses: guesses,
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
-                startTime: startTime
+                startTime: startTime,
+                usedDirections: usedDirections
             });
             clearState(); // No in-progress state needed
         }
@@ -2493,7 +2605,8 @@
                 guesses: guesses,
                 time: timeElapsed,
                 guessHistory: guessHistory.slice(),
-                startTime: startTime
+                startTime: startTime,
+                usedDirections: usedDirections
             });
             clearState();
         }
@@ -2737,7 +2850,7 @@
     // keep keyboard focus. Only for clicks (pointer), so tabbing with a
     // keyboard still works normally.
     document.addEventListener('click', function(e) {
-        const btn = e.target.closest('#menu-bar button, .letter-btn');
+        const btn = e.target.closest('#menu-bar button, .letter-btn, #road-sign');
         if (btn && e.detail > 0) btn.blur();
     });
 
@@ -2777,6 +2890,7 @@
             gameMode = "random";
             updateModeLabel();
             toggleShareButtons(false);
+            setClue("");   // custom words have no sign
             startNewGame();
         }
     });

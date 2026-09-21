@@ -12,9 +12,14 @@ create table if not exists public.player_history (
     guesses        smallint    not null check (guesses between 0 and 5),
     time_seconds   integer     not null check (time_seconds >= 0),
     guess_words    jsonb       not null default '[]'::jsonb,
+    used_directions boolean    not null default false,   -- revealed the road sign (v2.1)
     updated_at     timestamptz not null default now(),
     primary key (user_id, puzzle_date)
 );
+
+-- Upgrade for tables created before v2.1 (safe to run on a fresh table too)
+alter table public.player_history
+    add column if not exists used_directions boolean not null default false;
 
 -- Denormalised aggregate so leaderboards later are a plain SELECT,
 -- not a compute-over-history. Always rewritten from history on sync.
