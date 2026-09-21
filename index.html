@@ -2000,8 +2000,8 @@
         const won = horizontalLocked && verticalLocked;
 
         let header = won
-            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\nCan you survive the intersection? intersectionsgame.com\n`
-            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\nCan you survive the intersection? intersectionsgame.com\n`;
+            ? `🚦 Intersections - ${dateStr}\n🟢 Got the Green Light in ${guesses}/5!\n`
+            : `🚦 Intersections - ${dateStr}\n🔴 Ran the Red Light\n`;
 
         // Build feedback arrays using pure function (no locked-state interference)
         const allFeedback = [];
@@ -2048,7 +2048,7 @@
             lines += "\n";
         }
 
-        return header + "\n" + lines + "\nGet your Head in the Game. Navigate the Intersection\nhttps://intersectionsgame.com";
+        return header + "\n" + lines + "\nCan you survive the intersection?\nhttps://intersectionsgame.com";
     }
 
     function shareResult() {
