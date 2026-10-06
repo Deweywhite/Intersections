@@ -1652,7 +1652,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
-                    setClue(data.clues && data.clues[0]);
+                    setClue(data.clue || (data.clues && data.clues[0]));
                     restoreCompletedGame(todayResult);
                     return;
                 }
@@ -1687,7 +1687,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
-                    setClue(data.clues && data.clues[0]);
+                    setClue(data.clue || (data.clues && data.clues[0]));
                     startNewGame();
                 }
             })
@@ -1755,7 +1755,7 @@
         targetVertical   = data.targetVertical;
         intersectH       = data.intersectH;
         intersectV       = data.intersectV;
-        setClue(data.clues && data.clues[0]);
+        setClue(data.clue || (data.clues && data.clues[0]));
     }
 
     function startRandomGame() {

@@ -21,7 +21,8 @@ function entryToResponse(entry, mode, date) {
         targetVertical:   entry.words[1].toUpperCase(),
         intersectH:       entry.intersectH,
         intersectV:       entry.intersectV,
-        clues:            entry.clues || [],
+        clue:             entry.clue || '',      // road sign text
+        clues:            entry.clues || [],     // the three generated ones, unused for now
         date:             date,
         mode:             mode
     };
