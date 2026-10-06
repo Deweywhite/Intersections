@@ -1138,7 +1138,6 @@
     <div id="play-menu" role="menu" style="display:none;">
         <button role="menuitem" id="play-random">Random</button>
         <button role="menuitem" id="play-archive">Archive</button>
-        <button role="menuitem" id="play-back" style="display:none;">Back</button>
     </div>
     <div id="mode-label"></div>
     <div id="result-label"></div>
@@ -1865,39 +1864,17 @@
 
     // ===== Play menu (green light): Random / Archive / Back =====
     const ARCHIVE_START = "2026-06-01";   // first scheduled puzzle
-    const BACK_KEY = "intersections_back";
 
     function playMenuOpen() {
-        const menu = document.getElementById("play-menu");
-        const back = document.getElementById("play-back");
-        const target = loadBackTarget();
-        back.style.display = target ? "block" : "none";
-        menu.style.display = "block";
+        document.getElementById("play-menu").style.display = "block";
     }
 
     function playMenuClose() {
         document.getElementById("play-menu").style.display = "none";
     }
 
-    // Snapshot the game being left so Back can return to it. One level deep.
-    function stashBackTarget() {
-        const target = {
-            mode: gameMode, date: currentPuzzleDate,
-            targetHorizontal, targetVertical, intersectH, intersectV,
-            startTime, guessHistory: guessHistory.slice(),
-            clue: currentClue, usedDirections, gameOver
-        };
-        try { localStorage.setItem(BACK_KEY, JSON.stringify(target)); } catch (e) {}
-    }
-
-    function loadBackTarget() {
-        try { const raw = localStorage.getItem(BACK_KEY); return raw ? JSON.parse(raw) : null; }
-        catch (e) { return null; }
-    }
-
-    function clearBackTarget() {
-        try { localStorage.removeItem(BACK_KEY); } catch (e) {}
-    }
+    // v2.4: the Back item was removed; drop any key left on existing devices
+    try { localStorage.removeItem("intersections_back"); } catch (e) {}
 
     function applyPair(data) {
         targetHorizontal = data.targetHorizontal;
@@ -1909,7 +1886,6 @@
     }
 
     function startRandomGame() {
-        stashBackTarget();
         clearState();
         fetch('/api/pair?mode=random')
             .then(res => res.json())
@@ -1935,7 +1911,6 @@
         if (date === today) { goToToday(); return; }
         if (date > today || date < ARCHIVE_START) return;
 
-        if (gameMode !== "archive" || currentPuzzleDate !== date) stashBackTarget();
         clearState();
         fetch('/api/pair?date=' + encodeURIComponent(date))
             .then(res => res.json())
@@ -1964,7 +1939,6 @@
 
     function goToToday() {
         clearState();
-        clearBackTarget();
         fetch('/api/pair')
             .then(res => res.json())
             .then(data => {
@@ -1984,35 +1958,6 @@
             });
     }
 
-    function goBack() {
-        const t = loadBackTarget();
-        clearBackTarget();
-        if (!t) { goToToday(); return; }
-        clearState();
-        gameMode = t.mode;
-        currentPuzzleDate = t.date;
-        targetHorizontal = t.targetHorizontal;
-        targetVertical   = t.targetVertical;
-        intersectH       = t.intersectH;
-        intersectV       = t.intersectV;
-        currentClue      = t.clue || "";
-        updateModeLabel();
-        const done = (t.mode !== "random" && t.date) ? getDateResult(t.date) : null;
-        showResultLabel = (t.mode === "archive" && !!done);
-        if (done) {
-            restoreCompletedGame(done);
-        } else if (t.gameOver) {
-            // a finished random game — rebuild it read-only
-            restoreGame(t);
-        } else {
-            restoreGame(t);
-            usedDirections = !!t.usedDirections;
-            renderRoadSign();
-            saveState();
-        }
-        toggleShareButtons(t.mode !== "random" && !!done);
-    }
-
     document.getElementById("new-game").addEventListener("click", function(e) {
         e.stopPropagation();
         closeStats();
@@ -2022,7 +1967,6 @@
     });
     document.getElementById("play-random").addEventListener("click", function() { playMenuClose(); startRandomGame(); });
     document.getElementById("play-archive").addEventListener("click", function() { playMenuClose(); openArchive(); });
-    document.getElementById("play-back").addEventListener("click", function() { playMenuClose(); goBack(); });
     // Click-away closes the play menu, the calendar, and the stats popup.
     // The button that opened each one is excluded so the opening click
     // doesn't immediately close it.
@@ -2444,6 +2388,7 @@
     const TUT_IH = 0;           // C is CHILI[0]
     const TUT_IV = 3;           // C is SAUCE[3]
     const TUT_GUESS = "CRANE";
+    const TUT_CLUE  = "spicy";     // the road sign for the demo puzzle
 
     let tutActive = false;
     let tutStep = 0;
@@ -2493,6 +2438,14 @@
             state: "guessed"
         },
         {
+            target: "#road-sign",
+            fallback: ".keyboard-container",
+            showSign: true,
+            title: "STUCK? ASK DIRECTIONS",
+            body: "Tap the road sign above the keyboard and it tells you what the two words have in common. Your shared result says whether you asked — so see how far you get without it.",
+            state: "guessed"
+        },
+        {
             target: "#letter-bank",
             title: "THE KEYBOARD TRACKS BOTH",
             body: "<strong>Top &amp; bottom</strong> borders show that letter's status in the horizontal word. <strong>Left &amp; right</strong> borders show the letter's status in the vertical word. Look at C — green top/bottom (horizontal), yellow left/right (vertical).",
@@ -2527,7 +2480,7 @@
         };
     }
 
-    function tutRenderState(kind) {
+    function tutRenderState(kind, step) {
         // Reset board to the tutorial puzzle
         targetHorizontal = TUT_H;
         targetVertical   = TUT_V;
@@ -2553,10 +2506,21 @@
             updateMainGrid(TUT_GUESS, fb);
             updateLetterBank(TUT_GUESS, fb);
         }
-        // Tutorial board is display-only; the road sign would only distract
+        // Tutorial board is display-only. The sign stays out of the way
+        // except on its own step, where it appears unrevealed so it matches
+        // what the player will actually see.
         document.querySelectorAll(".letter-btn").forEach(b => b.disabled = true);
-        document.getElementById("road-sign").classList.add("hidden");
         clearDefinable();
+        const sign = document.getElementById("road-sign");
+        if (step && step.showSign) {
+            currentClue = TUT_CLUE;
+            usedDirections = false;
+            sign.dataset.peeked = "";
+            renderRoadSign();
+            sign.classList.remove("hidden");
+        } else {
+            sign.classList.add("hidden");
+        }
     }
 
     function tutPositionBubble(targetEl) {
@@ -2596,7 +2560,7 @@
         const step = tutSteps[i];
         if (!tutTargetEl(step)) return tutEnd();
 
-        tutRenderState(step.state);
+        tutRenderState(step.state, step);
 
         document.getElementById("tut-title").innerHTML = step.title;
         document.getElementById("tut-body").innerHTML  = step.body;
