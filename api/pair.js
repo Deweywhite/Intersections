@@ -23,6 +23,7 @@ function entryToResponse(entry, mode, date) {
         intersectV:       entry.intersectV,
         clue:             entry.clue || '',      // road sign text
         clues:            entry.clues || [],     // the three generated ones, unused for now
+        defs:             entry.defs || null,    // [{pos,def},{pos,def}] for the two answers
         date:             date,
         mode:             mode
     };

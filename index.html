@@ -443,6 +443,50 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Dictionary bubble ===== */
+        /* No persistent marker — the cells just become live once the game
+           ends. Desktop gets a cursor and a slight lift on hover; touch
+           users find it by tapping an answer. */
+        .cell.definable { cursor: pointer; }
+        @media (hover: hover) and (pointer: fine) {
+            .cell.definable:hover { filter: brightness(1.18); }
+        }
+        #def-bubble {
+            position: absolute;
+            background: #2f2f2f;
+            color: #fff;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 10px 13px;
+            max-width: 260px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.45;
+            z-index: 1400;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+            text-align: left;
+            display: none;
+        }
+        #def-bubble .dw {
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+        #def-bubble .dp {
+            font-style: italic;
+            color: #9fd9a2;
+            font-size: 11px;
+            margin-left: 6px;
+        }
+        #def-bubble .dd { display: block; margin-top: 3px; color: #ddd; }
+        #def-bubble a {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 10px;
+            color: #888;
+            text-decoration: none;
+        }
+        #def-bubble a:hover { color: #bbb; text-decoration: underline; }
+
         /* ===== Play menu (green light) ===== */
         #play-menu {
             position: absolute;
@@ -1158,6 +1202,8 @@
             </div>
         </div>
 
+        <div id="def-bubble"></div>
+
         <div id="tut-spotlight"></div>
         <div id="tut-bubble">
             <h3 id="tut-title"></h3>
@@ -1271,6 +1317,7 @@
     let gameMode = "daily";        // "daily" or "random"
     let currentClue = "";          // the road sign text for this puzzle
     let usedDirections = false;    // did the player reveal the sign before finishing?
+    let currentDefs = null;        // [{pos,def},{pos,def}] for the two answer words
 
     const STORAGE_KEY = "intersections_state";
     const STATS_KEY = "intersections_stats";
@@ -1525,6 +1572,103 @@
 
     document.getElementById("road-sign").addEventListener("click", revealRoadSign);
 
+    // ===== Dictionary =====
+    // Once the game is over, the two answer words on the main grid get a
+    // dotted underline. Hover (desktop) or tap (mobile) shows the definition
+    // for the sense that made the pairing.
+
+    function clearDefinable() {
+        document.querySelectorAll("#main-grid .cell.definable").forEach(c => {
+            c.classList.remove("definable");
+            delete c.dataset.defWord;
+        });
+        hideDefBubble();
+    }
+
+    // Mark the horizontal row and vertical column so either word can be read.
+    function markDefinable() {
+        clearDefinable();
+        if (!gameOver || !currentDefs || currentDefs.length !== 2) return;
+        const cells = document.getElementById("main-grid").children;
+        for (let i = 0; i < 25; i++) {
+            const row = Math.floor(i / 5), col = i % 5;
+            const cell = cells[i];
+            if (!cell || !cell.textContent.trim()) continue;
+            // The intersection belongs to both; give it the horizontal word.
+            if (row === intersectV) { cell.classList.add("definable"); cell.dataset.defWord = "0"; }
+            else if (col === intersectH) { cell.classList.add("definable"); cell.dataset.defWord = "1"; }
+        }
+    }
+
+    function showDefBubble(which, anchor) {
+        if (!currentDefs || !currentDefs[which]) return;
+        const word = which === 0 ? targetHorizontal : targetVertical;
+        const d = currentDefs[which];
+        const b = document.getElementById("def-bubble");
+        b.innerHTML =
+            '<span class="dw"></span><span class="dp"></span>' +
+            '<span class="dd"></span>' +
+            '<a target="_blank" rel="noopener">Merriam-Webster ↗</a>';
+        b.querySelector(".dw").textContent = word;
+        b.querySelector(".dp").textContent = d.pos;
+        b.querySelector(".dd").textContent = d.def;
+        b.querySelector("a").href = "https://www.merriam-webster.com/dictionary/" +
+                                    encodeURIComponent(word.toLowerCase());
+        b.style.display = "block";
+
+        const r = anchor.getBoundingClientRect();
+        const bw = b.offsetWidth, bh = b.offsetHeight;
+        let top = r.bottom + window.scrollY + 8;
+        if (top + bh > window.scrollY + window.innerHeight - 8) {
+            top = r.top + window.scrollY - bh - 8;
+        }
+        let left = r.left + window.scrollX + r.width / 2 - bw / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - bw - 8));
+        b.style.top = top + "px";
+        b.style.left = left + "px";
+    }
+
+    function hideDefBubble() {
+        const b = document.getElementById("def-bubble");
+        if (b) b.style.display = "none";
+    }
+
+    (function wireDictionary() {
+        const grid = document.getElementById("main-grid");
+        grid.addEventListener("click", function (e) {
+            const cell = e.target.closest(".cell.definable");
+            if (!cell) return;
+            e.stopPropagation();
+            const b = document.getElementById("def-bubble");
+            const which = Number(cell.dataset.defWord);
+            // tapping the same word again closes it
+            if (b.style.display === "block" && b.dataset.which === String(which)) {
+                hideDefBubble();
+            } else {
+                b.dataset.which = String(which);
+                showDefBubble(which, cell);
+            }
+        });
+        // hover is a desktop nicety; touch devices only get the tap
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            grid.addEventListener("mouseover", function (e) {
+                const cell = e.target.closest(".cell.definable");
+                if (!cell) return;
+                const b = document.getElementById("def-bubble");
+                b.dataset.which = cell.dataset.defWord;
+                showDefBubble(Number(cell.dataset.defWord), cell);
+            });
+            grid.addEventListener("mouseout", function (e) {
+                if (!e.relatedTarget || !e.relatedTarget.closest("#def-bubble, .cell.definable")) {
+                    hideDefBubble();
+                }
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest("#def-bubble, .cell.definable")) hideDefBubble();
+        });
+    })();
+
     function saveState() {
         const state = {
             targetHorizontal,
@@ -1536,7 +1680,8 @@
             date: currentPuzzleDate,
             mode: gameMode,
             clue: currentClue,
-            usedDirections: usedDirections
+            usedDirections: usedDirections,
+            defs: currentDefs
         };
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -1562,6 +1707,7 @@
         startTime = state.startTime;
         currentClue = state.clue || "";
         usedDirections = !!state.usedDirections;
+        if (state.defs) currentDefs = state.defs;
         document.getElementById("road-sign").dataset.peeked = "";
         renderRoadSign();
 
@@ -1624,6 +1770,7 @@
         gameOver = true;
         disableInput();
         updateTrafficLights();
+        markDefinable();
 
         // Sign reflects what happened during that game
         usedDirections = !!result.usedDirections;
@@ -1652,6 +1799,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
+                    currentDefs = data.defs || null;
                     setClue(data.clue || (data.clues && data.clues[0]));
                     restoreCompletedGame(todayResult);
                     return;
@@ -1687,6 +1835,7 @@
                     targetVertical = data.targetVertical;
                     intersectH = data.intersectH;
                     intersectV = data.intersectV;
+                    currentDefs = data.defs || null;
                     setClue(data.clue || (data.clues && data.clues[0]));
                     startNewGame();
                 }
@@ -1755,6 +1904,7 @@
         targetVertical   = data.targetVertical;
         intersectH       = data.intersectH;
         intersectV       = data.intersectV;
+        currentDefs      = data.defs || null;
         setClue(data.clue || (data.clues && data.clues[0]));
     }
 
@@ -1995,6 +2145,7 @@
         gameOver = true;
         disableInput();
         updateTrafficLights();
+        markDefinable();
         toggleShareButtons(gameMode !== "random");
         updateResultLabel();
     });
@@ -2405,6 +2556,7 @@
         // Tutorial board is display-only; the road sign would only distract
         document.querySelectorAll(".letter-btn").forEach(b => b.disabled = true);
         document.getElementById("road-sign").classList.add("hidden");
+        clearDefinable();
     }
 
     function tutPositionBubble(targetEl) {
@@ -2705,6 +2857,7 @@
         renderRoadSign();
         showResultLabel = false;
         updateResultLabel();
+        clearDefinable();
 
         saveState(); // Persist word pair immediately so refresh keeps same game
         isStartingNewGame = false;
@@ -3075,6 +3228,7 @@
         }
         disableInput();
         updateTrafficLights();
+        markDefinable();
         toggleShareButtons(gameMode !== "random");
         updateResultLabel();
     }
@@ -3102,6 +3256,7 @@
         }
         disableInput();
         updateTrafficLights();
+        markDefinable();
         toggleShareButtons(gameMode !== "random");
         updateResultLabel();
     }
