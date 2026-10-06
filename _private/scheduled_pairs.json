@@ -456,7 +456,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "body",
+    "clue": "body part",
     "clues": [
       "BODY PARTS",
       "CHICKEN CUTS",
@@ -831,7 +831,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "emotions",
+    "clue": "emotion",
     "clues": [
       "POSITIVE EMOTIONS",
       "SATISFIED FEELINGS",
@@ -936,7 +936,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "silly",
     "clues": [
       "SILLY BEHAVIOR",
       "ABSURD",
@@ -1221,7 +1221,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "emotional",
+    "clue": "emotion",
     "clues": [
       "EMOTIONAL QUALITIES",
       "OVERLY SENTIMENTAL",
@@ -1596,7 +1596,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "colors",
+    "clue": "color",
     "clues": [
       "GEMSTONES AND COLORS",
       "PURPLE AND YELLOW",
@@ -1941,7 +1941,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "worn",
+    "clue": "deteriorate",
     "clues": [
       "DETERIORATED STATES",
       "DULL AND WORN",
@@ -1956,7 +1956,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "element",
+    "clue": "comedy",
     "clues": [
       "COMEDY ELEMENTS",
       "CAUSE AND EFFECT",
@@ -1986,7 +1986,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "funny",
     "clues": [
       "FUNNY BEHAVIORS",
       "SILLY AND AMUSING",
@@ -2121,7 +2121,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "feature",
+    "clue": "landscape",
     "clues": [
       "LANDSCAPE FEATURES",
       "MOUNTAINOUS TERRAIN",
@@ -2146,16 +2146,16 @@
   },
   {
     "words": [
-      "dunce",
-      "idiot"
+      "beech",
+      "maple"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
-    "clue": "foolish",
+    "intersectH": 1,
+    "intersectV": 4,
+    "clue": "tree",
     "clues": [
-      "FOOLISH PEOPLE",
-      "INSULTS FOR STUPIDITY",
-      "LACK INTELLIGENCE"
+      "TREES",
+      "NORTHERN HEMISPHERE",
+      "AUTUMN FOLIAGE"
     ],
     "date": "2026-10-22"
   },
@@ -2346,7 +2346,7 @@
     ],
     "intersectH": 3,
     "intersectV": 3,
-    "clue": "body",
+    "clue": "body part",
     "clues": [
       "BODY MEASUREMENTS",
       "TORSO AREAS",
@@ -2481,7 +2481,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "element",
+    "clue": "religion",
     "clues": [
       "RELIGIOUS ELEMENTS",
       "PLACE OF WORSHIP",
@@ -2601,7 +2601,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "foolish",
     "clues": [
       "FOOLISH BEHAVIORS",
       "LACKING SENSE",
@@ -3036,7 +3036,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "condition",
+    "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
       "WET CLIMATE",
@@ -3196,16 +3196,16 @@
   },
   {
     "words": [
-      "mango",
-      "prawn"
+      "khaki",
+      "tunic"
     ],
-    "intersectH": 1,
-    "intersectV": 2,
-    "clue": "coconut",
+    "intersectH": 4,
+    "intersectV": 3,
+    "clue": "clothing",
     "clues": [
-      "INDIAN CURRY INGREDIENTS",
-      "ASIAN CUISINE",
-      "COCONUT MILK DISHES"
+      "CLOTHING ITEMS",
+      "NEUTRAL COLORS",
+      "WORN IN UNIFORM"
     ],
     "date": "2026-12-31"
   },
@@ -3261,7 +3261,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "action",
+    "clue": "clean",
     "clues": [
       "WATER ACTIONS",
       "LIQUID APPLICATION",
@@ -3286,16 +3286,16 @@
   },
   {
     "words": [
-      "horny",
-      "randy"
+      "avoid",
+      "dodge"
     ],
     "intersectH": 2,
-    "intersectV": 0,
-    "clue": "feeling",
+    "intersectV": 1,
+    "clue": "evade",
     "clues": [
-      "LUSTFUL FEELINGS",
-      "SEXUALLY AROUSED",
-      "DESIRES"
+      "EVASION WORDS",
+      "STAY AWAY FROM",
+      "QUICK MOVEMENTS"
     ],
     "date": "2027-01-06"
   },
@@ -3381,7 +3381,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "channel",
+    "clue": "aquatic",
     "clues": [
       "AQUATIC PATHWAYS",
       "HUMAN MADE CHANNELS",
@@ -3411,7 +3411,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "body parter",
+    "clue": "body part",
     "clues": [
       "BODY EXTREMITIES",
       "SMALL JOINTS",
@@ -3621,7 +3621,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "boggy",
+    "clue": "wetland",
     "clues": [
       "BOGGY WETLANDS",
       "MUDDY TERRAIN",
@@ -3786,7 +3786,7 @@
     ],
     "intersectH": 3,
     "intersectV": 3,
-    "clue": "verb",
+    "clue": "take place",
     "clues": [
       "HAPPEN VERBS",
       "TAKE PLACE",
@@ -3936,7 +3936,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "birds",
+    "clue": "bird",
     "clues": [
       "BIRDS",
       "RED COLORED SPECIES",
@@ -4066,16 +4066,16 @@
   },
   {
     "words": [
-      "gland",
-      "organ"
+      "broke",
+      "spent"
     ],
-    "intersectH": 0,
+    "intersectH": 4,
     "intersectV": 2,
-    "clue": "body part",
+    "clue": "money",
     "clues": [
-      "BODY PARTS",
-      "INTERNAL STRUCTURES",
-      "BIOLOGICAL SYSTEMS"
+      "OUT OF MONEY",
+      "FINANCIALLY DEPLETED",
+      "EMPTY WALLET"
     ],
     "date": "2027-02-27"
   },
@@ -4096,16 +4096,16 @@
   },
   {
     "words": [
-      "dowdy",
-      "perky"
+      "comic",
+      "droll"
     ],
-    "intersectH": 4,
-    "intersectV": 4,
-    "clue": "descriptor",
+    "intersectH": 1,
+    "intersectV": 2,
+    "clue": "witty",
     "clues": [
-      "PERSONALITY DESCRIPTORS",
-      "OPPOSITE MEANINGS",
-      "MOOD INDICATORS"
+      "TYPES OF HUMOR",
+      "AMUSING AND WITTY",
+      "MAKES YOU LAUGH"
     ],
     "date": "2027-03-01"
   },
@@ -4161,7 +4161,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "biff",
+    "clue": "violent",
     "clues": [
       "AGGRESSIVE PEOPLE",
       "MEAN AND VIOLENT",
@@ -4191,7 +4191,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "body",
+    "clue": "body part",
     "clues": [
       "BODY TYPES",
       "GRACEFUL SLENDER",
@@ -4296,7 +4296,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "action",
+    "clue": "adhesive",
     "clues": [
       "ADHESIVE ACTIONS",
       "HOLD FAST",
@@ -4446,7 +4446,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "clothes",
+    "clue": "clothing",
     "clues": [
       "CLOTHING ITEMS",
       "COLLAR PIECES",
@@ -4731,7 +4731,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "expressions of",
+    "clue": "sadness",
     "clues": [
       "EXPRESSIONS OF SADNESS",
       "LOSS RELATED",
@@ -5016,7 +5016,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "dancing",
+    "clue": "dance",
     "clues": [
       "DANCE MOVES",
       "GRACEFUL MOVEMENTS",
@@ -5106,7 +5106,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "clothes",
+    "clue": "clothing",
     "clues": [
       "CLOTHING ITEMS",
       "WORN AROUND NECK",
@@ -5421,7 +5421,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "praise",
     "clues": [
       "PRAISE ACTIONS",
       "CELEBRATE HIGHLY",
@@ -5451,7 +5451,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "courageous",
+    "clue": "courage",
     "clues": [
       "COURAGEOUS SYMBOLS",
       "FEARLESS QUALITIES",
@@ -5881,16 +5881,16 @@
   },
   {
     "words": [
-      "birth",
-      "youth"
+      "dopey",
+      "funny"
     ],
-    "intersectH": 3,
-    "intersectV": 3,
-    "clue": "baby",
+    "intersectH": 4,
+    "intersectV": 4,
+    "clue": "type",
     "clues": [
-      "EARLY LIFE STAGES",
-      "BEGINNING OF EXISTENCE",
-      "YOUNG AGES"
+      "PERSONALITY TYPES",
+      "MAKE OTHERS LAUGH",
+      "COMEDIC BEHAVIOR"
     ],
     "date": "2027-06-28"
   },
@@ -6426,7 +6426,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "character traits",
+    "clue": "characteristic",
     "clues": [
       "CHARACTER TRAITS",
       "HUMOROUS WAYS",
@@ -6441,7 +6441,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "description",
+    "clue": "stark",
     "clues": [
       "STARK DESCRIPTIONS",
       "THIN APPEARANCE",
@@ -6616,16 +6616,16 @@
   },
   {
     "words": [
-      "agile",
-      "brisk"
+      "sooty",
+      "ashen"
     ],
-    "intersectH": 2,
-    "intersectV": 2,
-    "clue": "quick",
+    "intersectH": 0,
+    "intersectV": 1,
+    "clue": "color",
     "clues": [
-      "SPEED QUALITIES",
-      "MOVING QUICKLY",
-      "ENERGETIC MOVEMENTS"
+      "GRAY COLORS",
+      "DIRTY OR DUSTY",
+      "ASH RELATED"
     ],
     "date": "2027-08-16"
   },
@@ -6651,7 +6651,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "carbs",
+    "clue": "carbohydrate",
     "clues": [
       "CARBOHYDRATES",
       "WHEAT BASED",
@@ -6811,16 +6811,16 @@
   },
   {
     "words": [
-      "equal",
-      "match"
+      "apron",
+      "tunic"
     ],
-    "intersectH": 3,
-    "intersectV": 1,
-    "clue": "same",
+    "intersectH": 4,
+    "intersectV": 2,
+    "clue": "clothing",
     "clues": [
-      "SAME OR EQUIVALENT",
-      "CORRESPONDING THINGS",
-      "PAIR TOGETHER"
+      "GARMENTS",
+      "SLEEVELESS CLOTHING",
+      "WORN OVER BODY"
     ],
     "date": "2027-08-29"
   },
@@ -6891,7 +6891,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "behavior",
+    "clue": "polite",
     "clues": [
       "POLITE BEHAVIORS",
       "REFINED MANNER",
@@ -6916,16 +6916,16 @@
   },
   {
     "words": [
-      "beech",
-      "maple"
+      "dunce",
+      "idiot"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
-    "clue": "tree",
+    "intersectH": 0,
+    "intersectV": 1,
+    "clue": "foolish",
     "clues": [
-      "TREES",
-      "NORTHERN HEMISPHERE",
-      "AUTUMN FOLIAGE"
+      "FOOLISH PEOPLE",
+      "INSULTS FOR STUPIDITY",
+      "LACK INTELLIGENCE"
     ],
     "date": "2027-09-05"
   },
@@ -7191,7 +7191,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "cutting",
+    "clue": "cut",
     "clues": [
       "CUTTING ACTIONS",
       "DIVIDE INTO PIECES",
@@ -7456,16 +7456,16 @@
   },
   {
     "words": [
-      "blimp",
-      "zappy"
+      "cutie",
+      "vixen"
     ],
-    "intersectH": 4,
-    "intersectV": 2,
-    "clue": "things",
+    "intersectH": 3,
+    "intersectV": 1,
+    "clue": "animal",
     "clues": [
-      "THINGS WITH ZIP",
-      "ELECTRIC VIBES",
-      "FULL OF ENERGY"
+      "FEMALE ANIMALS",
+      "ATTRACTIVE WOMEN",
+      "CUNNING CREATURES"
     ],
     "date": "2027-10-11"
   },
@@ -7836,7 +7836,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "activity",
+    "clue": "paddle",
     "clues": [
       "WATER ACTIVITIES",
       "PADDLE THROUGH WATER",
@@ -7941,7 +7941,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "garment",
+    "clue": "clothing",
     "clues": [
       "WOMEN'S GARMENTS",
       "LOWER BODY WEAR",
@@ -7956,7 +7956,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "descriptor",
+    "clue": "lage",
     "clues": [
       "SIZE DESCRIPTORS",
       "LARGE AND HEAVY",
@@ -8476,16 +8476,16 @@
   },
   {
     "words": [
-      "amuse",
-      "enjoy"
+      "egret",
+      "tapir"
     ],
-    "intersectH": 4,
-    "intersectV": 0,
-    "clue": "feeling",
+    "intersectH": 2,
+    "intersectV": 4,
+    "clue": "animal",
     "clues": [
-      "POSITIVE FEELINGS",
-      "CAUSES PLEASURE",
-      "ENTERTAINMENT PURPOSE"
+      "ANIMALS",
+      "ENDANGERED SPECIES",
+      "NATURE DOCUMENTARY SUBJECTS"
     ],
     "date": "2027-12-18"
   },
@@ -8601,7 +8601,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "concept",
+    "clue": "possession",
     "clues": [
       "OWNERSHIP CONCEPTS",
       "BELONGS TO YOU",
@@ -8631,7 +8631,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "descriptor",
+    "clue": "wild",
     "clues": [
       "WILD DESCRIPTORS",
       "INTENSE OR FIERCE",
@@ -8871,7 +8871,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "garment",
+    "clue": "clothing",
     "clues": [
       "GARMENTS",
       "WORN ON TORSO",
@@ -9226,16 +9226,16 @@
   },
   {
     "words": [
-      "corny",
-      "silly"
+      "nerdy",
+      "pudgy"
     ],
-    "intersectH": 4,
-    "intersectV": 4,
-    "clue": "quality",
+    "intersectH": 3,
+    "intersectV": 2,
+    "clue": "stereotype",
     "clues": [
-      "FOOLISH QUALITIES",
-      "NOT SERIOUS",
-      "RIDICULOUS BEHAVIOR"
+      "STEREOTYPES",
+      "INDOORS A LOT",
+      "SEDENTARY LIFESTYLE"
     ],
     "date": "2028-02-06"
   },
@@ -9321,7 +9321,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "complaint",
+    "clue": "complain",
     "clues": [
       "COMPLAINTS",
       "ANNOYING SOUNDS",
@@ -9406,16 +9406,16 @@
   },
   {
     "words": [
-      "beach",
-      "ocean"
+      "jazzy",
+      "zesty"
     ],
-    "intersectH": 1,
-    "intersectV": 2,
-    "clue": "sand",
+    "intersectH": 2,
+    "intersectV": 0,
+    "clue": "quality",
     "clues": [
-      "SEASIDE FEATURES",
-      "SANDY AND WET",
-      "VACATION SPOTS"
+      "LIVELY QUALITIES",
+      "ENERGETIC VIBES",
+      "SPIRITED STYLE"
     ],
     "date": "2028-02-18"
   },
@@ -9541,16 +9541,16 @@
   },
   {
     "words": [
-      "aroma",
-      "odder"
+      "beach",
+      "ocean"
     ],
     "intersectH": 1,
-    "intersectV": 4,
-    "clue": "word",
+    "intersectV": 2,
+    "clue": "sand",
     "clues": [
-      "SMELL WORDS",
-      "SCENT",
-      "SMELLS STRANGE"
+      "SEASIDE FEATURES",
+      "SANDY AND WET",
+      "VACATION SPOTS"
     ],
     "date": "2028-02-27"
   },
@@ -9696,7 +9696,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "collections",
+    "clue": "collection",
     "clues": [
       "COLLECTIONS OF ITEMS",
       "ASSEMBLED TOGETHER",
@@ -9751,16 +9751,16 @@
   },
   {
     "words": [
-      "chewy",
-      "crisp"
+      "barge",
+      "wharf"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "food texture",
+    "intersectH": 1,
+    "intersectV": 2,
+    "clue": "boat",
     "clues": [
-      "FOOD TEXTURES",
-      "CONTRASTING BITE",
-      "EATING EXPERIENCES"
+      "WATERFRONT LOCATIONS",
+      "LOADING AND UNLOADING",
+      "DOCKED BOATS"
     ],
     "date": "2028-03-12"
   },
@@ -10326,7 +10326,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "action",
+    "clue": "legislation",
     "clues": [
       "LEGISLATIVE ACTIONS",
       "CHANGE OR CREATE LAWS",
@@ -10431,7 +10431,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "description",
+    "clue": "covered in fibers",
     "clues": [
       "TEXTURE DESCRIPTIONS",
       "COVERED IN FIBERS",
@@ -10446,7 +10446,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "verb",
+    "clue": "get up",
     "clues": [
       "PAST TENSE VERBS",
       "GOT UP FROM LYING",
@@ -10821,7 +10821,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "activity",
+    "clue": "nightlife",
     "clues": [
       "PARTY ACTIVITIES",
       "NIGHTLIFE",
@@ -11041,16 +11041,16 @@
   },
   {
     "words": [
-      "chevy",
-      "chase"
+      "depth",
+      "width"
     ],
     "intersectH": 0,
-    "intersectV": 0,
-    "clue": "action",
+    "intersectV": 2,
+    "clue": "dimensional",
     "clues": [
-      "PURSUIT ACTIONS",
-      "RUNNING AFTER",
-      "FAST MOVEMENTS"
+      "DIMENSIONAL MEASUREMENTS",
+      "SPATIAL CONCEPTS",
+      "PHYSICAL DIMENSIONS"
     ],
     "date": "2028-06-06"
   },
@@ -11121,7 +11121,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "cutting",
+    "clue": "cut",
     "clues": [
       "CUTTING ACTIONS",
       "MARK WITH KNIFE",
@@ -11166,7 +11166,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "word",
+    "clue": "frequency",
     "clues": [
       "FREQUENCY WORDS",
       "RECURRING REGULARLY",
@@ -11281,16 +11281,16 @@
   },
   {
     "words": [
-      "brain",
-      "logic"
+      "shawl",
+      "smock"
     ],
-    "intersectH": 3,
-    "intersectV": 3,
-    "clue": "thinking",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "clothing",
     "clues": [
-      "THINKING PROCESSES",
-      "REASON AND INTELLECT",
-      "PUZZLE SOLVING"
+      "CLOTHING ITEMS",
+      "WORN OVER SHOULDERS",
+      "PROTECTIVE GARMENTS"
     ],
     "date": "2028-06-22"
   },
@@ -11421,7 +11421,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "colors",
+    "clue": "color",
     "clues": [
       "COLORS",
       "PURPLE SHADES",
@@ -11436,7 +11436,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "condition",
+    "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
       "DESCRIBE DAYS",
@@ -11541,7 +11541,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "descriptor",
+    "clue": "spacius",
     "clues": [
       "SIZE DESCRIPTORS",
       "SPACIOUS",
@@ -11841,7 +11841,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "category",
+    "clue": "nature",
     "clues": [
       "NATURE CATEGORIES",
       "ECOSYSTEMS INCLUDE BOTH",
@@ -12051,7 +12051,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "garments",
+    "clue": "clothing",
     "clues": [
       "GARMENTS",
       "PROTECTIVE WEAR",
@@ -12471,7 +12471,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "concept",
+    "clue": "vision",
     "clues": [
       "VISION CONCEPTS",
       "SEEING OR NOT SEEING",
@@ -12681,7 +12681,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "intimidate",
     "clues": [
       "DISCOURAGE ACTIONS",
       "INTIMIDATE",
@@ -12766,16 +12766,16 @@
   },
   {
     "words": [
-      "birch",
-      "holly"
+      "death",
+      "birth"
     ],
-    "intersectH": 4,
-    "intersectV": 0,
-    "clue": "tree",
+    "intersectH": 3,
+    "intersectV": 3,
+    "clue": "life",
     "clues": [
-      "TREES",
-      "DECIDUOUS OR EVERGREEN",
-      "HOLIDAY SEASON TREES"
+      "LIFE EVENTS",
+      "OPPOSITE ENDS",
+      "CERTIFICATE DOCUMENTS"
     ],
     "date": "2028-09-29"
   },
@@ -13281,7 +13281,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "pronoun",
+    "clue": "pronouns",
     "clues": [
       "DEMONSTRATIVE PRONOUNS",
       "POINT TO THINGS",
@@ -13536,7 +13536,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "action",
+    "clue": "mischief",
     "clues": [
       "PLAYFUL ACTIONS",
       "MISCHIEVOUS BEHAVIOR",
@@ -13776,7 +13776,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "concept",
+    "clue": "philosophy",
     "clues": [
       "PHILOSOPHICAL CONCEPTS",
       "SYSTEMS OF THOUGHT",
@@ -14071,16 +14071,16 @@
   },
   {
     "words": [
-      "egret",
-      "tapir"
+      "angst",
+      "grief"
     ],
     "intersectH": 2,
-    "intersectV": 4,
-    "clue": "animals",
+    "intersectV": 0,
+    "clue": "sadness",
     "clues": [
-      "ANIMALS",
-      "ENDANGERED SPECIES",
-      "NATURE DOCUMENTARY SUBJECTS"
+      "DIFFICULT EMOTIONS",
+      "INNER TURMOIL",
+      "SUFFERING OR PAIN"
     ],
     "date": "2028-12-25"
   },
@@ -14341,16 +14341,16 @@
   },
   {
     "words": [
-      "funny",
-      "sappy"
+      "boost",
+      "exalt"
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "emotions",
+    "clue": "uplift",
     "clues": [
-      "COMEDY MOVIE GENRES",
-      "EMOTIONALLY TONE DEAF",
-      "LAUGH OR CRY RESPONSE"
+      "ELEVATE STATUS",
+      "UPLIFT",
+      "PRAISE GREATLY"
     ],
     "date": "2029-01-12"
   },
@@ -14361,7 +14361,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "garment",
+    "clue": "clothing",
     "clues": [
       "OUTER GARMENTS",
       "KEEP YOU WARM",
@@ -14391,7 +14391,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "descriptor",
+    "clue": "not smooth",
     "clues": [
       "TEXTURE DESCRIPTORS",
       "NOT SMOOTH",
@@ -14421,7 +14421,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "communication style",
+    "clue": "communication",
     "clues": [
       "SPEECH CHARACTERISTICS",
       "USE MANY WORDS",
@@ -14451,7 +14451,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "action",
+    "clue": "enjoy",
     "clues": [
       "ENJOYMENT ACTIONS",
       "TAKING TIME TO APPRECIATE",
@@ -14541,7 +14541,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "adjective",
+    "clue": "silly",
     "clues": [
       "SILLY ADJECTIVES",
       "ZANY OR ABSURD",
@@ -14596,16 +14596,16 @@
   },
   {
     "words": [
-      "busty",
-      "curvy"
+      "awake",
+      "sleep"
     ],
-    "intersectH": 1,
-    "intersectV": 1,
-    "clue": "body shape",
+    "intersectH": 4,
+    "intersectV": 2,
+    "clue": "state",
     "clues": [
-      "BODY SHAPE DESCRIPTORS",
-      "FULL FIGURED",
-      "HOURGLASS REFERENCES"
+      "REST STATES",
+      "DAILY CYCLE",
+      "OPPOSITE CONDITIONS"
     ],
     "date": "2029-01-29"
   },
@@ -14776,16 +14776,16 @@
   },
   {
     "words": [
-      "codec",
-      "audio"
+      "birth",
+      "youth"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
-    "clue": "format",
+    "intersectH": 3,
+    "intersectV": 3,
+    "clue": "baby",
     "clues": [
-      "DIGITAL FORMATS",
-      "MEDIA TECHNOLOGY",
-      "COMPRESSION METHODS"
+      "EARLY LIFE STAGES",
+      "BEGINNING OF EXISTENCE",
+      "YOUNG AGES"
     ],
     "date": "2029-02-10"
   },
@@ -15006,7 +15006,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "descriptor",
+    "clue": "bushy",
     "clues": [
       "TEXTURE DESCRIPTORS",
       "COVERED IN STRANDS",
@@ -15061,16 +15061,16 @@
   },
   {
     "words": [
-      "going",
-      "would"
+      "beech",
+      "cedar"
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "verb",
+    "clue": "trees",
     "clues": [
-      "MODAL VERBS",
-      "EXPRESS CONDITIONAL",
-      "FUTURE TENSE"
+      "TREES",
+      "WOOD SOURCES",
+      "FOREST INHABITANTS"
     ],
     "date": "2029-03-01"
   },
@@ -15096,7 +15096,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "connection",
+    "clue": "sins",
     "clues": [
       "SINS CONNECTION",
       "DEADLY AND NUMBER",
@@ -15186,7 +15186,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "adjective",
+    "clue": "loud",
     "clues": [
       "BEHAVIORAL ADJECTIVES",
       "LOUD AND CHAOTIC",
@@ -15201,7 +15201,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "character",
+    "clue": "supsicous",
     "clues": [
       "SUSPICIOUS CHARACTERS",
       "QUESTIONABLE DEALINGS",
@@ -15306,7 +15306,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "device",
+    "clue": "time",
     "clues": [
       "TIME DEVICES",
       "WRIST WORN",
@@ -15381,7 +15381,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "behavior",
+    "clue": "over the top",
     "clues": [
       "EXCESSIVE BEHAVIOR",
       "OVER THE TOP",
@@ -15456,7 +15456,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "bones",
+    "clue": "bone",
     "clues": [
       "BONES",
       "CENTRAL SKELETON",
@@ -15466,16 +15466,16 @@
   },
   {
     "words": [
-      "champ",
-      "churn"
+      "eject",
+      "expel"
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "removal",
     "clues": [
-      "VIGOROUS ACTIONS",
-      "BITE OR AGITATE",
-      "CHEWING MOTIONS"
+      "FORCED REMOVALS",
+      "TO CAST OUT",
+      "KICK OUT"
     ],
     "date": "2029-03-28"
   },
@@ -15486,7 +15486,7 @@
     ],
     "intersectH": 1,
     "intersectV": 0,
-    "clue": "birds",
+    "clue": "bird",
     "clues": [
       "BIRDS",
       "DARK COLORED",
@@ -15591,7 +15591,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "noun",
+    "clue": "group",
     "clues": [
       "GROUP NOUNS",
       "LARGE GATHERINGS",
@@ -15601,16 +15601,16 @@
   },
   {
     "words": [
-      "cutie",
-      "vixen"
+      "blimp",
+      "zappy"
     ],
-    "intersectH": 3,
-    "intersectV": 1,
-    "clue": "animal",
+    "intersectH": 4,
+    "intersectV": 2,
+    "clue": "things",
     "clues": [
-      "FEMALE ANIMALS",
-      "ATTRACTIVE WOMEN",
-      "CUNNING CREATURES"
+      "THINGS WITH ZIP",
+      "ELECTRIC VIBES",
+      "FULL OF ENERGY"
     ],
     "date": "2029-04-06"
   },
@@ -15621,7 +15621,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "animals",
+    "clue": "animal",
     "clues": [
       "ANIMALS",
       "LONG TAILS",
@@ -15771,7 +15771,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "device",
+    "clue": "robot",
     "clues": [
       "AUTOMATED DEVICES",
       "UNMANNED MACHINES",
@@ -15801,7 +15801,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "being",
+    "clue": "live",
     "clues": [
       "BEING OR LIVING",
       "OCCUPY SPACE",
@@ -15816,7 +15816,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "character archetype",
+    "clue": "characteristic",
     "clues": [
       "CHARACTER ARCHETYPES",
       "OPPOSITE TYPES",
@@ -15831,7 +15831,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "body shape descriptor",
+    "clue": "body type",
     "clues": [
       "BODY SHAPE DESCRIPTORS",
       "UNFLATTERING BUILDS",
@@ -15846,7 +15846,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "act",
+    "clue": "mistake",
     "clues": [
       "FOOLISH ACTS",
       "ABSURD",
@@ -15906,7 +15906,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "garments",
+    "clue": "clothing",
     "clues": [
       "GARMENTS",
       "LOOSE FITTING",
@@ -16026,7 +16026,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "chemicals",
+    "clue": "chemical",
     "clues": [
       "CHEMICAL COMPOUNDS",
       "ORGANIC MOLECULES",
@@ -16056,7 +16056,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "condition",
+    "clue": "dirty",
     "clues": [
       "DIRTY CONDITIONS",
       "WET AND GRIMY",
@@ -16101,7 +16101,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "description",
+    "clue": "length",
     "clues": [
       "DESCRIPTIONS OF TEXT",
       "OPPOSITE QUALITIES",
@@ -16116,7 +16116,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "behavior",
+    "clue": "eccentric",
     "clues": [
       "CRAZY BEHAVIOR",
       "ECCENTRIC",
@@ -16231,16 +16231,16 @@
   },
   {
     "words": [
-      "goose",
-      "robin"
+      "beady",
+      "shiny"
     ],
-    "intersectH": 1,
-    "intersectV": 1,
-    "clue": "birds",
+    "intersectH": 4,
+    "intersectV": 4,
+    "clue": "eyes",
     "clues": [
-      "BIRDS",
-      "FEATHERED ANIMALS",
-      "APPEAR IN SPRING"
+      "DESCRIPTIVE EYES",
+      "LUSTROUS QUALITY",
+      "SPARKLING"
     ],
     "date": "2029-05-18"
   },
@@ -16311,7 +16311,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "concept",
+    "clue": "belief",
     "clues": [
       "BELIEF CONCEPTS",
       "CONFIDENCE IN SOMEONE",
@@ -16341,7 +16341,7 @@
     ],
     "intersectH": 2,
     "intersectV": 4,
-    "clue": "action",
+    "clue": "evade",
     "clues": [
       "EVADE ACTIONS",
       "AVOID",
@@ -16386,7 +16386,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "body parts",
+    "clue": "body part",
     "clues": [
       "JOINT AREAS",
       "BODY BENDS",
@@ -16396,16 +16396,16 @@
   },
   {
     "words": [
-      "death",
-      "birth"
+      "birch",
+      "holly"
     ],
-    "intersectH": 3,
-    "intersectV": 3,
-    "clue": "event",
+    "intersectH": 4,
+    "intersectV": 0,
+    "clue": "tree",
     "clues": [
-      "LIFE EVENTS",
-      "OPPOSITE ENDS",
-      "CERTIFICATE DOCUMENTS"
+      "TREES",
+      "DECIDUOUS OR EVERGREEN",
+      "HOLIDAY SEASON TREES"
     ],
     "date": "2029-05-29"
   },
@@ -16581,7 +16581,7 @@
     ],
     "intersectH": 2,
     "intersectV": 4,
-    "clue": "complaint",
+    "clue": "complain",
     "clues": [
       "COMPLAINTS",
       "ANNOYING SOUNDS",
@@ -16641,7 +16641,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "descriptor",
+    "clue": "crazy",
     "clues": [
       "CRAZY DESCRIPTORS",
       "ECCENTRIC BEHAVIOR",
@@ -16816,16 +16816,16 @@
   },
   {
     "words": [
-      "beard",
-      "shady"
+      "brass",
+      "steel"
     ],
-    "intersectH": 2,
-    "intersectV": 2,
-    "clue": "feature",
+    "intersectH": 3,
+    "intersectV": 0,
+    "clue": "metal",
     "clues": [
-      "FACIAL FEATURES",
-      "SKETCHY OR DISHONEST",
-      "COVER YOUR FACE"
+      "METAL ALLOYS",
+      "DURABLE MATERIALS",
+      "MADE FROM ORE"
     ],
     "date": "2029-06-26"
   },
@@ -16866,7 +16866,7 @@
     ],
     "intersectH": 3,
     "intersectV": 4,
-    "clue": "garment",
+    "clue": "clothing",
     "clues": [
       "LOOSE GARMENTS",
       "SLEEVELESS WEAR",
@@ -16891,16 +16891,16 @@
   },
   {
     "words": [
-      "amber",
-      "burnt"
+      "award",
+      "medal"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
-    "clue": "colors",
+    "intersectH": 0,
+    "intersectV": 3,
+    "clue": "recognition",
     "clues": [
-      "COLORS",
-      "WARM TONES",
-      "TREE RESIN COLOR"
+      "HONORS AND RECOGNITION",
+      "GIVEN FOR ACHIEVEMENT",
+      "WORN ON CHEST"
     ],
     "date": "2029-07-01"
   },
@@ -17031,7 +17031,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "concept",
+    "clue": "retention",
     "clues": [
       "CUSTOMER CONCEPTS",
       "REPEAT BUSINESS",
@@ -17041,16 +17041,16 @@
   },
   {
     "words": [
-      "pesto",
-      "tangy"
+      "amuse",
+      "annoy"
     ],
-    "intersectH": 3,
+    "intersectH": 0,
     "intersectV": 0,
-    "clue": "flavor",
+    "clue": "reaction",
     "clues": [
-      "TART FLAVORS",
-      "SHARP TASTE",
-      "ACIDIC PUNCH"
+      "EMOTIONAL REACTIONS",
+      "CAUSE A FEELING",
+      "OPPOSITE RESPONSES"
     ],
     "date": "2029-07-11"
   },
@@ -17086,16 +17086,16 @@
   },
   {
     "words": [
-      "thigh",
-      "tibia"
+      "briny",
+      "tangy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "bone",
+    "intersectH": 3,
+    "intersectV": 2,
+    "clue": "taste",
     "clues": [
-      "LEG BONES",
-      "BODY PARTS BELOW HIP",
-      "SKELETON COMPONENTS"
+      "TASTE QUALITIES",
+      "SHARP FLAVORS",
+      "SALTY OR ACIDIC"
     ],
     "date": "2029-07-14"
   },
@@ -17131,16 +17131,16 @@
   },
   {
     "words": [
-      "leapt",
-      "stood"
+      "basil",
+      "pesto"
     ],
-    "intersectH": 4,
-    "intersectV": 1,
-    "clue": "action",
+    "intersectH": 2,
+    "intersectV": 2,
+    "clue": "pasta",
     "clues": [
-      "BODY ACTIONS",
-      "MOVEMENT TYPES",
-      "OPPOSITE MOTIONS"
+      "GREEN INGREDIENTS",
+      "ITALIAN SAUCE",
+      "GOES ON PASTA"
     ],
     "date": "2029-07-17"
   },
@@ -17226,7 +17226,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "alcoholic",
+    "clue": "alcohol",
     "clues": [
       "ALCOHOLIC DRINKS",
       "ILLICIT SPIRITS",
@@ -17241,7 +17241,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "feeling",
+    "clue": "dizzy",
     "clues": [
       "DIZZY FEELINGS",
       "EXCITEMENT STATES",
@@ -17256,7 +17256,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "demeanor",
+    "clue": "distant attitude",
     "clues": [
       "COLD DEMEANOR",
       "UNFRIENDLY",
@@ -17481,7 +17481,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "adjective",
+    "clue": "silly",
     "clues": [
       "HUMOROUS ADJECTIVES",
       "WILD AND AMUSING",
@@ -17526,7 +17526,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "descriptor",
+    "clue": "muscular",
     "clues": [
       "SIZE DESCRIPTORS",
       "MUSCULAR BUILD",
@@ -17551,16 +17551,16 @@
   },
   {
     "words": [
-      "barge",
-      "wharf"
+      "chewy",
+      "crisp"
     ],
-    "intersectH": 1,
-    "intersectV": 2,
-    "clue": "boats",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "food texture",
     "clues": [
-      "WATERFRONT LOCATIONS",
-      "LOADING AND UNLOADING",
-      "DOCKED BOATS"
+      "FOOD TEXTURES",
+      "CONTRASTING BITE",
+      "EATING EXPERIENCES"
     ],
     "date": "2029-08-14"
   },
@@ -17646,7 +17646,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
       "SEASONAL OPPOSITES",
@@ -17721,7 +17721,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "flavoring",
+    "clue": "flavor",
     "clues": [
       "FOOD FLAVORING",
       "HOT AND INTENSE",
@@ -17841,7 +17841,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "word",
+    "clue": "position",
     "clues": [
       "POSITION WORDS",
       "LOWER LOCATION",
@@ -17926,16 +17926,16 @@
   },
   {
     "words": [
-      "bleak",
-      "stark"
+      "bruin",
+      "beast"
     ],
-    "intersectH": 3,
-    "intersectV": 2,
-    "clue": "appearance",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "animal",
     "clues": [
-      "BARREN APPEARANCE",
-      "HARSH AND COLD",
-      "MINIMALIST"
+      "ANIMALS",
+      "BROWN CREATURES",
+      "WILD THINGS"
     ],
     "date": "2029-09-08"
   },
@@ -17946,7 +17946,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "element",
+    "clue": "audio",
     "clues": [
       "AUDIO ELEMENTS",
       "COMPUTER PROCESSING",
@@ -18111,7 +18111,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "condition",
+    "clue": "clean",
     "clues": [
       "QUALITY OF CONDITION",
       "CLEAN AND COOL",
@@ -18216,7 +18216,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "distribute",
     "clues": [
       "DISTRIBUTION ACTIONS",
       "GIVE OUT",
@@ -18246,7 +18246,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "descriptor",
+    "clue": "attractive",
     "clues": [
       "ATTRACTIVE DESCRIPTORS",
       "MALE QUALITIES",
@@ -18291,7 +18291,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "feeling",
+    "clue": "spinning",
     "clues": [
       "LIGHTHEADED FEELINGS",
       "SPINNING SENSATION",
@@ -18441,7 +18441,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "form",
+    "clue": "writing",
     "clues": [
       "POETRY FORMS",
       "WRITTEN VERSES",
@@ -18471,7 +18471,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "description",
+    "clue": "body type",
     "clues": [
       "BODY DESCRIPTIONS",
       "PHYSICAL APPEARANCES",
@@ -18646,16 +18646,16 @@
   },
   {
     "words": [
-      "award",
-      "medal"
+      "amber",
+      "burnt"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
-    "clue": "recognition",
+    "intersectH": 2,
+    "intersectV": 0,
+    "clue": "color",
     "clues": [
-      "HONORS AND RECOGNITION",
-      "GIVEN FOR ACHIEVEMENT",
-      "WORN ON CHEST"
+      "COLORS",
+      "WARM TONES",
+      "TREE RESIN COLOR"
     ],
     "date": "2029-10-26"
   },
@@ -18711,7 +18711,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "connection",
+    "clue": "sins",
     "clues": [
       "SINS CONNECTION",
       "DWARF AND SIN",
@@ -18801,7 +18801,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "flexibility descriptor",
+    "clue": "flexibility",
     "clues": [
       "FLEXIBILITY DESCRIPTORS",
       "GRACEFUL MOVEMENT",
@@ -18861,7 +18861,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "condition",
+    "clue": "skin",
     "clues": [
       "SKIN CONDITIONS",
       "UNPLEASANT TEXTURES",
@@ -18876,7 +18876,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "feeling",
+    "clue": "irratated",
     "clues": [
       "ANNOYANCE FEELINGS",
       "IRRITATION STATES",
@@ -18891,7 +18891,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "behavior",
+    "clue": "beg",
     "clues": [
       "ASKING BEHAVIORS",
       "BEG FOR SOMETHING",
@@ -19041,7 +19041,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "element",
+    "clue": "writing",
     "clues": [
       "WRITING ELEMENTS",
       "CENTRAL IDEAS",
@@ -19101,7 +19101,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "fruits",
+    "clue": "fruit",
     "clues": [
       "FRUITS",
       "SWEET PRODUCE",
@@ -19201,16 +19201,16 @@
   },
   {
     "words": [
-      "salad",
-      "zesty"
+      "grift",
+      "cheat"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
-    "clue": "descriptor",
+    "intersectH": 4,
+    "intersectV": 4,
+    "clue": "scam",
     "clues": [
-      "FOOD DESCRIPTORS",
-      "FLAVORFUL AND BRIGHT",
-      "FRESH TASTE QUALITY"
+      "DISHONEST ACTS",
+      "SCAMMING METHODS",
+      "FRAUD TACTICS"
     ],
     "date": "2029-12-02"
   },
@@ -19296,7 +19296,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "being",
+    "clue": "mythical being",
     "clues": [
       "MYTHICAL BEINGS",
       "MAGICAL CREATURES",
@@ -19341,7 +19341,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "word",
+    "clue": "uncretain",
     "clues": [
       "UNCERTAIN WORDS",
       "EXPRESS POSSIBILITY",
@@ -19366,16 +19366,16 @@
   },
   {
     "words": [
-      "beady",
-      "shiny"
+      "goose",
+      "robin"
     ],
-    "intersectH": 4,
-    "intersectV": 4,
-    "clue": "eye",
+    "intersectH": 1,
+    "intersectV": 1,
+    "clue": "bird",
     "clues": [
-      "DESCRIPTIVE EYES",
-      "LUSTROUS QUALITY",
-      "SPARKLING"
+      "BIRDS",
+      "FEATHERED ANIMALS",
+      "APPEAR IN SPRING"
     ],
     "date": "2029-12-13"
   },
@@ -19516,16 +19516,16 @@
   },
   {
     "words": [
-      "broke",
-      "spent"
+      "gland",
+      "organ"
     ],
-    "intersectH": 4,
+    "intersectH": 0,
     "intersectV": 2,
-    "clue": "money",
+    "clue": "body part",
     "clues": [
-      "OUT OF MONEY",
-      "FINANCIALLY DEPLETED",
-      "EMPTY WALLET"
+      "BODY PARTS",
+      "INTERNAL STRUCTURES",
+      "BIOLOGICAL SYSTEMS"
     ],
     "date": "2029-12-23"
   },
@@ -19596,7 +19596,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "garment",
+    "clue": "clothing",
     "clues": [
       "PROTECTIVE GARMENTS",
       "WEAR WHILE COOKING",
@@ -19641,7 +19641,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "feature",
+    "clue": "reptilian",
     "clues": [
       "CREATURE FEATURES",
       "REPTILIAN TRAITS",
@@ -19651,16 +19651,16 @@
   },
   {
     "words": [
-      "comic",
-      "droll"
+      "drone",
+      "sound"
     ],
-    "intersectH": 1,
-    "intersectV": 2,
-    "clue": "witty",
+    "intersectH": 0,
+    "intersectV": 4,
+    "clue": "noise",
     "clues": [
-      "TYPES OF HUMOR",
-      "AMUSING AND WITTY",
-      "MAKES YOU LAUGH"
+      "AUDIO CONCEPTS",
+      "CONSTANT HUM",
+      "REPETITIVE NOISE"
     ],
     "date": "2030-01-01"
   },
@@ -19671,7 +19671,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "condition",
+    "clue": "dirty",
     "clues": [
       "UNTIDY CONDITIONS",
       "DIRTY AND DISORGANIZED",
@@ -19701,7 +19701,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "fabrics",
+    "clue": "fabric",
     "clues": [
       "FABRICS",
       "SMOOTH TEXTURES",
@@ -19911,7 +19911,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "lift",
     "clues": [
       "LIFTING ACTIONS",
       "RAISING UP",
@@ -20001,7 +20001,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "worn out descriptor",
+    "clue": "worn out",
     "clues": [
       "WORN OUT DESCRIPTORS",
       "TATTERED CONDITION",
@@ -20046,7 +20046,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "act",
+    "clue": "dishonest",
     "clues": [
       "DISHONEST ACTS",
       "DECEPTION METHODS",
@@ -20286,7 +20286,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "element",
+    "clue": "food",
     "clues": [
       "COOKING ELEMENTS",
       "FRESH TASTE",
@@ -20451,7 +20451,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "ground food preparation",
+    "clue": "food preperation",
     "clues": [
       "GROUND FOOD PREPARATIONS",
       "BLENDED INGREDIENTS",
@@ -20481,7 +20481,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "group",
+    "clue": "top tier",
     "clues": [
       "SOCIAL GROUPS",
       "TOP TIER MEMBERS",
@@ -20496,7 +20496,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "condition",
+    "clue": "dirty",
     "clues": [
       "WEATHER CONDITIONS",
       "HAZY OR UNCLEAR",
@@ -20526,7 +20526,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "dodge",
     "clues": [
       "ESCAPE ACTIONS",
       "DODGE OR AVOID",
@@ -20631,7 +20631,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "descriptor",
+    "clue": "ripe",
     "clues": [
       "CHEERFUL DESCRIPTORS",
       "UPBEAT OR ROUNDED",
@@ -20671,16 +20671,16 @@
   },
   {
     "words": [
-      "banjo",
-      "lofty"
+      "stern",
+      "rigid"
     ],
-    "intersectH": 4,
-    "intersectV": 1,
-    "clue": "word",
+    "intersectH": 3,
+    "intersectV": 0,
+    "clue": "unyielding",
     "clues": [
-      "FIVE LETTER WORDS",
-      "ELEVATED OR HIGH",
-      "MUSICAL INSTRUMENT SOUND"
+      "STRICT QUALITIES",
+      "UNYIELDING",
+      "NO FLEXIBILITY"
     ],
     "date": "2030-03-10"
   },
@@ -21021,7 +21021,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "corroded condition",
+    "clue": "corroded",
     "clues": [
       "CORRODED CONDITIONS",
       "NEGLECTED OBJECTS",
@@ -21126,7 +21126,7 @@
     ],
     "intersectH": 3,
     "intersectV": 3,
-    "clue": "action",
+    "clue": "appreciate",
     "clues": [
       "APPRECIATION ACTIONS",
       "APPRECIATE FULLY",
@@ -21156,7 +21156,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "feature",
+    "clue": "facial feature",
     "clues": [
       "FACIAL FEATURES",
       "COVERED IN GROWTH",
@@ -21246,7 +21246,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "behavior",
+    "clue": "pursue",
     "clues": [
       "HUNTING BEHAVIORS",
       "PURSUING SOMEONE",
@@ -21411,7 +21411,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "component",
+    "clue": "song",
     "clues": [
       "SONG COMPONENTS",
       "MUSICAL ELEMENTS",
@@ -21501,7 +21501,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "container",
+    "clue": "water",
     "clues": [
       "WATER CONTAINERS",
       "HOLD BODIES OF WATER",
@@ -21516,7 +21516,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "forms of",
+    "clue": "dispute",
     "clues": [
       "FORMS OF DISPUTE",
       "VERBAL DISAGREEMENT",
@@ -21576,7 +21576,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "brief communication",
+    "clue": "brief",
     "clues": [
       "BRIEF COMMUNICATION",
       "DRY HUMOR",
@@ -21606,7 +21606,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "word",
+    "clue": "alternative",
     "clues": [
       "DEMONSTRATIVE WORDS",
       "REFERRING TO THINGS",
@@ -22146,7 +22146,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "groups or collection",
+    "clue": "group",
     "clues": [
       "GROUPS OR COLLECTIONS",
       "ORGANIZED SETS",
@@ -22161,7 +22161,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "combine",
     "clues": [
       "COMBINING ACTIONS",
       "MIX TOGETHER",
@@ -22176,7 +22176,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "activity",
+    "clue": "team",
     "clues": [
       "ATHLETIC ACTIVITIES",
       "TEAM COMPETITION",
@@ -22191,7 +22191,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "element",
+    "clue": "audio",
     "clues": [
       "RECORDING ELEMENTS",
       "AUDIO COMPONENTS",
@@ -22251,7 +22251,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "descriptor",
+    "clue": "dense",
     "clues": [
       "DENSITY DESCRIPTORS",
       "FULL OF GROWTH",
@@ -22281,7 +22281,7 @@
     ],
     "intersectH": 1,
     "intersectV": 0,
-    "clue": "emotional",
+    "clue": "emotion",
     "clues": [
       "EMOTIONAL PAIN",
       "SUFFERING STATES",
@@ -22326,7 +22326,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "group",
+    "clue": "top tier",
     "clues": [
       "TOP TIER GROUPS",
       "BEST OF THE BEST",
@@ -22401,7 +22401,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "absurd",
     "clues": [
       "SILLY BEHAVIORS",
       "ABSURD AND WACKY",
@@ -22521,7 +22521,7 @@
     ],
     "intersectH": 4,
     "intersectV": 1,
-    "clue": "body",
+    "clue": "body position",
     "clues": [
       "BODY POSITIONS",
       "OPPOSITE POSTURES",
@@ -22551,7 +22551,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "description",
+    "clue": "body type",
     "clues": [
       "BODY DESCRIPTIONS",
       "PHYSICAL BUILD",
@@ -22596,7 +22596,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "breezy condition",
+    "clue": "breezy",
     "clues": [
       "BREEZY CONDITIONS",
       "AIR MOVEMENT",
@@ -22756,16 +22756,16 @@
   },
   {
     "words": [
-      "rouse",
-      "sooth"
+      "gooey",
+      "sweet"
     ],
-    "intersectH": 1,
-    "intersectV": 1,
-    "clue": "action",
+    "intersectH": 3,
+    "intersectV": 2,
+    "clue": "candy",
     "clues": [
-      "CALMING ACTIONS",
-      "COMFORT SOMEONE",
-      "OPPOSITE EFFECTS"
+      "CANDY QUALITIES",
+      "DELICIOUS TREATS",
+      "SUGAR COATED"
     ],
     "date": "2030-07-27"
   },
@@ -22866,7 +22866,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "descriptor",
+    "clue": "taste",
     "clues": [
       "TASTE DESCRIPTORS",
       "MOUTH SENSATIONS",
@@ -22926,7 +22926,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "chemistry",
+    "clue": "chemical",
     "clues": [
       "CHEMISTRY TERMS",
       "ELECTRON RELATED",
@@ -22986,7 +22986,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "constant annoying",
+    "clue": "grating audio",
     "clues": [
       "CONSTANT ANNOYING SOUNDS",
       "CONTINUOUS NOISE",
@@ -23056,16 +23056,16 @@
   },
   {
     "words": [
-      "aloof",
-      "stoic"
+      "bidet",
+      "basin"
     ],
-    "intersectH": 2,
-    "intersectV": 2,
-    "clue": "detachment",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "fixture",
     "clues": [
-      "EMOTIONAL DETACHMENT",
-      "UNMOVED DEMEANOR",
-      "DISTANT ATTITUDE"
+      "BATHROOM FIXTURES",
+      "WATER CONTAINERS",
+      "CLEANING VESSELS"
     ],
     "date": "2030-08-16"
   },
@@ -23106,7 +23106,7 @@
     ],
     "intersectH": 4,
     "intersectV": 2,
-    "clue": "fights",
+    "clue": "fight",
     "clues": [
       "FIGHTS",
       "CHAOTIC COMBAT",
@@ -23151,7 +23151,7 @@
     ],
     "intersectH": 4,
     "intersectV": 0,
-    "clue": "flowers",
+    "clue": "flower",
     "clues": [
       "FLOWERS",
       "SPRING BLOOMERS",
@@ -23196,7 +23196,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "component",
+    "clue": "pasta",
     "clues": [
       "PASTA COMPONENTS",
       "COOKED TOGETHER",
@@ -23376,7 +23376,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "element",
+    "clue": "music",
     "clues": [
       "MUSIC ELEMENTS",
       "HARMONIC CONCEPTS",
@@ -23406,7 +23406,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "descriptor",
+    "clue": "unclean",
     "clues": [
       "UNCLEAN DESCRIPTORS",
       "NEGLECTED SPACES",
@@ -23466,7 +23466,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "feeling",
+    "clue": "tired",
     "clues": [
       "TIRED FEELINGS",
       "LACKING ENTHUSIASM",
@@ -23526,7 +23526,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "description",
+    "clue": "crazy",
     "clues": [
       "CRAZY DESCRIPTIONS",
       "MENTALLY UNHINGED",
@@ -23571,7 +23571,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "fruits",
+    "clue": "fruit",
     "clues": [
       "FRUITS",
       "SWEET PRODUCE",
@@ -23646,7 +23646,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "wet",
     "clues": [
       "WET CONDITIONS",
       "MUDDY AND DAMP",
@@ -23706,7 +23706,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "carry",
+    "clue": "passed things",
     "clues": [
       "THINGS YOU CARRY",
       "PASS BETWEEN PEOPLE",
@@ -23736,7 +23736,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "event",
+    "clue": "sporting event",
     "clues": [
       "SPORTING EVENTS",
       "ENTERTAINMENT COMPETITIONS",
@@ -23766,7 +23766,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "form",
+    "clue": "funnny",
     "clues": [
       "ENTERTAINMENT FORMS",
       "SOURCE OF LAUGHTER",
@@ -23826,7 +23826,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "withdrawn",
     "clues": [
       "DISTANT BEHAVIORS",
       "EVASIVE OR WITHDRAWN",
@@ -23901,7 +23901,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "formation",
+    "clue": "landform",
     "clues": [
       "STEEP FORMATIONS",
       "STONE FEATURES",
@@ -24091,16 +24091,16 @@
   },
   {
     "words": [
-      "amuse",
-      "annoy"
+      "pesto",
+      "tangy"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 0,
-    "clue": "reaction",
+    "clue": "flavor",
     "clues": [
-      "EMOTIONAL REACTIONS",
-      "CAUSE A FEELING",
-      "OPPOSITE RESPONSES"
+      "TART FLAVORS",
+      "SHARP TASTE",
+      "ACIDIC PUNCH"
     ],
     "date": "2030-10-24"
   },
@@ -24171,7 +24171,7 @@
     ],
     "intersectH": 4,
     "intersectV": 2,
-    "clue": "action",
+    "clue": "guide",
     "clues": [
       "GUIDANCE ACTIONS",
       "SUBTLE DIRECTION",
@@ -24241,16 +24241,16 @@
   },
   {
     "words": [
-      "shawl",
-      "smock"
+      "brain",
+      "logic"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "clothes",
+    "intersectH": 3,
+    "intersectV": 3,
+    "clue": "thinking",
     "clues": [
-      "CLOTHING ITEMS",
-      "WORN OVER SHOULDERS",
-      "PROTECTIVE GARMENTS"
+      "THINKING PROCESSES",
+      "REASON AND INTELLECT",
+      "PUZZLE SOLVING"
     ],
     "date": "2030-11-03"
   },
@@ -24271,16 +24271,16 @@
   },
   {
     "words": [
-      "sooty",
-      "ashen"
+      "agile",
+      "brisk"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
-    "clue": "color",
+    "intersectH": 2,
+    "intersectV": 2,
+    "clue": "quick",
     "clues": [
-      "GRAY COLORS",
-      "DIRTY OR DUSTY",
-      "ASH RELATED"
+      "SPEED QUALITIES",
+      "MOVING QUICKLY",
+      "ENERGETIC MOVEMENTS"
     ],
     "date": "2030-11-05"
   },
@@ -24291,7 +24291,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "verb",
+    "clue": "perform",
     "clues": [
       "THEATRICAL VERBS",
       "PUT ON A PERFORMANCE",
@@ -24366,7 +24366,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "corruption",
+    "clue": "payment",
     "clues": [
       "CORRUPTION",
       "ILLEGAL PAYMENT",
@@ -24396,7 +24396,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "element",
+    "clue": "comedy",
     "clues": [
       "COMEDY ELEMENTS",
       "REACTION WORDS",
@@ -24441,7 +24441,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "groups",
+    "clue": "group",
     "clues": [
       "GROUPS OF PEOPLE",
       "LARGE CROWD",
@@ -24456,7 +24456,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "colors",
+    "clue": "color",
     "clues": [
       "COLORS",
       "DARK SHADES",
@@ -24631,16 +24631,16 @@
   },
   {
     "words": [
-      "apron",
-      "tunic"
+      "equal",
+      "match"
     ],
-    "intersectH": 4,
-    "intersectV": 2,
-    "clue": "garments",
+    "intersectH": 3,
+    "intersectV": 1,
+    "clue": "same",
     "clues": [
-      "GARMENTS",
-      "SLEEVELESS CLOTHING",
-      "WORN OVER BODY"
+      "SAME OR EQUIVALENT",
+      "CORRESPONDING THINGS",
+      "PAIR TOGETHER"
     ],
     "date": "2030-11-29"
   },
@@ -24711,7 +24711,7 @@
     ],
     "intersectH": 2,
     "intersectV": 4,
-    "clue": "expressions",
+    "clue": "uncertain",
     "clues": [
       "EXPRESSIONS OF DOUBT",
       "NOT DEFINITE",
@@ -24741,7 +24741,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "expression",
+    "clue": "express contempt",
     "clues": [
       "NEGATIVE EXPRESSIONS",
       "SHOW CONTEMPT",
@@ -24756,7 +24756,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "being",
+    "clue": "spiritual",
     "clues": [
       "HEAVENLY BEINGS",
       "SPIRITUAL FIGURES",
@@ -24771,7 +24771,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "action",
+    "clue": "grip",
     "clues": [
       "GRIPPING ACTIONS",
       "HOLDING TIGHT",
@@ -24846,7 +24846,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "group",
+    "clue": "singing",
     "clues": [
       "SINGING GROUPS",
       "HARMONIOUS MUSIC",
@@ -24921,7 +24921,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "body shape descriptor",
+    "clue": "body type",
     "clues": [
       "BODY SHAPE DESCRIPTORS",
       "OPPOSITE BUILDS",
@@ -24936,7 +24936,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "creation",
+    "clue": "document",
     "clues": [
       "DOCUMENT CREATION",
       "MAKING COPIES",
@@ -25011,7 +25011,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "verb",
+    "clue": "initiate",
     "clues": [
       "INITIATION VERBS",
       "COMMENCE ACTION",
@@ -25041,7 +25041,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "connection",
+    "clue": "mafia",
     "clues": [
       "UNDERWORLD CONNECTIONS",
       "ILLEGAL ASSOCIATES",
@@ -25221,7 +25221,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "descriptor",
+    "clue": "weak",
     "clues": [
       "WEAKNESS DESCRIPTORS",
       "LACK COURAGE",
@@ -25296,7 +25296,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "wet",
     "clues": [
       "UNCLEAR CONDITIONS",
       "WET AND DARK",
@@ -25371,7 +25371,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "expression",
+    "clue": "latin",
     "clues": [
       "LATIN EXPRESSIONS",
       "PASSIONATE AND RHYTHMIC",
@@ -25461,7 +25461,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "concept",
+    "clue": "same",
     "clues": [
       "SAMENESS CONCEPT",
       "THE SAME WAY",
@@ -25506,7 +25506,7 @@
     ],
     "intersectH": 2,
     "intersectV": 4,
-    "clue": "feature",
+    "clue": "facial feature",
     "clues": [
       "FACIAL FEATURES",
       "SHOW HAPPINESS",
@@ -25551,7 +25551,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "ensemble",
+    "clue": "music",
     "clues": [
       "MUSICAL ENSEMBLES",
       "CLASSICAL GROUPS",
@@ -25651,31 +25651,31 @@
   },
   {
     "words": [
-      "mummy",
-      "mural"
+      "bingo",
+      "poker"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "artifact",
+    "intersectH": 4,
+    "intersectV": 1,
+    "clue": "game",
     "clues": [
-      "ANCIENT ARTIFACTS",
-      "PRESERVED EGYPTIAN ITEMS",
-      "MUSEUM DISPLAYS"
+      "GAMES OF CHANCE",
+      "CARD OR NUMBER GAMES",
+      "WIN MONEY OR PRIZES"
     ],
     "date": "2031-02-05"
   },
   {
     "words": [
-      "awake",
-      "sleep"
+      "busty",
+      "curvy"
     ],
-    "intersectH": 4,
-    "intersectV": 2,
-    "clue": "state",
+    "intersectH": 1,
+    "intersectV": 1,
+    "clue": "body part",
     "clues": [
-      "REST STATES",
-      "DAILY CYCLE",
-      "OPPOSITE CONDITIONS"
+      "BODY SHAPE DESCRIPTORS",
+      "FULL FIGURED",
+      "HOURGLASS REFERENCES"
     ],
     "date": "2031-02-06"
   },
@@ -25761,7 +25761,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "descriptor",
+    "clue": "malnourished",
     "clues": [
       "THIN DESCRIPTORS",
       "WEAKLY APPEARANCE",
@@ -25791,7 +25791,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "action",
+    "clue": "transport",
     "clues": [
       "TRANSPORT ACTIONS",
       "MOVE FROM PLACE TO PLACE",
@@ -25881,7 +25881,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "behavior",
+    "clue": "anxious",
     "clues": [
       "ANXIOUS BEHAVIORS",
       "DWELL ON THOUGHTS",
@@ -25966,16 +25966,16 @@
   },
   {
     "words": [
-      "grift",
-      "cheat"
+      "growl",
+      "raspy"
     ],
-    "intersectH": 4,
-    "intersectV": 4,
-    "clue": "act",
+    "intersectH": 1,
+    "intersectV": 0,
+    "clue": "sound",
     "clues": [
-      "DISHONEST ACTS",
-      "SCAMMING METHODS",
-      "FRAUD TACTICS"
+      "ROUGH SOUNDS",
+      "GRAVELLY VOICE",
+      "GRITTY TEXTURE"
     ],
     "date": "2031-02-26"
   },
@@ -25986,7 +25986,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "fare",
+    "clue": "food",
     "clues": [
       "SUMMER FARE",
       "REFRESHING FOODS",
@@ -26031,7 +26031,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "being",
+    "clue": "strange",
     "clues": [
       "UNUSUAL BEINGS",
       "STRANGE OR ODD",
@@ -26121,7 +26121,7 @@
     ],
     "intersectH": 4,
     "intersectV": 0,
-    "clue": "arm parts",
+    "clue": "body parts",
     "clues": [
       "ARM PARTS",
       "CONNECT LIMBS",
@@ -26146,16 +26146,16 @@
   },
   {
     "words": [
-      "bruin",
-      "beast"
+      "bleak",
+      "stark"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "animals",
+    "intersectH": 3,
+    "intersectV": 2,
+    "clue": "appearance",
     "clues": [
-      "ANIMALS",
-      "BROWN CREATURES",
-      "WILD THINGS"
+      "BARREN APPEARANCE",
+      "HARSH AND COLD",
+      "MINIMALIST"
     ],
     "date": "2031-03-10"
   },
@@ -26211,7 +26211,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "element",
+    "clue": "liquid",
     "clues": [
       "FLOW ELEMENTS",
       "LIQUID BASED",
@@ -26271,7 +26271,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "groups",
+    "clue": "group",
     "clues": [
       "GROUPS",
       "CORE MEMBERS",
@@ -26286,7 +26286,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "toss",
     "clues": [
       "TOSSING ACTIONS",
       "PROPELLING OBJECTS",
@@ -26301,7 +26301,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "verb",
+    "clue": "construct",
     "clues": [
       "CONSTRUCTION VERBS",
       "UPRIGHT POSITION",
@@ -26316,7 +26316,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
       "MORNING TYPES",
@@ -26331,7 +26331,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "device",
+    "clue": "fastener",
     "clues": [
       "FASTENING DEVICES",
       "HOLD THINGS CLOSED",
@@ -26406,7 +26406,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "breathing through",
+    "clue": "breathing",
     "clues": [
       "BREATHING THROUGH NOSE",
       "CATCHING SCENT",
@@ -26436,7 +26436,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "descriptor",
+    "clue": "attractive",
     "clues": [
       "ATTRACTIVE DESCRIPTORS",
       "COMPLIMENTS",
@@ -26466,7 +26466,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "conflicts",
+    "clue": "conflict",
     "clues": [
       "CONFLICTS",
       "PHYSICAL CONFRONTATION",
@@ -26541,7 +26541,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "bones",
+    "clue": "bone",
     "clues": [
       "BONES",
       "SKELETAL PARTS",
@@ -26631,7 +26631,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "area",
+    "clue": "woodland",
     "clues": [
       "WOODLAND AREAS",
       "NATURAL CLEARINGS",
@@ -26676,7 +26676,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "adjective",
+    "clue": "crazy",
     "clues": [
       "SILLY ADJECTIVES",
       "ABSURD OR CRAZY",
@@ -27031,16 +27031,16 @@
   },
   {
     "words": [
-      "briny",
-      "tangy"
+      "thigh",
+      "tibia"
     ],
-    "intersectH": 3,
-    "intersectV": 2,
-    "clue": "taste",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "bone",
     "clues": [
-      "TASTE QUALITIES",
-      "SHARP FLAVORS",
-      "SALTY OR ACIDIC"
+      "LEG BONES",
+      "BODY PARTS BELOW HIP",
+      "SKELETON COMPONENTS"
     ],
     "date": "2031-05-08"
   },
@@ -27066,7 +27066,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "emotions",
+    "clue": "emotion",
     "clues": [
       "EMOTIONS",
       "FEELING ANXIOUS",
@@ -27126,7 +27126,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "figure",
+    "clue": "religion",
     "clues": [
       "RELIGIOUS FIGURES",
       "HOLY PEOPLE",
@@ -27141,7 +27141,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "group",
+    "clue": "criminal organization",
     "clues": [
       "SECRET GROUPS",
       "CRIMINAL ORGANIZATIONS",
@@ -27321,7 +27321,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "descriptor",
+    "clue": "taste",
     "clues": [
       "FLAVOR DESCRIPTORS",
       "TASTE QUALITIES",
@@ -27351,7 +27351,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "fruits",
+    "clue": "fruit",
     "clues": [
       "FRUITS",
       "SUMMER HARVEST",
@@ -27396,7 +27396,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "concept",
+    "clue": "belief",
     "clues": [
       "BELIEF CONCEPTS",
       "OPPOSITE ATTITUDES",
@@ -27471,7 +27471,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "being",
+    "clue": "magical",
     "clues": [
       "MAGICAL BEINGS",
       "FANTASY CHARACTERS",
@@ -27486,7 +27486,7 @@
     ],
     "intersectH": 4,
     "intersectV": 0,
-    "clue": "action",
+    "clue": "grip",
     "clues": [
       "HOLDING ACTIONS",
       "GRIPPING TIGHTLY",
@@ -27501,7 +27501,7 @@
     ],
     "intersectH": 0,
     "intersectV": 1,
-    "clue": "crime and",
+    "clue": "crime",
     "clues": [
       "CRIME AND CRIMINALS",
       "STEALING RELATED",
@@ -27516,7 +27516,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "act",
+    "clue": "look of contempt",
     "clues": [
       "DISMISSIVE ACTS",
       "EXPRESSIONS OF CONTEMPT",
@@ -27541,16 +27541,16 @@
   },
   {
     "words": [
-      "bingo",
-      "poker"
+      "mummy",
+      "mural"
     ],
-    "intersectH": 4,
-    "intersectV": 1,
-    "clue": "chance",
+    "intersectH": 0,
+    "intersectV": 0,
+    "clue": "artifact",
     "clues": [
-      "GAMES OF CHANCE",
-      "CARD OR NUMBER GAMES",
-      "WIN MONEY OR PRIZES"
+      "ANCIENT ARTIFACTS",
+      "PRESERVED EGYPTIAN ITEMS",
+      "MUSEUM DISPLAYS"
     ],
     "date": "2031-06-11"
   },
@@ -27561,7 +27561,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "condition",
+    "clue": "spotless",
     "clues": [
       "FRESH CONDITIONS",
       "SPOTLESS AND NEAT",
@@ -27651,7 +27651,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "format",
+    "clue": "media",
     "clues": [
       "MEDIA FORMATS",
       "ENTERTAINMENT",
@@ -27696,7 +27696,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "feeling",
+    "clue": "unbalanced",
     "clues": [
       "UNBALANCED FEELINGS",
       "VERTIGO SYMPTOMS",
@@ -27711,7 +27711,7 @@
     ],
     "intersectH": 4,
     "intersectV": 0,
-    "clue": "behavior",
+    "clue": "playful",
     "clues": [
       "PLAYFUL BEHAVIORS",
       "GENTLE MOCKERY",
@@ -27726,7 +27726,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "fasteners",
+    "clue": "fastener",
     "clues": [
       "FASTENERS",
       "DOOR HARDWARE",
@@ -27771,7 +27771,7 @@
     ],
     "intersectH": 4,
     "intersectV": 2,
-    "clue": "covering",
+    "clue": "fabric",
     "clues": [
       "FABRIC COVERINGS",
       "HANGING MATERIALS",
@@ -27786,7 +27786,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "electric connection",
+    "clue": "cord",
     "clues": [
       "ELECTRIC CONNECTIONS",
       "CORD RELATED",
@@ -27816,7 +27816,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "age",
+    "clue": "young",
     "clues": [
       "AGE GROUPS",
       "YOUNG HUMANS",
@@ -28101,7 +28101,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
       "OUTSIDE ELEMENTS",
@@ -28146,7 +28146,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "debate",
     "clues": [
       "DEBATE ACTIONS",
       "SUPPORT WITH EVIDENCE",
@@ -28171,16 +28171,16 @@
   },
   {
     "words": [
-      "cameo",
-      "trait"
+      "aloof",
+      "stoic"
     ],
-    "intersectH": 1,
+    "intersectH": 2,
     "intersectV": 2,
-    "clue": "character",
+    "clue": "detachment",
     "clues": [
-      "CHARACTER FEATURES",
-      "DISTINCTIVE QUALITY",
-      "DEFINES A PERSON"
+      "EMOTIONAL DETACHMENT",
+      "UNMOVED DEMEANOR",
+      "DISTANT ATTITUDE"
     ],
     "date": "2031-07-23"
   },
@@ -28206,7 +28206,7 @@
     ],
     "intersectH": 1,
     "intersectV": 0,
-    "clue": "adjective",
+    "clue": "unkempt",
     "clues": [
       "NEGATIVE ADJECTIVES",
       "UNKEMPT",
@@ -28261,16 +28261,16 @@
   },
   {
     "words": [
-      "ought",
-      "would"
+      "mushy",
+      "soggy"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
-    "clue": "verb",
+    "intersectH": 2,
+    "intersectV": 0,
+    "clue": "soft",
     "clues": [
-      "AUXILIARY VERBS",
-      "CONDITIONAL FORMS",
-      "EXPRESS POSSIBILITY"
+      "SOFT AND WET",
+      "WATERLOGGED TEXTURE",
+      "LOSES FIRMNESS"
     ],
     "date": "2031-07-29"
   },
@@ -28281,7 +28281,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "concept",
+    "clue": "possession",
     "clues": [
       "LEGAL CONCEPTS",
       "THINGS YOU ASSERT",
@@ -28371,7 +28371,7 @@
     ],
     "intersectH": 1,
     "intersectV": 3,
-    "clue": "description",
+    "clue": "weak",
     "clues": [
       "WEAK DESCRIPTIONS",
       "LACKING STRENGTH",
@@ -28386,7 +28386,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "cooking ingredient",
+    "clue": "cooking",
     "clues": [
       "COOKING INGREDIENTS",
       "WET MIXTURES",
@@ -28716,7 +28716,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "fracture",
     "clues": [
       "FRACTURING ACTIONS",
       "SEPARATING PIECES",
@@ -28776,7 +28776,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "ensemble",
+    "clue": "music",
     "clues": [
       "MUSICAL ENSEMBLES",
       "SINGERS TOGETHER",
@@ -28791,7 +28791,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "excessive indulgence",
+    "clue": "excessive",
     "clues": [
       "EXCESSIVE INDULGENCE",
       "UNCONTROLLED ACTIVITY",
@@ -28821,7 +28821,7 @@
     ],
     "intersectH": 4,
     "intersectV": 3,
-    "clue": "element",
+    "clue": "fire",
     "clues": [
       "FIRE ELEMENTS",
       "TINY FLAMES",
@@ -28896,7 +28896,7 @@
     ],
     "intersectH": 3,
     "intersectV": 0,
-    "clue": "description",
+    "clue": "furry",
     "clues": [
       "HAIR DESCRIPTIONS",
       "THICK AND FULL",
@@ -28911,7 +28911,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "dwellings",
+    "clue": "dwelling",
     "clues": [
       "DWELLINGS",
       "RESIDENTIAL STRUCTURES",
@@ -29091,7 +29091,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "overgrown",
     "clues": [
       "OVERGROWN CONDITIONS",
       "UNKEMPT APPEARANCE",
@@ -29121,7 +29121,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "gem",
+    "clue": "gemstone",
     "clues": [
       "PRECIOUS GEMS",
       "VALUABLE ROCKS",
@@ -29181,7 +29181,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "behavior",
+    "clue": "silly",
     "clues": [
       "WILD BEHAVIOR",
       "CRAZY ADJECTIVES",
@@ -29286,7 +29286,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "action",
+    "clue": "thrown",
     "clues": [
       "THROWING ACTIONS",
       "PAST TENSE VERBS",
@@ -29406,7 +29406,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "annoying trait",
+    "clue": "annoying",
     "clues": [
       "ANNOYING TRAITS",
       "COMPLAINS A LOT",
@@ -29431,16 +29431,16 @@
   },
   {
     "words": [
-      "ratio",
-      "third"
+      "sneer",
+      "stare"
     ],
     "intersectH": 0,
-    "intersectV": 3,
-    "clue": "concept",
+    "intersectV": 0,
+    "clue": "facial expression",
     "clues": [
-      "MATHEMATICAL CONCEPTS",
-      "PROPORTIONAL IDEAS",
-      "ONE OF THREE PARTS"
+      "FACE ACTIONS",
+      "EYES AND MOUTH",
+      "INTENSE LOOKS"
     ],
     "date": "2031-10-15"
   },
@@ -29551,16 +29551,16 @@
   },
   {
     "words": [
-      "banal",
-      "droll"
+      "chili",
+      "pizza"
     ],
-    "intersectH": 4,
-    "intersectV": 3,
-    "clue": "writing",
+    "intersectH": 2,
+    "intersectV": 1,
+    "clue": "food",
     "clues": [
-      "DESCRIBING SPEECH OR WRITING",
-      "BORING OR AMUSING",
-      "ADJECTIVES FOR CONVERSATION"
+      "COMFORT FOODS",
+      "SERVED HOT",
+      "PARTY FAVORITES"
     ],
     "date": "2031-10-23"
   },
@@ -29631,7 +29631,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "device",
+    "clue": "time",
     "clues": [
       "TIMEKEEPING DEVICES",
       "MORNING WAKEUP",
@@ -29781,7 +29781,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "word",
+    "clue": "level",
     "clues": [
       "MEASUREMENT WORDS",
       "VERTICAL LINE",
@@ -29841,7 +29841,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "action",
+    "clue": "stop",
     "clues": [
       "STOPPING ACTIONS",
       "END OR PAUSE",
@@ -29856,7 +29856,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "element",
+    "clue": "fire",
     "clues": [
       "FIRE ELEMENTS",
       "IGNITION SOURCES",
@@ -30066,7 +30066,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "worn and",
+    "clue": "worn out",
     "clues": [
       "WORN AND SHABBY",
       "DETERIORATED STATE",
@@ -30076,16 +30076,16 @@
   },
   {
     "words": [
-      "dealt",
-      "alloy"
+      "bloke",
+      "gents"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
-    "clue": "card and metal",
+    "intersectH": 4,
+    "intersectV": 1,
+    "clue": "people",
     "clues": [
-      "CARD AND METAL TERMS",
-      "MIXTURE COMBINATIONS",
-      "BLEND RESULTS"
+      "MALE PEOPLE",
+      "MEN",
+      "GUYS"
     ],
     "date": "2031-11-27"
   },
@@ -30111,7 +30111,7 @@
     ],
     "intersectH": 3,
     "intersectV": 3,
-    "clue": "feeling",
+    "clue": "cautious",
     "clues": [
       "CAUTIOUS FEELINGS",
       "WARY AND DISTRUSTFUL",
@@ -30126,7 +30126,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "mean",
     "clues": [
       "VIOLENT BEHAVIOR",
       "HARSH TREATMENT",
@@ -30171,7 +30171,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "description",
+    "clue": "body type",
     "clues": [
       "BODY DESCRIPTIONS",
       "ROUND AND SOFT",
@@ -30246,7 +30246,7 @@
     ],
     "intersectH": 1,
     "intersectV": 0,
-    "clue": "group",
+    "clue": "collective bargaining",
     "clues": [
       "WORKER GROUPS",
       "ORGANIZED ASSOCIATIONS",
@@ -30426,7 +30426,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "flowers",
+    "clue": "flower",
     "clues": [
       "FLOWERS",
       "GARDEN BLOOMERS",
@@ -30496,16 +30496,16 @@
   },
   {
     "words": [
-      "chili",
-      "pizza"
+      "banal",
+      "droll"
     ],
-    "intersectH": 2,
-    "intersectV": 1,
-    "clue": "food",
+    "intersectH": 4,
+    "intersectV": 3,
+    "clue": "writing",
     "clues": [
-      "COMFORT FOODS",
-      "SERVED HOT",
-      "PARTY FAVORITES"
+      "DESCRIBING SPEECH OR WRITING",
+      "BORING OR AMUSING",
+      "ADJECTIVES FOR CONVERSATION"
     ],
     "date": "2031-12-25"
   },
@@ -30621,7 +30621,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "descriptor",
+    "clue": "size",
     "clues": [
       "SIZE DESCRIPTORS",
       "LESS NARROW",
@@ -30766,16 +30766,16 @@
   },
   {
     "words": [
-      "borne",
-      "carry"
+      "diner",
+      "pizza"
     ],
-    "intersectH": 2,
-    "intersectV": 2,
-    "clue": "verb",
+    "intersectH": 1,
+    "intersectV": 1,
+    "clue": "eating",
     "clues": [
-      "TRANSPORT VERBS",
-      "MOVEMENT ACTIONS",
-      "HELD UP"
+      "CASUAL RESTAURANTS",
+      "COMFORT FOOD PLACES",
+      "LATE NIGHT EATS"
     ],
     "date": "2032-01-12"
   },
@@ -30786,7 +30786,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "figure",
+    "clue": "authority",
     "clues": [
       "AUTHORITY FIGURES",
       "MAKE DECISIONS",
@@ -30876,7 +30876,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "cothing",
+    "clue": "clothing",
     "clues": [
       "CLOTHING ITEMS",
       "WORN OVER CLOTHES",
@@ -30891,7 +30891,7 @@
     ],
     "intersectH": 0,
     "intersectV": 3,
-    "clue": "form",
+    "clue": "life form",
     "clues": [
       "LIFE FORMS",
       "EARTHLINGS AND OTHERS",
@@ -30901,16 +30901,16 @@
   },
   {
     "words": [
-      "boost",
-      "exalt"
+      "funny",
+      "sappy"
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "uplift",
+    "clue": "emotion",
     "clues": [
-      "ELEVATE STATUS",
-      "UPLIFT",
-      "PRAISE GREATLY"
+      "COMEDY MOVIE GENRES",
+      "EMOTIONALLY TONE DEAF",
+      "LAUGH OR CRY RESPONSE"
     ],
     "date": "2032-01-21"
   },
@@ -30946,16 +30946,16 @@
   },
   {
     "words": [
-      "nerdy",
-      "pudgy"
+      "corny",
+      "silly"
     ],
-    "intersectH": 3,
-    "intersectV": 2,
-    "clue": "stereotype",
+    "intersectH": 4,
+    "intersectV": 4,
+    "clue": "quality",
     "clues": [
-      "STEREOTYPES",
-      "INDOORS A LOT",
-      "SEDENTARY LIFESTYLE"
+      "FOOLISH QUALITIES",
+      "NOT SERIOUS",
+      "RIDICULOUS BEHAVIOR"
     ],
     "date": "2032-01-24"
   },
@@ -31086,7 +31086,7 @@
     ],
     "intersectH": 4,
     "intersectV": 2,
-    "clue": "area",
+    "clue": "wetland",
     "clues": [
       "WETLAND AREAS",
       "FOUND IN SOUTH",
@@ -31191,7 +31191,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "body",
+    "clue": "body part",
     "clues": [
       "BODY JOINTS",
       "JOINT AREAS",
@@ -31206,7 +31206,7 @@
     ],
     "intersectH": 3,
     "intersectV": 2,
-    "clue": "animals",
+    "clue": "animal",
     "clues": [
       "ANIMALS",
       "DESERT TRANSPORT",
@@ -31221,7 +31221,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "component",
+    "clue": "a1",
     "clues": [
       "DINNER COMPONENTS",
       "GOES WITH MEAT",
@@ -31416,7 +31416,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "content",
+    "clue": "rubbish",
     "clues": [
       "WORTHLESS CONTENT",
       "NONSENSE OR GARBAGE",
@@ -31476,7 +31476,7 @@
     ],
     "intersectH": 2,
     "intersectV": 0,
-    "clue": "groups",
+    "clue": "group",
     "clues": [
       "GROUPS OF THINGS",
       "COLLECTIVE NOUNS",
@@ -31491,7 +31491,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "feeling",
+    "clue": "happy",
     "clues": [
       "HAPPY FEELINGS",
       "LIGHTHEARTED",
@@ -31521,7 +31521,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "exhaustion",
+    "clue": "exhausted",
     "clues": [
       "EXHAUSTION STATES",
       "LACKING ENERGY",
@@ -31656,7 +31656,7 @@
     ],
     "intersectH": 2,
     "intersectV": 2,
-    "clue": "adverbs",
+    "clue": "cunning",
     "clues": [
       "ADVERBS OF MANNER",
       "DECEPTIVE WAYS",
@@ -31686,7 +31686,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "build",
+    "clue": "musclar",
     "clues": [
       "LARGE MUSCULAR BUILDS",
       "BIG AND STRONG",
@@ -31716,7 +31716,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "behavior",
+    "clue": "funny",
     "clues": [
       "FUNNY BEHAVIOR",
       "GOOFY AND ABSURD",
@@ -31791,7 +31791,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "demeanor",
+    "clue": "tough",
     "clues": [
       "TOUGH DEMEANOR",
       "MASCULINE QUALITIES",
@@ -31806,7 +31806,7 @@
     ],
     "intersectH": 0,
     "intersectV": 2,
-    "clue": "colors",
+    "clue": "color",
     "clues": [
       "COLORS",
       "SKY HUES",
@@ -31866,7 +31866,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "formation",
+    "clue": "landform",
     "clues": [
       "GEOGRAPHIC FORMATIONS",
       "WATER MEETS LAND",
@@ -31926,7 +31926,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "condition",
+    "clue": "wet",
     "clues": [
       "WET CONDITIONS",
       "MOISTURE SOAKED",
@@ -32016,7 +32016,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "word",
+    "clue": "intelligent",
     "clues": [
       "INTELLIGENCE WORDS",
       "KNOWLEDGEABLE",
@@ -32056,16 +32056,16 @@
   },
   {
     "words": [
-      "civvy",
-      "nymph"
+      "drawn",
+      "weary"
     ],
-    "intersectH": 4,
-    "intersectV": 1,
-    "clue": "figure",
+    "intersectH": 1,
+    "intersectV": 3,
+    "clue": "tired",
     "clues": [
-      "FEMALE FIGURES",
-      "MYTHOLOGICAL BEINGS",
-      "FOLKLORE CREATURES"
+      "TIRED APPEARANCES",
+      "EXHAUSTED LOOKING",
+      "DRAINED ENERGY"
     ],
     "date": "2032-04-07"
   },
@@ -32121,7 +32121,7 @@
     ],
     "intersectH": 1,
     "intersectV": 4,
-    "clue": "conflict",
+    "clue": "agreement",
     "clues": [
       "END CONFLICTS",
       "AGREEMENTS",
@@ -32136,7 +32136,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "covering",
+    "clue": "clothing",
     "clues": [
       "LEG COVERING",
       "WESTERN WEAR",
@@ -32256,7 +32256,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "adjective",
+    "clue": "disreputable",
     "clues": [
       "ADJECTIVES",
       "DISREPUTABLE",
@@ -32271,7 +32271,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "area",
+    "clue": "woodland",
     "clues": [
       "WOODED AREAS",
       "FULL OF TREES",
@@ -32286,7 +32286,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "being",
+    "clue": "evil",
     "clues": [
       "EVIL BEINGS",
       "SUPERNATURAL ANTAGONISTS",
@@ -32301,7 +32301,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "action",
+    "clue": "postpone",
     "clues": [
       "POSTPONEMENT ACTIONS",
       "TIME TACTICS",
@@ -32421,7 +32421,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "element",
+    "clue": "sound",
     "clues": [
       "MUSICAL ELEMENTS",
       "HARMONY CREATORS",
@@ -32586,7 +32586,7 @@
     ],
     "intersectH": 2,
     "intersectV": 1,
-    "clue": "behavior",
+    "clue": "disrespectful",
     "clues": [
       "BOLD BEHAVIORS",
       "DISRESPECTFUL",
@@ -32646,7 +32646,7 @@
     ],
     "intersectH": 0,
     "intersectV": 4,
-    "clue": "cutting",
+    "clue": "cut",
     "clues": [
       "CUTTING ACTIONS",
       "REDUCE AMOUNTS",
@@ -32886,7 +32886,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "descriptor",
+    "clue": "stability",
     "clues": [
       "STABILITY DESCRIPTORS",
       "OPPOSITE QUALITIES",
@@ -33241,16 +33241,16 @@
   },
   {
     "words": [
-      "angst",
-      "grief"
+      "amuse",
+      "enjoy"
     ],
-    "intersectH": 2,
+    "intersectH": 4,
     "intersectV": 0,
-    "clue": "sadness",
+    "clue": "happy",
     "clues": [
-      "DIFFICULT EMOTIONS",
-      "INNER TURMOIL",
-      "SUFFERING OR PAIN"
+      "POSITIVE FEELINGS",
+      "CAUSES PLEASURE",
+      "ENTERTAINMENT PURPOSE"
     ],
     "date": "2032-06-25"
   },
@@ -33366,7 +33366,7 @@
     ],
     "intersectH": 0,
     "intersectV": 0,
-    "clue": "group",
+    "clue": "church",
     "clues": [
       "MUSICAL GROUPS",
       "SINGING TOGETHER",
@@ -33456,7 +33456,7 @@
     ],
     "intersectH": 2,
     "intersectV": 3,
-    "clue": "body parts",
+    "clue": "body part",
     "clues": [
       "BODY PARTS",
       "FRONT OF TORSO",
@@ -34003,290 +34003,5 @@
       "SPRING BLOOMERS"
     ],
     "date": "2032-08-14"
-  },
-  {
-    "words": [
-      "drawn",
-      "weary"
-    ],
-    "intersectH": 1,
-    "intersectV": 3,
-    "clue": "tired",
-    "clues": [
-      "TIRED APPEARANCES",
-      "EXHAUSTED LOOKING",
-      "DRAINED ENERGY"
-    ],
-    "date": "2032-08-15"
-  },
-  {
-    "words": [
-      "diner",
-      "pizza"
-    ],
-    "intersectH": 1,
-    "intersectV": 1,
-    "clue": "eating",
-    "clues": [
-      "CASUAL RESTAURANTS",
-      "COMFORT FOOD PLACES",
-      "LATE NIGHT EATS"
-    ],
-    "date": "2032-08-16"
-  },
-  {
-    "words": [
-      "bloke",
-      "gents"
-    ],
-    "intersectH": 4,
-    "intersectV": 1,
-    "clue": "people",
-    "clues": [
-      "MALE PEOPLE",
-      "MEN",
-      "GUYS"
-    ],
-    "date": "2032-08-17"
-  },
-  {
-    "words": [
-      "sneer",
-      "stare"
-    ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "facial expression",
-    "clues": [
-      "FACE ACTIONS",
-      "EYES AND MOUTH",
-      "INTENSE LOOKS"
-    ],
-    "date": "2032-08-18"
-  },
-  {
-    "words": [
-      "mushy",
-      "soggy"
-    ],
-    "intersectH": 2,
-    "intersectV": 0,
-    "clue": "soft",
-    "clues": [
-      "SOFT AND WET",
-      "WATERLOGGED TEXTURE",
-      "LOSES FIRMNESS"
-    ],
-    "date": "2032-08-19"
-  },
-  {
-    "words": [
-      "bidet",
-      "basin"
-    ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "fixture",
-    "clues": [
-      "BATHROOM FIXTURES",
-      "WATER CONTAINERS",
-      "CLEANING VESSELS"
-    ],
-    "date": "2032-08-20"
-  },
-  {
-    "words": [
-      "gooey",
-      "sweet"
-    ],
-    "intersectH": 3,
-    "intersectV": 2,
-    "clue": "candy",
-    "clues": [
-      "CANDY QUALITIES",
-      "DELICIOUS TREATS",
-      "SUGAR COATED"
-    ],
-    "date": "2032-08-21"
-  },
-  {
-    "words": [
-      "stern",
-      "rigid"
-    ],
-    "intersectH": 3,
-    "intersectV": 0,
-    "clue": "unyielding",
-    "clues": [
-      "STRICT QUALITIES",
-      "UNYIELDING",
-      "NO FLEXIBILITY"
-    ],
-    "date": "2032-08-22"
-  },
-  {
-    "words": [
-      "growl",
-      "raspy"
-    ],
-    "intersectH": 1,
-    "intersectV": 0,
-    "clue": "sound",
-    "clues": [
-      "ROUGH SOUNDS",
-      "GRAVELLY VOICE",
-      "GRITTY TEXTURE"
-    ],
-    "date": "2032-08-23"
-  },
-  {
-    "words": [
-      "basil",
-      "pesto"
-    ],
-    "intersectH": 2,
-    "intersectV": 2,
-    "clue": "pasta",
-    "clues": [
-      "GREEN INGREDIENTS",
-      "ITALIAN SAUCE",
-      "GOES ON PASTA"
-    ],
-    "date": "2032-08-24"
-  },
-  {
-    "words": [
-      "brass",
-      "steel"
-    ],
-    "intersectH": 3,
-    "intersectV": 0,
-    "clue": "metal",
-    "clues": [
-      "METAL ALLOYS",
-      "DURABLE MATERIALS",
-      "MADE FROM ORE"
-    ],
-    "date": "2032-08-25"
-  },
-  {
-    "words": [
-      "eject",
-      "expel"
-    ],
-    "intersectH": 0,
-    "intersectV": 0,
-    "clue": "removal",
-    "clues": [
-      "FORCED REMOVALS",
-      "TO CAST OUT",
-      "KICK OUT"
-    ],
-    "date": "2032-08-26"
-  },
-  {
-    "words": [
-      "beech",
-      "cedar"
-    ],
-    "intersectH": 1,
-    "intersectV": 1,
-    "clue": "trees",
-    "clues": [
-      "TREES",
-      "WOOD SOURCES",
-      "FOREST INHABITANTS"
-    ],
-    "date": "2032-08-27"
-  },
-  {
-    "words": [
-      "dopey",
-      "funny"
-    ],
-    "intersectH": 4,
-    "intersectV": 4,
-    "clue": "type",
-    "clues": [
-      "PERSONALITY TYPES",
-      "MAKE OTHERS LAUGH",
-      "COMEDIC BEHAVIOR"
-    ],
-    "date": "2032-08-28"
-  },
-  {
-    "words": [
-      "depth",
-      "width"
-    ],
-    "intersectH": 0,
-    "intersectV": 2,
-    "clue": "dimensional",
-    "clues": [
-      "DIMENSIONAL MEASUREMENTS",
-      "SPATIAL CONCEPTS",
-      "PHYSICAL DIMENSIONS"
-    ],
-    "date": "2032-08-29"
-  },
-  {
-    "words": [
-      "jazzy",
-      "zesty"
-    ],
-    "intersectH": 2,
-    "intersectV": 0,
-    "clue": "quality",
-    "clues": [
-      "LIVELY QUALITIES",
-      "ENERGETIC VIBES",
-      "SPIRITED STYLE"
-    ],
-    "date": "2032-08-30"
-  },
-  {
-    "words": [
-      "drone",
-      "sound"
-    ],
-    "intersectH": 0,
-    "intersectV": 4,
-    "clue": "concept",
-    "clues": [
-      "AUDIO CONCEPTS",
-      "CONSTANT HUM",
-      "REPETITIVE NOISE"
-    ],
-    "date": "2032-08-31"
-  },
-  {
-    "words": [
-      "avoid",
-      "dodge"
-    ],
-    "intersectH": 2,
-    "intersectV": 1,
-    "clue": "evade",
-    "clues": [
-      "EVASION WORDS",
-      "STAY AWAY FROM",
-      "QUICK MOVEMENTS"
-    ],
-    "date": "2032-09-01"
-  },
-  {
-    "words": [
-      "khaki",
-      "tunic"
-    ],
-    "intersectH": 4,
-    "intersectV": 3,
-    "clue": "clothing",
-    "clues": [
-      "CLOTHING ITEMS",
-      "NEUTRAL COLORS",
-      "WORN IN UNIFORM"
-    ],
-    "date": "2032-09-02"
   }
 ]
