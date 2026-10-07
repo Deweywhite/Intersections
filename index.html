@@ -77,8 +77,10 @@
             margin-top: 12px;
             min-height: 34px;
         }
-        /* Keeps Share centred when it is the only thing in the row */
-        .popup-foot::after { content: ""; }
+        /* Share is pushed hard right. No phantom third child here — an
+           empty ::after takes the right slot under space-between and
+           leaves Share stranded in the middle. */
+        .popup-foot .share-btn { margin-left: auto; }
         .share-btn:hover {
             background-color: #3a9a3a;
         }
