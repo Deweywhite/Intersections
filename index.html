@@ -52,16 +52,33 @@
             letter-spacing: 0.05em;
         }
         .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
             background-color: #2a7a2a;
             color: #fff;
             border: none;
-            padding: 6px 18px;
+            padding: 7px 18px;
             font-size: 14px;
+            font-family: Arial, sans-serif;
             cursor: pointer;
-            border-radius: 4px;
-            margin: 8px auto;
-            display: block;
+            border-radius: 20px;
         }
+        .share-btn svg { width: 15px; height: 15px; flex: none; }
+
+        /* Close and Share sit in one footer row rather than stacking, which
+           was adding a whole row of height to the popup. */
+        .popup-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 12px;
+            min-height: 34px;
+        }
+        /* Keeps Share centred when it is the only thing in the row */
+        .popup-foot::after { content: ""; }
         .share-btn:hover {
             background-color: #3a9a3a;
         }
@@ -426,7 +443,7 @@
             margin: 6px auto;
             display: block;
         }
-        #win-ok, #lose-ok, #stats-close, #stats-clear {
+        #stats-close, #stats-clear {
             background-color: #555;
             color: #fff;
             border: none;
@@ -437,6 +454,21 @@
             margin: 8px auto 0;
             display: block;
         }
+        /* Circular, and large enough for a thumb */
+        #win-ok, #lose-ok {
+            flex: none;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: #555;
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        #win-ok:hover, #lose-ok:hover { background-color: #777; color: #fff; }
         /* RESET is destructive — quieter than the close buttons */
         #stats-clear {
             background-color: transparent;
@@ -450,7 +482,7 @@
             border-color: #f44336;
             color: #f44336;
         }
-        #win-ok:hover, #lose-ok:hover, #stats-close:hover {
+        #stats-close:hover {
             background-color: #777;
         }
         .ex-cell {
@@ -1355,14 +1387,18 @@
             <h2>You Got the Green Light!</h2>
             <p>Guesses: <span id="win-guesses">0</span></p>
             <p>Time: <span id="win-time">0s</span></p>
-            <button id="win-share" class="share-btn" style="display:none;">Share 🔗</button>
-            <button id="win-ok">X</button>
+            <div class="popup-foot">
+                <button id="win-ok" aria-label="Close">✕</button>
+                <button id="win-share" class="share-btn" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 15V3M8 7l4-4 4 4"/></svg>Share</button>
+            </div>
         </div>
 <div id="lose-popup">
     <div id="lose-sprite" class="outcome-sprite"></div>
     <h2 id="lose-title">You Ran the Red Light</h2>
-    <button id="lose-share" class="share-btn" style="display:none;">Share 🔗</button>
-    <button id="lose-ok">X</button>
+    <div class="popup-foot">
+        <button id="lose-ok" aria-label="Close">✕</button>
+        <button id="lose-share" class="share-btn" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 15V3M8 7l4-4 4 4"/></svg>Share</button>
+    </div>
 </div>
         <div id="tut-offer">
             <h2>WELCOME TO INTERSECTIONS</h2>
