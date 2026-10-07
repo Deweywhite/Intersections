@@ -1766,9 +1766,10 @@
     function openFeedback() {
         closeStats(); closeArchive(); playMenuClose();
         const note = document.getElementById("feedback-context");
-        note.textContent = cloudUser
-            ? "Attaches today's puzzle, your device, and your account so we can reply."
-            : "Attaches today's puzzle and your device — so we can actually find the problem.";
+        const base = "Attaches today's puzzle, your device and browser type — so we can better understand any issues.";
+        // When signed in the account rides along too, so say so rather than
+        // attaching identity silently.
+        note.textContent = cloudUser ? base + " Your account comes along so we can reply." : base;
         document.getElementById("feedback-status").textContent = "";
         document.getElementById("feedback-status").classList.remove("error");
         document.getElementById("feedback-send").disabled = false;
