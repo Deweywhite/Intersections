@@ -448,7 +448,7 @@
            ends. Desktop gets a cursor and a slight lift on hover; touch
            users find it by tapping an answer. */
         .cell.definable { cursor: pointer; }
-        @media (hover: hover) and (pointer: fine) {
+        @media (any-hover: hover) and (any-pointer: fine) {
             .cell.definable:hover { filter: brightness(1.18); }
         }
         #def-bubble {
@@ -1093,7 +1093,7 @@
                 font-size: 16px;
             }
         }
-        @media (hover: hover) and (pointer: fine) {
+        @media (any-hover: hover) and (any-pointer: fine) {
             #menu-bar button {
                 position: relative;
                 overflow: visible;
@@ -1648,8 +1648,14 @@
                 showDefBubble(which, cell);
             }
         });
-        // hover is a desktop nicety; touch devices only get the tap
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        // Hover is a desktop nicety; touch-only devices just get the tap.
+        // any-hover/any-pointer, not hover/pointer: on a touchscreen laptop
+        // the PRIMARY pointer reports as coarse, so the plain queries say
+        // "no mouse" even when one is plugged in. any-* asks whether any
+        // attached device can hover, which is the real question.
+        const canHover = !window.matchMedia
+            || window.matchMedia("(any-hover: hover) and (any-pointer: fine)").matches;
+        if (canHover) {
             grid.addEventListener("mouseover", function (e) {
                 const cell = e.target.closest(".cell.definable");
                 if (!cell) return;
