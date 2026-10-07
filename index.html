@@ -471,6 +471,128 @@
         .ex-cell.red { background-color: #f44336; }
         .ex-cell.horizontal { background-color: #333; }
         .ex-cell.vertical { background-color: #333; }
+        /* ===== Feedback ("Honk at Us") ===== */
+        /* Icon only. The label lives in a hover tooltip so the board stays
+           uncluttered — same pattern as the menu-bar buttons. */
+        #feedback-btn {
+            display: block;
+            margin: 2.4vw auto 1.6vw;
+            padding: 6px;
+            background: transparent;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            line-height: 0;
+            transition: color 0.2s;
+            position: relative;
+            overflow: visible;
+        }
+        #feedback-btn:hover { color: #bbb; }
+        #feedback-btn svg {
+            width: min(2.6vw, 32px);
+            height: min(2.6vw, 32px);
+            display: block;
+        }
+        @media (any-hover: hover) and (any-pointer: fine) {
+            #feedback-btn::after {
+                content: attr(title);
+                position: absolute;
+                bottom: -1.9em;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0,0,0,0.82);
+                color: #fff;
+                font-family: Arial, sans-serif;
+                font-size: 11px;
+                line-height: 1.6;
+                white-space: nowrap;
+                padding: 3px 9px;
+                border-radius: 4px;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s;
+                z-index: 1200;
+            }
+            #feedback-btn:hover::after { opacity: 1; }
+        }
+
+        #feedback-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            border: 3px solid #4caf50;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            padding: 18px 20px;
+            width: 320px;
+            max-width: 88vw;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            z-index: 1300;
+            display: none;
+        }
+        #feedback-popup h2 {
+            margin: 0 0 4px;
+            font-size: 1em;
+            letter-spacing: 1.5px;
+            text-align: center;
+        }
+        #feedback-popup .fb-sub {
+            margin: 0 0 12px;
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+        }
+        #feedback-text {
+            width: 100%;
+            box-sizing: border-box;
+            background: #2a2a2a;
+            color: #fff;
+            border: 1.5px solid #555;
+            border-radius: 8px;
+            padding: 9px 11px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            resize: vertical;
+            min-height: 70px;
+        }
+        #feedback-text:focus { outline: none; border-color: #4caf50; }
+        .fb-ctx {
+            font-size: 11px;
+            color: #777;
+            line-height: 1.5;
+            margin: 8px 0 0;
+        }
+        .fb-status {
+            font-size: 12px;
+            color: #4caf50;
+            min-height: 1.2em;
+            margin: 6px 0 0;
+            text-align: center;
+        }
+        .fb-status.error { color: #f44336; }
+        .fb-btns {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .fb-btns button {
+            border: none;
+            border-radius: 16px;
+            padding: 6px 18px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #fff;
+        }
+        #feedback-cancel { background: #555; }
+        #feedback-cancel:hover { background: #777; }
+        #feedback-send { background: #4caf50; }
+        #feedback-send:hover { background: #5cbf60; }
+        #feedback-send:disabled { background: #3a6b3c; cursor: default; }
+
         /* ===== Dictionary bubble ===== */
         /* No persistent marker — the cells just become live once the game
            ends. Desktop gets a cursor and a slight lift on hover; touch
@@ -1076,6 +1198,8 @@
                 font-size: 13px;
                 padding: 12px 14px;
             }
+            #feedback-btn { margin: 5vw auto 3vw; padding: 2vw; }
+            #feedback-btn svg { width: 7.5vw; height: 7.5vw; }
             #road-sign {
                 font-size: 3.3vw;
                 padding: 2vw 4vw;
@@ -1204,6 +1328,27 @@
             </div>
             <div class="traffic-light" id="right-traffic-light"></div>
         </div>
+
+        <button id="feedback-btn" type="button" title="Honk at Us" aria-label="Honk at Us — send feedback">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3.4 8.3h9.1l5.1-3.6a.7.7 0 0 1 1.1.6v9.4a.7.7 0 0 1-1.1.6l-5.1-3.6H3.4a.7.7 0 0 1-.7-.7V9a.7.7 0 0 1 .7-.7Z"/>
+                <ellipse cx="7.4" cy="14.3" rx="3.6" ry="2.3"/>
+                <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M20.6 8.1 22.3 7M20.6 12l1.7 1.1M21.2 10h1.9"/>
+            </svg>
+        </button>
+
+        <div id="feedback-popup">
+            <h2>HONK AT US</h2>
+            <p class="fb-sub">Bugs on the windshield? We love feedback</p>
+            <textarea id="feedback-text" rows="4" maxlength="4000" placeholder="Tell us what's on your mind"></textarea>
+            <p id="feedback-context" class="fb-ctx"></p>
+            <p id="feedback-status" class="fb-status"></p>
+            <div class="fb-btns">
+                <button id="feedback-cancel" type="button">Cancel</button>
+                <button id="feedback-send" type="button">Send</button>
+            </div>
+        </div>
+
         <div id="message"></div>
         <div id="win-popup">
             <div id="win-sprite" class="outcome-sprite"></div>
@@ -1598,6 +1743,92 @@
     }
 
     document.getElementById("road-sign").addEventListener("click", revealRoadSign);
+
+    // ===== Feedback ("Honk at Us") =====
+    // Writes to the Supabase feedback table, which is insert-only — nobody
+    // can read anyone else's. Falls back to a mail link if the cloud isn't
+    // configured, so the button always does something.
+
+    function feedbackContext() {
+        return {
+            date:       currentPuzzleDate,
+            mode:       gameMode,
+            guesses:    guesses,
+            gameOver:   gameOver,
+            usedDirections: usedDirections,
+            words:      gameOver ? [targetHorizontal, targetVertical] : undefined,
+            screen:     window.innerWidth + "x" + window.innerHeight,
+            ua:         navigator.userAgent,
+            version:    "2.6"
+        };
+    }
+
+    function openFeedback() {
+        closeStats(); closeArchive(); playMenuClose();
+        const note = document.getElementById("feedback-context");
+        note.textContent = cloudUser
+            ? "Attaches today's puzzle, your device, and your account so we can reply."
+            : "Attaches today's puzzle and your device — so we can actually find the problem.";
+        document.getElementById("feedback-status").textContent = "";
+        document.getElementById("feedback-status").classList.remove("error");
+        document.getElementById("feedback-send").disabled = false;
+        document.getElementById("feedback-popup").style.display = "block";
+        document.getElementById("feedback-text").focus();
+    }
+
+    function closeFeedback() {
+        document.getElementById("feedback-popup").style.display = "none";
+    }
+
+    function setFeedbackStatus(msg, isError) {
+        const el = document.getElementById("feedback-status");
+        el.textContent = msg;
+        el.classList.toggle("error", !!isError);
+    }
+
+    async function sendFeedback() {
+        const box = document.getElementById("feedback-text");
+        const text = box.value.trim();
+        if (!text) { setFeedbackStatus("Write something first.", true); box.focus(); return; }
+
+        const btn = document.getElementById("feedback-send");
+        btn.disabled = true;
+        setFeedbackStatus("Sending…");
+
+        if (!cloudClient) {
+            // No cloud configured — hand off to the player's mail app
+            const body = text + "\n\n---\n" + JSON.stringify(feedbackContext(), null, 1);
+            window.location.href = "mailto:support@intersectionsgame.com"
+                + "?subject=" + encodeURIComponent("Intersections feedback")
+                + "&body=" + encodeURIComponent(body);
+            setFeedbackStatus("Opening your mail app…");
+            setTimeout(closeFeedback, 1200);
+            return;
+        }
+
+        try {
+            const { error } = await cloudClient.from("feedback").insert({
+                user_id: cloudUser ? cloudUser.id : null,
+                message: text,
+                context: feedbackContext()
+            });
+            if (error) throw error;
+            box.value = "";
+            setFeedbackStatus("Thanks — honk received.");
+            setTimeout(closeFeedback, 1400);
+        } catch (e) {
+            console.warn("Feedback failed:", e);
+            setFeedbackStatus("Couldn't send that. Try again in a moment.", true);
+            btn.disabled = false;
+        }
+    }
+
+    document.getElementById("feedback-btn").addEventListener("click", function (e) {
+        e.stopPropagation();
+        openFeedback();
+    });
+    document.getElementById("feedback-cancel").addEventListener("click", closeFeedback);
+    document.getElementById("feedback-send").addEventListener("click", sendFeedback);
 
     // ===== Dictionary =====
     // Once the game is over, the two answer words on the main grid get a
@@ -2014,6 +2245,10 @@
         if (document.getElementById("stats-popup").style.display === "block"
             && !t.closest("#stats-popup") && !t.closest("#stats")) {
             closeStats();
+        }
+        if (document.getElementById("feedback-popup").style.display === "block"
+            && !t.closest("#feedback-popup") && !t.closest("#feedback-btn")) {
+            closeFeedback();
         }
     });
 
@@ -3412,6 +3647,13 @@
     function handleKeydown(event) {
         const winPopup = document.getElementById("win-popup");
         const losePopup = document.getElementById("lose-popup");
+
+        // Feedback popup owns the keyboard: the player is typing a message.
+        // Escape closes; everything else goes to the textarea.
+        if (document.getElementById("feedback-popup").style.display === "block") {
+            if (event.key === "Escape") closeFeedback();
+            return;
+        }
 
         // Sign-in popup owns the keyboard: the player is typing an email.
         // Let the input and the form's native Enter-to-submit handle it.

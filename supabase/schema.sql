@@ -57,6 +57,30 @@ create policy "own stats" on public.player_stats
     using      (auth.uid() = user_id)
     with check (auth.uid() = user_id);
 
+-- ------------------------------------------------------------
+-- Feedback ("Honk at Us"). Anyone may write; nobody may read it back
+-- through the API — you read it in the Supabase dashboard, which bypasses
+-- RLS as the project owner.
+-- ------------------------------------------------------------
+create table if not exists public.feedback (
+    id          uuid        primary key default gen_random_uuid(),
+    created_at  timestamptz not null default now(),
+    user_id     uuid        references auth.users(id) on delete set null,
+    message     text        not null check (char_length(message) between 1 and 4000),
+    context     jsonb       not null default '{}'::jsonb
+);
+
+alter table public.feedback enable row level security;
+
+drop policy if exists "anyone can send feedback" on public.feedback;
+create policy "anyone can send feedback" on public.feedback
+    for insert
+    with check (char_length(message) between 1 and 4000);
+
+grant insert on public.feedback to anon, authenticated;
+
+create index if not exists feedback_created_idx on public.feedback (created_at desc);
+
 -- Helpful index for "all my history, newest first"
 create index if not exists player_history_user_date_idx
     on public.player_history (user_id, puzzle_date desc);
