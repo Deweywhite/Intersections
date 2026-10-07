@@ -3254,8 +3254,8 @@
       "humor",
       "laugh"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "comedy",
     "clues": [
       "COMEDY ELEMENTS",
@@ -3379,8 +3379,8 @@
       "cameo",
       "scene"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "film",
     "clues": [
       "FILM APPEARANCES",
@@ -3654,8 +3654,8 @@
       "chaos",
       "havoc"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "destruction",
     "clues": [
       "DISORDER STATES",
@@ -3729,8 +3729,8 @@
       "angel",
       "heron"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "winged",
     "clues": [
       "WINGED CREATURES",
@@ -3754,8 +3754,8 @@
       "dopey",
       "perky"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "personality",
     "clues": [
       "PERSONALITY TYPES",
@@ -3779,7 +3779,7 @@
       "eater",
       "diner"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 3,
     "clue": "restaurant",
     "clues": [
@@ -3829,8 +3829,8 @@
       "easel",
       "frame"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "art",
     "clues": [
       "ART SUPPLIES",
@@ -4079,8 +4079,8 @@
       "carol",
       "chant"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "singing",
     "clues": [
       "SINGING STYLES",
@@ -4104,8 +4104,8 @@
       "cello",
       "flute"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "orchestral",
     "clues": [
       "ORCHESTRAL INSTRUMENTS",
@@ -4554,8 +4554,8 @@
       "cabin",
       "villa"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "vacation homes",
     "clues": [
       "VACATION HOMES",
@@ -4754,8 +4754,8 @@
       "stomp",
       "thump"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "heavy sounds",
     "clues": [
       "HEAVY IMPACTS",
@@ -4779,8 +4779,8 @@
       "straw",
       "wheat"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "farm",
     "clues": [
       "GRAIN CROPS",
@@ -4804,8 +4804,8 @@
       "devil",
       "fiend"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "evil",
     "clues": [
       "EVIL ENTITIES",
@@ -5004,7 +5004,7 @@
       "avian",
       "eagle"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 1,
     "clue": "bird",
     "clues": [
@@ -5129,7 +5129,7 @@
       "adage",
       "maxim"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "saying",
     "clues": [
@@ -5229,8 +5229,8 @@
       "dingy",
       "dirty"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "unclean",
     "clues": [
       "UNCLEAN CONDITIONS",
@@ -5504,8 +5504,8 @@
       "order",
       "world"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "rules",
     "clues": [
       "GLOBAL SYSTEMS",
@@ -5704,7 +5704,7 @@
       "alarm",
       "dread"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "fearful",
     "clues": [
@@ -5829,8 +5829,8 @@
       "soggy",
       "moist"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "wet condition",
     "clues": [
       "WET CONDITIONS",
@@ -5854,8 +5854,8 @@
       "tempo",
       "meter"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "music",
     "clues": [
       "MUSIC ELEMENTS",
@@ -5954,8 +5954,8 @@
       "amuse",
       "tease"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "playful",
     "clues": [
       "PLAYFUL BEHAVIORS",
@@ -6004,8 +6004,8 @@
       "bleak",
       "blunt"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "harsh",
     "clues": [
       "HARSH QUALITIES",
@@ -6029,8 +6029,8 @@
       "marsh",
       "swamp"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "wetland",
     "clues": [
       "BOGGY WETLANDS",
@@ -6079,8 +6079,8 @@
       "rugby",
       "scrum"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "contact sport",
     "clues": [
       "RUGBY TERMINOLOGY",
@@ -6529,8 +6529,8 @@
       "peach",
       "pecan"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "pies",
     "clues": [
       "NUTS AND FRUITS",
@@ -6854,8 +6854,8 @@
       "chasm",
       "abyss"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "void",
     "clues": [
       "DEEP VOIDS",
@@ -6879,7 +6879,7 @@
       "egret",
       "otter"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 3,
     "clue": "wildlife",
     "clues": [
@@ -6929,8 +6929,8 @@
       "bully",
       "brute"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "violent",
     "clues": [
       "AGGRESSIVE PEOPLE",
@@ -6954,8 +6954,8 @@
       "clack",
       "clang"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "noise",
     "clues": [
       "PERCUSSION SOUNDS",
@@ -7079,8 +7079,8 @@
       "humid",
       "moist"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "wet",
     "clues": [
       "WET CONDITIONS",
@@ -7154,8 +7154,8 @@
       "cling",
       "stick"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "adhesive",
     "clues": [
       "ADHESIVE ACTIONS",
@@ -7329,8 +7329,8 @@
       "clump",
       "chunk"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "piece",
     "clues": [
       "PIECES OR PORTIONS",
@@ -7354,8 +7354,8 @@
       "bylaw",
       "legal"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "rules",
     "clues": [
       "RULES AND REGULATIONS",
@@ -7454,8 +7454,8 @@
       "crass",
       "tacky"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "vulgar",
     "clues": [
       "LACKING TASTE",
@@ -7504,8 +7504,8 @@
       "ethic",
       "ethos"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "values",
     "clues": [
       "MORAL PRINCIPLES",
@@ -7754,8 +7754,8 @@
       "droll",
       "humor"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "witty",
     "clues": [
       "COMEDY ELEMENTS",
@@ -8204,8 +8204,8 @@
       "bower",
       "arbor"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "garden",
     "clues": [
       "GARDEN STRUCTURES",
@@ -8304,8 +8304,8 @@
       "baron",
       "noble"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "aristocracy",
     "clues": [
       "ARISTOCRATIC RANKS",
@@ -8354,8 +8354,8 @@
       "glide",
       "twirl"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "dance",
     "clues": [
       "DANCE MOVES",
@@ -8479,8 +8479,8 @@
       "odder",
       "weird"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "strange",
     "clues": [
       "STRANGE ADJECTIVES",
@@ -8504,8 +8504,8 @@
       "scarf",
       "shirt"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "clothing",
     "clues": [
       "CLOTHING ITEMS",
@@ -9029,8 +9029,8 @@
       "extol",
       "exalt"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "praise",
     "clues": [
       "PRAISE ACTIONS",
@@ -9104,8 +9104,8 @@
       "cedar",
       "sumac"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "plant",
     "clues": [
       "PLANTS",
@@ -9604,8 +9604,8 @@
       "inane",
       "snide"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "attitude",
     "clues": [
       "UNPLEASANT ATTITUDES",
@@ -9679,8 +9679,8 @@
       "banjo",
       "bongo"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "instrument",
     "clues": [
       "PERCUSSION INSTRUMENTS",
@@ -9854,8 +9854,8 @@
       "caulk",
       "crack"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "wall",
     "clues": [
       "WALL PROBLEMS",
@@ -9929,8 +9929,8 @@
       "chant",
       "cheer"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "noise",
     "clues": [
       "CROWD NOISES",
@@ -9979,8 +9979,8 @@
       "gonad",
       "ovary"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "anatomy",
     "clues": [
       "REPRODUCTIVE ORGANS",
@@ -10329,8 +10329,8 @@
       "cargo",
       "truck"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "transport",
     "clues": [
       "FREIGHT TRANSPORT",
@@ -10530,7 +10530,7 @@
       "tenth"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "rank",
     "clues": [
       "ORDINAL NUMBERS",
@@ -10554,8 +10554,8 @@
       "berry",
       "grape"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "fruit",
     "clues": [
       "FRUITS",
@@ -10629,8 +10629,8 @@
       "optic",
       "sight"
     ],
-    "intersectH": 2,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "vision",
     "clues": [
       "VISION RELATED",
@@ -10704,8 +10704,8 @@
       "dopey",
       "droll"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "characteristic",
     "clues": [
       "CHARACTER TRAITS",
@@ -10930,7 +10930,7 @@
       "clock"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "timekeeping",
     "clues": [
       "TIMEKEEPING DEVICES",
@@ -10979,8 +10979,8 @@
       "crass",
       "crude"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "rude",
     "clues": [
       "RUDE BEHAVIORS",
@@ -11154,8 +11154,8 @@
       "erupt",
       "flare"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "explosion",
     "clues": [
       "SUDDEN OUTBURSTS",
@@ -11254,8 +11254,8 @@
       "cliff",
       "climb"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "steep",
     "clues": [
       "ROCK FORMATIONS",
@@ -11404,8 +11404,8 @@
       "brass",
       "brash"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "quality",
     "clues": [
       "BOLD QUALITIES",
@@ -11429,8 +11429,8 @@
       "avert",
       "evade"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "avoidance",
     "clues": [
       "AVOIDANCE ACTIONS",
@@ -11579,8 +11579,8 @@
       "velum",
       "uvula"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "mouth",
     "clues": [
       "MOUTH PARTS",
@@ -11629,8 +11629,8 @@
       "milky",
       "minty"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "flavor",
     "clues": [
       "FLAVORS",
@@ -11679,8 +11679,8 @@
       "harpy",
       "shrew"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "temperamental",
     "clues": [
       "TEMPERAMENTAL WOMEN",
@@ -11829,8 +11829,8 @@
       "chard",
       "sumac"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "ingredient",
     "clues": [
       "COOKING INGREDIENTS",
@@ -11954,8 +11954,8 @@
       "pearl",
       "topaz"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "gemstone",
     "clues": [
       "GEMSTONES",
@@ -12029,7 +12029,7 @@
       "rural",
       "urban"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "geography",
     "clues": [
@@ -12129,8 +12129,8 @@
       "coral",
       "ocean"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "salt water",
     "clues": [
       "REEF RELATED",
@@ -12179,8 +12179,8 @@
       "corgi",
       "pooch"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "dog",
     "clues": [
       "DOG BREEDS",
@@ -12204,8 +12204,8 @@
       "stump",
       "trunk"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "part",
     "clues": [
       "TREE PARTS",
@@ -12229,8 +12229,8 @@
       "xerox",
       "clone"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "copy",
     "clues": [
       "EXACT COPIES",
@@ -12279,8 +12279,8 @@
       "snowy",
       "sunny"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "weather",
     "clues": [
       "WEATHER CONDITIONS",
@@ -12704,8 +12704,8 @@
       "coach",
       "teach"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "instruct",
     "clues": [
       "EDUCATION ROLES",
@@ -12804,8 +12804,8 @@
       "axiom",
       "maxim"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "saying",
     "clues": [
       "WISE SAYINGS",
@@ -12829,8 +12829,8 @@
       "filet",
       "fried"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "preparation",
     "clues": [
       "FISH PREPARATIONS",
@@ -13004,8 +13004,8 @@
       "elder",
       "uncle"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "family",
     "clues": [
       "FAMILY MEMBERS",
@@ -13279,7 +13279,7 @@
       "chick",
       "ducky"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 2,
     "clue": "bird",
     "clues": [
@@ -13379,8 +13379,8 @@
       "risky",
       "hairy"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "tricky",
     "clues": [
       "DANGEROUS SITUATIONS",
@@ -13429,8 +13429,8 @@
       "muddy",
       "murky"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "cloudy",
     "clues": [
       "CLOUDY OR UNCLEAR",
@@ -13479,8 +13479,8 @@
       "tasty",
       "zesty"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "food",
     "clues": [
       "DELICIOUS QUALITIES",
@@ -13504,8 +13504,8 @@
       "cadre",
       "corps"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "group",
     "clues": [
       "MILITARY GROUPS",
@@ -13529,8 +13529,8 @@
       "batch",
       "bunch"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "collection",
     "clues": [
       "GROUPS OF THINGS",
@@ -13779,8 +13779,8 @@
       "cider",
       "juice"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "beverage",
     "clues": [
       "BEVERAGES",
@@ -13804,8 +13804,8 @@
       "comic",
       "mirth"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "laugh",
     "clues": [
       "FUNNY THINGS",
@@ -13929,8 +13929,8 @@
       "tango",
       "waltz"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "dance",
     "clues": [
       "BALLROOM DANCES",
@@ -13979,8 +13979,8 @@
       "droid",
       "robot"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "artificial being",
     "clues": [
       "ARTIFICIAL BEINGS",
@@ -14079,8 +14079,8 @@
       "hoist",
       "winch"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "lifting",
     "clues": [
       "LIFTING DEVICES",
@@ -14229,8 +14229,8 @@
       "being",
       "exist"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "live",
     "clues": [
       "STATE OF EXISTENCE",
@@ -14654,8 +14654,8 @@
       "hippo",
       "rhino"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "mammal",
     "clues": [
       "LARGE MAMMALS",
@@ -14754,8 +14754,8 @@
       "cedar",
       "scent"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "aromatic",
     "clues": [
       "AROMATIC THINGS",
@@ -15054,8 +15054,8 @@
       "large",
       "small"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "size",
     "clues": [
       "SIZE DESCRIPTORS",
@@ -15404,8 +15404,8 @@
       "niece",
       "uncle"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "family",
     "clues": [
       "FAMILY RELATIONS",
@@ -15454,8 +15454,8 @@
       "drugs",
       "drunk"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "intoxication",
     "clues": [
       "INTOXICATION RELATED",
@@ -15554,8 +15554,8 @@
       "chili",
       "spice"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "seasoning",
     "clues": [
       "HOT SEASONINGS",
@@ -15654,8 +15654,8 @@
       "essay",
       "prose"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "composition",
     "clues": [
       "WRITING FORMS",
@@ -15754,8 +15754,8 @@
       "intro",
       "lyric"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "music",
     "clues": [
       "SONG PARTS",
@@ -15779,8 +15779,8 @@
       "organ",
       "piano"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "instrument",
     "clues": [
       "MUSICAL INSTRUMENTS",
@@ -16429,8 +16429,8 @@
       "canny",
       "craft"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "related",
     "clues": [
       "SKILL RELATED",
@@ -16454,8 +16454,8 @@
       "tangy",
       "tasty"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "quality",
     "clues": [
       "FLAVOR QUALITIES",
@@ -16679,8 +16679,8 @@
       "curry",
       "sauce"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "condiment",
     "clues": [
       "CONDIMENTS",
@@ -16979,8 +16979,8 @@
       "salad",
       "steak"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "food",
     "clues": [
       "RESTAURANT FARE",
@@ -17104,8 +17104,8 @@
       "farce",
       "grift"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "scheme",
     "clues": [
       "DECEPTION SCHEMES",
@@ -17204,8 +17204,8 @@
       "amend",
       "enact"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "legislation",
     "clues": [
       "LEGISLATIVE ACTIONS",
@@ -17230,7 +17230,7 @@
       "smash"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "flatten",
     "clues": [
       "IMPACT ACTIONS",
@@ -17954,8 +17954,8 @@
       "drone",
       "robot"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "droid",
     "clues": [
       "AUTOMATED DEVICES",
@@ -18029,8 +18029,8 @@
       "dance",
       "disco"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "nightlife",
     "clues": [
       "PARTY ACTIVITIES",
@@ -18079,8 +18079,8 @@
       "clime",
       "place"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "location",
     "clues": [
       "GEOGRAPHIC LOCATIONS",
@@ -18104,8 +18104,8 @@
       "gleam",
       "glint"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "reflection",
     "clues": [
       "LIGHT REFLECTIONS",
@@ -18129,8 +18129,8 @@
       "agony",
       "sting"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "pain",
     "clues": [
       "TYPES OF PAIN",
@@ -18154,8 +18154,8 @@
       "could",
       "ought"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "should",
     "clues": [
       "MODAL VERBS",
@@ -18179,8 +18179,8 @@
       "creep",
       "crawl"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "movement",
     "clues": [
       "SLOW MOVEMENTS",
@@ -18329,8 +18329,8 @@
       "macho",
       "manly"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "masculine",
     "clues": [
       "MASCULINE TRAITS",
@@ -18404,8 +18404,8 @@
       "depth",
       "width"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "dimensional",
     "clues": [
       "DIMENSIONAL MEASUREMENTS",
@@ -18579,8 +18579,8 @@
       "brood",
       "tribe"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "group",
     "clues": [
       "FAMILY GROUPS",
@@ -18754,8 +18754,8 @@
       "exert",
       "force"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "physical effort",
     "clues": [
       "USE OF POWER",
@@ -18904,8 +18904,8 @@
       "cagey",
       "canny"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "evasive",
     "clues": [
       "EVASIVE QUALITIES",
@@ -18954,8 +18954,8 @@
       "basil",
       "pizza"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "italian cuisine",
     "clues": [
       "ITALIAN CUISINE",
@@ -19354,7 +19354,7 @@
       "enemy",
       "devil"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "bad guys",
     "clues": [
@@ -19754,8 +19754,8 @@
       "heron",
       "robin"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "bird",
     "clues": [
       "BIRDS",
@@ -19854,8 +19854,8 @@
       "anger",
       "grief"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "emotion",
     "clues": [
       "STRONG EMOTIONS",
@@ -19929,8 +19929,8 @@
       "avoid",
       "evade"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "escape",
     "clues": [
       "ESCAPE WORDS",
@@ -20079,8 +20079,8 @@
       "scarf",
       "smock"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "clothing",
     "clues": [
       "GARMENTS",
@@ -20204,8 +20204,8 @@
       "etude",
       "fugue"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "musical",
     "clues": [
       "MUSICAL COMPOSITIONS",
@@ -20354,8 +20354,8 @@
       "video",
       "movie"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "screen",
     "clues": [
       "VISUAL MEDIA",
@@ -20554,8 +20554,8 @@
       "beard",
       "shave"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "facial hair",
     "clues": [
       "FACIAL HAIR RELATED",
@@ -21104,8 +21104,8 @@
       "groin",
       "thigh"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "part",
     "clues": [
       "LEG BODY PARTS",
@@ -21154,8 +21154,8 @@
       "butte",
       "bluff"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "landscape",
     "clues": [
       "GEOGRAPHIC FORMATIONS",
@@ -21704,8 +21704,8 @@
       "cedar",
       "maple"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "wood",
     "clues": [
       "TREES",
@@ -21854,8 +21854,8 @@
       "class",
       "learn"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "education",
     "clues": [
       "EDUCATION",
@@ -21929,8 +21929,8 @@
       "spurt",
       "surge"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "burst",
     "clues": [
       "SUDDEN BURSTS",
@@ -22129,8 +22129,8 @@
       "these",
       "those"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "pronouns",
     "clues": [
       "DEMONSTRATIVE PRONOUNS",
@@ -22179,8 +22179,8 @@
       "salad",
       "snack"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "meal",
     "clues": [
       "LIGHT MEALS",
@@ -22204,8 +22204,8 @@
       "chili",
       "spicy"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "pepper",
     "clues": [
       "HEAT RELATED",
@@ -22454,8 +22454,8 @@
       "anime",
       "manga"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "japanese",
     "clues": [
       "JAPANESE ART FORMS",
@@ -22604,8 +22604,8 @@
       "lunar",
       "solar"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "space",
     "clues": [
       "CELESTIAL BODIES",
@@ -22679,8 +22679,8 @@
       "adore",
       "crave"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "desire",
     "clues": [
       "INTENSE DESIRES",
@@ -22879,8 +22879,8 @@
       "caste",
       "class"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "hierarchical",
     "clues": [
       "SOCIAL RANKINGS",
@@ -23204,8 +23204,8 @@
       "depot",
       "store"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "retail",
     "clues": [
       "RETAIL LOCATIONS",
@@ -23254,8 +23254,8 @@
       "melon",
       "olive"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "food",
     "clues": [
       "ROUND FOODS",
@@ -23304,8 +23304,8 @@
       "brick",
       "board"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "building materials",
     "clues": [
       "BUILDING MATERIALS",
@@ -23754,8 +23754,8 @@
       "defer",
       "yield"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "concede",
     "clues": [
       "GIVING WAY ACTIONS",
@@ -23779,8 +23779,8 @@
       "dumpy",
       "pudgy"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "body type",
     "clues": [
       "BODY TYPES",
@@ -23854,8 +23854,8 @@
       "covet",
       "crave"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "desire",
     "clues": [
       "DESIRE STRONGLY",
@@ -24004,8 +24004,8 @@
       "click",
       "login"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "computer actions",
     "clues": [
       "COMPUTER ACTIONS",
@@ -24079,8 +24079,8 @@
       "revel",
       "savor"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "enjoy",
     "clues": [
       "ENJOYMENT ACTIONS",
@@ -24454,8 +24454,8 @@
       "axiom",
       "dogma"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "belief",
     "clues": [
       "ESTABLISHED BELIEFS",
@@ -24479,8 +24479,8 @@
       "beano",
       "bingo"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "game",
     "clues": [
       "GAMES OF CHANCE",
@@ -24554,8 +24554,8 @@
       "argue",
       "scrap"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "disagreement",
     "clues": [
       "CONFLICT ACTIONS",
@@ -24729,8 +24729,8 @@
       "tunic",
       "shirt"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "item",
     "clues": [
       "CLOTHING ITEMS",
@@ -24754,8 +24754,8 @@
       "chest",
       "heart"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "body part",
     "clues": [
       "BODY PARTS",
@@ -24779,8 +24779,8 @@
       "chart",
       "graph"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "statistics",
     "clues": [
       "DATA VISUALIZATION",
@@ -24954,7 +24954,7 @@
       "lilac",
       "tulip"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "flower",
     "clues": [
@@ -25329,7 +25329,7 @@
       "dodgy",
       "shady"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "supsicous",
     "clues": [
@@ -25479,8 +25479,8 @@
       "inane",
       "vapid"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "lacking",
     "clues": [
       "LACKING SUBSTANCE",
@@ -25504,7 +25504,7 @@
       "alarm",
       "watch"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "time",
     "clues": [
@@ -25704,8 +25704,8 @@
       "dilly",
       "dally"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "whimsical",
     "clues": [
       "WHIMSICAL WORDS",
@@ -25779,8 +25779,8 @@
       "eject",
       "expel"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "removal",
     "clues": [
       "FORCED REMOVALS",
@@ -25804,8 +25804,8 @@
       "drake",
       "raven"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "bird",
     "clues": [
       "BIRDS",
@@ -25929,8 +25929,8 @@
       "clamp",
       "crimp"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "tool",
     "clues": [
       "FASTENING TOOLS",
@@ -26104,8 +26104,8 @@
       "chard",
       "cress"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "green",
     "clues": [
       "LEAFY GREENS",
@@ -26154,8 +26154,8 @@
       "brand",
       "label"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "identification",
     "clues": [
       "PRODUCT IDENTIFICATION",
@@ -26279,8 +26279,8 @@
       "droid",
       "drone"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "robot",
     "clues": [
       "AUTOMATED DEVICES",
@@ -26454,8 +26454,8 @@
       "apple",
       "grape"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "fruit",
     "clues": [
       "FRUITS",
@@ -26554,8 +26554,8 @@
       "chafe",
       "scoff"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "dismissal",
     "clues": [
       "EXPRESSIONS OF DISMISSAL",
@@ -26754,8 +26754,8 @@
       "mucky",
       "muddy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "dirty",
     "clues": [
       "DIRTY CONDITIONS",
@@ -26904,8 +26904,8 @@
       "noise",
       "sound"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "phenomena",
     "clues": [
       "AUDIO PHENOMENA",
@@ -26929,8 +26929,8 @@
       "chain",
       "leash"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "dog walk",
     "clues": [
       "RESTRAINTS",
@@ -27129,8 +27129,8 @@
       "eight",
       "three"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "number",
     "clues": [
       "SINGLE DIGITS",
@@ -27354,8 +27354,8 @@
       "eager",
       "ready"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "prepared",
     "clues": [
       "PREPARATION STATES",
@@ -27404,8 +27404,8 @@
       "egret",
       "heron"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "bird",
     "clues": [
       "WADING BIRDS",
@@ -27604,8 +27604,8 @@
       "derby",
       "horse"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "horse racing",
     "clues": [
       "HORSE RACING EVENTS",
@@ -27654,8 +27654,8 @@
       "salad",
       "salsa"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "chopped vegetable",
     "clues": [
       "CHOPPED VEGETABLE DISHES",
@@ -27805,7 +27805,7 @@
       "onion"
     ],
     "intersectH": 2,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "staple",
     "clues": [
       "COOKING STAPLES",
@@ -27829,8 +27829,8 @@
       "denim",
       "dress"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "item",
     "clues": [
       "CLOTHING ITEMS",
@@ -27929,8 +27929,8 @@
       "choir",
       "vocal"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "singing",
     "clues": [
       "SINGING GROUPS",
@@ -27954,8 +27954,8 @@
       "stain",
       "taint"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "blemish",
     "clues": [
       "MARKS OR BLEMISHES",
@@ -27979,8 +27979,8 @@
       "crane",
       "winch"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "equipment",
     "clues": [
       "LIFTING EQUIPMENT",
@@ -28154,7 +28154,7 @@
       "award",
       "medal"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "recognition",
     "clues": [
@@ -28354,7 +28354,7 @@
       "idiom",
       "lyric"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "language form",
     "clues": [
@@ -28679,8 +28679,8 @@
       "scarf",
       "shawl"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "wear",
     "clues": [
       "SHOULDER WEAR",
@@ -28979,8 +28979,8 @@
       "rhino",
       "tiger"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "animal",
     "clues": [
       "LARGE ANIMALS",
@@ -29480,7 +29480,7 @@
       "algae"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "inhabitant",
     "clues": [
       "REEF INHABITANTS",
@@ -29529,8 +29529,8 @@
       "sauce",
       "spicy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "flavor",
     "clues": [
       "FOOD FLAVORING",
@@ -29629,8 +29629,8 @@
       "taxes",
       "theft"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "money",
     "clues": [
       "TAKING MONEY",
@@ -29654,8 +29654,8 @@
       "banal",
       "bland"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "quality",
     "clues": [
       "BORING QUALITIES",
@@ -29679,8 +29679,8 @@
       "cacao",
       "cocoa"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "chocolate",
     "clues": [
       "CHOCOLATE SOURCES",
@@ -29754,7 +29754,7 @@
       "ninth",
       "tenth"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "consecutive",
     "clues": [
@@ -29779,7 +29779,7 @@
       "abase",
       "shame"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "humiliation",
     "clues": [
@@ -29954,8 +29954,8 @@
       "envoy",
       "posse"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "people",
     "clues": [
       "GROUPS OF PEOPLE",
@@ -30029,8 +30029,8 @@
       "clamp",
       "crack"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "mechanism",
     "clues": [
       "HOLDING MECHANISMS",
@@ -30054,8 +30054,8 @@
       "baker",
       "bread"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "baking profession",
     "clues": [
       "BAKING PROFESSIONS",
@@ -30354,8 +30354,8 @@
       "dealt",
       "allot"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "distribute",
     "clues": [
       "DISTRIBUTION ACTIONS",
@@ -30504,8 +30504,8 @@
       "brute",
       "rough"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "crude",
     "clues": [
       "CRUDE AND HARSH",
@@ -30629,8 +30629,8 @@
       "deter",
       "dread"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "related",
     "clues": [
       "FEAR RELATED",
@@ -30679,8 +30679,8 @@
       "furry",
       "fuzzy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "texture",
     "clues": [
       "HAIRY TEXTURES",
@@ -30704,8 +30704,8 @@
       "clash",
       "match"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "competition",
     "clues": [
       "COMPETITIONS",
@@ -30754,8 +30754,8 @@
       "ferry",
       "wharf"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "waterfront",
     "clues": [
       "WATERFRONT LOCATIONS",
@@ -30804,8 +30804,8 @@
       "cabin",
       "shack"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "home",
     "clues": [
       "SMALL HOMES",
@@ -31054,8 +31054,8 @@
       "extra",
       "spare"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "item",
     "clues": [
       "SURPLUS ITEMS",
@@ -31204,8 +31204,8 @@
       "pasta",
       "pesto"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "cuisine",
     "clues": [
       "ITALIAN CUISINE",
@@ -31254,8 +31254,8 @@
       "amaze",
       "amuse"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "cause wonder",
     "clues": [
       "WAYS TO ENTERTAIN",
@@ -31304,8 +31304,8 @@
       "lemon",
       "thyme"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "herbs and",
     "clues": [
       "HERBS AND CITRUS",
@@ -31354,8 +31354,8 @@
       "camel",
       "zebra"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "striped",
     "clues": [
       "STRIPED ANIMALS",
@@ -31529,8 +31529,8 @@
       "class",
       "teach"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "related",
     "clues": [
       "EDUCATION RELATED",
@@ -31579,8 +31579,8 @@
       "dunce",
       "dummy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "person",
     "clues": [
       "FOOLISH PERSON",
@@ -31779,8 +31779,8 @@
       "birch",
       "shrub"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "plants",
     "clues": [
       "PLANTS",
@@ -31929,8 +31929,8 @@
       "nylon",
       "rayon"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "synthetic",
     "clues": [
       "SYNTHETIC FABRICS",
@@ -31979,8 +31979,8 @@
       "flail",
       "twirl"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "motion",
     "clues": [
       "SPINNING MOTIONS",
@@ -32054,8 +32054,8 @@
       "choir",
       "piano"
     ],
-    "intersectH": 2,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "musical",
     "clues": [
       "MUSICAL GROUPS",
@@ -32104,8 +32104,8 @@
       "tense",
       "testy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "attitude",
     "clues": [
       "MOODS OR ATTITUDES",
@@ -32304,8 +32304,8 @@
       "clank",
       "creak"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "sound",
     "clues": [
       "ANNOYING SOUNDS",
@@ -32379,8 +32379,8 @@
       "silky",
       "sleek"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "texture",
     "clues": [
       "SMOOTH TEXTURES",
@@ -32479,8 +32479,8 @@
       "corny",
       "crass"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "poor taste",
     "clues": [
       "POOR TASTE",
@@ -32504,8 +32504,8 @@
       "cairn",
       "stack"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "piles",
     "clues": [
       "PILES OF ROCKS",
@@ -32529,8 +32529,8 @@
       "gland",
       "organ"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "body part",
     "clues": [
       "BODY PARTS",
@@ -32754,8 +32754,8 @@
       "drone",
       "sound"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "noise",
     "clues": [
       "AUDIO CONCEPTS",
@@ -32854,8 +32854,8 @@
       "death",
       "grave"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "end of life",
     "clues": [
       "END OF LIFE CONCEPTS",
@@ -32879,7 +32879,7 @@
       "algae",
       "plant"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 2,
     "clue": "living",
     "clues": [
@@ -32954,8 +32954,8 @@
       "beech",
       "birch"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "trees",
     "clues": [
       "TREES",
@@ -33004,8 +33004,8 @@
       "saner",
       "wiser"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "improvement",
     "clues": [
       "MENTAL STATE IMPROVEMENTS",
@@ -33129,8 +33129,8 @@
       "crisp",
       "crust"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "bread",
     "clues": [
       "TEXTURE QUALITIES",
@@ -33204,8 +33204,8 @@
       "sauce",
       "syrup"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "condiment",
     "clues": [
       "LIQUID CONDIMENTS",
@@ -33229,8 +33229,8 @@
       "curio",
       "relic"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "item",
     "clues": [
       "COLLECTIBLE ITEMS",
@@ -33354,8 +33354,8 @@
       "sprig",
       "herbs"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "plant",
     "clues": [
       "PLANT MATERIALS",
@@ -33529,8 +33529,8 @@
       "basil",
       "spice"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "ingredient",
     "clues": [
       "FLAVOR INGREDIENTS",
@@ -33579,8 +33579,8 @@
       "sneer",
       "snide"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "attitude",
     "clues": [
       "CONTEMPTUOUS ATTITUDES",
@@ -33604,7 +33604,7 @@
       "atlas",
       "chart"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 2,
     "clue": "material",
     "clues": [
@@ -33655,7 +33655,7 @@
       "conch"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "find",
     "clues": [
       "SEASIDE FINDS",
@@ -33729,7 +33729,7 @@
       "allay",
       "quash"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 2,
     "clue": "suppress",
     "clues": [
@@ -33779,8 +33779,8 @@
       "twirl",
       "twist"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "motion",
     "clues": [
       "SPINNING MOTIONS",
@@ -34004,7 +34004,7 @@
       "exert",
       "wield"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "power",
     "clues": [
@@ -34029,8 +34029,8 @@
       "elate",
       "exalt"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "joy",
     "clues": [
       "VERBS OF JOY",
@@ -34079,8 +34079,8 @@
       "pesto",
       "puree"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "food preperation",
     "clues": [
       "GROUND FOOD PREPARATIONS",
@@ -34104,8 +34104,8 @@
       "brown",
       "color"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "hues",
     "clues": [
       "VISUAL PROPERTIES",
@@ -34179,8 +34179,8 @@
       "final",
       "first"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "position",
     "clues": [
       "SEQUENCE POSITIONS",
@@ -34204,8 +34204,8 @@
       "elude",
       "evade"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "dodge",
     "clues": [
       "ESCAPE ACTIONS",
@@ -34329,8 +34329,8 @@
       "throb",
       "thrum"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "rhythmic sounds or",
     "clues": [
       "RHYTHMIC SOUNDS OR MOTIONS",
@@ -34654,8 +34654,8 @@
       "clank",
       "clunk"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "sound",
     "clues": [
       "METALLIC SOUNDS",
@@ -34754,8 +34754,8 @@
       "droit",
       "right"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "term",
     "clues": [
       "LEGAL TERMS",
@@ -34929,8 +34929,8 @@
       "biker",
       "rebel"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "breaker",
     "clues": [
       "RULE BREAKERS",
@@ -35154,8 +35154,8 @@
       "brawn",
       "brute"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "strength",
     "clues": [
       "STRENGTH",
@@ -35229,8 +35229,8 @@
       "seize",
       "wrest"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "forcefully",
     "clues": [
       "GRAB FORCEFULLY",
@@ -35479,8 +35479,8 @@
       "cheap",
       "tacky"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "low",
     "clues": [
       "LOW QUALITY",
@@ -35654,8 +35654,8 @@
       "covey",
       "flock"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "animal",
     "clues": [
       "ANIMAL GROUPS",
@@ -35879,8 +35879,8 @@
       "shady",
       "shaky"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "thing",
     "clues": [
       "QUESTIONABLE THINGS",
@@ -36004,8 +36004,8 @@
       "other",
       "those"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "alternative",
     "clues": [
       "DEMONSTRATIVE WORDS",
@@ -36079,8 +36079,8 @@
       "house",
       "porch"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "part",
     "clues": [
       "HOME PARTS",
@@ -36904,7 +36904,7 @@
       "array",
       "batch"
     ],
-    "intersectH": 0,
+    "intersectH": 3,
     "intersectV": 1,
     "clue": "group",
     "clues": [
@@ -37254,8 +37254,8 @@
       "dowry",
       "trade"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "transaction",
     "clues": [
       "EXCHANGE TRANSACTIONS",
@@ -37304,8 +37304,8 @@
       "bicep",
       "chest"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "muscles",
     "clues": [
       "MUSCLES",
@@ -37354,8 +37354,8 @@
       "knead",
       "saute"
     ],
-    "intersectH": 2,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "method",
     "clues": [
       "COOKING METHODS",
@@ -37679,8 +37679,8 @@
       "brews",
       "cider"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "beverage",
     "clues": [
       "FERMENTED BEVERAGES",
@@ -37704,8 +37704,8 @@
       "aunty",
       "nanny"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "caregiver",
     "clues": [
       "FEMALE CAREGIVERS",
@@ -37779,8 +37779,8 @@
       "dopey",
       "nerdy"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "trait",
     "clues": [
       "PERSONALITY TRAITS",
@@ -37954,8 +37954,8 @@
       "aorta",
       "heart"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "system",
     "clues": [
       "CARDIOVASCULAR SYSTEM",
@@ -37979,8 +37979,8 @@
       "crude",
       "rough"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "unrefined",
     "clues": [
       "UNREFINED",
@@ -38079,8 +38079,8 @@
       "elfin",
       "pixie"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "creature",
     "clues": [
       "MYTHICAL CREATURES",
@@ -38179,8 +38179,8 @@
       "berth",
       "title"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "position",
     "clues": [
       "SLEEPING POSITIONS",
@@ -38204,8 +38204,8 @@
       "anode",
       "oxide"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "chemical",
     "clues": [
       "CHEMISTRY TERMS",
@@ -38429,8 +38429,8 @@
       "bidet",
       "basin"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "fixture",
     "clues": [
       "BATHROOM FIXTURES",
@@ -38529,8 +38529,8 @@
       "early",
       "prime"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "period",
     "clues": [
       "TIME PERIODS",
@@ -38779,7 +38779,7 @@
       "mambo",
       "rumba"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "dance",
     "clues": [
@@ -38804,8 +38804,8 @@
       "cloak",
       "cover"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "item",
     "clues": [
       "CONCEALMENT ITEMS",
@@ -38829,8 +38829,8 @@
       "cumin",
       "spice"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "flavor",
     "clues": [
       "COOKING INGREDIENTS",
@@ -39054,8 +39054,8 @@
       "actor",
       "stage"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "theater",
     "clues": [
       "THEATER ELEMENTS",
@@ -39129,8 +39129,8 @@
       "musty",
       "stale"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "odor",
     "clues": [
       "UNPLEASANT ODORS",
@@ -39154,8 +39154,8 @@
       "crisp",
       "crimp"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "wave",
     "clues": [
       "CREATE WAVES",
@@ -39279,8 +39279,8 @@
       "grape",
       "mango"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "fruit",
     "clues": [
       "FRUITS",
@@ -39304,8 +39304,8 @@
       "denim",
       "plaid"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "fabric",
     "clues": [
       "FABRIC PATTERNS",
@@ -39354,8 +39354,8 @@
       "ninny",
       "whiny"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "people",
     "clues": [
       "ANNOYING PEOPLE",
@@ -39429,7 +39429,7 @@
       "alarm",
       "scare"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "response",
     "clues": [
@@ -39479,8 +39479,8 @@
       "broil",
       "roast"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "cooking",
     "clues": [
       "COOKING METHODS",
@@ -39504,8 +39504,8 @@
       "baton",
       "torch"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "passed things",
     "clues": [
       "THINGS YOU CARRY",
@@ -39529,8 +39529,8 @@
       "chant",
       "vocal"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "voice",
     "clues": [
       "SINGING TYPES",
@@ -39554,8 +39554,8 @@
       "derby",
       "rodeo"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "sporting event",
     "clues": [
       "SPORTING EVENTS",
@@ -39654,8 +39654,8 @@
       "above",
       "below"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "directional",
     "clues": [
       "DIRECTIONAL OPPOSITES",
@@ -39729,8 +39729,8 @@
       "ficus",
       "sumac"
     ],
-    "intersectH": 2,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "plants",
     "clues": [
       "PLANTS",
@@ -39954,8 +39954,8 @@
       "otter",
       "stoat"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "family",
     "clues": [
       "WEASEL FAMILY",
@@ -40129,7 +40129,7 @@
       "dodge",
       "evade"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "avoid",
     "clues": [
@@ -40179,8 +40179,8 @@
       "lofty",
       "noble"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "quality",
     "clues": [
       "VIRTUOUS QUALITIES",
@@ -40204,8 +40204,8 @@
       "blast",
       "burst"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "explosion",
     "clues": [
       "EXPLOSIONS",
@@ -40354,8 +40354,8 @@
       "broad",
       "roomy"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "spacious",
     "clues": [
       "SPACIOUS QUALITIES",
@@ -40479,8 +40479,8 @@
       "enact",
       "stage"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "perform",
     "clues": [
       "THEATRICAL VERBS",
@@ -40779,8 +40779,8 @@
       "clash",
       "crash"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "collide",
     "clues": [
       "COLLISION SOUNDS",
@@ -40854,8 +40854,8 @@
       "flake",
       "fleck"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "particle",
     "clues": [
       "SMALL PARTICLES",
@@ -41329,8 +41329,8 @@
       "eject",
       "evict"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "forced",
     "clues": [
       "FORCED REMOVALS",
@@ -41404,8 +41404,8 @@
       "carol",
       "choir"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "singing",
     "clues": [
       "SINGING GROUPS",
@@ -41429,8 +41429,8 @@
       "egret",
       "geese"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "bird",
     "clues": [
       "WATER BIRDS",
@@ -41529,8 +41529,8 @@
       "gaunt",
       "pudgy"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "body type",
     "clues": [
       "BODY SHAPE DESCRIPTORS",
@@ -41704,8 +41704,8 @@
       "caulk",
       "patch"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "method",
     "clues": [
       "REPAIR METHODS",
@@ -41729,8 +41729,8 @@
       "crony",
       "crime"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "mafia",
     "clues": [
       "UNDERWORLD CONNECTIONS",
@@ -41779,8 +41779,8 @@
       "salad",
       "tasty"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "food",
     "clues": [
       "FOOD QUALITIES",
@@ -41804,8 +41804,8 @@
       "exile",
       "expat"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "people far",
     "clues": [
       "PEOPLE FAR FROM HOME",
@@ -41829,8 +41829,8 @@
       "derby",
       "steed"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "racing",
     "clues": [
       "HORSE RACING",
@@ -41904,8 +41904,8 @@
       "fetid",
       "filth"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "gross",
     "clues": [
       "UNPLEASANT THINGS",
@@ -41979,8 +41979,8 @@
       "lodge",
       "motel"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "hotel",
     "clues": [
       "OVERNIGHT ACCOMMODATIONS",
@@ -42079,8 +42079,8 @@
       "chain",
       "shack"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "structure",
     "clues": [
       "TOUGH STRUCTURES",
@@ -42404,8 +42404,8 @@
       "angel",
       "demon"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "good",
     "clues": [
       "GOOD VS EVIL",
@@ -42454,8 +42454,8 @@
       "aster",
       "daisy"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "flower",
     "clues": [
       "FLOWERS",
@@ -42704,8 +42704,8 @@
       "aisle",
       "alley"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "passage",
     "clues": [
       "NARROW PASSAGES",
@@ -42854,8 +42854,8 @@
       "cloth",
       "smock"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "clothing",
     "clues": [
       "CLOTHING",
@@ -42879,8 +42879,8 @@
       "choke",
       "cough"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "reaction",
     "clues": [
       "THROAT REACTIONS",
@@ -43254,8 +43254,8 @@
       "crash",
       "wreck"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "accidents",
     "clues": [
       "ACCIDENTS",
@@ -43329,8 +43329,8 @@
       "demon",
       "fiend"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "creature",
     "clues": [
       "MALEVOLENT CREATURES",
@@ -43379,8 +43379,8 @@
       "alien",
       "freak"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "strange",
     "clues": [
       "UNUSUAL BEINGS",
@@ -43679,8 +43679,8 @@
       "river",
       "water"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "liquid",
     "clues": [
       "FLOW ELEMENTS",
@@ -43879,8 +43879,8 @@
       "clasp",
       "latch"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "fastener",
     "clues": [
       "FASTENING DEVICES",
@@ -43954,8 +43954,8 @@
       "lingo",
       "slang"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "type",
     "clues": [
       "LANGUAGE TYPES",
@@ -44154,8 +44154,8 @@
       "torso",
       "waist"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "trunk",
     "clues": [
       "BODY SECTIONS",
@@ -44329,8 +44329,8 @@
       "dusty",
       "muddy"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "state",
     "clues": [
       "DIRTY STATES",
@@ -44479,7 +44479,7 @@
       "adapt",
       "learn"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "process",
     "clues": [
@@ -44554,8 +44554,8 @@
       "grand",
       "large"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "size descriptor",
     "clues": [
       "SIZE DESCRIPTORS",
@@ -44579,8 +44579,8 @@
       "lemon",
       "melon"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "fruit",
     "clues": [
       "FRUITS",
@@ -44829,8 +44829,8 @@
       "lithe",
       "silky"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "quality",
     "clues": [
       "SMOOTH QUALITIES",
@@ -44854,8 +44854,8 @@
       "corer",
       "auger"
     ],
-    "intersectH": 2,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "tool",
     "clues": [
       "DRILLING TOOLS",
@@ -44879,8 +44879,8 @@
       "sauce",
       "saute"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "technique",
     "clues": [
       "COOKING TECHNIQUES",
@@ -44929,8 +44929,8 @@
       "fifth",
       "first"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "number",
     "clues": [
       "ORDINAL NUMBERS",
@@ -45054,8 +45054,8 @@
       "thigh",
       "tibia"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "bone",
     "clues": [
       "LEG BONES",
@@ -45104,8 +45104,8 @@
       "angst",
       "panic"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "emotion",
     "clues": [
       "EMOTIONS",
@@ -45329,8 +45329,8 @@
       "trait",
       "habit"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "pattern",
     "clues": [
       "BEHAVIORAL PATTERNS",
@@ -45479,8 +45479,8 @@
       "foamy",
       "froth"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "texture",
     "clues": [
       "BUBBLE TEXTURES",
@@ -45729,8 +45729,8 @@
       "hoard",
       "stash"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "hide",
     "clues": [
       "HIDING PLACES",
@@ -45754,8 +45754,8 @@
       "bunny",
       "squab"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "young animal",
     "clues": [
       "YOUNG ANIMALS",
@@ -45829,8 +45829,8 @@
       "heist",
       "thief"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "crime",
     "clues": [
       "CRIME AND CRIMINALS",
@@ -45904,8 +45904,8 @@
       "mummy",
       "mural"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "artifact",
     "clues": [
       "ANCIENT ARTIFACTS",
@@ -45979,7 +45979,7 @@
       "dodge",
       "elude"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 3,
     "clue": "avoidance",
     "clues": [
@@ -46129,8 +46129,8 @@
       "clash",
       "brawl"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "conflict",
     "clues": [
       "PHYSICAL CONFLICTS",
@@ -46204,8 +46204,8 @@
       "bolts",
       "latch"
     ],
-    "intersectH": 2,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "fastener",
     "clues": [
       "FASTENERS",
@@ -46329,8 +46329,8 @@
       "brave",
       "valor"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "heroic",
     "clues": [
       "COURAGE CONCEPTS",
@@ -46479,8 +46479,8 @@
       "guild",
       "group"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "organization",
     "clues": [
       "ORGANIZATIONS",
@@ -46529,8 +46529,8 @@
       "cheep",
       "chirp"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "bird",
     "clues": [
       "BIRD SOUNDS",
@@ -46629,8 +46629,8 @@
       "clack",
       "clank"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "impact",
     "clues": [
       "IMPACT SOUNDS",
@@ -47154,8 +47154,8 @@
       "rocky",
       "rough"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "quality",
     "clues": [
       "TEXTURE QUALITIES",
@@ -47379,8 +47379,8 @@
       "smile",
       "smirk"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "expression",
     "clues": [
       "FACIAL EXPRESSIONS",
@@ -47479,8 +47479,8 @@
       "couch",
       "porch"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "space",
     "clues": [
       "RELAXATION SPACES",
@@ -47779,8 +47779,8 @@
       "artsy",
       "craft"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "pursuit",
     "clues": [
       "CREATIVE PURSUITS",
@@ -47879,8 +47879,8 @@
       "sepia",
       "taupe"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "tone",
     "clues": [
       "BROWNISH TONES",
@@ -47929,8 +47929,8 @@
       "sweet",
       "zesty"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "characteristic",
     "clues": [
       "FLAVOR CHARACTERISTICS",
@@ -48004,8 +48004,8 @@
       "opium",
       "poppy"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "related",
     "clues": [
       "NARCOTICS RELATED",
@@ -48379,8 +48379,8 @@
       "dirge",
       "ditty"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "composition",
     "clues": [
       "MUSICAL COMPOSITIONS",
@@ -48404,8 +48404,8 @@
       "penne",
       "pesto"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "cuisine",
     "clues": [
       "ITALIAN CUISINE",
@@ -48429,8 +48429,8 @@
       "click",
       "clack"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "percussion",
     "clues": [
       "PERCUSSION SOUNDS",
@@ -49204,8 +49204,8 @@
       "swirl",
       "whirl"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "motion",
     "clues": [
       "SPINNING MOTIONS",
@@ -49279,8 +49279,8 @@
       "chase",
       "catch"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "pursuit",
     "clues": [
       "PURSUIT ACTIONS",
@@ -49479,8 +49479,8 @@
       "draft",
       "cadet"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "term",
     "clues": [
       "MILITARY TERMS",
@@ -49504,8 +49504,8 @@
       "civic",
       "civil"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "community",
     "clues": [
       "COMMUNITY RELATED",
@@ -49579,8 +49579,8 @@
       "brief",
       "boxer"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "undergarment",
     "clues": [
       "UNDERGARMENTS",
@@ -49604,8 +49604,8 @@
       "clang",
       "clunk"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "sound",
     "clues": [
       "LOUD SOUNDS",
@@ -49729,8 +49729,8 @@
       "cease",
       "lapse"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "stop",
     "clues": [
       "STOPPING ACTIONS",
@@ -49929,8 +49929,8 @@
       "heist",
       "theft"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "crime",
     "clues": [
       "CRIMES",
@@ -50004,8 +50004,8 @@
       "guava",
       "mango"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "fruit",
     "clues": [
       "TROPICAL FRUITS",
@@ -50154,8 +50154,8 @@
       "burst",
       "break"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "destruction",
     "clues": [
       "DESTRUCTION ACTIONS",
@@ -50279,8 +50279,8 @@
       "plump",
       "pudgy"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "body type",
     "clues": [
       "BODY DESCRIPTIONS",
@@ -50304,8 +50304,8 @@
       "briar",
       "shrub"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "plant",
     "clues": [
       "WOODY PLANTS",
@@ -50404,8 +50404,8 @@
       "guild",
       "union"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "collective bargaining",
     "clues": [
       "WORKER GROUPS",
@@ -50480,7 +50480,7 @@
       "sassy"
     ],
     "intersectH": 2,
-    "intersectV": 0,
+    "intersectV": 2,
     "clue": "attitude",
     "clues": [
       "BOLD ATTITUDES",
@@ -50679,8 +50679,8 @@
       "fifty",
       "forty"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "number",
     "clues": [
       "ROUND NUMBERS",
@@ -50729,8 +50729,8 @@
       "forge",
       "craft"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "create",
     "clues": [
       "CREATE OR MAKE",
@@ -50854,8 +50854,8 @@
       "drawl",
       "raspy"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "voice",
     "clues": [
       "VOICE QUALITIES",
@@ -51004,8 +51004,8 @@
       "click",
       "clank"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "sound",
     "clues": [
       "SHARP SOUNDS",
@@ -51204,8 +51204,8 @@
       "alter",
       "tweak"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "change",
     "clues": [
       "MINOR CHANGES",
@@ -51254,7 +51254,7 @@
       "alarm",
       "panic"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "response",
     "clues": [
@@ -51354,8 +51354,8 @@
       "scent",
       "smell"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "olfactory",
     "clues": [
       "OLFACTORY WORDS",
@@ -51430,7 +51430,7 @@
       "onion"
     ],
     "intersectH": 3,
-    "intersectV": 0,
+    "intersectV": 3,
     "clue": "produce",
     "clues": [
       "ROUND PRODUCE",
@@ -51554,8 +51554,8 @@
       "retch",
       "wince"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "reaction",
     "clues": [
       "FACIAL REACTIONS",
@@ -51729,8 +51729,8 @@
       "sauna",
       "steam"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "spa",
     "clues": [
       "HOT RELAXATION METHODS",
@@ -51929,8 +51929,8 @@
       "aloof",
       "aloft"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "distant",
     "clues": [
       "UP OR DISTANT",
@@ -51954,8 +51954,8 @@
       "drier",
       "humid"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "weather condition",
     "clues": [
       "WEATHER CONDITIONS",
@@ -52029,8 +52029,8 @@
       "sauce",
       "steak"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "a1",
     "clues": [
       "DINNER COMPONENTS",
@@ -52054,7 +52054,7 @@
       "adapt",
       "react"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 2,
     "clue": "change",
     "clues": [
@@ -52229,8 +52229,8 @@
       "click",
       "crack"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "sharp",
     "clues": [
       "SHARP SOUNDS",
@@ -52304,8 +52304,8 @@
       "comma",
       "colon"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "mark",
     "clues": [
       "PUNCTUATION MARKS",
@@ -52329,8 +52329,8 @@
       "actor",
       "extra"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "film",
     "clues": [
       "FILM ROLES",
@@ -52529,8 +52529,8 @@
       "drawn",
       "tired"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "exhausted",
     "clues": [
       "EXHAUSTION STATES",
@@ -52554,8 +52554,8 @@
       "sugar",
       "syrup"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "substance",
     "clues": [
       "SWEET SUBSTANCES",
@@ -53229,8 +53229,8 @@
       "decal",
       "image"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "decorative",
     "clues": [
       "DECORATIVE TRANSFERS",
@@ -53279,8 +53279,8 @@
       "drown",
       "flood"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "disaster",
     "clues": [
       "WATER DISASTERS",
@@ -53354,8 +53354,8 @@
       "savvy",
       "smart"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "intelligent",
     "clues": [
       "INTELLIGENCE WORDS",
@@ -53404,8 +53404,8 @@
       "aware",
       "alert"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "mental",
     "clues": [
       "MENTAL STATES",
@@ -53529,8 +53529,8 @@
       "peace",
       "truce"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "agreement",
     "clues": [
       "END CONFLICTS",
@@ -53754,8 +53754,8 @@
       "seedy",
       "shady"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 3,
     "clue": "disreputable",
     "clues": [
       "ADJECTIVES",
@@ -53804,8 +53804,8 @@
       "demon",
       "devil"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "evil",
     "clues": [
       "EVIL BEINGS",
@@ -53879,8 +53879,8 @@
       "sleet",
       "slush"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "precipitation",
     "clues": [
       "WINTER PRECIPITATION",
@@ -54004,8 +54004,8 @@
       "aunty",
       "uncle"
     ],
-    "intersectH": 1,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "relation",
     "clues": [
       "FAMILY RELATIONS",
@@ -54104,8 +54104,8 @@
       "aloft",
       "above"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "on top",
     "clues": [
       "HIGH POSITIONS",
@@ -54404,8 +54404,8 @@
       "halve",
       "slash"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 2,
     "clue": "cut",
     "clues": [
       "CUTTING ACTIONS",
@@ -54779,8 +54779,8 @@
       "ensue",
       "erupt"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "sudden",
     "clues": [
       "SUDDEN EVENTS",
@@ -54829,8 +54829,8 @@
       "throb",
       "thump"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "sound",
     "clues": [
       "HEART SOUNDS",
@@ -54879,8 +54879,8 @@
       "trash",
       "waste"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "garbage",
     "clues": [
       "GARBAGE OR REFUSE",
@@ -54904,8 +54904,8 @@
       "chick",
       "cutie"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 3,
     "clue": "attractive girl",
     "clues": [
       "TERMS OF ENDEARMENT",
@@ -55004,7 +55004,7 @@
       "idiot",
       "ninny"
     ],
-    "intersectH": 0,
+    "intersectH": 2,
     "intersectV": 1,
     "clue": "foolish",
     "clues": [
@@ -55329,8 +55329,8 @@
       "amber",
       "peach"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "sunset",
     "clues": [
       "WARM COLORS",
@@ -55529,8 +55529,8 @@
       "charm",
       "magic"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 1,
     "clue": "spell",
     "clues": [
       "ENCHANTMENT TYPES",
@@ -55579,8 +55579,8 @@
       "armed",
       "ready"
     ],
-    "intersectH": 0,
-    "intersectV": 2,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "prepared",
     "clues": [
       "PREPARED STATES",
@@ -55604,8 +55604,8 @@
       "chant",
       "choir"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "church",
     "clues": [
       "MUSICAL GROUPS",
@@ -55679,8 +55679,8 @@
       "theft",
       "steal"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "crime",
     "clues": [
       "CRIME RELATED",
@@ -55804,8 +55804,8 @@
       "after",
       "later"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "sequence",
     "clues": [
       "TIME SEQUENCE",
@@ -55904,8 +55904,8 @@
       "etude",
       "flute"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "classical music",
     "clues": [
       "CLASSICAL MUSIC",
@@ -55979,8 +55979,8 @@
       "alarm",
       "alert"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "warning",
     "clues": [
       "WARNING SYSTEMS",
@@ -56029,8 +56029,8 @@
       "entry",
       "inlet"
     ],
-    "intersectH": 0,
-    "intersectV": 3,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "opening",
     "clues": [
       "OPENINGS OR PASSAGES",
@@ -56079,8 +56079,8 @@
       "dopey",
       "dense"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 1,
     "clue": "not smart",
     "clues": [
       "STUPID DESCRIPTORS",
@@ -56104,8 +56104,8 @@
       "chain",
       "clasp"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 2,
+    "intersectV": 2,
     "clue": "fastening",
     "clues": [
       "FASTENING ITEMS",
@@ -56179,8 +56179,8 @@
       "bagel",
       "bread"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "baked goods",
     "clues": [
       "BAKED GOODS",
@@ -56279,8 +56279,8 @@
       "besot",
       "adore"
     ],
-    "intersectH": 1,
-    "intersectV": 4,
+    "intersectH": 3,
+    "intersectV": 2,
     "clue": "love",
     "clues": [
       "LOVE INTENSELY",
@@ -56479,8 +56479,8 @@
       "larva",
       "pupal"
     ],
-    "intersectH": 0,
-    "intersectV": 4,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "butterfly",
     "clues": [
       "INSECT STAGES",
@@ -56579,8 +56579,8 @@
       "caddy",
       "carry"
     ],
-    "intersectH": 0,
-    "intersectV": 0,
+    "intersectH": 1,
+    "intersectV": 1,
     "clue": "transport",
     "clues": [
       "TRANSPORT CONTAINERS",
@@ -56654,8 +56654,8 @@
       "aster",
       "pansy"
     ],
-    "intersectH": 0,
-    "intersectV": 1,
+    "intersectH": 1,
+    "intersectV": 3,
     "clue": "flower",
     "clues": [
       "FLOWERS",
