@@ -3065,14 +3065,21 @@
             lines += "\n";
         }
 
-        return header + "\n" + lines + "\nCan you survive the intersection?\nhttps://intersectionsgame.com";
+        // The URL is deliberately NOT in this text. It goes to the share
+        // sheet separately so phones render ONE rich link instead of the
+        // grid plus a detached preview card. Desktop appends it on copy.
+        return header + "\n" + lines + "\nCan you survive the intersection?";
     }
 
+    const SHARE_URL = "https://intersectionsgame.com";
+
     function shareResult() {
-        const text = generateShareText();
+        const grid = generateShareText();
         if (navigator.share) {
-            navigator.share({ text }).catch(() => {});
+            navigator.share({ text: grid, url: SHARE_URL }).catch(() => {});
         } else {
+            // No share sheet, so the link has to live in the copied text
+            const text = grid + "\n" + SHARE_URL;
             navigator.clipboard.writeText(text).then(() => {
                 const toast = document.getElementById("share-toast");
                 if (toast) {
