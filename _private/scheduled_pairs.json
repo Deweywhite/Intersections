@@ -8706,7 +8706,7 @@
     ],
     "intersectH": 4,
     "intersectV": 4,
-    "clue": "lush and green",
+    "clue": "lush",
     "clues": [
       "PLANT DESCRIPTIONS",
       "FULL AND THICK",
@@ -17806,7 +17806,7 @@
     ],
     "intersectH": 1,
     "intersectV": 2,
-    "clue": "short and stocky",
+    "clue": "stocky",
     "clues": [
       "SHORT AND STOCKY",
       "DESCRIBING BUILD",
@@ -25231,7 +25231,7 @@
     ],
     "intersectH": 3,
     "intersectV": 1,
-    "clue": "sound and instrument",
+    "clue": "instrument",
     "clues": [
       "SOUND AND INSTRUMENTS",
       "CONCERT HALL",
@@ -28606,7 +28606,7 @@
     ],
     "intersectH": 1,
     "intersectV": 1,
-    "clue": "moods or disposition",
+    "clue": "mood",
     "clues": [
       "MOODS OR DISPOSITIONS",
       "TEENAGE FEELINGS",
