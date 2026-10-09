@@ -627,6 +627,56 @@
         #feedback-send:hover { background: #5cbf60; }
         #feedback-send:disabled { background: #3a6b3c; cursor: default; }
 
+        /* ===== "Want another?" coachmark ===== */
+        /* Points at the green light after a game ends. Once per session. */
+        #play-again-hint {
+            position: absolute;
+            top: calc(4vw + 10px);
+            left: 10px;
+            width: 220px;
+            max-width: 72vw;
+            background: #2f2f2f;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 11px 13px;
+            color: #ddd;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: left;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+            z-index: 1250;
+            display: none;
+        }
+        #play-again-hint b {
+            display: block;
+            color: #9fd9a2;
+            margin-bottom: 3px;
+        }
+        /* little arrow pointing up at the green light */
+        #play-again-hint::before {
+            content: "";
+            position: absolute;
+            top: -9px;
+            left: 18px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #4caf50;
+        }
+        #play-again-got-it {
+            display: block;
+            margin-top: 9px;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+        #play-again-got-it:hover { background: #5cbf60; }
+
         /* ===== Dictionary bubble ===== */
         /* No persistent marker — the cells just become live once the game
            ends. Desktop gets a cursor and a slight lift on hover; touch
@@ -1240,6 +1290,8 @@
                 margin-bottom: 2.5vw;
             }
             #play-menu { top: calc(8vw + 6px); }
+            #play-again-hint { top: calc(8vw + 10px); font-size: 3.2vw; width: 56vw; }
+            #play-again-got-it { font-size: 3vw; padding: 1.4vw 4vw; }
             #result-label { font-size: 2.6vw; margin-top: 0; }
             .road-sign-icon { width: 4.5vw; height: 4.5vw; }
             .crash-graphic {
@@ -1410,6 +1462,12 @@
                 <button id="tut-offer-yes">Show me how</button>
                 <button id="tut-offer-no">Just play</button>
             </div>
+        </div>
+
+        <div id="play-again-hint">
+            <b>Want another?</b>
+            Tap the green light for a random puzzle, or pick any past day from the archive.
+            <button id="play-again-got-it" type="button">Got it</button>
         </div>
 
         <div id="def-bubble"></div>
@@ -2264,6 +2322,7 @@
 
     document.getElementById("new-game").addEventListener("click", function(e) {
         e.stopPropagation();
+        hidePlayAgainHint();
         closeStats();
         closeArchive();
         const menu = document.getElementById("play-menu");
@@ -2277,6 +2336,7 @@
     document.addEventListener("click", function(e) {
         const t = e.target;
         if (!t.closest("#play-menu")) playMenuClose();
+        if (!t.closest("#play-again-hint") && !t.closest("#new-game")) hidePlayAgainHint();
         if (document.getElementById("archive-popup").style.display === "block"
             && !t.closest("#archive-popup") && !t.closest("#play-archive") && !t.closest("#stat-week")) {
             closeArchive();
@@ -3665,7 +3725,36 @@
     function closePopup() {
         document.getElementById("win-popup").style.display = "none";
         document.getElementById("lose-popup").style.display = "none";
+        maybeShowPlayAgainHint();
     }
+
+    // Nudge toward the green light once per visit, after the board is clear.
+    // sessionStorage, not localStorage: a returning player gets the reminder
+    // again tomorrow, but it stays out of the way for the rest of today.
+    const PLAY_HINT_KEY = "intersections_play_hint_shown";
+
+    function maybeShowPlayAgainHint() {
+        if (!gameOver) return;
+        try {
+            if (sessionStorage.getItem(PLAY_HINT_KEY)) return;
+            sessionStorage.setItem(PLAY_HINT_KEY, "1");
+        } catch (e) { return; }   // private browsing — skip rather than nag
+        // Deferred: the click that closed the popup is still bubbling, and
+        // the click-away handler below would hide this again instantly.
+        setTimeout(function () {
+            document.getElementById("play-again-hint").style.display = "block";
+        }, 0);
+    }
+
+    function hidePlayAgainHint() {
+        const el = document.getElementById("play-again-hint");
+        if (el) el.style.display = "none";
+    }
+
+    document.getElementById("play-again-got-it").addEventListener("click", function (e) {
+        e.stopPropagation();
+        hidePlayAgainHint();
+    });
 
     function updateTrafficLights() {
         const leftLight = document.getElementById("left-traffic-light");
