@@ -3026,14 +3026,18 @@
         for (const guess of guessHistory) {
             const fb = pureFeedback(guess, targetHorizontal, targetVertical);
             const entry = { h: [], v: [] };
+            // Once a word is solved, later guesses were only ever aimed at
+            // the other one — the board leaves that grid blank rather than
+            // scoring them, so the share has to do the same. Filling it with
+            // green repeated a row the player never actually saw.
             if (hSolved) {
-                entry.h = ["green","green","green","green","green"];
+                entry.h = ["blank","blank","blank","blank","blank"];
             } else {
                 entry.h = fb.map(f => f.h);
                 if (entry.h.every(s => s === "green")) hSolved = true;
             }
             if (vSolved) {
-                entry.v = ["green","green","green","green","green"];
+                entry.v = ["blank","blank","blank","blank","blank"];
             } else {
                 entry.v = fb.map(f => f.v);
                 if (entry.v.every(s => s === "green")) vSolved = true;
@@ -3041,7 +3045,10 @@
             allFeedback.push(entry);
         }
 
-        const e = (s) => s === "green" ? "🟩" : s === "yellow" ? "🟨" : "🟥";
+        const e = (s) => s === "green" ? "🟩"
+                       : s === "yellow" ? "🟨"
+                       : s === "blank" ? "⬜"
+                       : "🟥";
         const gray = "⬜";
 
         // Build 5 lines: H-grid row + separator + V-grid row
