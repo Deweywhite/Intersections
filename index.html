@@ -1587,6 +1587,18 @@
     let usedDirections = false;    // did the player reveal the sign before finishing?
     let currentDefs = null;        // [{pos,def},{pos,def}] for the two answer words
 
+    // ===== Analytics =====
+    // gtag.js is loaded at the end of the document, so it may not exist when
+    // this script parses. Everything is guarded and wrapped: a missing or
+    // blocked analytics script must never break the game.
+    function track(name, params) {
+        try {
+            if (typeof gtag === "function") gtag("event", name, params || {});
+        } catch (e) { /* ad blocker, offline, whatever — ignore */ }
+    }
+
+    let definitionTracked = false;   // only the first lookup per game counts
+
     const STORAGE_KEY = "intersections_state";
     const STATS_KEY = "intersections_stats";
     const HISTORY_KEY = "intersections_history";
@@ -1911,6 +1923,7 @@
             });
             if (error) throw error;
             box.value = "";
+            track("feedback_sent", {});
             setFeedbackStatus("Thanks — honk received.");
             setTimeout(closeFeedback, 1400);
         } catch (e) {
@@ -1957,6 +1970,11 @@
 
     function showDefBubble(which, anchor) {
         if (!currentDefs || !currentDefs[which]) return;
+        // Hover fires repeatedly; count only the first lookup of each game
+        if (!definitionTracked) {
+            definitionTracked = true;
+            track("definition_view", { mode: gameMode });
+        }
         const word = which === 0 ? targetHorizontal : targetVertical;
         const d = currentDefs[which];
         const b = document.getElementById("def-bubble");
@@ -2287,6 +2305,7 @@
                     showResultLabel = true;
                     restoreCompletedGame(done);
                 } else {
+                    track("archive_play", { puzzle_date: date });
                     toggleShareButtons(false);
                     startNewGame();
                 }
@@ -2355,6 +2374,7 @@
     let archiveMonth = null;   // "YYYY-MM"
 
     function openArchive() {
+        track("archive_open", {});
         const today = easternToday();
         archiveMonth = (currentPuzzleDate && gameMode !== "random" ? currentPuzzleDate : today).slice(0, 7);
         renderArchive();
@@ -2435,6 +2455,11 @@
 
     document.getElementById("give-up").addEventListener("click", function() {
         if (gameOver) return; // already over, ignore
+        track("game_complete", {
+            mode: gameMode, outcome: "gave_up", guesses: guesses,
+            seconds: Math.floor((Date.now() - startTime) / 1000),
+            used_directions: usedDirections
+        });
         // Save to history for daily games (stats are derived from history)
         if (gameMode !== "random" && currentPuzzleDate) {
             const endTime = Date.now();
@@ -2671,6 +2696,7 @@
 
     async function cloudSignInGoogle() {
         if (!cloudClient) return;
+        track("sign_in", { method: "google" });
         const { error } = await cloudClient.auth.signInWithOAuth({
             provider: "google",
             options: { redirectTo: cloudRedirectTarget() }
@@ -2680,6 +2706,7 @@
 
     async function cloudSignInEmail(email) {
         if (!cloudClient) return;
+        track("sign_in", { method: "email" });
         const btn = document.getElementById("signin-email-btn");
         btn.disabled = true;
         setSigninMessage("Sending…");
@@ -2945,12 +2972,19 @@
 
     function tutStart() {
         if (tutActive) return;
+        track("tutorial", { action: "started" });
         tutActive = true;
         tutSnapshot = tutSnapshotState();
         tutShowStep(0);
     }
 
-    function tutEnd() {
+    function tutEnd(reason) {
+        if (tutActive) {
+            track("tutorial", {
+                action: reason === "completed" ? "completed" : "skipped",
+                last_step: tutStep + 1
+            });
+        }
         tutActive = false;
         document.getElementById("tut-spotlight").style.display = "none";
         document.getElementById("tut-bubble").style.display    = "none";
@@ -2976,7 +3010,7 @@
     document.getElementById("help").addEventListener("click", tutStart);
     document.getElementById("tut-skip").addEventListener("click", tutEnd);
     document.getElementById("tut-next").addEventListener("click", function() {
-        if (tutStep >= tutSteps.length - 1) tutEnd();
+        if (tutStep >= tutSteps.length - 1) tutEnd("completed");
         else tutShowStep(tutStep + 1);
     });
     document.getElementById("tut-back").addEventListener("click", function() {
@@ -3012,6 +3046,7 @@
             if (localStorage.getItem("intersections_seen_instructions")) return;
         } catch (e) { return; }
         document.getElementById("tut-offer").style.display = "block";
+        track("tutorial", { action: "offered" });
     }
 
     // --- Share Functions ---
@@ -3141,6 +3176,10 @@
     const SHARE_URL = "https://intersectionsgame.com";
 
     function shareResult() {
+        track("share_click", {
+            mode: gameMode,
+            outcome: (horizontalLocked && verticalLocked) ? "survived" : "crashed"
+        });
         const grid = generateShareText();
         if (navigator.share) {
             navigator.share({ text: grid, url: SHARE_URL }).catch(() => {});
@@ -3204,6 +3243,8 @@
         showResultLabel = false;
         updateResultLabel();
         clearDefinable();
+        definitionTracked = false;
+        track("game_start", { mode: gameMode });
 
         saveState(); // Persist word pair immediately so refresh keeps same game
         isStartingNewGame = false;
@@ -3556,6 +3597,10 @@
         const endTime = Date.now();
         const timeElapsed = Math.floor((endTime - startTime) / 1000);
         winTime.textContent = formatTime(timeElapsed);
+        track("game_complete", {
+            mode: gameMode, outcome: "survived", guesses: guesses,
+            seconds: timeElapsed, used_directions: usedDirections
+        });
         setWinSprite();
         winPopup.style.display = "block";
         gameOver = true;
@@ -3580,6 +3625,11 @@
     }
 
     function showLosePopup() {
+        track("game_complete", {
+            mode: gameMode, outcome: "crashed", guesses: guesses,
+            seconds: Math.floor((Date.now() - startTime) / 1000),
+            used_directions: usedDirections
+        });
         fillRemainingLettersInRed();
         document.getElementById("lose-title").textContent = "You Ran the Red Light";
         setLoseSprite("crash");
