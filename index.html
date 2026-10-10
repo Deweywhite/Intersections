@@ -367,10 +367,15 @@
         }
         .stats-row {
             display: flex;
-            justify-content: space-around;
             margin-bottom: 20px;
         }
+        /* Equal columns, not space-around. The five labels are different
+           lengths ("Survived" against "Current Streak"), so distributing the
+           gaps left the boxes different widths and their centres unevenly
+           spaced -- which read as the middle figure sitting off to the right. */
         .stat-box {
+            flex: 1 1 0;
+            min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1156,13 +1161,15 @@
             position: fixed;
             right: 10px;
             bottom: 10px;
-            width: 258px;
+            width: 276px;
             max-width: calc(100vw - 20px);
             background: #2f2f2f;
             border: 2px solid #4caf50;
             border-radius: 12px;
             box-shadow: 0 6px 22px rgba(0,0,0,0.6);
             padding: 12px 34px 12px 12px;
+            /* 268px is where "Add to Home Screen" stops wrapping and leaving
+               "Screen" alone on a second line; a little over for safety. */
             color: #ddd;
             font-family: Arial, sans-serif;
             font-size: 13px;
@@ -1189,18 +1196,21 @@
         }
         #install-how { color: #a8a8a8; font-size: 12px; }
         #install-how b { color: #cfe8cf; font-weight: normal; }
-        /* The browser's own glyph, drawn inline so the sentence can point at
-           the actual control instead of describing where it is. */
+        /* The browser's own icons, drawn inline so the sentence points at the
+           control you actually tap rather than describing where it is. */
         .gl {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 1px solid #8a8a8a;
-            border-radius: 3px;
-            padding: 0 4px;
-            margin: 0 1px;
-            color: #e0e0e0;
-            font-size: 11px;
-            line-height: 1.5;
+            border-radius: 4px;
+            width: 18px;
+            height: 18px;
+            margin: 0 2px;
+            vertical-align: -5px;
+            color: #e8e8e8;
         }
+        .gl svg { width: 12px; height: 12px; display: block; }
         #install-go {
             flex: 0 0 auto;
             background: #4caf50;
@@ -1617,7 +1627,7 @@
             <button id="install-dismiss" type="button" aria-label="Dismiss">✕</button>
             <img id="install-icon" src="/favicon-192.png" alt="" width="42" height="42">
             <div id="install-text">
-                <b id="install-title">Install Intersections</b>
+                <b id="install-title">Add Intersections App Icon</b>
                 <span id="install-how"></span>
             </div>
             <button id="install-go" type="button">Install</button>
@@ -4083,6 +4093,20 @@
         return true;
     }
 
+    // Rough copies of the icons each browser puts on these controls, so the
+    // card points at a shape rather than naming a position.
+    const ICON_DOTS = '<span class="gl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+        '<circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></span>';
+    const ICON_INSTALL = '<span class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></span>';
+    const ICON_SHARE = '<span class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/></svg></span>';
+    const ICON_PLUS = '<span class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.2" stroke-linecap="round" aria-hidden="true">' +
+        '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 9v6M9 12h6"/></svg></span>';
+
     function buildInstallCard(platform) {
         const how = document.getElementById("install-how");
         const go = document.getElementById("install-go");
@@ -4098,8 +4122,8 @@
 
         // Otherwise name the two taps, with the browser's own glyph inline.
         how.innerHTML = platform === "ios"
-            ? 'Tap <span class="gl">\u2191</span> then <b>Add to Home Screen</b>'
-            : 'Tap <span class="gl">\u22ee</span> then <b>Add to Home screen</b>';
+            ? "Tap " + ICON_SHARE + " then " + ICON_PLUS + " <b>Add to Home Screen</b>"
+            : "Tap " + ICON_DOTS + " then " + ICON_INSTALL + " <b>Install</b>";
         go.style.display = "none";
         go.dataset.mode = "manual";
     }
