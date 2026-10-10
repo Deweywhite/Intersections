@@ -291,17 +291,17 @@
            and reds, so they read as "go" and "back" without competing with a
            solved square for attention. */
         .letter-btn.key-enter {
-            background-color: #2e6b2e;
-            border-color: #58a95b;
-            color: #eaf5ea;
+            background-color: #4caf50;   /* same green as the traffic light */
+            border-color: #4caf50;
+            color: #fff;
         }
-        .letter-btn.key-enter:hover { background-color: #3a853a; }
+        .letter-btn.key-enter:hover { background-color: #5cbf60; }
         .letter-btn.key-delete {
-            background-color: #7a2f2a;
-            border-color: #b4554d;
-            color: #f6e7e5;
+            background-color: #f44336;   /* same red as the traffic light */
+            border-color: #f44336;
+            color: #fff;
         }
-        .letter-btn.key-delete:hover { background-color: #94382f; }
+        .letter-btn.key-delete:hover { background-color: #f66055; }
 
         .green-top-bottom { border-top: 1.5px solid #4caf50; border-bottom: 1.5px solid #4caf50; }
         .yellow-top-bottom { border-top: 1.5px solid #ffeb3b; border-bottom: 1.5px solid #ffeb3b; }
@@ -744,7 +744,16 @@
         /* No persistent marker — the cells just become live once the game
            ends. Desktop gets a cursor and a slight lift on hover; touch
            users find it by tapping an answer. */
-        .cell.definable { cursor: pointer; }
+        /* A dotted underline is the only thing on screen saying these letters
+           do anything. Without it the feature is invisible: you have to
+           already know to point at the answer. */
+        .cell.definable {
+            cursor: pointer;
+            text-decoration: underline dotted;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(255, 255, 255, 0.55);
+        }
         @media (any-hover: hover) and (any-pointer: fine) {
             .cell.definable:hover { filter: brightness(1.18); }
         }
@@ -2613,6 +2622,7 @@
             seconds: Math.floor((Date.now() - startTime) / 1000),
             used_directions: usedDirections
         });
+        bumpGamesFinished();
         // Save to history for daily games (stats are derived from history)
         if (gameMode !== "random" && currentPuzzleDate) {
             const endTime = Date.now();
@@ -3756,6 +3766,7 @@
             mode: gameMode, outcome: "survived", guesses: guesses,
             seconds: timeElapsed, used_directions: usedDirections
         });
+        bumpGamesFinished();
         setWinSprite();
         winPopup.style.display = "block";
         gameOver = true;
@@ -3785,6 +3796,7 @@
             seconds: Math.floor((Date.now() - startTime) / 1000),
             used_directions: usedDirections
         });
+        bumpGamesFinished();
         fillRemainingLettersInRed();
         document.getElementById("lose-title").textContent = "You Ran the Red Light";
         setLoseSprite("crash");
@@ -3971,6 +3983,32 @@
     const INSTALL_KEY = "intersections_install_offered";
     const INSTALL_MIN_GAMES = 2;
 
+    // Counted separately from history, which only records games that have a
+    // date. Random games deliberately leave no trace there, so counting
+    // history would have ignored the one mode a player uses to play several
+    // times in a sitting.
+    const GAMES_FINISHED_KEY = "intersections_games_finished";
+
+    function gamesFinished() {
+        try {
+            const raw = localStorage.getItem(GAMES_FINISHED_KEY);
+            if (raw === null) {
+                // Existing players shouldn't start from zero: seed from the
+                // dated games already on record.
+                const seed = computeStatsFromHistory(loadHistory()).gamesPlayed;
+                localStorage.setItem(GAMES_FINISHED_KEY, String(seed));
+                return seed;
+            }
+            return parseInt(raw, 10) || 0;
+        } catch (e) { return 0; }
+    }
+
+    function bumpGamesFinished() {
+        try {
+            localStorage.setItem(GAMES_FINISHED_KEY, String(gamesFinished() + 1));
+        } catch (e) {}
+    }
+
     let deferredInstall = null;   // Android's own install prompt, if offered
 
     window.addEventListener("beforeinstallprompt", function (e) {
@@ -4006,8 +4044,7 @@
             if (localStorage.getItem(INSTALL_KEY)) return false;
         } catch (e) { return false; }
 
-        const played = computeStatsFromHistory(loadHistory()).gamesPlayed;
-        if (played < INSTALL_MIN_GAMES) return false;
+        if (gamesFinished() < INSTALL_MIN_GAMES) return false;
 
         try { localStorage.setItem(INSTALL_KEY, "1"); } catch (e) { return false; }
 
