@@ -17,6 +17,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <!-- Home-screen behaviour on iOS. Safari only began reading the manifest
+         in 16.4; on anything older these are the only thing that makes an
+         installed icon open without browser chrome. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Intersections">
+
     <!-- Link previews: without these a shared URL renders as bare text, which
          matters because the share grid is how the game spreads. -->
     <meta property="og:type" content="website">
@@ -279,6 +286,23 @@
         .letter-btn:hover {
             background-color: #555;
         }
+        /* Enter and delete are the only keys that never carry letter feedback,
+           so they can be coloured outright. Muted rather than the tile greens
+           and reds, so they read as "go" and "back" without competing with a
+           solved square for attention. */
+        .letter-btn.key-enter {
+            background-color: #2e6b2e;
+            border-color: #58a95b;
+            color: #eaf5ea;
+        }
+        .letter-btn.key-enter:hover { background-color: #3a853a; }
+        .letter-btn.key-delete {
+            background-color: #7a2f2a;
+            border-color: #b4554d;
+            color: #f6e7e5;
+        }
+        .letter-btn.key-delete:hover { background-color: #94382f; }
+
         .green-top-bottom { border-top: 1.5px solid #4caf50; border-bottom: 1.5px solid #4caf50; }
         .yellow-top-bottom { border-top: 1.5px solid #ffeb3b; border-bottom: 1.5px solid #ffeb3b; }
         .red-top-bottom { border-top: 1.5px solid #f44336; border-bottom: 1.5px solid #f44336; }
@@ -1125,6 +1149,85 @@
         #tut-offer-no { background: #555; }
         #tut-offer-no:hover { background: #777; }
 
+        /* ===== "Add to home screen" card ===== */
+        /* A small card in the corner, not a sheet across the bottom: this is
+           an aside, and it should occupy the space an aside deserves. */
+        #install-card {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: 258px;
+            max-width: calc(100vw - 20px);
+            background: #2f2f2f;
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.6);
+            padding: 12px 34px 12px 12px;
+            color: #ddd;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.45;
+            text-align: left;
+            z-index: 4003;
+            display: none;
+            align-items: center;
+            gap: 11px;
+        }
+        #install-icon {
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 9px;
+            display: block;
+        }
+        #install-text { flex: 1 1 auto; min-width: 0; }
+        #install-title {
+            display: block;
+            color: #fff;
+            font-size: 13.5px;
+            margin-bottom: 1px;
+        }
+        #install-how { color: #a8a8a8; font-size: 12px; }
+        #install-how b { color: #cfe8cf; font-weight: normal; }
+        /* The browser's own glyph, drawn inline so the sentence can point at
+           the actual control instead of describing where it is. */
+        .gl {
+            display: inline-block;
+            border: 1px solid #8a8a8a;
+            border-radius: 3px;
+            padding: 0 4px;
+            margin: 0 1px;
+            color: #e0e0e0;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        #install-go {
+            flex: 0 0 auto;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 7px 15px;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            display: none;
+        }
+        #install-go:hover { background: #5cbf60; }
+        #install-dismiss {
+            position: absolute;
+            top: 5px;
+            right: 7px;
+            background: transparent;
+            border: none;
+            color: #8a8a8a;
+            font-size: 15px;
+            line-height: 1;
+            padding: 3px 5px;
+            cursor: pointer;
+        }
+        #install-dismiss:hover { color: #ddd; }
+
         /* ===== Guided tutorial overlay ===== */
         #tut-spotlight {
             position: absolute;
@@ -1508,6 +1611,16 @@
             <b>Want another?</b>
             Tap the green light for a random puzzle, or pick any past day from the archive.
             <button id="play-again-got-it" type="button">Got it</button>
+        </div>
+
+        <div id="install-card" role="dialog" aria-labelledby="install-title">
+            <button id="install-dismiss" type="button" aria-label="Dismiss">✕</button>
+            <img id="install-icon" src="/favicon-192.png" alt="" width="42" height="42">
+            <div id="install-text">
+                <b id="install-title">Install Intersections</b>
+                <span id="install-how"></span>
+            </div>
+            <button id="install-go" type="button">Install</button>
         </div>
 
         <div id="def-bubble"></div>
@@ -3350,9 +3463,11 @@
                 btn.classList.add("letter-btn");
                 if (char === "←") {
                     btn.innerHTML = "←";
+                    btn.classList.add("key-delete");
                     btn.onclick = handleBackspaceFromLetterBank;
                 } else if (char === "⏎") {
                     btn.innerHTML = "⏎";
+                    btn.classList.add("key-enter");
                     btn.onclick = submitGuessFromLetterBank;
                 } else {
                     btn.textContent = char;
@@ -3815,7 +3930,9 @@
     function closePopup() {
         document.getElementById("win-popup").style.display = "none";
         document.getElementById("lose-popup").style.display = "none";
-        maybeShowPlayAgainHint();
+        // Never both at once. The play-again nudge is the more useful of the
+        // two on a first finish, so the install offer waits for a later game.
+        if (!maybeShowPlayAgainHint()) maybeShowInstallPrompt();
     }
 
     // Nudge toward the green light once per visit, after the board is clear.
@@ -3824,16 +3941,17 @@
     const PLAY_HINT_KEY = "intersections_play_hint_shown";
 
     function maybeShowPlayAgainHint() {
-        if (!gameOver) return;
+        if (!gameOver) return false;
         try {
-            if (sessionStorage.getItem(PLAY_HINT_KEY)) return;
+            if (sessionStorage.getItem(PLAY_HINT_KEY)) return false;
             sessionStorage.setItem(PLAY_HINT_KEY, "1");
-        } catch (e) { return; }   // private browsing — skip rather than nag
+        } catch (e) { return false; }   // private browsing — skip rather than nag
         // Deferred: the click that closed the popup is still bubbling, and
         // the click-away handler below would hide this again instantly.
         setTimeout(function () {
             document.getElementById("play-again-hint").style.display = "block";
         }, 0);
+        return true;
     }
 
     function hidePlayAgainHint() {
@@ -3844,6 +3962,118 @@
     document.getElementById("play-again-got-it").addEventListener("click", function (e) {
         e.stopPropagation();
         hidePlayAgainHint();
+    });
+
+    // ===== "Add to your phone" =====
+    // Shown once, ever, and only to a player who has finished at least two
+    // games: an install offer on a first visit is asking for commitment from
+    // someone who does not yet know whether they like the game.
+    const INSTALL_KEY = "intersections_install_offered";
+    const INSTALL_MIN_GAMES = 2;
+
+    let deferredInstall = null;   // Android's own install prompt, if offered
+
+    window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();       // suppress Chrome's banner; we choose the moment
+        deferredInstall = e;
+    });
+
+    // Already installed: launched from the home screen, so nothing to offer.
+    function isStandalone() {
+        try {
+            return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)
+                || navigator.standalone === true;
+        } catch (e) { return false; }
+    }
+
+    // iPadOS reports itself as a Mac, so touch points are the tell.
+    function mobilePlatform() {
+        const ua = navigator.userAgent || "";
+        if (/iphone|ipad|ipod/i.test(ua)) return "ios";
+        if (/macintosh/i.test(ua) && (navigator.maxTouchPoints || 0) > 1) return "ios";
+        if (/android/i.test(ua)) return "android";
+        return null;   // desktop — the home screen means nothing there
+    }
+
+    function maybeShowInstallPrompt() {
+        if (!gameOver) return false;
+        if (isStandalone()) return false;
+
+        const platform = mobilePlatform();
+        if (!platform) return false;
+
+        try {
+            if (localStorage.getItem(INSTALL_KEY)) return false;
+        } catch (e) { return false; }
+
+        const played = computeStatsFromHistory(loadHistory()).gamesPlayed;
+        if (played < INSTALL_MIN_GAMES) return false;
+
+        try { localStorage.setItem(INSTALL_KEY, "1"); } catch (e) { return false; }
+
+        buildInstallCard(platform);
+        track("install_prompt", { platform: platform, action: "shown" });
+        // Deferred for the same reason as the play-again hint: the click that
+        // closed the popup is still travelling.
+        setTimeout(function () {
+            document.getElementById("install-card").style.display = "flex";
+        }, 0);
+        return true;
+    }
+
+    function buildInstallCard(platform) {
+        const how = document.getElementById("install-how");
+        const go = document.getElementById("install-go");
+
+        if (platform === "android" && deferredInstall) {
+            // Chrome will do the whole thing itself, so say nothing and
+            // offer the button.
+            how.textContent = "One tap, no app store.";
+            go.style.display = "";
+            go.dataset.mode = "prompt";
+            return;
+        }
+
+        // Otherwise name the two taps, with the browser's own glyph inline.
+        how.innerHTML = platform === "ios"
+            ? 'Tap <span class="gl">\u2191</span> then <b>Add to Home Screen</b>'
+            : 'Tap <span class="gl">\u22ee</span> then <b>Add to Home screen</b>';
+        go.style.display = "none";
+        go.dataset.mode = "manual";
+    }
+
+    function hideInstallCard() {
+        const el = document.getElementById("install-card");
+        if (el) el.style.display = "none";
+    }
+
+    document.getElementById("install-go").addEventListener("click", function (e) {
+        e.stopPropagation();
+        const platform = mobilePlatform();
+        if (this.dataset.mode === "prompt" && deferredInstall) {
+            const prompt = deferredInstall;
+            deferredInstall = null;
+            hideInstallCard();
+            prompt.prompt();
+            // Chrome resolves this with the player's answer; record which.
+            if (prompt.userChoice && typeof prompt.userChoice.then === "function") {
+                prompt.userChoice.then(function (res) {
+                    track("install_prompt", {
+                        platform: platform,
+                        action: (res && res.outcome === "accepted") ? "accepted" : "declined"
+                    });
+                }).catch(function () {});
+            }
+            return;
+        }
+        track("install_prompt", { platform: platform, action: "instructions_closed" });
+        hideInstallCard();
+    });
+
+    document.getElementById("install-dismiss").addEventListener("click", function (e) {
+        e.stopPropagation();
+        track("install_prompt", { platform: mobilePlatform(), action: "dismissed" });
+        hideInstallCard();
     });
 
     function updateTrafficLights() {
