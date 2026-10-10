@@ -744,16 +744,7 @@
         /* No persistent marker — the cells just become live once the game
            ends. Desktop gets a cursor and a slight lift on hover; touch
            users find it by tapping an answer. */
-        /* A dotted underline is the only thing on screen saying these letters
-           do anything. Without it the feature is invisible: you have to
-           already know to point at the answer. */
-        .cell.definable {
-            cursor: pointer;
-            text-decoration: underline dotted;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 3px;
-            text-decoration-color: rgba(255, 255, 255, 0.55);
-        }
+        .cell.definable { cursor: pointer; }
         @media (any-hover: hover) and (any-pointer: fine) {
             .cell.definable:hover { filter: brightness(1.18); }
         }
@@ -2947,6 +2938,11 @@
     const TUT_IV = 3;           // C is SAUCE[3]
     const TUT_GUESS = "CRANE";
     const TUT_CLUE  = "spicy";     // the road sign for the demo puzzle
+    // [0] is the horizontal word, [1] the vertical, matching currentDefs.
+    const TUT_DEFS = [
+        { pos: "noun", def: "A small hot-tasting pod used to give food a sharp, burning flavour." },
+        { pos: "noun", def: "A thick liquid served with food to add flavour or moisture." }
+    ];
 
     let tutActive = false;
     let tutStep = 0;
@@ -3010,6 +3006,19 @@
             state: "guessed"
         },
         {
+            target: "#main-grid",
+            title: "TAP A WORD, GET A DEFINITION",
+            body: "Once the game is over, tap either answer on the main grid to see what it means. The definition is written for this pairing, so it explains why the two words belong together.",
+            state: "solved"
+        },
+        {
+            target: "#stats",
+            fallback: "#menu-bar",
+            title: "KEEP YOUR RECORD",
+            body: "Tap the chart any time for your games played, win percentage, current streak and how many guesses you usually need.",
+            state: "solved"
+        },
+        {
             // Traffic lights are hidden on mobile — fall back to the board
             target: "#right-traffic-light",
             fallback: ".grid-container",
@@ -3063,12 +3072,28 @@
             displayGuess(TUT_GUESS, fb);
             updateMainGrid(TUT_GUESS, fb);
             updateLetterBank(TUT_GUESS, fb);
+        } else if (kind === "solved") {
+            // Both answers in place, so the definition step has something to
+            // point at. Guessing each word in turn fills the grid the same
+            // way a real solve would.
+            guesses = 2;
+            updateMainGrid(TUT_H, provideFeedback(TUT_H));
+            updateMainGrid(TUT_V, provideFeedback(TUT_V));
+            horizontalLocked = true;
+            verticalLocked   = true;
         }
         // Tutorial board is display-only. The sign stays out of the way
         // except on its own step, where it appears unrevealed so it matches
         // what the player will actually see.
         document.querySelectorAll(".letter-btn").forEach(b => b.disabled = true);
         clearDefinable();
+        // The definition step shows a finished board, so the answers carry
+        // the same pointer affordance they will in a real game.
+        gameOver = (kind === "solved");
+        if (kind === "solved") {
+            currentDefs = TUT_DEFS;
+            markDefinable();
+        }
         const sign = document.getElementById("road-sign");
         if (step && step.showSign) {
             currentClue = TUT_CLUE;
