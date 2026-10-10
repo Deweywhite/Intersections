@@ -32,6 +32,32 @@
     <meta name="twitter:title" content="Intersections — A Daily Word Puzzle">
     <meta name="twitter:description" content="Two 5-letter words cross at a shared letter. Solve both in five guesses. A new intersection every day.">
     <meta name="twitter:image" content="https://intersectionsgame.com/og-image.png">
+
+    <!-- Structured data: tells search engines what this page is, rather than
+         leaving them to infer it from a page that is almost entirely script. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Intersections",
+      "url": "https://intersectionsgame.com",
+      "description": "A daily word puzzle. Two 5-letter words with related meanings cross at a shared letter, and every guess is scored against both. Five guesses to solve the pair.",
+      "image": "https://intersectionsgame.com/og-image.png",
+      "genre": ["Word puzzle", "Puzzle"],
+      "gamePlatform": "Web browser",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "playMode": "SinglePlayer",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -486,6 +512,19 @@
         }
         #stats-close:hover {
             background-color: #777;
+        }
+        /* Visually hidden, but read by search engines and screen readers.
+           The page had no h1 at all, so it announced itself as nothing. */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
         .ex-cell {
             width: 32px;
@@ -1360,6 +1399,7 @@
     </style>
 </head>
 <body>
+    <h1 class="sr-only">Intersections — a daily word puzzle where two 5-letter words cross at a shared letter</h1>
     <div id="menu-bar">
         <div class="left">
             <button id="new-game" class="icon-btn" title="Play" aria-haspopup="menu"><span class="menu-light green-light"></span></button>
