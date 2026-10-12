@@ -3605,31 +3605,74 @@
         document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
     }
 
+    // True only while a guess is away at the validator. The keyboard is
+    // disabled for exactly that long, so anything that can strand this flag
+    // strands the player.
+    let validating = false;
+
+    function unlockKeyboard() {
+        validating = false;
+        if (!gameOver) {
+            document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = false);
+        }
+    }
+
     function processGuess(guess) {
         guess = guess.toUpperCase();
+        validating = true;
         document.querySelectorAll(".letter-btn").forEach(btn => btn.disabled = true);
 
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            validating = false;
             acceptGuess(guess);
             return;
         }
 
-        fetch(`/api/validate?word=${encodeURIComponent(guess)}`)
+        // Without a deadline this request can hang forever -- and it does:
+        // iOS suspends a backgrounded web app mid-flight, and the promise
+        // comes back neither resolved nor rejected, leaving the keyboard
+        // disabled for good while the menu buttons still work.
+        const ctl = ("AbortController" in window) ? new AbortController() : null;
+        const timer = setTimeout(() => { if (ctl) ctl.abort(); }, 8000);
+
+        fetch(`/api/validate?word=${encodeURIComponent(guess)}`, ctl ? { signal: ctl.signal } : undefined)
             .then(res => res.json())
             .then(data => {
+                clearTimeout(timer);
+                validating = false;
                 if (!data.valid) { rejectGuess(); return; }
                 acceptGuess(guess);
             })
-            .catch(() => rejectGuess());
+            .catch(() => {
+                clearTimeout(timer);
+                // A network failure is not the player being wrong. Give the
+                // guess back rather than spending it on "Invalid Word".
+                unlockKeyboard();
+                showMessage("Couldn't check that word — try again", 1600);
+            });
     }
 
+    // Belt and braces for the suspend case: whatever happened while the app
+    // was in the background, a visible board with a live game must have a
+    // usable keyboard.
+    document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState !== "visible") return;
+        if (gameOver || tutActive) return;
+        if (validating) unlockKeyboard();
+    });
+
     function showInvalidWarning() {
+        showMessage("Invalid Word", 1000);
+    }
+
+    function showMessage(text, ms) {
         const message = document.getElementById("message");
-        message.textContent = "Invalid Word";
+        message.textContent = text;
         message.style.display = "block";
-        setTimeout(() => {
+        clearTimeout(showMessage._t);
+        showMessage._t = setTimeout(() => {
             message.style.display = "none";
-        }, 1000);
+        }, ms || 1000);
     }
 
     function provideFeedback(guess) {
