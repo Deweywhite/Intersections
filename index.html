@@ -1106,7 +1106,22 @@
         }
         #signin-email-btn:hover { background: #5cbf60; }
         #signin-email-btn:disabled { background: #3a6b3c; cursor: default; }
-        #signin-code { letter-spacing: 6px; text-align: center; font-size: 20px; }
+        #signin-code {
+            display: block;
+            width: 200px;
+            max-width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            background: #2a2a2a;
+            color: #fff;
+            border: 1.5px solid #555;
+            border-radius: 20px;
+            padding: 9px 12px;
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+        #signin-code:focus { outline: none; border-color: #4caf50; }
         #signin-code-btn {
             background: #4caf50;
             color: #fff;
@@ -1729,7 +1744,7 @@
              home-screen app cannot see the session that creates. -->
         <form id="signin-code-form" style="display:none;">
             <input id="signin-code" type="text" inputmode="numeric" autocomplete="one-time-code"
-                   pattern="[0-9]*" maxlength="6" placeholder="6-digit code">
+                   pattern="[0-9]*" maxlength="10" placeholder="Enter code">
             <button id="signin-code-btn" type="submit">Sign me in</button>
         </form>
         <p id="signin-message" class="account-status"></p>
@@ -2913,7 +2928,7 @@
 
         pendingSigninEmail = email;
         document.getElementById("signin-code-form").style.display = "block";
-        setSigninMessage("Check your email and enter the 6-digit code.");
+        setSigninMessage("Check your email and enter the code.");
         const box = document.getElementById("signin-code");
         box.value = "";
         try { box.focus(); } catch (e) {}
@@ -3000,9 +3015,11 @@
     });
     document.getElementById("signin-code-form").addEventListener("submit", function(e) {
         e.preventDefault();
+        // Code length is a Supabase setting, not a constant -- this project
+        // issues longer than the default six, so don't hard-code a length.
         const code = document.getElementById("signin-code").value.replace(/\D/g, "");
-        if (code.length === 6) cloudVerifyCode(code);
-        else setSigninMessage("Enter all six digits.", true);
+        if (code.length >= 6) cloudVerifyCode(code);
+        else setSigninMessage("Enter the whole code from the email.", true);
     });
 
     cloudInit();
