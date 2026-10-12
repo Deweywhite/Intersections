@@ -1106,6 +1106,21 @@
         }
         #signin-email-btn:hover { background: #5cbf60; }
         #signin-email-btn:disabled { background: #3a6b3c; cursor: default; }
+        #signin-code { letter-spacing: 6px; text-align: center; font-size: 20px; }
+        #signin-code-btn {
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 9px 20px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+        }
+        #signin-code-btn:hover { background: #5cbf60; }
+        #signin-code-btn:disabled { background: #3a6b3c; cursor: default; }
         #signin-close { margin-top: 14px; }
 
         /* ===== Tutorial offer (first visit) ===== */
@@ -1707,7 +1722,15 @@
         <div class="signin-divider"><span>or</span></div>
         <form id="signin-email-form">
             <input id="signin-email" type="email" placeholder="you@example.com" autocomplete="email" required>
-            <button id="signin-email-btn" type="submit">Email me a sign-in link</button>
+            <button id="signin-email-btn" type="submit">Email me a code</button>
+        </form>
+        <!-- Shown once a code has been sent. A code can be typed where the
+             player already is; a link opens a different browser, and on iOS a
+             home-screen app cannot see the session that creates. -->
+        <form id="signin-code-form" style="display:none;">
+            <input id="signin-code" type="text" inputmode="numeric" autocomplete="one-time-code"
+                   pattern="[0-9]*" maxlength="6" placeholder="6-digit code">
+            <button id="signin-code-btn" type="submit">Sign me in</button>
         </form>
         <p id="signin-message" class="account-status"></p>
         <p class="account-hint" style="margin-top:12px;">We only store your email and puzzle results. <a href="/privacy" target="_blank" rel="noopener" style="color:#4caf50;">Privacy policy</a></p>
@@ -2868,19 +2891,54 @@
         if (error) setSigninMessage(error.message, true);
     }
 
+    // Remembered between sending the code and redeeming it: verifyOtp needs
+    // the address again, and asking twice would be absurd.
+    let pendingSigninEmail = null;
+
     async function cloudSignInEmail(email) {
         if (!cloudClient) return;
         track("sign_in", { method: "email" });
         const btn = document.getElementById("signin-email-btn");
         btn.disabled = true;
         setSigninMessage("Sending…");
+        // The email carries both a code and a link; the link still works on a
+        // desktop, and the code is the only thing that works inside an
+        // installed app on iOS.
         const { error } = await cloudClient.auth.signInWithOtp({
             email,
             options: { emailRedirectTo: cloudRedirectTarget() }
         });
         btn.disabled = false;
-        if (error) setSigninMessage(error.message, true);
-        else setSigninMessage("Check your email for a sign-in link.");
+        if (error) { setSigninMessage(error.message, true); return; }
+
+        pendingSigninEmail = email;
+        document.getElementById("signin-code-form").style.display = "block";
+        setSigninMessage("Check your email and enter the 6-digit code.");
+        const box = document.getElementById("signin-code");
+        box.value = "";
+        try { box.focus(); } catch (e) {}
+    }
+
+    async function cloudVerifyCode(token) {
+        if (!cloudClient || !pendingSigninEmail) return;
+        const btn = document.getElementById("signin-code-btn");
+        btn.disabled = true;
+        setSigninMessage("Checking…");
+        const { error } = await cloudClient.auth.verifyOtp({
+            email: pendingSigninEmail,
+            token: token,
+            type: "email"
+        });
+        btn.disabled = false;
+        if (error) {
+            setSigninMessage("That code didn't work. Check it and try again.", true);
+            return;
+        }
+        track("sign_in", { method: "email_code" });
+        pendingSigninEmail = null;
+        document.getElementById("signin-code-form").style.display = "none";
+        setSigninMessage("");
+        closeSignin();
     }
 
     async function cloudSignOut() {
@@ -2924,6 +2982,11 @@
 
     function closeSignin() {
         document.getElementById("signin-popup").style.display = "none";
+        // Leave no half-finished code entry behind for the next time.
+        document.getElementById("signin-code-form").style.display = "none";
+        document.getElementById("signin-code").value = "";
+        pendingSigninEmail = null;
+        setSigninMessage("");
     }
 
     document.getElementById("account-signin").addEventListener("click", openSignin);
@@ -2934,6 +2997,12 @@
         e.preventDefault();
         const email = document.getElementById("signin-email").value.trim();
         if (email) cloudSignInEmail(email);
+    });
+    document.getElementById("signin-code-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const code = document.getElementById("signin-code").value.replace(/\D/g, "");
+        if (code.length === 6) cloudVerifyCode(code);
+        else setSigninMessage("Enter all six digits.", true);
     });
 
     cloudInit();
@@ -3371,7 +3440,10 @@
         return header + "\n" + lines + "\nCan you survive the intersection?";
     }
 
-    const SHARE_URL = "https://intersectionsgame.com";
+    // Tagged so shared results are distinguishable from people typing the
+    // address. GA4 only reads utm_* -- a bare ?ref= would still be filed as
+    // Direct, which is what made shares invisible.
+    const SHARE_URL = "https://intersectionsgame.com/?utm_source=share&utm_medium=grid";
 
     function shareResult() {
         track("share_click", {
