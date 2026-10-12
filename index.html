@@ -1106,6 +1106,7 @@
         }
         #signin-email-btn:hover { background: #5cbf60; }
         #signin-email-btn:disabled { background: #3a6b3c; cursor: default; }
+        #signin-code-form { margin-top: 16px; }
         #signin-code {
             display: block;
             width: 200px;
@@ -1779,6 +1780,7 @@
     let letterStatus = {};
     let currentGuess = "";
     let gameOver = false;
+    let gaveUp = false;   // distinct from running out of guesses
     let startTime = Date.now();
     let guessHistory = [];
     let isStartingNewGame = false; // Prevent duplicate calls
@@ -2306,6 +2308,7 @@
         verticalLocked = false;
         currentGuess = "";
         gameOver = false;
+        gaveUp = false;
 
         // Replay each saved guess through the existing processing pipeline
         guessHistory.forEach(word => {
@@ -2329,6 +2332,7 @@
         verticalLocked = false;
         currentGuess = "";
         gameOver = false;
+        gaveUp = false;
         startTime = result.startTime || Date.now();
 
         initMainGrid();
@@ -2354,6 +2358,7 @@
 
         // Sign reflects what happened during that game
         usedDirections = !!result.usedDirections;
+        gaveUp = !!result.gaveUp;
         document.getElementById("road-sign").dataset.peeked = "";
         renderRoadSign();
 
@@ -2656,6 +2661,7 @@
 
     document.getElementById("give-up").addEventListener("click", function() {
         if (gameOver) return; // already over, ignore
+        gaveUp = true;
         track("game_complete", {
             mode: gameMode, outcome: "gave_up", guesses: guesses,
             seconds: Math.floor((Date.now() - startTime) / 1000),
@@ -2673,6 +2679,7 @@
                 guessHistory: guessHistory.slice(),
                 startTime: startTime,
                 usedDirections: usedDirections,
+                gaveUp: true,
                 archive: gameMode === "archive"
             });
         }
@@ -3282,6 +3289,7 @@
             horizontalLocked = false;
             verticalLocked   = false;
             gameOver = false;
+        gaveUp = false;
             restoreGame(tutSnapshot);
             updateModeLabel();
             if (!gameOver) {
@@ -3392,6 +3400,12 @@
             result = usedDirections
                 ? `🟢 Got the Green Light in ${guesses}/5 — but I did ask for directions ...`
                 : `🟢 Got the Green Light in ${guesses}/5 — without asking for directions!`;
+        } else if (gaveUp) {
+            // Giving up and crashing are different kinds of failure, and the
+            // popup already says so -- the share line should agree with it.
+            result = usedDirections
+                ? `🟡 Got Stuck at the Red Light — directions and all ...`
+                : `🟡 Got Stuck at the Red Light — too proud to ask for directions ...`;
         } else {
             result = usedDirections
                 ? `🔴 Ran the Red Light — even with directions ...`
@@ -3522,6 +3536,7 @@
         verticalLocked = false;
         currentGuess = "";
         gameOver = false;
+        gaveUp = false;
         startTime = Date.now();
         guessHistory = [];
 
