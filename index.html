@@ -3404,12 +3404,12 @@
             // Giving up and crashing are different kinds of failure, and the
             // popup already says so -- the share line should agree with it.
             result = usedDirections
-                ? `🟡 Got Stuck at the Red Light — directions and all ...`
-                : `🟡 Got Stuck at the Red Light — too proud to ask for directions ...`;
+                ? `🔴 Got Stuck at the Red Light — directions and all ...`
+                : `🔴 Got Stuck at the Red Light — too proud to ask for directions ...`;
         } else {
             result = usedDirections
-                ? `🔴 Ran the Red Light — even with directions ...`
-                : `🔴 Ran the Red Light — but at least I didn't ask for directions!`;
+                ? `🔴 Crashed at the Intersection — even with directions ...`
+                : `🔴 Crashed at the Intersection — but at least I didn't ask for directions!`;
         }
         const header = `🚦 Intersections - ${dateStr}\n${result}\n`;
 
