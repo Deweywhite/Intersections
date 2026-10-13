@@ -3895,6 +3895,14 @@
         updateTrafficLights();
     }
 
+    // green beats yellow beats red beats nothing known
+    const STATUS_RANK = { unknown: 0, red: 1, yellow: 2, green: 3 };
+
+    function bestStatus(current, incoming) {
+        const cur = current || "unknown";
+        return (STATUS_RANK[incoming] || 0) > (STATUS_RANK[cur] || 0) ? incoming : cur;
+    }
+
     function updateLetterBank(guess, feedback) {
         for (let i = 0; i < 5; i++) {
             const letter = guess[i];
@@ -3907,13 +3915,12 @@
 
             letterStatus[letter] = letterStatus[letter] || { h: "unknown", v: "unknown" };
 
-            if (hStatus === "green") letterStatus[letter].h = "green";
-            else if (hStatus === "yellow" && letterStatus[letter].h !== "green") letterStatus[letter].h = "yellow";
-            else if (hStatus === "red" && letterStatus[letter].h !== "green") letterStatus[letter].h = "red";
-
-            if (vStatus === "green") letterStatus[letter].v = "green";
-            else if (vStatus === "yellow" && letterStatus[letter].v !== "green") letterStatus[letter].v = "yellow";
-            else if (vStatus === "red" && letterStatus[letter].v !== "green") letterStatus[letter].v = "red";
+            // A key shows the best thing learned about that letter, never the
+            // last. Guessing a letter twice when the word holds one scores the
+            // second copy red, and that red must not erase the first copy's
+            // yellow -- the letter IS in the word, which is the useful fact.
+            letterStatus[letter].h = bestStatus(letterStatus[letter].h, hStatus);
+            letterStatus[letter].v = bestStatus(letterStatus[letter].v, vStatus);
 
             btn.classList.remove("green-top-bottom", "yellow-top-bottom", "red-top-bottom", "green-left-right", "yellow-left-right", "red-left-right");
 
@@ -3980,7 +3987,7 @@
         });
         bumpGamesFinished();
         fillRemainingLettersInRed();
-        document.getElementById("lose-title").textContent = "You Ran the Red Light";
+        document.getElementById("lose-title").textContent = "You Crashed at the Intersection";
         setLoseSprite("crash");
         document.getElementById("lose-popup").style.display = "block";
         gameOver = true;
