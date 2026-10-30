@@ -12777,9 +12777,9 @@
   ],
   "intersectH": 0,
   "intersectV": 1,
-  "clue": "material",
+  "clue": "sealant",
   "clues": [
-   "ADHESIVE MATERIALS",
+   "sealant",
    "BONDING SUBSTANCES",
    "STICKY COMPOUNDS"
   ],
@@ -30552,9 +30552,9 @@
   ],
   "intersectH": 3,
   "intersectV": 2,
-  "clue": "material",
+  "clue": "map",
   "clues": [
-   "REFERENCE MATERIALS",
+   "map",
    "SHOW LOCATIONS",
    "NAVIGATION AIDS"
   ],
@@ -35752,9 +35752,9 @@
   ],
   "intersectH": 1,
   "intersectV": 1,
-  "clue": "material",
+  "clue": "tree",
   "clues": [
-   "TREE MATERIALS",
+   "tree",
    "WOOD TYPES",
    "MADE FURNITURE"
   ],
@@ -37402,9 +37402,9 @@
   ],
   "intersectH": 2,
   "intersectV": 3,
-  "clue": "serious response",
+  "clue": "strict",
   "clues": [
-   "serious response",
+   "strict",
    "STRICT OR TOUGH",
    "UNFORGIVING NATURE"
   ],
@@ -45872,31 +45872,6 @@
  },
  {
   "words": [
-   "amber",
-   "resin"
-  ],
-  "intersectH": 3,
-  "intersectV": 1,
-  "clue": "material",
-  "clues": [
-   "FOSSILIZED MATERIALS",
-   "GOLDEN SUBSTANCES",
-   "PREHISTORIC PRESERVED"
-  ],
-  "defs": [
-   {
-    "pos": "noun",
-    "def": "A hard golden-brown substance formed from ancient tree sap that hardens over time."
-   },
-   {
-    "pos": "noun",
-    "def": "A sticky substance secreted by plants, sometimes used in varnish and jewelry."
-   }
-  ],
-  "date": "2031-06-10"
- },
- {
-  "words": [
    "cacao",
    "sugar"
   ],
@@ -45918,7 +45893,7 @@
     "def": "A sweet crystalline substance extracted from plants like cane or beets."
    }
   ],
-  "date": "2031-06-11"
+  "date": "2031-06-10"
  },
  {
   "words": [
@@ -45943,7 +45918,7 @@
     "def": "Finely ground powder made from grain that is used in baking."
    }
   ],
-  "date": "2031-06-12"
+  "date": "2031-06-11"
  },
  {
   "words": [
@@ -45968,7 +45943,7 @@
     "def": "A heated mist created by water vapor that rises in a spa or hot bath."
    }
   ],
-  "date": "2031-06-13"
+  "date": "2031-06-12"
  },
  {
   "words": [
@@ -45993,7 +45968,7 @@
     "def": "Unable to bend or flex without breaking or cracking."
    }
   ],
-  "date": "2031-06-14"
+  "date": "2031-06-13"
  },
  {
   "words": [
@@ -46018,7 +45993,7 @@
     "def": "An endearingly attractive person."
    }
   ],
-  "date": "2031-06-15"
+  "date": "2031-06-14"
  },
  {
   "words": [
@@ -46043,7 +46018,7 @@
     "def": "A wet area of soft muddy ground with trees and vegetation growing in water."
    }
   ],
-  "date": "2031-06-16"
+  "date": "2031-06-15"
  },
  {
   "words": [
@@ -46068,7 +46043,7 @@
     "def": "A warm golden-brown or sandy color."
    }
   ],
-  "date": "2031-06-17"
+  "date": "2031-06-16"
  },
  {
   "words": [
@@ -46093,7 +46068,7 @@
     "def": "A long thick piece of timber used for building or as a surface."
    }
   ],
-  "date": "2031-06-18"
+  "date": "2031-06-17"
  },
  {
   "words": [
@@ -46118,7 +46093,7 @@
     "def": "A set of beliefs or principles that guide how someone lives their life."
    }
   ],
-  "date": "2031-06-19"
+  "date": "2031-06-18"
  },
  {
   "words": [
@@ -46143,7 +46118,7 @@
     "def": "Shares of ownership in a company."
    }
   ],
-  "date": "2031-06-20"
+  "date": "2031-06-19"
  },
  {
   "words": [
@@ -46168,7 +46143,7 @@
     "def": "Containing a lot of moisture in the air."
    }
   ],
-  "date": "2031-06-21"
+  "date": "2031-06-20"
  },
  {
   "words": [
@@ -46193,7 +46168,7 @@
     "def": "Liquid containing dissolved or suspended impurities."
    }
   ],
-  "date": "2031-06-22"
+  "date": "2031-06-21"
  },
  {
   "words": [
@@ -46218,7 +46193,7 @@
     "def": "A thick slice of meat, usually beef, cooked by grilling or frying."
    }
   ],
-  "date": "2031-06-23"
+  "date": "2031-06-22"
  },
  {
   "words": [
@@ -46243,7 +46218,7 @@
     "def": "To respond or act in return to something that happens."
    }
   ],
-  "date": "2031-06-24"
+  "date": "2031-06-23"
  },
  {
   "words": [
@@ -46268,7 +46243,7 @@
     "def": "A stringed instrument held between the knees and played with a bow."
    }
   ],
-  "date": "2031-06-25"
+  "date": "2031-06-24"
  },
  {
   "words": [
@@ -46293,7 +46268,7 @@
     "def": "A domesticated cat with striped or patched fur."
    }
   ],
-  "date": "2031-06-26"
+  "date": "2031-06-25"
  },
  {
   "words": [
@@ -46318,7 +46293,7 @@
     "def": "A metal fastener with a spiraled ridge that twists into place."
    }
   ],
-  "date": "2031-06-27"
+  "date": "2031-06-26"
  },
  {
   "words": [
@@ -46343,7 +46318,7 @@
     "def": "A wide, flat area of land with few trees."
    }
   ],
-  "date": "2031-06-28"
+  "date": "2031-06-27"
  },
  {
   "words": [
@@ -46368,7 +46343,7 @@
     "def": "Wildly humorous or eccentric in an unpredictable way."
    }
   ],
-  "date": "2031-06-29"
+  "date": "2031-06-28"
  },
  {
   "words": [
@@ -46393,7 +46368,7 @@
     "def": "Barely perceptible in brightness or intensity."
    }
   ],
-  "date": "2031-06-30"
+  "date": "2031-06-29"
  },
  {
   "words": [
@@ -46418,7 +46393,7 @@
     "def": "A decorative crown worn on the head as formal or ceremonial dress."
    }
   ],
-  "date": "2031-07-01"
+  "date": "2031-06-30"
  },
  {
   "words": [
@@ -46443,7 +46418,7 @@
     "def": "A design transferred onto a surface to identify or personalize an object."
    }
   ],
-  "date": "2031-07-02"
+  "date": "2031-07-01"
  },
  {
   "words": [
@@ -46468,7 +46443,7 @@
     "def": "A punctuation mark used to introduce a list, explanation, or quotation."
    }
   ],
-  "date": "2031-07-03"
+  "date": "2031-07-02"
  },
  {
   "words": [
@@ -46493,7 +46468,7 @@
     "def": "A performer hired to appear in crowd scenes without specific dialogue."
    }
   ],
-  "date": "2031-07-04"
+  "date": "2031-07-03"
  },
  {
   "words": [
@@ -46518,7 +46493,7 @@
     "def": "Nonsense or something considered worthless or offensive."
    }
   ],
-  "date": "2031-07-05"
+  "date": "2031-07-04"
  },
  {
   "words": [
@@ -46543,7 +46518,7 @@
     "def": "Of greater age or from an earlier time than something else."
    }
   ],
-  "date": "2031-07-06"
+  "date": "2031-07-05"
  },
  {
   "words": [
@@ -46568,7 +46543,7 @@
     "def": "A distinctive pleasant or distinctive smell."
    }
   ],
-  "date": "2031-07-07"
+  "date": "2031-07-06"
  },
  {
   "words": [
@@ -46593,7 +46568,7 @@
     "def": "Cheerful and lively in mood or expression."
    }
   ],
-  "date": "2031-07-08"
+  "date": "2031-07-07"
  },
  {
   "words": [
@@ -46618,7 +46593,7 @@
     "def": "Fresh, cool, and pleasantly sharp or clear in quality."
    }
   ],
-  "date": "2031-07-09"
+  "date": "2031-07-08"
  },
  {
   "words": [
@@ -46643,7 +46618,7 @@
     "def": "Lacking energy or enthusiasm from physical or mental fatigue."
    }
   ],
-  "date": "2031-07-10"
+  "date": "2031-07-09"
  },
  {
   "words": [
@@ -46668,7 +46643,7 @@
     "def": "A thick sweet liquid made by dissolving or boiling something in water."
    }
   ],
-  "date": "2031-07-11"
+  "date": "2031-07-10"
  },
  {
   "words": [
@@ -46693,7 +46668,7 @@
     "def": "To determine the total number of items by tallying them one by one."
    }
   ],
-  "date": "2031-07-12"
+  "date": "2031-07-11"
  },
  {
   "words": [
@@ -46718,7 +46693,7 @@
     "def": "To produce or cause something new to come into existence rapidly."
    }
   ],
-  "date": "2031-07-13"
+  "date": "2031-07-12"
  },
  {
   "words": [
@@ -46743,7 +46718,7 @@
     "def": "A wild or dangerous animal, or a person of brutal nature."
    }
   ],
-  "date": "2031-07-14"
+  "date": "2031-07-13"
  },
  {
   "words": [
@@ -46768,7 +46743,7 @@
     "def": "A light meal or small amount of food eaten between regular meals."
    }
   ],
-  "date": "2031-07-15"
+  "date": "2031-07-14"
  },
  {
   "words": [
@@ -46793,7 +46768,7 @@
     "def": "An informal or friendly word used to welcome or acknowledge someone."
    }
   ],
-  "date": "2031-07-16"
+  "date": "2031-07-15"
  },
  {
   "words": [
@@ -46818,7 +46793,7 @@
     "def": "In a cunning or devious way that shows deceptive intent."
    }
   ],
-  "date": "2031-07-17"
+  "date": "2031-07-16"
  },
  {
   "words": [
@@ -46843,7 +46818,7 @@
     "def": "A large round sweet fruit with thick rind and watery flesh inside."
    }
   ],
-  "date": "2031-07-18"
+  "date": "2031-07-17"
  },
  {
   "words": [
@@ -46868,7 +46843,7 @@
     "def": "A figure displayed on an upright structure representing Christian faith."
    }
   ],
-  "date": "2031-07-19"
+  "date": "2031-07-18"
  },
  {
   "words": [
@@ -46893,7 +46868,7 @@
     "def": "Comically absurd or foolish in a playful manner."
    }
   ],
-  "date": "2031-07-20"
+  "date": "2031-07-19"
  },
  {
   "words": [
@@ -46918,7 +46893,7 @@
     "def": "To love someone deeply and with great devotion."
    }
   ],
-  "date": "2031-07-21"
+  "date": "2031-07-20"
  },
  {
   "words": [
@@ -46943,7 +46918,7 @@
     "def": "A hostile angry look with the eyes narrowed intensely."
    }
   ],
-  "date": "2031-07-22"
+  "date": "2031-07-21"
  },
  {
   "words": [
@@ -46968,7 +46943,7 @@
     "def": "Rough and harsh in speech or demeanor toward others."
    }
   ],
-  "date": "2031-07-23"
+  "date": "2031-07-22"
  },
  {
   "words": [
@@ -46993,7 +46968,7 @@
     "def": "Of very poor quality or condition."
    }
   ],
-  "date": "2031-07-24"
+  "date": "2031-07-23"
  },
  {
   "words": [
@@ -47018,7 +46993,7 @@
     "def": "To speak or express words in any manner or tone of voice."
    }
   ],
-  "date": "2031-07-25"
+  "date": "2031-07-24"
  },
  {
   "words": [
@@ -47043,7 +47018,7 @@
     "def": "A prolonged fixed look, especially one that seems vacant or intense."
    }
   ],
-  "date": "2031-07-26"
+  "date": "2031-07-25"
  },
  {
   "words": [
@@ -47068,7 +47043,7 @@
     "def": "A pale golden brewed beverage with a crisp refreshing taste."
    }
   ],
-  "date": "2031-07-27"
+  "date": "2031-07-26"
  },
  {
   "words": [
@@ -47093,7 +47068,7 @@
     "def": "A narrow inlet of the sea between steep cliffs, carved by glaciers."
    }
   ],
-  "date": "2031-07-28"
+  "date": "2031-07-27"
  },
  {
   "words": [
@@ -47118,7 +47093,7 @@
     "def": "To suddenly emerge or explode with great force and intensity."
    }
   ],
-  "date": "2031-07-29"
+  "date": "2031-07-28"
  },
  {
   "words": [
@@ -47143,7 +47118,7 @@
     "def": "A liquid or semi-liquid flavored topping or accompaniment to a cooked dish."
    }
   ],
-  "date": "2031-07-30"
+  "date": "2031-07-29"
  },
  {
   "words": [
@@ -47168,7 +47143,7 @@
     "def": "High respect and esteem shown to someone for their qualities or actions."
    }
   ],
-  "date": "2031-07-31"
+  "date": "2031-07-30"
  },
  {
   "words": [
@@ -47193,7 +47168,7 @@
     "def": "Heavy with moisture and lacking crispness or firmness."
    }
   ],
-  "date": "2031-08-01"
+  "date": "2031-07-31"
  },
  {
   "words": [
@@ -47218,7 +47193,7 @@
     "def": "To jump over something by pushing with hands or a pole."
    }
   ],
-  "date": "2031-08-02"
+  "date": "2031-08-01"
  },
  {
   "words": [
@@ -47243,7 +47218,7 @@
     "def": "To overflow an area with a large amount of water causing inundation."
    }
   ],
-  "date": "2031-08-03"
+  "date": "2031-08-02"
  },
  {
   "words": [
@@ -47268,7 +47243,7 @@
     "def": "Lacking skill or competence in performing a task or action."
    }
   ],
-  "date": "2031-08-04"
+  "date": "2031-08-03"
  },
  {
   "words": [
@@ -47293,7 +47268,7 @@
     "def": "A person who makes jokes and funny remarks to entertain others."
    }
   ],
-  "date": "2031-08-05"
+  "date": "2031-08-04"
  },
  {
   "words": [
@@ -47318,7 +47293,7 @@
     "def": "Possessing quick mental ability and good judgment in thinking."
    }
   ],
-  "date": "2031-08-06"
+  "date": "2031-08-05"
  },
  {
   "words": [
@@ -47343,7 +47318,7 @@
     "def": "The short thick digit on the hand set apart from the four fingers."
    }
   ],
-  "date": "2031-08-07"
+  "date": "2031-08-06"
  },
  {
   "words": [
@@ -47368,7 +47343,7 @@
     "def": "Mentally unbalanced or silly."
    }
   ],
-  "date": "2031-08-08"
+  "date": "2031-08-07"
  },
  {
   "words": [
@@ -47393,7 +47368,7 @@
     "def": "Lacking originality because of being used too many times."
    }
   ],
-  "date": "2031-08-09"
+  "date": "2031-08-08"
  },
  {
   "words": [
@@ -47418,7 +47393,7 @@
     "def": "An African hoofed mammal with distinctive black and white stripes."
    }
   ],
-  "date": "2031-08-10"
+  "date": "2031-08-09"
  },
  {
   "words": [
@@ -47443,7 +47418,7 @@
     "def": "Deliberately exaggerated or theatrical in a humorous or ironic way."
    }
   ],
-  "date": "2031-08-11"
+  "date": "2031-08-10"
  },
  {
   "words": [
@@ -47468,7 +47443,7 @@
     "def": "A temporary agreement to stop fighting between opposing sides."
    }
   ],
-  "date": "2031-08-12"
+  "date": "2031-08-11"
  },
  {
   "words": [
@@ -47493,7 +47468,7 @@
     "def": "A garment covering the body from waist to ankle on each leg."
    }
   ],
-  "date": "2031-08-13"
+  "date": "2031-08-12"
  },
  {
   "words": [
@@ -47518,7 +47493,7 @@
     "def": "To find and remove errors or defects in software or code."
    }
   ],
-  "date": "2031-08-14"
+  "date": "2031-08-13"
  },
  {
   "words": [
@@ -47543,7 +47518,7 @@
     "def": "A paste used to fill gaps between tiles or stones."
    }
   ],
-  "date": "2031-08-15"
+  "date": "2031-08-14"
  },
  {
   "words": [
@@ -47568,7 +47543,7 @@
     "def": "To give way or surrender to pressure or authority."
    }
   ],
-  "date": "2031-08-16"
+  "date": "2031-08-15"
  },
  {
   "words": [
@@ -47593,7 +47568,7 @@
     "def": "To work and press a soft substance with your hands repeatedly."
    }
   ],
-  "date": "2031-08-17"
+  "date": "2031-08-16"
  },
  {
   "words": [
@@ -47618,7 +47593,7 @@
     "def": "A mischievous small fairy from folklore, usually depicted as impish."
    }
   ],
-  "date": "2031-08-18"
+  "date": "2031-08-17"
  },
  {
   "words": [
@@ -47643,7 +47618,7 @@
     "def": "Unsteady and lightheaded, as if about to faint."
    }
   ],
-  "date": "2031-08-19"
+  "date": "2031-08-18"
  },
  {
   "words": [
@@ -47668,7 +47643,7 @@
     "def": "Questionable or suspicious, lacking integrity or honesty."
    }
   ],
-  "date": "2031-08-20"
+  "date": "2031-08-19"
  },
  {
   "words": [
@@ -47693,7 +47668,7 @@
     "def": "To raise someone in rank, power, or esteem."
    }
   ],
-  "date": "2031-08-21"
+  "date": "2031-08-20"
  },
  {
   "words": [
@@ -47718,7 +47693,7 @@
     "def": "The supreme spirit of evil in theology and mythology."
    }
   ],
-  "date": "2031-08-22"
+  "date": "2031-08-21"
  },
  {
   "words": [
@@ -47743,7 +47718,7 @@
     "def": "To intentionally prevent progress to gain time."
    }
   ],
-  "date": "2031-08-23"
+  "date": "2031-08-22"
  },
  {
   "words": [
@@ -47768,7 +47743,7 @@
     "def": "A surface tilted at an incline from the horizontal or vertical."
    }
   ],
-  "date": "2031-08-24"
+  "date": "2031-08-23"
  },
  {
   "words": [
@@ -47793,7 +47768,7 @@
     "def": "Partially melted snow mixed with water and mud."
    }
   ],
-  "date": "2031-08-25"
+  "date": "2031-08-24"
  },
  {
   "words": [
@@ -47818,7 +47793,7 @@
     "def": "A contemptuous smile showing superiority or mockery."
    }
   ],
-  "date": "2031-08-26"
+  "date": "2031-08-25"
  },
  {
   "words": [
@@ -47843,7 +47818,7 @@
     "def": "A spiced dish of meat or vegetables in a sauce."
    }
   ],
-  "date": "2031-08-27"
+  "date": "2031-08-26"
  },
  {
   "words": [
@@ -47868,7 +47843,7 @@
     "def": "Bound or fastened with adhesive strip."
    }
   ],
-  "date": "2031-08-28"
+  "date": "2031-08-27"
  },
  {
   "words": [
@@ -47893,7 +47868,7 @@
     "def": "Composed of fresh vegetables with chlorophyll-rich coloring."
    }
   ],
-  "date": "2031-08-29"
+  "date": "2031-08-28"
  },
  {
   "words": [
@@ -47918,7 +47893,7 @@
     "def": "The brother of one's parent."
    }
   ],
-  "date": "2031-08-30"
+  "date": "2031-08-29"
  },
  {
   "words": [
@@ -47943,7 +47918,7 @@
     "def": "Organized sounds and silences arranged to create an artistic expression."
    }
   ],
-  "date": "2031-08-31"
+  "date": "2031-08-30"
  },
  {
   "words": [
@@ -47968,7 +47943,7 @@
     "def": "A spacious private house, usually in the countryside or suburbs."
    }
   ],
-  "date": "2031-09-01"
+  "date": "2031-08-31"
  },
  {
   "words": [
@@ -47993,7 +47968,7 @@
     "def": "A loose outer garment worn over clothes to protect them from dirt or stains."
    }
   ],
-  "date": "2031-09-02"
+  "date": "2031-09-01"
  },
  {
   "words": [
@@ -48018,7 +47993,7 @@
     "def": "At a higher level or position than something else."
    }
   ],
-  "date": "2031-09-03"
+  "date": "2031-09-02"
  },
  {
   "words": [
@@ -48043,7 +48018,7 @@
     "def": "Containing or filled with a lot of moisture in the air."
    }
   ],
-  "date": "2031-09-04"
+  "date": "2031-09-03"
  },
  {
   "words": [
@@ -48068,7 +48043,7 @@
     "def": "Lacking courage, strength, or forcefulness; pathetically timid."
    }
   ],
-  "date": "2031-09-05"
+  "date": "2031-09-04"
  },
  {
   "words": [
@@ -48093,7 +48068,7 @@
     "def": "A single song or piece on a recording."
    }
   ],
-  "date": "2031-09-06"
+  "date": "2031-09-05"
  },
  {
   "words": [
@@ -48118,7 +48093,7 @@
     "def": "Periods of sixty minutes that mark divisions of the day."
    }
   ],
-  "date": "2031-09-07"
+  "date": "2031-09-06"
  },
  {
   "words": [
@@ -48143,7 +48118,7 @@
     "def": "Lively and pleasantly pungent or tangy in flavor."
    }
   ],
-  "date": "2031-09-08"
+  "date": "2031-09-07"
  },
  {
   "words": [
@@ -48168,7 +48143,7 @@
     "def": "A framework of beams that bears weight and holds a structure up."
    }
   ],
-  "date": "2031-09-09"
+  "date": "2031-09-08"
  },
  {
   "words": [
@@ -48193,7 +48168,7 @@
     "def": "The total value of what someone or something is equal to."
    }
   ],
-  "date": "2031-09-10"
+  "date": "2031-09-09"
  },
  {
   "words": [
@@ -48218,7 +48193,7 @@
     "def": "Lively and disrespectfully bold in a playful way."
    }
   ],
-  "date": "2031-09-11"
+  "date": "2031-09-10"
  },
  {
   "words": [
@@ -48243,7 +48218,7 @@
     "def": "A fungus that causes dough to rise during bread-making."
    }
   ],
-  "date": "2031-09-12"
+  "date": "2031-09-11"
  },
  {
   "words": [
@@ -48268,7 +48243,7 @@
     "def": "Liquid extracted from fruits or vegetables."
    }
   ],
-  "date": "2031-09-13"
+  "date": "2031-09-12"
  },
  {
   "words": [
@@ -48293,7 +48268,7 @@
     "def": "Stale and damp-smelling from prolonged moisture."
    }
   ],
-  "date": "2031-09-14"
+  "date": "2031-09-13"
  },
  {
   "words": [
@@ -48318,7 +48293,7 @@
     "def": "To make a long deep cut with a sharp instrument."
    }
   ],
-  "date": "2031-09-15"
+  "date": "2031-09-14"
  },
  {
   "words": [
@@ -48343,7 +48318,7 @@
     "def": "A fragrant evergreen tree with soft aromatic wood."
    }
   ],
-  "date": "2031-09-16"
+  "date": "2031-09-15"
  },
  {
   "words": [
@@ -48368,7 +48343,7 @@
     "def": "A thick slimy coating of microorganisms on surfaces."
    }
   ],
-  "date": "2031-09-17"
+  "date": "2031-09-16"
  },
  {
   "words": [
@@ -48393,7 +48368,7 @@
     "def": "Belief in religious or spiritual truth without requiring proof."
    }
   ],
-  "date": "2031-09-18"
+  "date": "2031-09-17"
  },
  {
   "words": [
@@ -48418,7 +48393,7 @@
     "def": "To raise something to a higher position or level."
    }
   ],
-  "date": "2031-09-19"
+  "date": "2031-09-18"
  },
  {
   "words": [
@@ -48443,7 +48418,7 @@
     "def": "To spread or daub something thickly and messily."
    }
   ],
-  "date": "2031-09-20"
+  "date": "2031-09-19"
  },
  {
   "words": [
@@ -48468,7 +48443,7 @@
     "def": "A first-year student at a military academy."
    }
   ],
-  "date": "2031-09-21"
+  "date": "2031-09-20"
  },
  {
   "words": [
@@ -48493,7 +48468,7 @@
     "def": "A tool or creature that creates holes by cutting through material."
    }
   ],
-  "date": "2031-09-22"
+  "date": "2031-09-21"
  },
  {
   "words": [
@@ -48518,7 +48493,7 @@
     "def": "Dried strips of meat seasoned and preserved as a snack."
    }
   ],
-  "date": "2031-09-23"
+  "date": "2031-09-22"
  },
  {
   "words": [
@@ -48543,7 +48518,7 @@
     "def": "Poisonous fluid injected by certain snakes, spiders, or insects."
    }
   ],
-  "date": "2031-09-24"
+  "date": "2031-09-23"
  },
  {
   "words": [
@@ -48568,7 +48543,7 @@
     "def": "Belonging to the highest social or economic class."
    }
   ],
-  "date": "2031-09-25"
+  "date": "2031-09-24"
  },
  {
   "words": [
@@ -48593,7 +48568,7 @@
     "def": "The number equal to six plus one."
    }
   ],
-  "date": "2031-09-26"
+  "date": "2031-09-25"
  },
  {
   "words": [
@@ -48618,7 +48593,7 @@
     "def": "Firm, stable, and not easily moved or broken."
    }
   ],
-  "date": "2031-09-27"
+  "date": "2031-09-26"
  },
  {
   "words": [
@@ -48643,7 +48618,7 @@
     "def": "A deep, heavy sound made by something striking forcefully."
    }
   ],
-  "date": "2031-09-28"
+  "date": "2031-09-27"
  },
  {
   "words": [
@@ -48668,7 +48643,7 @@
     "def": "Dark and gloomy, difficult to see through or into."
    }
   ],
-  "date": "2031-09-29"
+  "date": "2031-09-28"
  },
  {
   "words": [
@@ -48693,7 +48668,7 @@
     "def": "Unwanted material or byproducts left over from use."
    }
   ],
-  "date": "2031-09-30"
+  "date": "2031-09-29"
  },
  {
   "words": [
@@ -48718,7 +48693,7 @@
     "def": "A garment hanging from the waist that covers part or all of the legs."
    }
   ],
-  "date": "2031-10-01"
+  "date": "2031-09-30"
  },
  {
   "words": [
@@ -48743,7 +48718,7 @@
     "def": "A tropical fruit with green skin and pink flesh that contains many small seeds."
    }
   ],
-  "date": "2031-10-02"
+  "date": "2031-10-01"
  },
  {
   "words": [
@@ -48768,7 +48743,7 @@
     "def": "Simple and unadorned without decoration or special features."
    }
   ],
-  "date": "2031-10-03"
+  "date": "2031-10-02"
  },
  {
   "words": [
@@ -48793,7 +48768,7 @@
     "def": "Amusingly ridiculous or absurd in a lighthearted manner."
    }
   ],
-  "date": "2031-10-04"
+  "date": "2031-10-03"
  },
  {
   "words": [
@@ -48818,6 +48793,6 @@
     "def": "A liquid or semi-liquid seasoning served with food."
    }
   ],
-  "date": "2031-10-05"
+  "date": "2031-10-04"
  }
 ]
